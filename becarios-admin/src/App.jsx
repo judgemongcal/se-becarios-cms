@@ -6,7 +6,7 @@ function App() {
   return (
     <>
       <form action="" className="mx-auto flex flex-col items-center">
-        <h1 className="mb-5 text-[1.75rem] font-bold">ADMIN LOGIN</h1>
+        <h1 className="mb-10 text-[1.75rem] font-bold">ADMIN LOGIN</h1>
         <div className="credentials flex min-w-[50%] flex-col justify-center">
           <label htmlFor="username" className=" mb-2">
             UST College Email
@@ -26,11 +26,12 @@ function App() {
             id="username"
             name="username"
             placeholder="Enter your password here"
-            className=" rounded-md bg-slate-300 p-2.5"
+            className=" mb-5 rounded-md bg-slate-300 p-2.5"
           />
+          <button className=" w-[100%] rounded-md bg-blue-300 py-4 text-[1.15rem] font-bold">
+            Log In
+          </button>
         </div>
-
-        <button>Log In</button>
       </form>
     </>
   );
