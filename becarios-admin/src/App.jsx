@@ -1,13 +1,20 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import "./App.css";
+import './App.css';
 
 function App() {
-	return (
-		<>
-			<h1 className="text-xl bg-orange-600">Test</h1>
-		</>
-	);
+  return (
+    <>
+      <label htmlFor="username">UST College Email</label>
+      <input
+        type="text"
+        id="username"
+        name="username"
+        placeholder="juan.delacruz.med@ust.edu.ph"
+      />
+      <button>Log In</button>
+    </>
+  );
 }
 
 export default App;
