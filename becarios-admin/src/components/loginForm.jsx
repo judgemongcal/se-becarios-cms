@@ -1,3 +1,5 @@
+import Button from './Button';
+
 function loginForm() {
   return (
     <form action="" className="mx-auto flex flex-col items-center">
@@ -23,9 +25,7 @@ function loginForm() {
           placeholder="Enter your password here"
           className=" mb-5 rounded-md bg-slate-300 p-2.5"
         />
-        <button className=" w-[100%] rounded-md bg-blue-300 py-4 text-[1.15rem] font-bold">
-          Log In
-        </button>
+        <Button action="Log In" />
       </div>
     </form>
   );
