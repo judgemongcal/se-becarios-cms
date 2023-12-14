@@ -4,7 +4,7 @@ function loginForm() {
   return (
     <form action="" className="mx-auto flex flex-col items-center">
       <h1 className="mb-10 text-[1.75rem] font-bold">ADMIN LOGIN</h1>
-      <div className="credentials flex min-w-[80%] flex-col justify-center">
+      <div className="credentials flex w-[22rem] flex-col justify-center md:w-[27rem]">
         <label htmlFor="username" className=" mb-2">
           UST College Email
         </label>
