@@ -32,6 +32,7 @@ export default {
       login: '0px 0px 160px 0px',
       8: '8px',
     },
+
     extend: {},
   },
   plugins: [],
