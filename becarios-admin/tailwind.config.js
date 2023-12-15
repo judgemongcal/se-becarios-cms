@@ -12,6 +12,9 @@ export default {
     },
     backgroundImage: {
       gradient: 'linear-gradient(92deg, #F2B23C -16.2%, #1F8FF9 114.08%)',
+      'gradient-text': 'linear-gradient(92deg, #F2B23C 35.2%, #1F8FF9 70.08%)',
+      'gradient-overlay':
+        'linear-gradient(92deg, rgba(242,178,60,0.8) -16.2%, rgba(31,143,249,0.8) 114.08%)',
       login: "url('./assets/login_img.jpeg')",
     },
     backgroundClip: {
