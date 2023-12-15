@@ -29,7 +29,7 @@ function loginForm() {
 
       <form
         action=""
-        className="mx-auto  mt-[20%] flex flex-col items-center self-center xl:mt-[-8rem]"
+        className="mx-auto  mt-[25%] flex flex-col items-center self-center xl:mt-[-10rem]"
       >
         <h1 className="mb-10 text-[1.75rem] font-bold">ADMIN LOGIN</h1>
         <div className="credentials flex w-[20rem] flex-col justify-center lg:w-[27rem]">
