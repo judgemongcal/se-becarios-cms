@@ -6,6 +6,7 @@ import {
   EditArticleBtn,
   SubmitEditModalBtn,
   SubmitDeleteModalBtn,
+  ProceedModalBtn,
 } from './Button';
 import { FiKey, FiMail } from 'react-icons/fi';
 import { IoEyeSharp } from 'react-icons/io5';
@@ -83,6 +84,7 @@ function loginForm() {
           <EditArticleBtn />
           <SubmitEditModalBtn />
           <SubmitDeleteModalBtn />
+          <ProceedModalBtn />
         </div>
       </form>
     </div>
