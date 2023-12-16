@@ -1,4 +1,10 @@
-import { LoginBtn, ViewAllBtn, ApproveModalBtn } from './Button';
+import {
+  LoginBtn,
+  ViewAllBtn,
+  ApproveModalBtn,
+  RejectModalBtn,
+  EditArticleBtn,
+} from './Button';
 import { FiKey, FiMail } from 'react-icons/fi';
 import { IoEyeSharp } from 'react-icons/io5';
 
@@ -71,6 +77,8 @@ function loginForm() {
           <LoginBtn />
           <ViewAllBtn />
           <ApproveModalBtn />
+          <RejectModalBtn />
+          <EditArticleBtn />
         </div>
       </form>
     </div>
