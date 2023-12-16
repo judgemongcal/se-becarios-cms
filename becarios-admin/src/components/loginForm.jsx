@@ -1,13 +1,4 @@
-import {
-  LoginBtn,
-  ViewAllBtn,
-  ApproveModalBtn,
-  RejectModalBtn,
-  EditArticleBtn,
-  SubmitEditModalBtn,
-  SubmitDeleteModalBtn,
-  ProceedModalBtn,
-} from './Button';
+import { LoginBtn } from './Button';
 import { FiKey, FiMail } from 'react-icons/fi';
 import { IoEyeSharp } from 'react-icons/io5';
 
@@ -78,13 +69,6 @@ function loginForm() {
             Forgot Password?
           </p>
           <LoginBtn />
-          <ViewAllBtn />
-          <ApproveModalBtn />
-          <RejectModalBtn />
-          <EditArticleBtn />
-          <SubmitEditModalBtn />
-          <SubmitDeleteModalBtn />
-          <ProceedModalBtn />
         </div>
       </form>
     </div>
