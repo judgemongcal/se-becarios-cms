@@ -4,6 +4,8 @@ import {
   ApproveModalBtn,
   RejectModalBtn,
   EditArticleBtn,
+  SubmitEditModalBtn,
+  SubmitDeleteModalBtn,
 } from './Button';
 import { FiKey, FiMail } from 'react-icons/fi';
 import { IoEyeSharp } from 'react-icons/io5';
@@ -79,6 +81,8 @@ function loginForm() {
           <ApproveModalBtn />
           <RejectModalBtn />
           <EditArticleBtn />
+          <SubmitEditModalBtn />
+          <SubmitDeleteModalBtn />
         </div>
       </form>
     </div>
