@@ -6,8 +6,10 @@ export default {
       'brand-input': '#ECECEC',
       'brand-blue': '#1F8FF9',
       'brand-yellow': '#F2B23C',
-      'brand-green': '#324D00',
-      'brand-red': '#A93424',
+      'brand-green': '#3D7200',
+      'brand-green-dark': '#366301',
+      'brand-red': '#D9422D',
+      'brand-red-dark': '#C32C18',
       'brand-black': '#121214',
     },
     backgroundImage: {
@@ -30,6 +32,7 @@ export default {
     },
     borderRadius: {
       login: '0px 0px 160px 0px',
+      10: '10px',
       8: '8px',
       'view-btn': '0px 0px 10px 10px',
     },

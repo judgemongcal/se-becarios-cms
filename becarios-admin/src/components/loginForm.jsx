@@ -1,4 +1,4 @@
-import { LoginButton, ViewAllButton } from './Button';
+import { LoginBtn, ViewAllBtn, ApproveModalBtn } from './Button';
 import { FiKey, FiMail } from 'react-icons/fi';
 import { IoEyeSharp } from 'react-icons/io5';
 
@@ -68,8 +68,9 @@ function loginForm() {
           <p className="mb-2 cursor-pointer self-center text-gray-500">
             Forgot Password?
           </p>
-          <LoginButton />
-          <ViewAllButton />
+          <LoginBtn />
+          <ViewAllBtn />
+          <ApproveModalBtn />
         </div>
       </form>
     </div>
