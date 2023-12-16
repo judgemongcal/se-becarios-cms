@@ -5,7 +5,7 @@ export default {
     colors: {
       'brand-input': '#ECECEC',
       'brand-blue': '#1F8FF9',
-      'brand-yellow': '#C98200',
+      'brand-yellow': '#F2B23C',
       'brand-green': '#324D00',
       'brand-red': '#A93424',
       'brand-black': '#121214',
@@ -31,6 +31,7 @@ export default {
     borderRadius: {
       login: '0px 0px 160px 0px',
       8: '8px',
+      'view-btn': '0px 0px 10px 10px',
     },
 
     extend: {},
