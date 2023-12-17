@@ -1,6 +1,7 @@
 import { LoginBtn } from './Button';
 import { FiKey, FiMail } from 'react-icons/fi';
 import { IoEyeSharp } from 'react-icons/io5';
+import { InvalidLoginCredentials } from './Modal';
 
 function loginForm() {
   return (
@@ -69,6 +70,7 @@ function loginForm() {
             Forgot Password?
           </p>
           <LoginBtn />
+          <InvalidLoginCredentials />
         </div>
       </form>
     </div>
