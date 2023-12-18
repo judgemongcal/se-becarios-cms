@@ -13,10 +13,10 @@ import {
 function loginForm() {
   return (
     <div className="main-div flex flex-row justify-around gap-10">
-      <div className="brand-img bg-login rounded-login hidden h-[100vh] w-[50%] bg-cover  xl:block"></div>
-      <div className="overlay-black bg-gradient-overlay rounded-login absolute left-0 top-0 z-10 hidden h-[100vh] w-[50%] xl:block"></div>
-      <div className="overlay-gradient rounded-login absolute left-0 top-0 z-10 hidden h-[100vh] w-[50%] bg-[rgba(0,0,0,0.75)] px-[7rem] py-[10rem] text-center leading-[60px] xl:block"></div>
-      <div className="brand-info rounded-login absolute left-0 top-0 z-50 hidden h-[100vh] w-[50%] px-[7rem] py-[10rem] text-center leading-[60px] xl:block">
+      <div className="brand-img bg-login rounded-login hidden h-[100vh] w-[50%] bg-cover xl:block"></div>
+      <div className="overlay-black bg-gradient-overlay rounded-login absolute left-0 top-0 z-10 hidden h-[100%] w-[50%] xl:block"></div>
+      <div className="overlay-gradient rounded-login absolute left-0 top-0 z-10 hidden h-[100%] w-[50%] bg-[rgba(0,0,0,0.75)] px-[7rem] py-[10rem] text-center leading-[60px] xl:block"></div>
+      <div className="brand-info rounded-login absolute left-0 top-0 z-50 hidden h-[100%] w-[50%] px-[7rem] py-[10rem] text-center leading-[60px] xl:block">
         <h1 className="text-[40px] font-bold text-white xl:text-[56px] 2xl:mt-[5%]">
           WELCOME TO
         </h1>
@@ -26,7 +26,7 @@ function loginForm() {
         <h2 className="text-[28px] leading-[36px] text-white xl:text-[36px] xl:leading-[44px]">
           The Premier University
         </h2>
-        <h2 className=" mb-[80%] text-[28px] leading-[36px] text-white xl:text-[36px] xl:leading-[44px] 2xl:mb-[60%]">
+        <h2 className=" mb-[80%] text-[28px] leading-[36px] text-white xl:text-[36px] xl:leading-[44px] 2xl:mb-[50%]">
           News Article Platform
         </h2>
         <p className="mb-[-2rem] text-[18px] font-medium text-white">
@@ -39,7 +39,7 @@ function loginForm() {
 
       <form
         action=""
-        className="mx-auto  mt-[25%] flex flex-col items-center self-center xl:mt-[-10rem]"
+        className="mx-auto  mt-[25%] flex flex-col items-center self-center xl:mt-[-2%]"
       >
         <img src="./src/assets/org_logo.png" alt="" className="mb-10 w-[25%]" />
         <h1 className="mb-10 text-[1.75rem] font-bold">ADMIN LOGIN</h1>
@@ -77,12 +77,6 @@ function loginForm() {
             Forgot Password?
           </p>
           <LoginBtn />
-          <InvalidLoginCredentialsPopup />
-          <ApprovePostReqSuccessPopup />
-          <RejectPostReqSuccessPopup />
-          <AddAdminSuccessPopup />
-          <EditAdminInfoSuccessPopup />
-          <RemoveAdminSuccessPopup />
         </div>
       </form>
     </div>
