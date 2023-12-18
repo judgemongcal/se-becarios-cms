@@ -6,6 +6,8 @@ import {
   ApprovePostReqSuccessPopup,
   RejectPostReqSuccessPopup,
   AddAdminSuccessPopup,
+  EditAdminInfoSuccessPopup,
+  RemoveAdminSuccessPopup,
 } from './Popup';
 
 function loginForm() {
@@ -79,6 +81,8 @@ function loginForm() {
           <ApprovePostReqSuccessPopup />
           <RejectPostReqSuccessPopup />
           <AddAdminSuccessPopup />
+          <EditAdminInfoSuccessPopup />
+          <RemoveAdminSuccessPopup />
         </div>
       </form>
     </div>
