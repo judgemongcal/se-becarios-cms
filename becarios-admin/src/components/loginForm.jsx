@@ -5,7 +5,8 @@ import {
   InvalidLoginCredentialsPopup,
   ApprovePostReqSuccessPopup,
   RejectPostReqSuccessPopup,
-} from './Modal';
+  AddAdminSuccessPopup,
+} from './Popup';
 
 function loginForm() {
   return (
@@ -77,6 +78,7 @@ function loginForm() {
           <InvalidLoginCredentialsPopup />
           <ApprovePostReqSuccessPopup />
           <RejectPostReqSuccessPopup />
+          <AddAdminSuccessPopup />
         </div>
       </form>
     </div>
