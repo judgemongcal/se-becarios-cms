@@ -28,6 +28,7 @@ export default {
       transparent: 'transparent',
       black: '#121214',
       white: '#ECECEC',
+      'brand-red': '#D9422D',
     },
     boxShadow: {
       'shadow-db': '0 2px 5px 0 rgba(206,205,205,0.8)',

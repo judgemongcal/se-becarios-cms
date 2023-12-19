@@ -9,6 +9,10 @@ import {
   EditAdminInfoSuccessPopup,
   RemoveAdminSuccessPopup,
 } from './Popup';
+import { ExceededLoginAttemptsModal } from './Modal';
+
+const hasNotExceed = false;
+const limit = 5;
 
 function loginForm() {
   return (
@@ -37,48 +41,56 @@ function loginForm() {
         </p>
       </div>
 
-      <form
-        action=""
-        className="mx-auto  mt-[25%] flex flex-col items-center self-center xl:mt-[-2%]"
-      >
-        <img src="./src/assets/org_logo.png" alt="" className="mb-10 w-[25%]" />
-        <h1 className="mb-10 text-[1.75rem] font-bold">ADMIN LOGIN</h1>
-        <div className="credentials flex w-[20rem] flex-col justify-center lg:w-[27rem]">
-          <label htmlFor="username" className="mb-2">
-            UST College Email
-          </label>
-          <div className="username-input  bg-brand-input shadow-shadow-db rounded-8 mb-5 flex flex-row gap-4 p-2.5">
-            <FiMail className="ml-2 h-auto w-8" />
+      {hasNotExceed ? (
+        <form
+          action=""
+          className="mx-auto  mt-[25%] flex flex-col items-center self-center xl:mt-[-2%]"
+        >
+          <img
+            src="./src/assets/org_logo.png"
+            alt=""
+            className="mb-10 w-[25%]"
+          />
+          <h1 className="mb-10 text-[1.75rem] font-bold">ADMIN LOGIN</h1>
+          <div className="credentials flex w-[20rem] flex-col justify-center lg:w-[27rem]">
+            <label htmlFor="username" className="mb-2">
+              UST College Email
+            </label>
+            <div className="username-input  bg-brand-input shadow-shadow-db rounded-8 mb-5 flex flex-row gap-4 p-2.5">
+              <FiMail className="ml-2 h-auto w-8" />
 
-            <input
-              type="email"
-              id="username"
-              name="username"
-              placeholder="juan.delacruz.med@ust.edu.ph"
-              className="bg-brand-input w-full text-[18px] xl:mr-12"
-            />
-          </div>
+              <input
+                type="email"
+                id="username"
+                name="username"
+                placeholder="juan.delacruz.med@ust.edu.ph"
+                className="bg-brand-input w-full text-[18px] xl:mr-12"
+              />
+            </div>
 
-          <label htmlFor="password" className=" mb-2">
-            Password
-          </label>
-          <div className="username-input  bg-brand-input shadow-shadow-db rounded-8 mb-5 flex flex-row gap-4 p-2.5">
-            <FiKey className="ml-2 h-auto w-8" />
-            <input
-              type="password"
-              id="password"
-              name="password"
-              placeholder="Enter your password here"
-              className=" bg-brand-input w-full text-[18px]"
-            />
-            <IoEyeSharp className="mr-2 h-auto w-8" />
+            <label htmlFor="password" className=" mb-2">
+              Password
+            </label>
+            <div className="username-input  bg-brand-input shadow-shadow-db rounded-8 mb-5 flex flex-row gap-4 p-2.5">
+              <FiKey className="ml-2 h-auto w-8" />
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Enter your password here"
+                className=" bg-brand-input w-full text-[18px]"
+              />
+              <IoEyeSharp className="mr-2 h-auto w-8" />
+            </div>
+            <p className="mb-2 cursor-pointer self-center text-gray-500">
+              Forgot Password?
+            </p>
+            <LoginBtn />
           </div>
-          <p className="mb-2 cursor-pointer self-center text-gray-500">
-            Forgot Password?
-          </p>
-          <LoginBtn />
-        </div>
-      </form>
+        </form>
+      ) : (
+        <ExceededLoginAttemptsModal />
+      )}
     </div>
   );
 }
