@@ -33,10 +33,10 @@ function loginForm() {
         <h2 className=" mb-[80%] text-[28px] leading-[36px] text-white xl:text-[36px] xl:leading-[44px] 2xl:mb-[50%]">
           News Article Platform
         </h2>
-        <p className="mb-[-2rem] text-[18px] font-medium text-white">
+        <p className="mb-[-2rem] mt-[40rem] text-[18px] font-medium text-white">
           Founded by
         </p>
-        <p className="bg-gradient-text mb-[80%] bg-clip-text text-[18px] font-semibold text-transparent xl:text-[21px]">
+        <p className="bg-gradient-text mb-[90%] bg-clip-text text-[18px] font-semibold text-transparent xl:text-[21px]">
           UST - Becarios de Santo Tomas
         </p>
       </div>
