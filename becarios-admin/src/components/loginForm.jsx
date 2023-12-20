@@ -11,7 +11,7 @@ import {
 } from './Popup';
 import { ExceededLoginAttemptsModal } from './Modal';
 
-const hasNotExceed = false;
+const hasNotExceed = true;
 const limit = 5;
 
 function loginForm() {

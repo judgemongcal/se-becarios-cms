@@ -13,6 +13,7 @@ export default {
       'brand-red': '#D9422D',
       'brand-red-dark': '#C32C18',
       'brand-black': '#121214',
+      'modal-bg': 'rgba(0,0,0,0.3)',
     },
     backgroundImage: {
       gradient: 'linear-gradient(92deg, #F2B23C -16.2%, #1F8FF9 114.08%)',
@@ -29,6 +30,8 @@ export default {
       black: '#121214',
       white: '#ECECEC',
       'brand-red': '#D9422D',
+      'brand-green': '#3D7200',
+      'brand-yellow': '#F2B23C',
     },
     boxShadow: {
       'shadow-db': '0 2px 5px 0 rgba(206,205,205,0.8)',
