@@ -17,7 +17,7 @@ function ExceededLoginAttemptsModal() {
 function ApprovePostModal() {
   return (
     <div className="modal-bg bg-brand-input md:bg-modal-bg  justify-cente fixed top-0 z-[1000] flex h-[100%] w-[100%] items-center">
-      <div className="modal-container bg-brand-input rounded-10 mx-auto w-[100%] px-[2rem] py-[2.25rem] md:w-[50%] xl:w-[35%] 2xl:w-[25%]">
+      <div className="modal-container bg-brand-input rounded-10 3xl:w-[25%] mx-auto w-[100%] px-[2rem] py-[2.25rem] md:w-[50%] xl:w-[35%] 2xl:w-[500px]">
         <h1 className="text-brand-green mx-5 mb-[2rem] text-center text-[1.5rem] font-bold xl:text-[1.85rem]">
           You are about to approve a post request.
         </h1>
@@ -26,7 +26,7 @@ function ApprovePostModal() {
             <img
               src="./src/assets/sample_2.jpeg"
               alt=""
-              className="h-auto w-[200px] md:h-[150px] md:w-[300px]"
+              className="h-auto w-[200px] md:h-auto md:w-[300px]"
             />
           </div>
           <div className="post-info text-center md:ml-[1rem] md:text-left">
@@ -36,8 +36,11 @@ function ApprovePostModal() {
             <p className="text-[0.85rem] lg:text-[1.15rem]">
               December 12, 2023 9:12PM
             </p>
-            <p className="text-[0.85rem] lg:text-[1.15rem]">
+            <p className="mb-2 text-[0.85rem] lg:text-[1.15rem]">
               Submitted by: Hannah Yu
+            </p>
+            <p className="bg-brand-yellow rounded-8 mx-auto inline-block px-4 py-1 text-[0.85rem] lg:text-[1rem]">
+              Article Post
             </p>
           </div>
         </div>
