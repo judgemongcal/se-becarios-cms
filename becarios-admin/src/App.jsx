@@ -8,7 +8,7 @@ function App() {
   return (
     <>
       <LoginForm />
-      <RejectPostModal />
+      {/* <RejectPostModal /> */}
     </>
   );
 }
