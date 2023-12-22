@@ -1,4 +1,6 @@
-import { ApproveModalBtn, RejectModalBtn } from './Button';
+import { BsExclamationCircle } from 'react-icons/bs';
+
+import { ApproveModalBtn, RejectModalBtn, SubmitEditModalBtn } from './Button';
 
 function ExceededLoginAttemptsModal() {
   return (
@@ -86,4 +88,27 @@ function RejectPostModal() {
   );
 }
 
-export { ExceededLoginAttemptsModal, ApprovePostModal, RejectPostModal };
+function EditPostModal() {
+  return (
+    <div className="modal-bg bg-brand-input md:bg-modal-bg  justify-cente fixed top-0 z-[1000] flex h-[100%] w-[100%] items-center">
+      <div className="modal-container bg-brand-input rounded-10 3xl:w-[25%] mx-auto flex w-[100%] flex-col justify-center px-[2rem] py-[2.25rem] text-center md:w-[50%] xl:w-[35%] 2xl:w-[500px]">
+        <BsExclamationCircle className="fill-brand-blue stroke-brand-blue mb-4 h-[100px] w-auto stroke-[0.055px]" />
+        <h1 className="text-brand-blue mb-6 text-[1.5rem] font-semibold leading-[1.65rem]">
+          You are about to send an edit
+          <br /> reuqest for an existing post.
+        </h1>
+        <p className="mb-4 text-[1.25rem] font-medium">
+          Do you want to proceed?
+        </p>
+        <SubmitEditModalBtn />
+      </div>
+    </div>
+  );
+}
+
+export {
+  ExceededLoginAttemptsModal,
+  ApprovePostModal,
+  RejectPostModal,
+  EditPostModal,
+};

@@ -30,6 +30,7 @@ export default {
       black: '#121214',
       white: '#ECECEC',
       'brand-red': '#D9422D',
+      'brand-blue': '#1F8FF9',
       'brand-green': '#3D7200',
       'brand-yellow': '#F2B23C',
     },

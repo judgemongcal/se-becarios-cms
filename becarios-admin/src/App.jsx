@@ -2,13 +2,17 @@ import { useState } from 'react';
 import LoginForm from './components/LoginForm';
 
 import './App.css';
-import { ApprovePostModal, RejectPostModal } from './components/Modal';
+import {
+  ApprovePostModal,
+  EditPostModal,
+  RejectPostModal,
+} from './components/Modal';
 
 function App() {
   return (
     <>
       <LoginForm />
-      {/* <RejectPostModal /> */}
+      <EditPostModal />
     </>
   );
 }

@@ -87,7 +87,6 @@ function loginForm() {
               Forgot Password?
             </p>
             <LoginBtn />
-            <GenReportSuccessPopup />
           </div>
         </form>
       ) : (
