@@ -7,13 +7,14 @@ import {
   DeletePostModal,
   EditPostModal,
   RejectPostModal,
+  SubmitPostModal,
 } from './components/Modal';
 
 function App() {
   return (
     <>
       <LoginForm />
-      <DeletePostModal />
+      <SubmitPostModal />
     </>
   );
 }
