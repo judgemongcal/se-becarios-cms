@@ -5,6 +5,7 @@ import {
   RejectModalBtn,
   SubmitDeleteModalBtn,
   SubmitEditModalBtn,
+  SubmitPostModalBtn,
 } from './Button';
 
 function ExceededLoginAttemptsModal() {
@@ -105,7 +106,7 @@ function SubmitPostModal() {
         <p className="mb-4 text-[1.25rem] font-medium">
           Do you want to proceed?
         </p>
-        <SubmitEditModalBtn />
+        <SubmitPostModalBtn />
       </div>
     </div>
   );
