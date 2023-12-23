@@ -25,7 +25,7 @@ function ApprovePostReqSuccessPopup() {
   );
 }
 
-function ApprovePostReqFailedPopup() {
+function PostReqFailedPopup() {
   return (
     <div className="bg-brand-red rounded-10 my-4 flex flex-row items-center justify-center gap-2 px-4 py-2 text-center text-white">
       <FaRegCircleCheck className=" h-auto w-8 md:ml-[1rem] lg:ml-0" />
@@ -53,6 +53,18 @@ function AddAdminSuccessPopup() {
       <FaRegCircleCheck className="h-auto w-8 md:ml-[1rem] lg:ml-0" />
       <p className="ml-0 text-[10px] md:text-[12px] lg:ml-0">
         Administrator has been added successfully.
+      </p>
+    </div>
+  );
+}
+
+function AdminErrorPopup() {
+  return (
+    <div className="bg-brand-red rounded-10 my-4 flex flex-row items-center justify-center gap-2 px-4 py-2 text-center text-white">
+      <FaRegCircleXmark className="h-auto w-8 md:ml-[1rem] lg:ml-0" />
+      <p className="ml-0 text-[10px] md:text-[12px] lg:ml-0">
+        Error! There has been an issue with processing the changes. <br />
+        Please try again.
       </p>
     </div>
   );
@@ -95,9 +107,10 @@ function GenReportSuccessPopup() {
 export {
   InvalidLoginCredentialsPopup,
   ApprovePostReqSuccessPopup,
-  ApprovePostReqFailedPopup,
+  PostReqFailedPopup,
   RejectPostReqSuccessPopup,
   AddAdminSuccessPopup,
+  AdminErrorPopup,
   EditAdminInfoSuccessPopup,
   RemoveAdminSuccessPopup,
   GenReportSuccessPopup,

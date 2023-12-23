@@ -9,7 +9,8 @@ import {
   EditAdminInfoSuccessPopup,
   RemoveAdminSuccessPopup,
   GenReportSuccessPopup,
-  ApprovePostReqFailedPopup,
+  PostReqFailedPopup,
+  AdminErrorPopup,
 } from './Popup';
 import { ExceededLoginAttemptsModal } from './Modal';
 
@@ -88,7 +89,7 @@ function loginForm() {
               Forgot Password?
             </p>
             <LoginBtn />
-            <ApprovePostReqFailedPopup />
+            <AdminErrorPopup />
           </div>
         </form>
       ) : (
