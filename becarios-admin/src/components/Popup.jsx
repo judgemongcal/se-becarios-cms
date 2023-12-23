@@ -25,6 +25,17 @@ function ApprovePostReqSuccessPopup() {
   );
 }
 
+function ApprovePostReqFailedPopup() {
+  return (
+    <div className="bg-brand-red rounded-10 my-4 flex flex-row items-center justify-center gap-2 px-4 py-2 text-center text-white">
+      <FaRegCircleCheck className=" h-auto w-8 md:ml-[1rem] lg:ml-0" />
+      <p className=" ml-0 text-[10px] md:text-[12px] lg:ml-0">
+        Error! There has been an issue with sending your request. Try again.
+      </p>
+    </div>
+  );
+}
+
 function RejectPostReqSuccessPopup() {
   return (
     <div className="bg-brand-green rounded-10 my-4 flex flex-row items-center justify-center gap-2 px-4 py-2 text-center text-white">
@@ -84,6 +95,7 @@ function GenReportSuccessPopup() {
 export {
   InvalidLoginCredentialsPopup,
   ApprovePostReqSuccessPopup,
+  ApprovePostReqFailedPopup,
   RejectPostReqSuccessPopup,
   AddAdminSuccessPopup,
   EditAdminInfoSuccessPopup,
