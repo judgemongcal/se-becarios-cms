@@ -6,6 +6,7 @@ import {
   ApprovePostModal,
   DeletePostModal,
   EditPostModal,
+  EditReqSuccessModal,
   PostReqSuccessModal,
   RejectPostModal,
   SubmitPostModal,
@@ -15,7 +16,7 @@ function App() {
   return (
     <>
       <LoginForm />
-      <PostReqSuccessModal />
+      <EditReqSuccessModal />
     </>
   );
 }
