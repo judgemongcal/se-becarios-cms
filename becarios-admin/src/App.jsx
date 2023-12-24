@@ -6,6 +6,7 @@ import {
   ApprovePostModal,
   DeletePostModal,
   EditPostModal,
+  PostReqSuccessModal,
   RejectPostModal,
   SubmitPostModal,
 } from './components/Modal';
@@ -14,7 +15,7 @@ function App() {
   return (
     <>
       <LoginForm />
-      <SubmitPostModal />
+      <PostReqSuccessModal />
     </>
   );
 }
