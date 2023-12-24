@@ -10,6 +10,7 @@ import {
   EditReqSuccessModal,
   PostReqSuccessModal,
   RejectPostModal,
+  SignOutModal,
   SubmitPostModal,
 } from './components/Modal';
 
@@ -17,7 +18,7 @@ function App() {
   return (
     <>
       <LoginForm />
-      <DeleteReqSuccessModal />
+      <SignOutModal />
     </>
   );
 }
