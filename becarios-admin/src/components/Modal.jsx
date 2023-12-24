@@ -199,6 +199,25 @@ function EditReqSuccessModal() {
   );
 }
 
+function DeleteReqSuccessModal() {
+  return (
+    <div className="modal-bg bg-brand-input md:bg-modal-bg  justify-cente fixed top-0 z-[1000] flex h-[100%] w-[100%] items-center">
+      <div className="modal-container bg-brand-input rounded-10 3xl:w-[25%] mx-auto flex w-[100%] flex-col justify-center px-[2rem] py-[2.25rem] text-center md:w-[50%] xl:w-[35%] 2xl:w-[500px]">
+        <FaRegCircleCheck className="fill-brand-blue stroke-brand-blue mb-4 h-[100px] w-auto stroke-[0.055px]" />
+        <h1 className="text-brand-blue mb-6 text-[1.5rem] font-semibold leading-[1.65rem]">
+          Delete Request Submitted.
+        </h1>
+        <p className="mx-[3rem] mb-[2rem] text-[1rem] font-medium">
+          Your delete request has been submitted. It is now
+          pending for the approval of the super
+          administrator. We appreciate your patience!
+        </p>
+        <ProceedModalBtn />
+      </div>
+    </div>
+  );
+}
+
 export {
   ExceededLoginAttemptsModal,
   ApprovePostModal,
@@ -208,4 +227,5 @@ export {
   DeletePostModal,
   PostReqSuccessModal,
   EditReqSuccessModal,
+  DeleteReqSuccessModal,
 };

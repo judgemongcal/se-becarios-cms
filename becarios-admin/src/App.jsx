@@ -5,6 +5,7 @@ import './App.css';
 import {
   ApprovePostModal,
   DeletePostModal,
+  DeleteReqSuccessModal,
   EditPostModal,
   EditReqSuccessModal,
   PostReqSuccessModal,
@@ -16,7 +17,7 @@ function App() {
   return (
     <>
       <LoginForm />
-      <EditReqSuccessModal />
+      <DeleteReqSuccessModal />
     </>
   );
 }
