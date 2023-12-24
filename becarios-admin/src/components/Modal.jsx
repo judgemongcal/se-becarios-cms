@@ -1,4 +1,8 @@
 import { BsExclamationCircle } from 'react-icons/bs';
+import {
+  FaRegCircleXmark,
+  FaRegCircleCheck,
+} from 'react-icons/fa6';
 
 import {
   ApproveModalBtn,
@@ -11,9 +15,14 @@ import {
 function ExceededLoginAttemptsModal() {
   return (
     <div className="mx-auto  mt-[35%] flex flex-col items-center self-center text-center md:mt-[20%] xl:mt-[-10%]">
-      <img src="./src/assets/org_logo.png" alt="" className="mb-10 w-[25%]" />
+      <img
+        src="./src/assets/org_logo.png"
+        alt=""
+        className="mb-10 w-[25%]"
+      />
       <h1 className="text-brand-red mx-5 mb-2 text-[1.5rem] font-bold xl:text-[1.85rem]">
-        You&apos;ve reached the maximum number<br></br>of failed login attempts
+        You&apos;ve reached the maximum number<br></br>of
+        failed login attempts
       </h1>
       <p className="text-[1.25rem] font-medium xl:text-[1.5rem]">
         Please try again later.
@@ -39,7 +48,8 @@ function ApprovePostModal() {
           </div>
           <div className="post-info text-center md:ml-[1rem] md:text-left">
             <h2 className="mb-[1rem] font-bold lg:mt-[-1rem] lg:text-[1.25rem]">
-              Lorem ipsum dolor sit amet consectetur ac id massa
+              Lorem ipsum dolor sit amet consectetur ac id
+              massa
             </h2>
             <p className="text-[0.85rem] lg:text-[1.15rem]">
               December 12, 2023 9:12PM
@@ -75,7 +85,8 @@ function RejectPostModal() {
           </div>
           <div className="post-info text-center md:ml-[1rem] md:text-left">
             <h2 className="mb-[1rem] font-bold lg:mt-[-1rem] lg:text-[1.25rem]">
-              Lorem ipsum dolor sit amet consectetur ac id massa
+              Lorem ipsum dolor sit amet consectetur ac id
+              massa
             </h2>
             <p className="text-[0.85rem] lg:text-[1.15rem]">
               December 12, 2023 9:12PM
@@ -148,6 +159,25 @@ function DeletePostModal() {
   );
 }
 
+function PostReqSuccessModal() {
+  return (
+    <div className="modal-bg bg-brand-input md:bg-modal-bg  justify-cente fixed top-0 z-[1000] flex h-[100%] w-[100%] items-center">
+      <div className="modal-container bg-brand-input rounded-10 3xl:w-[25%] mx-auto flex w-[100%] flex-col justify-center px-[2rem] py-[2.25rem] text-center md:w-[50%] xl:w-[35%] 2xl:w-[500px]">
+        <FaRegCircleCheck className="fill-brand-red stroke-brand-red mb-4 h-[100px] w-auto stroke-[0.055px]" />
+        <h1 className="text-brand-red mb-6 text-[1.5rem] font-semibold leading-[1.65rem]">
+          Post Request Submitted.
+        </h1>
+        <p className="mb-4 text-[1.25rem] font-medium">
+          Your post request has been submitted. It is now
+          pending for the approval of the super
+          administrator. We appreciate your patience!
+        </p>
+        <SubmitDeleteModalBtn />
+      </div>
+    </div>
+  );
+}
+
 export {
   ExceededLoginAttemptsModal,
   ApprovePostModal,
@@ -155,4 +185,5 @@ export {
   SubmitPostModal,
   EditPostModal,
   DeletePostModal,
+  PostReqSuccessModal,
 };
