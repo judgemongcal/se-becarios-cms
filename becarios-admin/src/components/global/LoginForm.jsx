@@ -11,7 +11,7 @@ import {
   GenReportSuccessPopup,
   PostReqFailedPopup,
   AdminErrorPopup,
-} from './Popup';
+} from '../global/Popup';
 import { ExceededLoginAttemptsModal } from './Modal';
 
 const hasNotExceed = true;
@@ -54,7 +54,9 @@ function loginForm() {
             alt=""
             className="mb-10 w-[25%]"
           />
-          <h1 className="mb-10 text-[1.75rem] font-bold">ADMIN LOGIN</h1>
+          <h1 className="mb-10 text-[1.75rem] font-bold">
+            ADMIN LOGIN
+          </h1>
           <div className="credentials flex w-[20rem] flex-col justify-center lg:w-[27rem]">
             <label htmlFor="username" className="mb-2">
               UST College Email

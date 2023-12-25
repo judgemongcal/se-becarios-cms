@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import LoginForm from './components/LoginForm';
+import LoginForm from './components/global/LoginForm';
 
 import './App.css';
 import {
@@ -12,8 +12,8 @@ import {
   RejectPostModal,
   SignOutModal,
   SubmitPostModal,
-} from './components/Modal';
-import NavBar from './components/NavBar';
+} from './components/global/Modal';
+import NavBar from './components/global/NavBar';
 
 function App() {
   return (

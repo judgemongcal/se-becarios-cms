@@ -13,7 +13,7 @@ import {
   SubmitDeleteModalBtn,
   SubmitEditModalBtn,
   SubmitPostModalBtn,
-} from './Button';
+} from '../global/Button';
 
 function ExceededLoginAttemptsModal() {
   return (
