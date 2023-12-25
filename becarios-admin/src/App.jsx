@@ -13,12 +13,14 @@ import {
   SignOutModal,
   SubmitPostModal,
 } from './components/Modal';
+import NavBar from './components/NavBar';
 
 function App() {
   return (
     <>
-      <LoginForm />
-      <SignOutModal />
+      {/* <LoginForm />
+      <SignOutModal /> */}
+      <NavBar />
     </>
   );
 }
