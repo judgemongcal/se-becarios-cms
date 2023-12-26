@@ -18,9 +18,7 @@ import NavBar from './components/global/NavBar';
 function App() {
   return (
     <>
-      {/* <LoginForm />
-      <SignOutModal /> */}
-      <NavBar />
+      <LoginForm />
     </>
   );
 }

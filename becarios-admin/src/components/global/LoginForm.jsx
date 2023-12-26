@@ -13,6 +13,7 @@ import {
   AdminErrorPopup,
 } from '../global/Popup';
 import { ExceededLoginAttemptsModal } from './Modal';
+import AdminListItem from '../settings/AdminListItem';
 
 const hasNotExceed = true;
 const limit = 5;
@@ -91,7 +92,7 @@ function loginForm() {
               Forgot Password?
             </p>
             <LoginBtn />
-            <AdminErrorPopup />
+            <AdminListItem />
           </div>
         </form>
       ) : (

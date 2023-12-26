@@ -16,8 +16,10 @@ export default {
       'modal-bg': 'rgba(0,0,0,0.3)',
     },
     backgroundImage: {
-      gradient: 'linear-gradient(92deg, #F2B23C -16.2%, #1F8FF9 114.08%)',
-      'gradient-text': 'linear-gradient(92deg, #F2B23C 35.2%, #1F8FF9 70.08%)',
+      gradient:
+        'linear-gradient(92deg, #F2B23C -16.2%, #1F8FF9 114.08%)',
+      'gradient-text':
+        'linear-gradient(92deg, #F2B23C 35.2%, #1F8FF9 70.08%)',
       'gradient-overlay':
         'linear-gradient(92deg, rgba(242,178,60,0.8) -16.2%, rgba(31,143,249,0.8) 114.08%)',
       login: "url('./assets/login_img.jpeg')",
@@ -36,6 +38,7 @@ export default {
     },
     boxShadow: {
       'shadow-db': '0 2px 5px 0 rgba(206,205,205,0.8)',
+      'sm-btn': '0 1px 3px 0 rgba(155, 139, 139, 0.6)',
     },
     borderRadius: {
       login: '0px 0px 160px 0px',
