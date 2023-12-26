@@ -14,6 +14,7 @@ import {
 } from '../global/Popup';
 import { ExceededLoginAttemptsModal } from './Modal';
 import AdminListItem from '../settings/AdminListItem';
+import SuperAdminListItem from '../settings/SuperAdminListItem';
 
 const hasNotExceed = true;
 const limit = 5;
@@ -93,6 +94,7 @@ function loginForm() {
             </p>
             <LoginBtn />
             <AdminListItem />
+            <SuperAdminListItem />
           </div>
         </form>
       ) : (
