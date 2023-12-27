@@ -1,4 +1,8 @@
-import { GenerateReportBtn, LoginBtn } from './Button';
+import {
+  BacktoDashboardBtn,
+  GenerateReportBtn,
+  LoginBtn,
+} from './Button';
 import { FiKey, FiMail } from 'react-icons/fi';
 import { IoEyeSharp } from 'react-icons/io5';
 import {
@@ -94,6 +98,7 @@ function loginForm() {
             </p>
             <LoginBtn />
             <GenerateReportBtn />
+            <BacktoDashboardBtn />
           </div>
         </form>
       ) : (
