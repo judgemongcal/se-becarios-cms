@@ -5,6 +5,7 @@ export default {
     colors: {
       'brand-input': '#ECECEC',
       'brand-light': '#f6f6f6',
+      'brand-gray': '#515050',
       'brand-blue': '#1F8FF9',
       'brand-blue-dark': '#0C74D7',
       'brand-yellow': '#F2B23C',
