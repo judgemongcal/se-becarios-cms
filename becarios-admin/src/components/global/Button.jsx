@@ -168,6 +168,14 @@ function DeleteAdmiModalBtn() {
   );
 }
 
+function GenerateReportBtn() {
+  return (
+    <button className="bg-brand-green shadow-shadow-db rounded-10 hover:bg-brand-green-dark py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-300">
+      Generate Report
+    </button>
+  );
+}
+
 export {
   LoginBtn,
   ViewAllBtn,
@@ -183,4 +191,5 @@ export {
   EditAdminModalBtn,
   DeleteAdmiModalBtn,
   LogoutBtn,
+  GenerateReportBtn,
 };

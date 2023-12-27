@@ -1,4 +1,4 @@
-import { LoginBtn } from './Button';
+import { GenerateReportBtn, LoginBtn } from './Button';
 import { FiKey, FiMail } from 'react-icons/fi';
 import { IoEyeSharp } from 'react-icons/io5';
 import {
@@ -93,8 +93,7 @@ function loginForm() {
               Forgot Password?
             </p>
             <LoginBtn />
-            <AdminListItem />
-            <SuperAdminListItem />
+            <GenerateReportBtn />
           </div>
         </form>
       ) : (
