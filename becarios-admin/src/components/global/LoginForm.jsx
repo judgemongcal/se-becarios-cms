@@ -22,6 +22,7 @@ import SuperAdminListItem from '../settings/SuperAdminListItem';
 import SearchField from './SearchField';
 import PaginationLabel from './PaginationLabel';
 import ActivityFilters from '../recent-activities/ActivityFilters';
+import ActivityListItem from '../recent-activities/ActivityListItem';
 
 const hasNotExceed = true;
 const limit = 5;
@@ -102,6 +103,7 @@ function loginForm() {
             <LoginBtn />
           </div>
           <ActivityFilters />
+          <ActivityListItem />
         </form>
       ) : (
         <ExceededLoginAttemptsModal />
