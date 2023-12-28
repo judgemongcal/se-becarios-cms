@@ -100,8 +100,8 @@ function loginForm() {
               Forgot Password?
             </p>
             <LoginBtn />
-            <ActivityFilters />
           </div>
+          <ActivityFilters />
         </form>
       ) : (
         <ExceededLoginAttemptsModal />
