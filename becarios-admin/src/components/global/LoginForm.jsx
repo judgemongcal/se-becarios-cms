@@ -21,6 +21,7 @@ import AdminListItem from '../settings/AdminListItem';
 import SuperAdminListItem from '../settings/SuperAdminListItem';
 import SearchField from './SearchField';
 import PaginationLabel from './PaginationLabel';
+import ActivityFilters from '../recent-activities/ActivityFilters';
 
 const hasNotExceed = true;
 const limit = 5;
@@ -99,7 +100,7 @@ function loginForm() {
               Forgot Password?
             </p>
             <LoginBtn />
-            <PaginationLabel />
+            <ActivityFilters />
           </div>
         </form>
       ) : (
