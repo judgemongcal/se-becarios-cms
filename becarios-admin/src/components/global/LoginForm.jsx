@@ -23,6 +23,7 @@ import SearchField from './SearchField';
 import PaginationLabel from './PaginationLabel';
 import ActivityFilters from '../recent-activities/ActivityFilters';
 import ActivityListItem from '../recent-activities/ActivityListItem';
+import ContentFilters from '../manage-content/ContentFilters';
 
 const hasNotExceed = true;
 const limit = 5;
@@ -104,6 +105,7 @@ function loginForm() {
           </div>
           <ActivityFilters />
           <ActivityListItem />
+          <ContentFilters />
         </form>
       ) : (
         <ExceededLoginAttemptsModal />
