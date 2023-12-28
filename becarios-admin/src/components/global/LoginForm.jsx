@@ -20,6 +20,7 @@ import { ExceededLoginAttemptsModal } from './Modal';
 import AdminListItem from '../settings/AdminListItem';
 import SuperAdminListItem from '../settings/SuperAdminListItem';
 import SearchField from './SearchField';
+import PaginationLabel from './PaginationLabel';
 
 const hasNotExceed = true;
 const limit = 5;
@@ -98,7 +99,7 @@ function loginForm() {
               Forgot Password?
             </p>
             <LoginBtn />
-            <SearchField />
+            <PaginationLabel />
           </div>
         </form>
       ) : (
