@@ -103,9 +103,6 @@ function loginForm() {
             </p>
             <LoginBtn />
           </div>
-          <ActivityFilters />
-          <ActivityListItem />
-          <ContentFilters />
         </form>
       ) : (
         <ExceededLoginAttemptsModal />
