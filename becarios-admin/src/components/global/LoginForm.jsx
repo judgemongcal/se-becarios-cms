@@ -3,6 +3,7 @@ import { FiKey, FiMail } from 'react-icons/fi';
 import { IoEyeSharp } from 'react-icons/io5';
 
 import { ExceededLoginAttemptsModal } from './Modal';
+import AdminListItem from '../settings/AdminListItem';
 
 const hasNotExceed = true;
 const limit = 5;
@@ -82,6 +83,7 @@ function loginForm() {
             </p>
             <LoginBtn />
             <PostedSettingsBtn />
+            <AdminListItem />
           </div>
         </form>
       ) : (

@@ -1,4 +1,6 @@
 import { FaEllipsis } from 'react-icons/fa6';
+import { FaXmark } from 'react-icons/fa6';
+import { LuPencil } from 'react-icons/lu';
 
 function LoginBtn() {
   return (
@@ -194,6 +196,14 @@ function PostedSettingsBtn() {
   );
 }
 
+function EditItemBtn() {
+  return (
+    <button className="bg-brand-light hover:bg-brand-black rounded-8 shadow-sm-btn items-center p-2 duration-300">
+      <LuPencil className="fill-brand-input stroke-brand-black  h-[20px] w-[24px] " />
+    </button>
+  );
+}
+
 export {
   LoginBtn,
   ViewAllBtn,
@@ -211,5 +221,6 @@ export {
   GenerateReportBtn,
   BacktoDashboardBtn,
   PostedSettingsBtn,
+  EditItemBtn,
   LogoutBtn,
 };
