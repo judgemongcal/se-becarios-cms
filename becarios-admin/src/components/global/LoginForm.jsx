@@ -1,4 +1,4 @@
-import { LoginBtn } from './Button';
+import { LoginBtn, PostedSettingsBtn } from './Button';
 import { FiKey, FiMail } from 'react-icons/fi';
 import { IoEyeSharp } from 'react-icons/io5';
 
@@ -81,6 +81,7 @@ function loginForm() {
               Forgot Password?
             </p>
             <LoginBtn />
+            <PostedSettingsBtn />
           </div>
         </form>
       ) : (

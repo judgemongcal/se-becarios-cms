@@ -1,3 +1,5 @@
+import { FaEllipsis } from 'react-icons/fa6';
+
 function LoginBtn() {
   return (
     <button className=" bg-gradient shadow-shadow-db transition-scale rounded-8 w-[100%] py-4 text-[1.15rem] font-bold text-[#FFFFFF] duration-100 ease-in hover:scale-105">
@@ -184,6 +186,14 @@ function BacktoDashboardBtn() {
   );
 }
 
+function PostedSettingsBtn() {
+  return (
+    <button className=" bg-brand-input rounded-8 shadow-shadow-db hover:bg-brand-light w-fit  items-center p-2 duration-300 ">
+      <FaEllipsis className="fill-brand-black h-auto w-[24px]" />
+    </button>
+  );
+}
+
 export {
   LoginBtn,
   ViewAllBtn,
@@ -200,5 +210,6 @@ export {
   SubmitDeleteModalBtn,
   GenerateReportBtn,
   BacktoDashboardBtn,
+  PostedSettingsBtn,
   LogoutBtn,
 };
