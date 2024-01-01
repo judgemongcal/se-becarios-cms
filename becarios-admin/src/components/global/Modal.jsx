@@ -7,7 +7,7 @@ import {
 import {
   ApproveModalBtn,
   LogoutBtn,
-  PostReqSucessModalBtn,
+  PostReqSuccessModalBtn,
   ProceedModalBtn,
   RejectModalBtn,
   SubmitDeleteModalBtn,
@@ -175,7 +175,7 @@ function PostReqSuccessModal() {
           pending for the approval of the super
           administrator. We appreciate your patience!
         </p>
-        <PostReqSucessModalBtn />
+        <PostReqSuccessModalBtn />
       </div>
     </div>
   );

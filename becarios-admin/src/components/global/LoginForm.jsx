@@ -1,29 +1,8 @@
-import {
-  BacktoDashboardBtn,
-  GenerateReportBtn,
-  LoginBtn,
-} from './Button';
+import { LoginBtn } from './Button';
 import { FiKey, FiMail } from 'react-icons/fi';
 import { IoEyeSharp } from 'react-icons/io5';
-import {
-  InvalidLoginCredentialsPopup,
-  ApprovePostReqSuccessPopup,
-  RejectPostReqSuccessPopup,
-  AddAdminSuccessPopup,
-  EditAdminInfoSuccessPopup,
-  RemoveAdminSuccessPopup,
-  GenReportSuccessPopup,
-  PostReqFailedPopup,
-  AdminErrorPopup,
-} from '../global/Popup';
+
 import { ExceededLoginAttemptsModal } from './Modal';
-import AdminListItem from '../settings/AdminListItem';
-import SuperAdminListItem from '../settings/SuperAdminListItem';
-import SearchField from './SearchField';
-import PaginationLabel from './PaginationLabel';
-import ActivityFilters from '../recent-activities/ActivityFilters';
-import ActivityListItem from '../recent-activities/ActivityListItem';
-import ContentFilters from '../manage-content/ContentFilters';
 
 const hasNotExceed = true;
 const limit = 5;
