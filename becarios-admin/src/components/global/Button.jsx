@@ -204,6 +204,14 @@ function EditItemBtn() {
   );
 }
 
+function DeleteAdminBtn() {
+  return (
+    <button className="bg-brand-red hover:bg-brand-red-dark rounded-8 shadow-sm-btn items-center p-2 duration-300">
+      <FaXmark className="fill-brand-input h-auto w-[24px]" />
+    </button>
+  );
+}
+
 export {
   LoginBtn,
   ViewAllBtn,
@@ -222,5 +230,6 @@ export {
   BacktoDashboardBtn,
   PostedSettingsBtn,
   EditItemBtn,
+  DeleteAdminBtn,
   LogoutBtn,
 };
