@@ -14,8 +14,9 @@ function loginForm() {
       <div className="brand-img bg-login rounded-login hidden h-[100vh] w-[50%] bg-cover xl:block"></div>
       <div className="overlay-black bg-gradient-overlay rounded-login absolute left-0 top-0 z-10 hidden h-[100%] w-[50%] xl:block"></div>
       <div className="overlay-gradient rounded-login absolute left-0 top-0 z-10 hidden h-[100%] w-[50%] bg-[rgba(0,0,0,0.75)] px-[7rem] py-[10rem] text-center leading-[60px] xl:block"></div>
-      <div className="brand-info rounded-login absolute left-0 top-0 z-50 hidden h-[100%] w-[50%] px-[7rem] py-[10rem] text-center leading-[60px] xl:block">
-        <h1 className="text-[40px] font-bold text-white xl:text-[56px] 2xl:mt-[5%]">
+      <div className="brand-info rounded-login absolute left-0 z-50 hidden h-[100%] w-[50%] justify-center px-[7rem] py-[10rem] text-center leading-[60px] xl:flex xl:flex-col">
+        <h1 className="text-[40px] font-bold text-white ">
+          {/* md:mt-[-10%] xl:text-[56px] 2xl:mt-[5%] */}
           WELCOME TO
         </h1>
         <h1 className="bg-gradient-text mb-[40px] bg-clip-text text-[46px] font-bold text-transparent xl:text-[56px]">
@@ -24,13 +25,16 @@ function loginForm() {
         <h2 className="text-[28px] leading-[36px] text-white xl:text-[36px] xl:leading-[44px]">
           The Premier University
         </h2>
-        <h2 className=" mb-[80%] text-[28px] leading-[36px] text-white xl:text-[36px] xl:leading-[44px] 2xl:mb-[50%]">
+        <h2 className="  text-[28px] leading-[36px] text-white xl:text-[36px] xl:leading-[44px] ">
+          {/* 2xl:mb-[50%] mb-[30%]*/}
           News Article Platform
         </h2>
-        <p className="mb-[-2rem] mt-[40rem] text-[18px] font-medium text-white">
+        <p className=" mb-[-2rem] mt-[25%] text-[18px] font-medium text-white">
+          {/* mb-[-2rem] mt-[15rem] */}
           Founded by
         </p>
-        <p className="bg-gradient-text mb-[90%] bg-clip-text text-[18px] font-semibold text-transparent xl:text-[21px]">
+        <p className="bg-gradient-text  bg-clip-text text-[18px] font-semibold text-transparent xl:text-[21px]">
+          {/* mb-[90%] */}
           UST - Becarios de Santo Tomas
         </p>
       </div>
