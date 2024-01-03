@@ -214,7 +214,7 @@ function DeleteAdminBtn() {
 
 function VisitWebsiteBtn() {
   return (
-    <button className="bg-brand-yellow shadow-shadow-db rounded-10 hover:bg-brand-yellow-dark py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-300">
+    <button className="bg-brand-yellow shadow-shadow-db rounded-10 hover:bg-brand-yellow-dark px-6 py-2 text-[1.05rem] font-semibold text-[#FFFFFF] duration-300 lg:text-[1.5rem]">
       Visit our Website
     </button>
   );
@@ -239,5 +239,6 @@ export {
   PostedSettingsBtn,
   EditItemBtn,
   DeleteAdminBtn,
+  VisitWebsiteBtn,
   LogoutBtn,
 };
