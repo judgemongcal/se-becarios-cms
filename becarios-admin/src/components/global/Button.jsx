@@ -212,6 +212,14 @@ function DeleteAdminBtn() {
   );
 }
 
+function VisitWebsiteBtn() {
+  return (
+    <button className="bg-brand-yellow shadow-shadow-db rounded-10 hover:bg-brand-yellow-dark py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-300">
+      Visit our Website
+    </button>
+  );
+}
+
 export {
   LoginBtn,
   ViewAllBtn,
