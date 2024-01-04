@@ -2,7 +2,12 @@ import { VisitWebsiteBtn } from '../global/Button';
 
 function PageNotFound() {
   return (
-    <div className="mt-[15rem] flex flex-col items-center justify-center text-center">
+    <div className="mt-48 flex h-[100%] flex-col items-center justify-center text-center">
+      <img
+        src="./src/assets/org_logo.png"
+        alt=""
+        className="mb-10 w-[25%] max-w-[200px]"
+      />
       <h1 className="mb-[0.5rem] text-[1.85rem] font-extrabold lg:mb-[0.35rem] lg:text-[4rem]">
         Page not found!
       </h1>
