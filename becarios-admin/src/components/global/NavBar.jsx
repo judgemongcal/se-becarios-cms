@@ -29,18 +29,18 @@ function NavBar() {
           <HiOutlineFolderOpen className="ml-10 h-auto w-[24px]" />
           <p>Manage Content</p>
         </button>
-        <div className="post-archives  hover:fill-brand-yellow hover:text-brand-yellow flex items-center justify-center gap-2">
+        <button className="post-archives  hover:fill-brand-yellow hover:text-brand-yellow flex items-center justify-center gap-2">
           <HiOutlineArchive className="ml-5 h-auto w-[24px]" />
           <p>Post Archives</p>
-        </div>
-        <div className="settings  hover:fill-brand-yellow hover:text-brand-yellow mb-[90px] flex items-center justify-center gap-2">
+        </button>
+        <button className="settings  hover:fill-brand-yellow hover:text-brand-yellow mb-[90px] flex items-center justify-center gap-2">
           <HiOutlineCog className="-ml-5 h-auto w-[24px]" />
           <p>Settings</p>
-        </div>
-        <div className="sign-out  hover:fill-brand-yellow hover:text-brand-yellow flex items-center justify-center gap-2">
+        </button>
+        <button className="sign-out  hover:fill-brand-yellow hover:text-brand-yellow flex items-center justify-center gap-2">
           <HiOutlineLogout className="-ml-3.5 -mr-0.5 h-auto w-[24px]" />
           <p>Sign Out</p>
-        </div>
+        </button>
       </section>
     </div>
   );
