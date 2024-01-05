@@ -9,6 +9,7 @@ import './App.css';
 import Login from './components/pages/Login';
 import PageNotFound from './components/pages/PageNotFound';
 import NavBar from './components/global/NavBar';
+import NavBarMobile from './components/global/NavBarMobile';
 
 function App() {
   return (
@@ -18,7 +19,8 @@ function App() {
     //     <Route path="*" element={<PageNotFound />} />
     //   </Routes>
     // </BrowserRouter>
-    <NavBar />
+    // <NavBar />
+    <NavBarMobile />
   );
 }
 
