@@ -20,7 +20,10 @@ function App() {
     //   </Routes>
     // </BrowserRouter>
     // <NavBar />
-    <NavBarMobile />
+    <>
+      <NavBarMobile />
+      <Login />
+    </>
   );
 }
 
