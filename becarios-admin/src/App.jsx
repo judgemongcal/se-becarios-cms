@@ -22,6 +22,7 @@ function App() {
     // <NavBar />
     <>
       <NavBarMobile />
+      {/* <NavBar /> */}
       <Login />
     </>
   );
