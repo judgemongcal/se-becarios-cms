@@ -16,7 +16,18 @@ function NavBarMobile() {
   const [isOpen, setOpen] = useState(false);
   const ref = useRef(null);
 
-  useClickAway(ref, () => setOpen(false));
+  const handleClickAway = () => {
+    if (isOpen) {
+      setOpen(false);
+    }
+  };
+
+  useClickAway(ref, handleClickAway);
+
+  const closeMenuOnClick = () => {
+    setOpen(false);
+  };
+
   return (
     <div className="lg:hidden">
       <Hamburger
@@ -33,7 +44,10 @@ function NavBarMobile() {
           className="shadow-4xl bg-brand-black rounded-10 fixed left-0 right-0 top-[3.5rem] flex flex-col items-center gap-5 border-4 border-b-white/20 py-10 pt-10 text-[1rem] text-[#c9c9c9] md:text-[1.25rem]"
         >
           {/* DASHBOARD */}
-          <NavLink to="/dashboard">
+          <NavLink
+            to="/dashboard"
+            onClick={closeMenuOnClick}
+          >
             <motion.button
               initial={{ scale: 0, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
@@ -51,7 +65,10 @@ function NavBarMobile() {
           </NavLink>
 
           {/* CREATE POST */}
-          <NavLink to="/create-post">
+          <NavLink
+            to="/create-post"
+            onClick={closeMenuOnClick}
+          >
             <motion.button
               initial={{ scale: 0, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
@@ -69,7 +86,10 @@ function NavBarMobile() {
           </NavLink>
 
           {/* MANAGE CONTENT */}
-          <NavLink to="/manage-content">
+          <NavLink
+            to="/manage-content"
+            onClick={closeMenuOnClick}
+          >
             <motion.button
               initial={{ scale: 0, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
@@ -87,7 +107,10 @@ function NavBarMobile() {
           </NavLink>
 
           {/* POST ARCHIVES */}
-          <NavLink to="/post-archives">
+          <NavLink
+            to="/post-archives"
+            onClick={closeMenuOnClick}
+          >
             <motion.button
               initial={{ scale: 0, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
@@ -105,7 +128,10 @@ function NavBarMobile() {
           </NavLink>
 
           {/* SETTINGS */}
-          <NavLink to="/settings">
+          <NavLink
+            to="/settings"
+            onClick={closeMenuOnClick}
+          >
             <motion.button
               initial={{ scale: 0, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
@@ -123,7 +149,10 @@ function NavBarMobile() {
           </NavLink>
 
           {/* SIGN OUT */}
-          <NavLink to="/sign-out">
+          <NavLink
+            to="/sign-out"
+            onClick={closeMenuOnClick}
+          >
             <motion.button
               initial={{ scale: 0, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
