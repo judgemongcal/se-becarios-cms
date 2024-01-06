@@ -2,6 +2,7 @@ import { useClickAway } from 'react-use';
 import { useRef, useState } from 'react';
 import { Squash as Hamburger } from 'hamburger-react';
 import { AnimatePresence, motion } from 'framer-motion';
+import { NavLink } from 'react-router-dom';
 import {
   HiOutlineViewBoards,
   HiOutlinePlusCircle,
@@ -31,7 +32,8 @@ function NavBarMobile() {
           transition={{ duration: 0.2 }}
           className="shadow-4xl bg-brand-black rounded-10 fixed left-0 right-0 top-[3.5rem] flex flex-col items-center gap-5 border-4 border-b-white/20 py-10 pt-10 text-[1rem] text-[#c9c9c9] md:text-[1.25rem]"
         >
-          <motion.button
+          <NavLink
+            to="dashboard"
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{
@@ -44,7 +46,8 @@ function NavBarMobile() {
           >
             <HiOutlineViewBoards className=" -ml-2 h-auto w-[36px]" />
             <p className="-ml-2 ">Dashboard</p>
-          </motion.button>
+          </NavLink>
+
           <motion.button
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -59,6 +62,7 @@ function NavBarMobile() {
             <HiOutlinePlusCircle className=" h-auto w-[36px]" />
             <p className=" ">Create Post</p>
           </motion.button>
+
           <motion.button
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -73,6 +77,7 @@ function NavBarMobile() {
             <HiOutlineFolderOpen className="ml-8 h-auto w-[36px] md:ml-10" />
             <p className="">Manage Content</p>
           </motion.button>
+
           <motion.button
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -87,6 +92,7 @@ function NavBarMobile() {
             <HiOutlineArchive className="ml-4 h-auto w-[36px] md:ml-4" />
             <p className="">Post Archives</p>
           </motion.button>
+
           <motion.button
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -101,6 +107,7 @@ function NavBarMobile() {
             <HiOutlineCog className=" -ml-6 h-auto w-[36px] md:-ml-9" />
             <p className="-ml-3">Settings</p>
           </motion.button>
+
           <motion.button
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}

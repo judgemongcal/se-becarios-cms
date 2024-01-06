@@ -4,6 +4,8 @@ import { IoEyeSharp } from 'react-icons/io5';
 
 import { ExceededLoginAttemptsModal } from './Modal';
 import AdminListItem from '../settings/AdminListItem';
+import NavBarMobile from './NavBarMobile';
+import NavBar from './NavBar';
 
 const hasNotExceed = true;
 const limit = 5;
@@ -88,6 +90,7 @@ function loginForm() {
             <LoginBtn />
             <PostedSettingsBtn />
             <AdminListItem />
+            <NavBar />
           </div>
         </form>
       ) : (
