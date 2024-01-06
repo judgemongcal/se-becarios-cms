@@ -32,96 +32,113 @@ function NavBarMobile() {
           transition={{ duration: 0.2 }}
           className="shadow-4xl bg-brand-black rounded-10 fixed left-0 right-0 top-[3.5rem] flex flex-col items-center gap-5 border-4 border-b-white/20 py-10 pt-10 text-[1rem] text-[#c9c9c9] md:text-[1.25rem]"
         >
-          <NavLink
-            to="dashboard"
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{
-              type: 'spring',
-              stiffness: 260,
-              damping: 20,
-              delay: 0.1 + 1 / 10,
-            }}
-            className="dashboard hover:fill-brand-yellow hover:text-brand-yellow hover:border-brand-yellow border-brand-gray rounded-10 grid grid-cols-2 items-center gap-5 border-4 px-[5.5rem] py-4"
-          >
-            <HiOutlineViewBoards className=" -ml-2 h-auto w-[36px]" />
-            <p className="-ml-2 ">Dashboard</p>
+          {/* DASHBOARD */}
+          <NavLink to="/dashboard">
+            <motion.button
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{
+                type: 'spring',
+                stiffness: 260,
+                damping: 20,
+                delay: 0.1 + 1 / 10,
+              }}
+              className="dashboard hover:fill-brand-yellow hover:text-brand-yellow hover:border-brand-yellow border-brand-gray rounded-10 grid grid-cols-2 items-center gap-5 border-4 px-[5.5rem] py-4"
+            >
+              <HiOutlineViewBoards className=" -ml-2 h-auto w-[36px]" />
+              <p className="-ml-2 ">Dashboard</p>
+            </motion.button>
           </NavLink>
 
-          <motion.button
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{
-              type: 'spring',
-              stiffness: 260,
-              damping: 20,
-              delay: 0.2 + 1 / 10,
-            }}
-            className="create-post  hover:fill-brand-yellow hover:text-brand-yellow hover:border-brand-yellow border-brand-gray rounded-10 grid grid-cols-2 items-center gap-2 border-4 px-[5rem] py-4"
-          >
-            <HiOutlinePlusCircle className=" h-auto w-[36px]" />
-            <p className=" ">Create Post</p>
-          </motion.button>
+          {/* CREATE POST */}
+          <NavLink to="/create-post">
+            <motion.button
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{
+                type: 'spring',
+                stiffness: 260,
+                damping: 20,
+                delay: 0.2 + 1 / 10,
+              }}
+              className="create-post  hover:fill-brand-yellow hover:text-brand-yellow hover:border-brand-yellow border-brand-gray rounded-10 grid grid-cols-2 items-center gap-2 border-4 px-[5rem] py-4"
+            >
+              <HiOutlinePlusCircle className=" h-auto w-[36px]" />
+              <p className=" ">Create Post</p>
+            </motion.button>
+          </NavLink>
 
-          <motion.button
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{
-              type: 'spring',
-              stiffness: 260,
-              damping: 20,
-              delay: 0.3 + 1 / 10,
-            }}
-            className="manage-content hover:text-brand-yellow hover:border-brand-yellow border-brand-gray rounded-10 grid grid-cols-2 items-center gap-0.5 border-4 px-[2.95rem] py-4 md:px-[2.6rem]"
-          >
-            <HiOutlineFolderOpen className="ml-8 h-auto w-[36px] md:ml-10" />
-            <p className="">Manage Content</p>
-          </motion.button>
+          {/* MANAGE CONTENT */}
+          <NavLink to="/manage-content">
+            <motion.button
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{
+                type: 'spring',
+                stiffness: 260,
+                damping: 20,
+                delay: 0.3 + 1 / 10,
+              }}
+              className="manage-content hover:text-brand-yellow hover:border-brand-yellow border-brand-gray rounded-10 grid grid-cols-2 items-center gap-0.5 border-4 px-[2.95rem] py-4 md:px-[2.6rem]"
+            >
+              <HiOutlineFolderOpen className="ml-8 h-auto w-[36px] md:ml-10" />
+              <p className="">Manage Content</p>
+            </motion.button>
+          </NavLink>
 
-          <motion.button
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{
-              type: 'spring',
-              stiffness: 260,
-              damping: 20,
-              delay: 0.4 + 1 / 10,
-            }}
-            className="post-archives hover:text-brand-yellow hover:border-brand-yellow border-brand-gray rounded-10 grid grid-cols-2 items-center gap-2 border-4 px-[4rem] py-4"
-          >
-            <HiOutlineArchive className="ml-4 h-auto w-[36px] md:ml-4" />
-            <p className="">Post Archives</p>
-          </motion.button>
+          {/* POST ARCHIVES */}
+          <NavLink to="/post-archives">
+            <motion.button
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{
+                type: 'spring',
+                stiffness: 260,
+                damping: 20,
+                delay: 0.4 + 1 / 10,
+              }}
+              className="post-archives hover:text-brand-yellow hover:border-brand-yellow border-brand-gray rounded-10 grid grid-cols-2 items-center gap-2 border-4 px-[4rem] py-4"
+            >
+              <HiOutlineArchive className="ml-4 h-auto w-[36px] md:ml-4" />
+              <p className="">Post Archives</p>
+            </motion.button>
+          </NavLink>
 
-          <motion.button
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{
-              type: 'spring',
-              stiffness: 260,
-              damping: 20,
-              delay: 0.5 + 1 / 10,
-            }}
-            className="settings  hover:text-brand-yellow hover:border-brand-yellow border-brand-gray rounded-10 grid grid-cols-2 items-center gap-7 border-4 px-[6.6rem] py-4 md:px-[7.15rem]"
-          >
-            <HiOutlineCog className=" -ml-6 h-auto w-[36px] md:-ml-9" />
-            <p className="-ml-3">Settings</p>
-          </motion.button>
+          {/* SETTINGS */}
+          <NavLink to="/settings">
+            <motion.button
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{
+                type: 'spring',
+                stiffness: 260,
+                damping: 20,
+                delay: 0.5 + 1 / 10,
+              }}
+              className="settings  hover:text-brand-yellow hover:border-brand-yellow border-brand-gray rounded-10 grid grid-cols-2 items-center gap-7 border-4 px-[6.6rem] py-4 md:px-[7.15rem]"
+            >
+              <HiOutlineCog className=" -ml-6 h-auto w-[36px] md:-ml-9" />
+              <p className="-ml-3">Settings</p>
+            </motion.button>
+          </NavLink>
 
-          <motion.button
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{
-              type: 'spring',
-              stiffness: 260,
-              damping: 20,
-              delay: 0.6 + 1 / 10,
-            }}
-            className="sign-out hover:text-brand-red hover:border-brand-red border-brand-gray rounded-10 grid grid-cols-2 items-center gap-7 border-4 px-[6.25rem] py-4 md:px-[6.8rem]"
-          >
-            <HiOutlineLogout className="-ml-4 h-auto w-[36px] md:-ml-6" />
-            <p className="-ml-2.5 ">Sign Out</p>
-          </motion.button>
+          {/* SIGN OUT */}
+          <NavLink to="/sign-out">
+            <motion.button
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{
+                type: 'spring',
+                stiffness: 260,
+                damping: 20,
+                delay: 0.6 + 1 / 10,
+              }}
+              className="sign-out hover:text-brand-red hover:border-brand-red border-brand-gray rounded-10 grid grid-cols-2 items-center gap-7 border-4 px-[6.25rem] py-4 md:px-[6.8rem]"
+            >
+              <HiOutlineLogout className="-ml-4 h-auto w-[36px] md:-ml-6" />
+              <p className="-ml-2.5 ">Sign Out</p>
+            </motion.button>
+          </NavLink>
         </motion.div>
       )}
     </div>

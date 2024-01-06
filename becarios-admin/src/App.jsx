@@ -21,6 +21,7 @@ function App() {
         <Route path="/manage-content" element={<Login />} />
         <Route path="/post-archives" element={<Login />} />
         <Route path="/settings" element={<Login />} />
+        <Route path="/sign-out" element={<Login />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </BrowserRouter>

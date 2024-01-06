@@ -90,7 +90,7 @@ function loginForm() {
             <LoginBtn />
             <PostedSettingsBtn />
             <AdminListItem />
-            <NavBar />
+            <NavBarMobile />
           </div>
         </form>
       ) : (
