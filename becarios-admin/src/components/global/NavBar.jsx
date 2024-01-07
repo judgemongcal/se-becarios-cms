@@ -11,7 +11,7 @@ import { NavLink } from 'react-router-dom';
 
 function NavBar() {
   return (
-    <nav className="bg-brand-black fixed flex h-[100vh] flex-col items-center gap-[3.5rem] text-white md:w-[17.5rem]">
+    <nav className="bg-brand-black fixed hidden h-[100vh] flex-col items-center gap-[3.5rem] text-white md:w-[17.5rem] lg:flex">
       <img
         src="./src/assets/org_logo.png"
         alt=""

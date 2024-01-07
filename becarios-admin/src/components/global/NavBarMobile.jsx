@@ -32,8 +32,11 @@ function NavBarMobile() {
     <div className="lg:hidden">
       <Hamburger
         toggled={isOpen}
-        size={20}
+        size={36}
         toggle={setOpen}
+        color="#121214"
+        label="Show men"
+        rounded
       />
       {isOpen && (
         <motion.div
