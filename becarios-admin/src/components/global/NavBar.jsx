@@ -11,17 +11,17 @@ import { NavLink } from 'react-router-dom';
 
 function NavBar() {
   return (
-    <nav className="bg-brand-black fixed hidden h-[100vh] flex-col items-center gap-[3.5rem] text-white md:w-[20.5rem] lg:flex">
+    <nav className="bg-brand-black  hidden h-[100%] min-h-[100vh] flex-col items-center gap-[3.5rem] text-white md:w-[20.5rem] lg:flex">
       <img
         src="./src/assets/org_logo.png"
         alt=""
-        className="mb-10 mt-[80px] w-[50%]"
+        className="fixed top-[50px] mb-10 mt-[80px] w-[180px]"
       />
       <div className="user-details"></div>
-      <section className="navigation mx-auto flex flex-col items-center justify-center gap-[3rem]">
+      <section className="navigation fixed top-[250px] -ml-5 flex flex-col items-center justify-center gap-[3rem] text-[1.15rem]">
         <NavLink
           to="/dashboard"
-          className="dashboard hover:fill-brand-yellow hover:text-brand-yellow justify-baseline flex items-center gap-2"
+          className="dashboard hover:fill-brand-yellow hover:text-brand-yellow flex items-center justify-center gap-2"
         >
           <HiOutlineViewBoards className=" h-auto w-[24px]" />
           <p>Dashboard</p>
@@ -53,7 +53,7 @@ function NavBar() {
 
         <NavLink
           to="/settings"
-          className="settings  hover:fill-brand-yellow hover:text-brand-yellow mb-[90px] flex items-center justify-center gap-2"
+          className="settings  hover:fill-brand-yellow hover:text-brand-yellow mb-[70px] flex items-center justify-center gap-2"
         >
           <HiOutlineCog className="-ml-5 h-auto w-[24px]" />
           <p>Settings</p>
@@ -61,7 +61,7 @@ function NavBar() {
 
         <NavLink
           to="/sign-out"
-          className="sign-out  hover:fill-brand-yellow hover:text-brand-yellow flex items-center justify-center gap-2"
+          className="sign-out  hover:fill-brand-red hover:text-brand-red flex items-center justify-center gap-2"
         >
           <HiOutlineLogout className="-ml-3.5 -mr-0.5 h-auto w-[24px]" />
           <p>Sign Out</p>
