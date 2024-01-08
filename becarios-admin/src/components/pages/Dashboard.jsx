@@ -1,6 +1,7 @@
 import { PostReqSuccessModalBtn } from '../global/Button';
 import NavBar from '../global/NavBar';
 import NavBarMobile from '../global/NavBarMobile';
+import RequestList from '../manage-content/RequestList';
 import { RequestListItem } from '../manage-content/RequestListItem';
 
 function Dashboard() {
@@ -11,11 +12,11 @@ function Dashboard() {
         <NavBarMobile />
       </div>
 
-      <div className="content flex w-[100%] flex-col gap-[20rem] px-9">
+      <div className="content flex w-[100%] flex-col gap-[5rem] px-9">
         <h1 className=" mt-[5rem] text-[1.5rem] font-bold tracking-wide md:text-[2rem]">
           Good morning, Karen.
         </h1>
-        <RequestListItem />
+        <RequestList />
       </div>
     </div>
   );
