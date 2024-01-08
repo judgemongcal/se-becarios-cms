@@ -1,8 +1,8 @@
-export function ActivityListItem() {
+export function RequestListItem() {
   return (
-    <div className="bg-brand-light shadow-shadow-db rounded-8 flex w-[70%] max-w-[47.5rem] flex-col gap-2 p-4">
-      <p className="activity-label bg-brand-yellow rounded-8 w-[150px] px-4 py-1 text-center text-[0.9rem] font-medium">
-        Article Posted
+    <div className="bg-brand-light shadow-shadow-db rounded-8 flex w-[100%] flex-col gap-2 p-4 lg:max-w-[35.75rem]">
+      <p className="activity-label bg-brand-yellow rounded-8 w-[70%] max-w-[200px] px-4 py-1 text-center text-[0.9rem] font-medium">
+        Article Post Request
       </p>
       <div className="activity-details flex flex-col px-1 text-left">
         <h2 className="mb-2.5 text-[1.05rem] font-semibold">
