@@ -1,6 +1,7 @@
 import { FaEllipsis } from 'react-icons/fa6';
 import { FaXmark } from 'react-icons/fa6';
 import { LuPencil } from 'react-icons/lu';
+import { NavLink } from 'react-router-dom';
 
 function LoginBtn() {
   return (
@@ -220,6 +221,18 @@ function VisitWebsiteBtn() {
   );
 }
 
+function DashboardViewAllBtn() {
+  return (
+    <nav>
+      <NavLink to="/manage-content">
+        <div className="view-all bg-brand-yellow hover:bg-brand-yellow-dark  rounded-b-8 w-full cursor-pointer px-2 py-5 text-center text-[1.25rem] font-semibold duration-300 hover:text-white">
+          View All
+        </div>
+      </NavLink>
+    </nav>
+  );
+}
+
 export {
   LoginBtn,
   ViewAllBtn,
@@ -241,4 +254,5 @@ export {
   DeleteAdminBtn,
   VisitWebsiteBtn,
   LogoutBtn,
+  DashboardViewAllBtn,
 };

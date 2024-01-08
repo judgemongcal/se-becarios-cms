@@ -1,4 +1,5 @@
 import PendingListItem from '../dashboard/PendingListItem';
+import { DashboardViewAllBtn } from '../global/Button';
 import { RequestListItem } from './RequestListItem';
 import { NavLink } from 'react-router-dom';
 
@@ -21,14 +22,7 @@ function RequestList() {
         <PendingListItem />
         <PendingListItem />
       </div>
-
-      <div className="view-all bg-brand-yellow hover:bg-brand-yellow-dark  rounded-b-8 w-full cursor-pointer px-2 py-5 text-center text-[1.25rem] font-semibold duration-300 hover:text-white">
-        <nav>
-          <NavLink to="manage-content bg-brand">
-            View All
-          </NavLink>
-        </nav>
-      </div>
+      <DashboardViewAllBtn />
     </div>
   );
 }
