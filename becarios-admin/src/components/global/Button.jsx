@@ -221,10 +221,10 @@ function VisitWebsiteBtn() {
   );
 }
 
-function DashboardViewAllBtn() {
+function DashboardViewAllBtn({ path }) {
   return (
     <nav>
-      <NavLink to="/manage-content">
+      <NavLink to={path}>
         <div className="view-all bg-brand-yellow hover:bg-brand-yellow-dark  rounded-b-8 w-full cursor-pointer px-2 py-5 text-center text-[1.25rem] font-semibold duration-300 hover:text-white">
           View All
         </div>
