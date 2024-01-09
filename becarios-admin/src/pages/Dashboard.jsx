@@ -1,9 +1,9 @@
-import Greeting from '../dashboard/Greeting';
-import { PostReqSuccessModalBtn } from '../global/Button';
-import NavBar from '../global/NavBar';
-import NavBarMobile from '../global/NavBarMobile';
-import RequestList from '../manage-content/RequestList';
-import { RequestListItem } from '../manage-content/RequestListItem';
+import Greeting from '../components/dashboard/Greeting';
+import { PostReqSuccessModalBtn } from '../components/global/Button';
+import NavBar from '../components/global/NavBar';
+import NavBarMobile from '../components/global/NavBarMobile';
+import RequestList from '../components/manage-content/RequestList';
+import { RequestListItem } from '../components/manage-content/RequestListItem';
 
 function Dashboard() {
   return (

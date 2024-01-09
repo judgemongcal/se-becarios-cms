@@ -20,7 +20,7 @@ function RequestList() {
         <PendingListItem />
         <PendingListItem />
       </div>
-      <DashboardViewAllBtn />
+      <DashboardViewAllBtn path="/manage-content" />
     </div>
   );
 }

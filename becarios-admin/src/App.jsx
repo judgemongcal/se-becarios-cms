@@ -6,11 +6,11 @@ import {
 } from 'react-router-dom';
 
 import './App.css';
-import Login from './components/pages/Login';
-import PageNotFound from './components/pages/PageNotFound';
+import Login from './components/global/LoginForm';
+import PageNotFound from './pages/PageNotFound';
 import NavBar from './components/global/NavBar';
 import NavBarMobile from './components/global/NavBarMobile';
-import Dashboard from './components/pages/Dashboard';
+import Dashboard from './pages/Dashboard';
 
 function App() {
   return (

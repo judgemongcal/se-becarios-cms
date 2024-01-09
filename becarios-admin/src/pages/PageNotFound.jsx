@@ -1,4 +1,4 @@
-import { VisitWebsiteBtn } from '../global/Button';
+import { VisitWebsiteBtn } from '../components/global/Button';
 
 function PageNotFound() {
   return (
