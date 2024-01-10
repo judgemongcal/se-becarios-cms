@@ -29,7 +29,7 @@ function NavBarMobile() {
   };
 
   return (
-    <div className="lg:hidden">
+    <div className="fixed w-[100%] lg:hidden">
       <div className="bg-brand-black rounded-b-8 flex flex-row items-center justify-between p-8">
         <img
           src="./src/assets/org_logo.png"
