@@ -1,6 +1,6 @@
 import { LuPencil } from 'react-icons/lu';
 
-function SuperAdminListItem() {
+export function SuperAdminListItem() {
   return (
     <div className="bg-brand-yellow rounded-8 shadow-shadow-db flex flex-row items-center justify-between gap-2 p-2">
       <div className="admin-name ml-4 font-medium">
@@ -14,5 +14,3 @@ function SuperAdminListItem() {
     </div>
   );
 }
-
-export default SuperAdminListItem;
