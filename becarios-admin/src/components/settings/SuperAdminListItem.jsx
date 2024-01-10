@@ -2,7 +2,7 @@ import { LuPencil } from 'react-icons/lu';
 
 export function SuperAdminListItem() {
   return (
-    <div className="bg-brand-yellow rounded-8 shadow-shadow-db flex flex-row items-center justify-between gap-2 p-2">
+    <div className="bg-brand-yellow rounded-8 shadow-shadow-db flex w-[100%] flex-row items-center justify-between gap-2 p-2">
       <div className="admin-name ml-4 font-medium">
         <p>John Doe</p>
       </div>

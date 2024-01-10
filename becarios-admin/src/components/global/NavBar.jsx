@@ -16,10 +16,10 @@ function NavBar() {
       <img
         src="./src/assets/org_logo.png"
         alt=""
-        className="fixed top-[50px] mb-10 mt-[80px] w-[180px]"
+        className="fixed top-[50px] mb-10 mt-[60px] w-[180px]"
       />
       <div className="user-details"></div>
-      <section className="navigation fixed top-[250px] -ml-5 flex flex-col items-center justify-center gap-[3rem] text-[1.15rem]">
+      <section className="navigation fixed top-[230px] -ml-5 flex flex-col items-center justify-center gap-[3rem] text-[1.15rem]">
         <NavLink
           to="/dashboard"
           className="dashboard hover:fill-brand-yellow hover:text-brand-yellow flex items-center justify-center gap-2"
@@ -62,7 +62,7 @@ function NavBar() {
 
         <NavLink
           to="/settings"
-          className="settings  hover:fill-brand-yellow hover:text-brand-yellow mb-[70px] flex items-center justify-center gap-2"
+          className="settings  hover:fill-brand-yellow hover:text-brand-yellow mb-[30px] flex items-center justify-center gap-2"
         >
           <HiOutlineCog className="-ml-5 h-auto w-[24px]" />
           <p>Settings</p>

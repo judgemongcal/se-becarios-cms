@@ -12,7 +12,7 @@ function Settings() {
         <NavBarMobile />
       </div>
 
-      <div className="content mt-[10rem] flex w-[100%] flex-col gap-[5rem] px-9 md:mb-[5rem] md:px-16 lg:ml-[21rem] lg:mt-[8rem]">
+      <div className="content mt-[10rem] flex w-[100%] flex-col gap-[5rem] px-9 md:mb-[5rem] md:px-16 lg:ml-[21rem] lg:mt-[8rem] lg:pb-[20%]">
         <PageTitle title="Settings" />
         <div className="heading">
           <h2 className="pb-2 text-left text-[1.25rem] font-medium md:text-[1.5rem]">
@@ -21,7 +21,7 @@ function Settings() {
           <div className="rounded-8 bg-brand-gray w-[100%] py-[0.05rem] opacity-[25%]"></div>
         </div>
         {/* <div className="admin-lists flex flex-col gap-[2rem] xl:flex-row"> */}
-        <div className="content flex flex-col justify-around gap-[4rem] xl:flex-row">
+        <div className="content mx-auto flex w-[95%] flex-col justify-around gap-[4rem] xl:flex-row">
           <SuperAdminList />
           <AdminList />
         </div>
