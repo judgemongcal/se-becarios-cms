@@ -2,6 +2,7 @@ import { FaEllipsis } from 'react-icons/fa6';
 import { FaXmark } from 'react-icons/fa6';
 import { LuPencil } from 'react-icons/lu';
 import { NavLink } from 'react-router-dom';
+import { FaGear } from 'react-icons/fa6';
 
 function LoginBtn() {
   return (
@@ -205,6 +206,14 @@ function EditItemBtn() {
   );
 }
 
+function AdminSettingsBtn() {
+  return (
+    <button className="bg-brand-light hover:bg-brand-yellow rounded-8 shadow-sm-btn items-center p-2 duration-300">
+      <FaGear className="fill-brand-black stroke-brand-black  h-[24px] w-[28px] " />
+    </button>
+  );
+}
+
 function DeleteAdminBtn() {
   return (
     <button className="bg-brand-red hover:bg-brand-red-dark rounded-8 shadow-sm-btn items-center p-2 duration-300">
@@ -251,6 +260,7 @@ export {
   BacktoDashboardBtn,
   PostedSettingsBtn,
   EditItemBtn,
+  AdminSettingsBtn,
   DeleteAdminBtn,
   VisitWebsiteBtn,
   LogoutBtn,
