@@ -16,8 +16,10 @@ function Dashboard() {
 
       <div className="content flex w-[100%] flex-col gap-[5rem] px-9 md:px-16 lg:mt-[3rem]">
         <Greeting name="Karen" />
-        <RequestList />
-        <ActivityList />
+        <div className="lists flex flex-col gap-[2rem] xl:flex-row">
+          <RequestList />
+          <ActivityList />
+        </div>
       </div>
     </div>
   );
