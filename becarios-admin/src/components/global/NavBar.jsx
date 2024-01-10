@@ -4,6 +4,7 @@ import {
   HiOutlineFolderOpen,
   HiOutlineArchive,
   HiOutlineCog,
+  HiOutlineClock,
   HiOutlineLogout,
 } from 'react-icons/hi';
 
@@ -33,6 +34,14 @@ function NavBar() {
         >
           <HiOutlinePlusCircle className="ml-1 h-auto w-[24px]" />
           <p>Create Post</p>
+        </NavLink>
+
+        <NavLink
+          to="/recent-activities"
+          className="create-post hover:fill-brand-yellow hover:text-brand-yellow flex items-center justify-center gap-2"
+        >
+          <HiOutlineClock className="ml-11 h-auto w-[24px]" />
+          <p>Recent Activities</p>
         </NavLink>
 
         <NavLink

@@ -19,6 +19,10 @@ function App() {
         <Route index element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/create-post" element={<Login />} />
+        <Route
+          path="/recent-activities"
+          element={<PageNotFound />}
+        />
         <Route path="/manage-content" element={<Login />} />
         <Route path="/post-archives" element={<Login />} />
         <Route path="/settings" element={<Login />} />

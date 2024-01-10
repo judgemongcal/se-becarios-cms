@@ -9,6 +9,7 @@ import {
   HiOutlineFolderOpen,
   HiOutlineArchive,
   HiOutlineCog,
+  HiOutlineClock,
   HiOutlineLogout,
 } from 'react-icons/hi';
 
@@ -93,6 +94,27 @@ function NavBarMobile() {
             >
               <HiOutlinePlusCircle className=" h-auto w-[36px]" />
               <p className=" ">Create Post</p>
+            </motion.button>
+          </NavLink>
+
+          {/* RECENT ACTIVITIES */}
+          <NavLink
+            to="/recent-activities"
+            onClick={closeMenuOnClick}
+          >
+            <motion.button
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{
+                type: 'spring',
+                stiffness: 260,
+                damping: 20,
+                delay: 0.2 + 1 / 10,
+              }}
+              className="create-post  hover:fill-brand-yellow hover:text-brand-yellow hover:border-brand-yellow border-brand-gray rounded-10 grid grid-cols-2 items-center gap-2 border-4 px-[2.3rem] py-4"
+            >
+              <HiOutlineClock className=" ml-11 h-auto w-[36px]" />
+              <p className=" ">Recent Activities</p>
             </motion.button>
           </NavLink>
 
