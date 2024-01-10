@@ -14,7 +14,7 @@ function RequestList() {
           10
         </h1>
       </div>
-      <div className="req-items mb-0.5 flex flex-col gap-4 p-5">
+      <div className="req-items mb-4 flex flex-col gap-4 p-5">
         {/* CONVERT INTO ARRAY.MAP */}
         <PendingListItem />
         <PendingListItem />
