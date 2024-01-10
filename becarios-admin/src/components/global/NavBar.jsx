@@ -12,7 +12,7 @@ import { NavLink } from 'react-router-dom';
 
 function NavBar() {
   return (
-    <nav className="bg-brand-black  hidden h-[100%] min-h-[100vh] flex-col items-center gap-[3.5rem] text-white md:w-[20.5rem] lg:flex">
+    <nav className="bg-brand-black  fixed hidden h-[100%] min-h-[100vh] flex-col items-center gap-[3.5rem] text-white md:w-[20.5rem] lg:flex">
       <img
         src="./src/assets/org_logo.png"
         alt=""
