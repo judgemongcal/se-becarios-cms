@@ -14,7 +14,7 @@ function Dashboard() {
         <NavBarMobile />
       </div>
 
-      <div className="content ml-[21rem] flex w-[100%] flex-col gap-[5rem] px-9 md:mb-[5rem] md:px-16 lg:mt-[3rem]">
+      <div className="content flex w-[100%] flex-col gap-[5rem] px-9 md:mb-[5rem] md:px-16 lg:ml-[21rem] lg:mt-[3rem]">
         <Greeting name="Karen" />
         <div className="lists flex flex-col gap-[2rem] xl:flex-row">
           <RequestList />
