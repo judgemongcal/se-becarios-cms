@@ -20,12 +20,11 @@ function Settings() {
           </h2>
           <div className="rounded-8 bg-brand-gray w-[100%] py-[0.05rem] opacity-[25%]"></div>
         </div>
-        {/* <div className="admin-lists flex flex-col gap-[2rem] xl:flex-row"> */}
+
         <div className="content mx-auto flex w-[95%] flex-col justify-around gap-[4rem] xl:flex-row">
           <SuperAdminList />
           <AdminList />
         </div>
-        {/* </div> */}
       </div>
     </div>
   );
