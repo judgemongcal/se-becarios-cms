@@ -1,6 +1,8 @@
 import NavBar from '../components/global/NavBar';
 import NavBarMobile from '../components/global/NavBarMobile';
 import PageTitle from '../components/global/PageTitle';
+import ContentFilters from '../components/manage-content/ContentFilters';
+import SearchField from '../components/global/SearchField';
 
 function ManageContent() {
   return (
@@ -12,8 +14,10 @@ function ManageContent() {
 
       <div className="content mt-[10rem] flex w-[100%] flex-col gap-[5rem] px-9 md:mb-[5rem] md:px-16 lg:ml-[21rem] lg:mt-[8rem] lg:pb-[20%]">
         <PageTitle title="Manage Content" />
-
-        <div className="content mx-auto flex w-[95%] flex-col justify-around gap-[4rem] xl:flex-row"></div>
+        <div className="content flex w-full flex-col justify-evenly gap-3 xl:flex-row">
+          <SearchField />
+          <ContentFilters />
+        </div>
       </div>
     </div>
   );
