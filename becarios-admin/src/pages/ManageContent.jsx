@@ -4,6 +4,7 @@ import PageTitle from '../components/global/PageTitle';
 import ContentFilters from '../components/manage-content/ContentFilters';
 import SearchField from '../components/global/SearchField';
 import ForApprovalListItem from '../components/manage-content/ForApprovalListItem';
+import ForApprovalList from '../components/manage-content/ForApprovalList';
 
 function ManageContent() {
   return (
@@ -18,7 +19,7 @@ function ManageContent() {
         <div className=" flex w-full flex-col justify-evenly gap-3 ">
           <SearchField />
           <ContentFilters />
-          <ForApprovalListItem />
+          <ForApprovalList />
         </div>
       </div>
     </div>

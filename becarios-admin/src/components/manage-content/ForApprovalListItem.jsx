@@ -4,7 +4,7 @@ import { ForApprovalListItemBtn } from '../global/Button';
 
 function ForApprovalListItem() {
   return (
-    <div className="req-container shadow-shadow-db rounded-8 flex flex-col gap-2 p-5 md:flex-row md:gap-5">
+    <div className="bg-brand-light req-container shadow-shadow-db rounded-8 flex flex-col gap-2 p-5 md:flex-row md:gap-5">
       <div className="req-img mx-auto flex w-full max-w-[400px] items-center md:w-[70%]">
         <img
           src="./src/assets/sample_2.jpeg"
