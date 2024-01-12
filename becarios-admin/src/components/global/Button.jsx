@@ -247,13 +247,13 @@ function ForApprovalListItemBtn() {
   return (
     <div className="mt-4 flex flex-row justify-start gap-3">
       <button className="bg-brand-blue hover:bg-brand-blue-dark rounded-8 shadow-sm-btn items-center p-2 duration-300">
-        <MdOutlineRemoveRedEye className="fill-brand-input h-auto w-[30px]" />
+        <MdOutlineRemoveRedEye className="fill-brand-input h-auto w-[30px] md:w-[35px]" />
       </button>
       <button className="bg-brand-green hover:bg-brand-green-dark rounded-8 shadow-sm-btn items-center p-2 duration-300">
-        <FaCheck className="fill-brand-input h-auto w-[30px]" />
+        <FaCheck className="fill-brand-input h-auto w-[30px] md:w-[35px]" />
       </button>
       <button className="bg-brand-red hover:bg-brand-red-dark rounded-8 shadow-sm-btn items-center p-2 duration-300">
-        <FaXmark className="fill-brand-input h-auto w-[30px]" />
+        <FaXmark className="fill-brand-input h-auto w-[30px] md:w-[35px]" />
       </button>
     </div>
   );
