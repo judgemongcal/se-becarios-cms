@@ -1,4 +1,3 @@
-import { DashboardViewAllBtn } from '../global/Button';
 import ForApprovalListItem from './ForApprovalListItem';
 
 function ForApprovalList() {

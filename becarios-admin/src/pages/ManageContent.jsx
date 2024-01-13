@@ -5,6 +5,7 @@ import ContentFilters from '../components/manage-content/ContentFilters';
 import SearchField from '../components/global/SearchField';
 import ForApprovalListItem from '../components/manage-content/ForApprovalListItem';
 import ForApprovalList from '../components/manage-content/ForApprovalList';
+import ContentListItem from '../components/manage-content/ContentListItem';
 
 function ManageContent() {
   return (
@@ -20,6 +21,7 @@ function ManageContent() {
           <SearchField />
           <ContentFilters />
           <ForApprovalList />
+          <ContentListItem />
         </div>
       </div>
     </div>
