@@ -194,7 +194,7 @@ function BacktoDashboardBtn() {
 function PostedSettingsBtn() {
   return (
     <button className=" bg-brand-input rounded-8 shadow-shadow-db hover:bg-brand-light w-fit  items-center p-2 duration-300 ">
-      <FaEllipsis className="fill-brand-black h-auto w-[24px]" />
+      <FaEllipsis className="fill-brand-black h-auto w-[30px] md:w-[36px]" />
     </button>
   );
 }
