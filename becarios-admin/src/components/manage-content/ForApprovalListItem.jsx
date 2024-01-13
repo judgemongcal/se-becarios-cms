@@ -16,15 +16,15 @@ function ForApprovalListItem() {
         <p className="activity-label bg-brand-yellow rounded-8 mb-3 min-w-[80%] max-w-[200px] px-4 py-1 text-center text-[0.9rem] font-medium ">
           Article Post Request
         </p>
-        <h1 className="req-title mb-2 text-center text-[1.25rem] font-semibold md:text-start md:text-[1.5rem]">
+        <h1 className="req-title mb-2 text-center text-[1.05rem] font-semibold md:text-start md:text-[1.25rem]">
           Lorem ipsum dolor sit amet consectetur adipisicing
           elit
         </h1>
-        <div className="time-info mb-1 flex flex-row gap-3 text-[1rem] md:text-[1.25rem]">
+        <div className="time-info mb-1 flex flex-row gap-3 text-[0.9rem] md:text-[1rem]">
           <p>February 7, 2024</p>
           <p>8:24 AM</p>
         </div>
-        <p className="author text-[1rem] md:text-[1.25rem]">
+        <p className="author text-[0.9rem] md:text-[1rem]">
           Submitted by: Hannah Yu
         </p>
         <ForApprovalListItemBtn />

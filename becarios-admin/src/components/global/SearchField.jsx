@@ -6,7 +6,7 @@ import {
 
 function SearchField() {
   return (
-    <div className=" flex w-full justify-evenly gap-3">
+    <div className=" mt-[3rem] flex w-full justify-evenly gap-3">
       <div className="search-box bg-brand-input rounded-8 shadow-shadow-db hover:bg-brand-light flex w-full flex-row items-center gap-3 p-2.5 duration-300 md:p-4">
         <GoSearch className="fill-brand-gray h-auto w-[36px]" />
         <input

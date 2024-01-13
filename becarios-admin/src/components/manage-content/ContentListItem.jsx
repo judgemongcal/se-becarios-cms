@@ -11,15 +11,15 @@ function ContentListItem() {
         />
       </div>
       <div className="req-info mt-2 flex flex-col items-start">
-        <h1 className="req-title mb-2 text-center text-[1.25rem] font-semibold md:text-[1.5rem] 2xl:text-start ">
+        <h1 className="req-title mb-2 text-center text-[1.05rem] font-semibold md:text-[1.25rem] 2xl:text-start ">
           Lorem ipsum dolor sit amet consectetur adipisicing
           elit
         </h1>
-        <div className="time-info mx-auto mb-1 flex flex-row justify-center gap-3 text-[1rem] md:text-[1.25rem] 2xl:mx-0">
+        <div className="time-info mx-auto mb-1 flex flex-row justify-center gap-3 text-[0.9rem] md:text-[1rem] 2xl:mx-0">
           <p>February 7, 2024</p>
           <p>8:24 AM</p>
         </div>
-        <p className="author mx-auto text-[1rem] md:text-[1.25rem] 2xl:mx-0">
+        <p className="author mx-auto text-[0.9rem] md:text-[1rem] 2xl:mx-0">
           Submitted by: Hannah Yu
         </p>
         <div className="btn mt-[1rem] flex w-full flex-row justify-end">
