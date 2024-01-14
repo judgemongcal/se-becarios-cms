@@ -2,7 +2,7 @@ import ForApprovalListItem from './ForApprovalListItem';
 
 function ForApprovalList() {
   return (
-    <div className="bg-brand-input shadow-shadow-db rounded-8 mt-[2rem] flex w-[100%] flex-col gap-2 sm:min-w-[100%] md:max-w-[100%] lg:min-w-[40vh] lg:max-w-[100%]">
+    <div className="bg-brand-input shadow-shadow-db rounded-8 mt-[1rem] flex w-[100%] flex-col gap-2 sm:min-w-[100%] md:max-w-[100%] lg:min-w-[40vh] lg:max-w-[100%]">
       <div className="header flex flex-row items-center justify-between p-8 py-4 lg:mt-4 lg:py-3">
         <h1 className="text-[1.25rem] font-bold lg:text-[1.5rem]">
           Pending for Approval

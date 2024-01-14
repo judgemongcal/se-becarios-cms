@@ -10,7 +10,7 @@ import { GoArrowLeft, GoArrowRight } from 'react-icons/go';
 
 function ContentFilters() {
   return (
-    <div className=" mt-2 flex w-[100%] flex-row justify-between gap-2  md:gap-5">
+    <div className=" mt-2 flex w-[100%] flex-row justify-between gap-3  md:gap-5">
       <button className="alpha-asc bg-brand-input rounded-8 shadow-shadow-db hover:bg-brand-yellow inline-flex w-full flex-row items-center justify-center py-3 duration-300   md:py-4">
         <BsSortAlphaUp className="fill-brand-black h-[22px] w-[32px]" />
       </button>
