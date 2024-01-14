@@ -4,11 +4,11 @@ import {
   GoArrowRight,
 } from 'react-icons/go';
 
-function SearchField() {
+function SearchField({ type }) {
   return (
     <>
       <h1 className="mt-[4rem] text-[1.5rem] font-semibold md:text-[1.75rem] ">
-        Posted Articles
+        {type} Articles
       </h1>
       <div className=" mt-[1rem] flex w-full justify-evenly gap-3">
         <div className="search-box bg-brand-input rounded-8 shadow-shadow-db hover:bg-brand-light flex w-full flex-row items-center gap-3 p-2.5 duration-300 md:p-4">

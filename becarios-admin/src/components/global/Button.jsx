@@ -1,4 +1,8 @@
-import { FaCheck, FaEllipsis } from 'react-icons/fa6';
+import {
+  FaCheck,
+  FaEllipsis,
+  FaShareFromSquare,
+} from 'react-icons/fa6';
 import { FaXmark } from 'react-icons/fa6';
 import { LuPencil } from 'react-icons/lu';
 import { NavLink } from 'react-router-dom';
@@ -259,6 +263,22 @@ function ForApprovalListItemBtn() {
   );
 }
 
+function ArchivedListItemBtn() {
+  return (
+    <div className="mt-4 flex flex-row justify-start gap-3">
+      <button className="bg-brand-blue hover:bg-brand-blue-dark rounded-8 shadow-sm-btn items-center p-2 duration-300">
+        <MdOutlineRemoveRedEye className="fill-brand-input h-auto w-[30px] md:w-[35px]" />
+      </button>
+      <button className="bg-brand-yellow hover:bg-brand-yellow-dark rounded-8 shadow-sm-btn items-center p-2 duration-300">
+        <FaShareFromSquare className="fill-brand-input h-auto w-[30px] md:w-[35px]" />
+      </button>
+      <button className="bg-brand-red hover:bg-brand-red-dark rounded-8 shadow-sm-btn items-center p-2 duration-300">
+        <FaXmark className="fill-brand-input h-auto w-[30px] md:w-[35px]" />
+      </button>
+    </div>
+  );
+}
+
 export {
   LoginBtn,
   ViewAllBtn,
@@ -283,4 +303,5 @@ export {
   LogoutBtn,
   DashboardViewAllBtn,
   ForApprovalListItemBtn,
+  ArchivedListItemBtn,
 };

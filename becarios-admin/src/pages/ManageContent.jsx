@@ -19,10 +19,10 @@ function ManageContent() {
         <PageTitle title="Manage Content" />
         <div className=" flex w-full flex-col justify-evenly gap-3 ">
           <ForApprovalList />
-          <SearchField />
+          <SearchField type="Posted" />
           <ContentFilters />
           <PaginationLabel />
-          <ContentList />
+          <ContentList type="Posted" />
         </div>
       </div>
     </div>

@@ -1,6 +1,7 @@
 import NavBar from '../components/global/NavBar';
 import NavBarMobile from '../components/global/NavBarMobile';
 import PageTitle from '../components/global/PageTitle';
+import PaginationLabel from '../components/global/PaginationLabel';
 import SearchField from '../components/global/SearchField';
 import ContentFilters from '../components/manage-content/ContentFilters';
 import ContentList from '../components/manage-content/ContentList';
@@ -16,10 +17,11 @@ function PostArchives() {
       <div className="content mt-[10rem] flex w-[100%] flex-col gap-[5rem] px-9 md:mb-[5rem] md:px-16 lg:ml-[21rem] lg:mt-[8rem] lg:pb-[20%]">
         <PageTitle title="Post Archives" />
         <div className=" flex w-full flex-col justify-evenly gap-3 ">
-          <SearchField />
+          <SearchField type="Archived" />
           <ContentFilters />
+          <PaginationLabel />
 
-          <ContentList />
+          <ContentList type="Archived" />
         </div>
       </div>
     </div>
