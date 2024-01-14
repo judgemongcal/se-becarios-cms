@@ -190,7 +190,7 @@ function GenerateReportBtn() {
 
 function BacktoDashboardBtn() {
   return (
-    <button className="bg-brand-black shadow-shadow-db rounded-10 hover:bg-brand-light py-3 text-[1.15rem] font-semibold text-white duration-300 hover:text-black">
+    <button className="bg-brand-black shadow-shadow-db rounded-10 hover:bg-brand-light min-w-[200px] max-w-[10%] p-3 text-[1.15rem] font-semibold text-white duration-300 hover:text-black lg:-mb-[2rem]">
       Back to Dashboard
     </button>
   );
