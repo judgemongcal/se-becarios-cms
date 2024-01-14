@@ -13,6 +13,7 @@ import NavBarMobile from './components/global/NavBarMobile';
 import Dashboard from './pages/Dashboard';
 import Settings from './pages/Settings';
 import ManageContent from './pages/ManageContent';
+import PostArchives from './pages/PostArchives';
 
 function App() {
   return (
@@ -29,7 +30,10 @@ function App() {
           path="/manage-content"
           element={<ManageContent />}
         />
-        <Route path="/post-archives" element={<Login />} />
+        <Route
+          path="/post-archives"
+          element={<PostArchives />}
+        />
         <Route path="/settings" element={<Settings />} />
         <Route path="/sign-out" element={<Login />} />
         <Route path="*" element={<PageNotFound />} />

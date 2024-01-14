@@ -7,7 +7,7 @@ import {
 function SearchField() {
   return (
     <>
-      <h1 className="mt-[4rem] text-[1rem] font-semibold md:text-[1.5rem] ">
+      <h1 className="mt-[4rem] text-[1.5rem] font-semibold md:text-[1.75rem] ">
         Posted Articles
       </h1>
       <div className=" mt-[1rem] flex w-full justify-evenly gap-3">
