@@ -28,8 +28,10 @@ function ContentListItem({ type }) {
         <div className="btn mt-[1rem] flex w-full flex-row justify-end">
           {type === 'Posted' ? (
             <PostedSettingsBtn />
-          ) : (
+          ) : type === 'Archived' ? (
             <ArchivedListItemBtn />
+          ) : (
+            ''
           )}
         </div>
       </div>

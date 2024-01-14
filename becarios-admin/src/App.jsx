@@ -14,6 +14,7 @@ import Dashboard from './pages/Dashboard';
 import Settings from './pages/Settings';
 import ManageContent from './pages/ManageContent';
 import PostArchives from './pages/PostArchives';
+import RecentActivities from './pages/RecentActivities';
 
 function App() {
   return (
@@ -24,7 +25,7 @@ function App() {
         <Route path="/create-post" element={<Login />} />
         <Route
           path="/recent-activities"
-          element={<PageNotFound />}
+          element={<RecentActivities />}
         />
         <Route
           path="/manage-content"
