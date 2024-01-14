@@ -11,7 +11,7 @@ function ContentList({ type }) {
           10
         </h1>
       </div> */}
-      <div className="req-items -mt-5 mb-4 flex flex-col gap-6 md:grid md:grid-cols-2">
+      <div className="req-items -mt-5 mb-4 flex flex-col gap-6 md:grid md:grid-cols-3 ">
         {/* CONVERT INTO ARRAY.MAP */}
         <ContentListItem type={type} />
         <ContentListItem type={type} />

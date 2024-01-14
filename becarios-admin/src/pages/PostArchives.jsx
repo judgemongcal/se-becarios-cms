@@ -8,7 +8,7 @@ import ContentList from '../components/manage-content/ContentList';
 
 function PostArchives() {
   return (
-    <div className="flex flex-col justify-start lg:flex-row">
+    <div className="flex flex-col justify-start lg:flex-row ">
       <div className="navs">
         <NavBar />
         <NavBarMobile />
