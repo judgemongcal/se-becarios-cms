@@ -28,7 +28,7 @@ function ContentFilters() {
       <button className="bg-brand-input rounded-8 shadow-shadow-db hover:bg-brand-light hidden w-full items-center py-3 duration-300 md:flex md:flex-row md:justify-center">
         <GoArrowLeft className="fill-brand-gray h-auto w-[24px]" />
       </button>
-      <button className="bg-brand-input rounded-8 shadow-shadow-db hover:bg-brand-light duration-30 hidden w-full py-3 md:flex md:flex-row md:justify-center">
+      <button className="bg-brand-input rounded-8 shadow-shadow-db hover:bg-brand-light hidden w-full items-center py-3 duration-300 md:flex md:flex-row md:justify-center">
         <GoArrowRight className="fill-brand-gray h-auto w-[24px]" />
       </button>
     </div>

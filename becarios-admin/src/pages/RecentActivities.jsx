@@ -9,6 +9,8 @@ import {
   BacktoDashboardBtn,
   GenerateReportBtn,
 } from '../components/global/Button';
+import ActivityList from '../components/recent-activities/ActivityList';
+import ActivityPageList from '../components/recent-activities/ActivityPageList';
 
 function RecentActivities() {
   return (
@@ -25,6 +27,7 @@ function RecentActivities() {
         <div className=" flex w-full flex-col justify-evenly gap-3 ">
           <SearchField />
           <ActivityFilters />
+          <ActivityPageList />
           <div className="mt-[2rem] flex flex-row items-center justify-between">
             <PaginationLabel />
             <GenerateReportBtn />
