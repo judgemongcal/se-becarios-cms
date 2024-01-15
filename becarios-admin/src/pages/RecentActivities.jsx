@@ -5,7 +5,10 @@ import PaginationLabel from '../components/global/PaginationLabel';
 import SearchField from '../components/global/SearchField';
 import ActivityFilters from '../components/recent-activities/ActivityFilters';
 import ContentList from '../components/manage-content/ContentList';
-import { BacktoDashboardBtn } from '../components/global/Button';
+import {
+  BacktoDashboardBtn,
+  GenerateReportBtn,
+} from '../components/global/Button';
 
 function RecentActivities() {
   return (
@@ -22,7 +25,10 @@ function RecentActivities() {
         <div className=" flex w-full flex-col justify-evenly gap-3 ">
           <SearchField />
           <ActivityFilters />
-          <PaginationLabel />
+          <div className="flex flex-row items-center justify-between">
+            <PaginationLabel />
+            <GenerateReportBtn />
+          </div>
         </div>
       </div>
     </div>
