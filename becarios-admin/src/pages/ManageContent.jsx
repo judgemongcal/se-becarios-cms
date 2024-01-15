@@ -21,7 +21,9 @@ function ManageContent() {
           <ForApprovalList />
           <SearchField type="Posted" />
           <ContentFilters />
-          <PaginationLabel />
+          <div className="pagination mt-[2rem] flex">
+            <PaginationLabel />
+          </div>
           <ContentList type="Posted" />
         </div>
       </div>

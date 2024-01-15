@@ -25,7 +25,9 @@ function PostArchives() {
         <div className=" flex w-full flex-col justify-evenly gap-3 ">
           <SearchField type="Archived" />
           <ContentFilters />
-          <PaginationLabel />
+          <div className="pagination mt-[2rem]">
+            <PaginationLabel />
+          </div>
 
           <ContentList type="Archived" />
         </div>

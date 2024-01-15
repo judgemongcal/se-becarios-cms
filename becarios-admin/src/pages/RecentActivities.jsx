@@ -25,7 +25,7 @@ function RecentActivities() {
         <div className=" flex w-full flex-col justify-evenly gap-3 ">
           <SearchField />
           <ActivityFilters />
-          <div className="flex flex-row items-center justify-between">
+          <div className="mt-[2rem] flex flex-row items-center justify-between">
             <PaginationLabel />
             <GenerateReportBtn />
           </div>
