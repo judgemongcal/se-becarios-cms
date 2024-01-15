@@ -6,13 +6,23 @@ import {
 } from 'react-icons/fa6';
 import { FaXmark } from 'react-icons/fa6';
 import { LuPencil } from 'react-icons/lu';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { FaGear } from 'react-icons/fa6';
 import { MdOutlineRemoveRedEye } from 'react-icons/md';
+import { useEffect } from 'react';
 
 function LoginBtn() {
+  const navigate = useNavigate();
+
+  function goToDashboard() {
+    navigate('/dashboard', { replace: false });
+  }
+
   return (
-    <button className=" bg-gradient shadow-shadow-db transition-scale rounded-8 w-[100%] py-4 text-[1.15rem] font-bold text-[#FFFFFF] duration-100 ease-in hover:scale-105">
+    <button
+      className=" bg-gradient shadow-shadow-db transition-scale rounded-8 w-[100%] py-4 text-[1.15rem] font-bold text-[#FFFFFF] duration-100 ease-in hover:scale-105"
+      onClick={goToDashboard}
+    >
       Log In
     </button>
   );

@@ -88,9 +88,6 @@ function loginForm() {
               Forgot Password?
             </p>
             <LoginBtn />
-            <PostedSettingsBtn />
-            <AdminListItem />
-            <NavBarMobile />
           </div>
         </form>
       ) : (

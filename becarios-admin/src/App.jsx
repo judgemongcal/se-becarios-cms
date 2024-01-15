@@ -22,7 +22,10 @@ function App() {
       <Routes>
         <Route index element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/create-post" element={<Login />} />
+        <Route
+          path="/create-post"
+          element={<PageNotFound />}
+        />
         <Route
           path="/recent-activities"
           element={<RecentActivities />}
