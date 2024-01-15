@@ -25,7 +25,7 @@ function RecentActivities() {
         <PageTitle title="Recent Activities" />
 
         <div className=" flex w-full flex-col justify-evenly gap-3 ">
-          <SearchField />
+          <SearchField type="Activities" />
           <ActivityFilters />
           <ActivityPageList />
           <div className="mt-[2rem] flex flex-row items-center justify-between">
