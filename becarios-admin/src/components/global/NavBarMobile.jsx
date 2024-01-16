@@ -111,9 +111,9 @@ function NavBarMobile() {
                 damping: 20,
                 delay: 0.2 + 1 / 10,
               }}
-              className="create-post  hover:fill-brand-yellow hover:text-brand-yellow hover:border-brand-yellow border-brand-gray rounded-10 grid grid-cols-2 items-center gap-2 border-4 px-[2.3rem] py-4"
+              className="create-post  hover:fill-brand-yellow hover:text-brand-yellow hover:border-brand-yellow border-brand-gray rounded-10 grid grid-cols-2 items-center gap-2 border-4 px-[2.8rem] py-4"
             >
-              <HiOutlineClock className=" ml-11 h-auto w-[36px]" />
+              <HiOutlineClock className=" ml-9 h-auto w-[36px]" />
               <p className=" ">Recent Activities</p>
             </motion.button>
           </NavLink>
