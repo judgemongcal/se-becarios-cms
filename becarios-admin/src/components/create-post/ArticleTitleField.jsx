@@ -15,7 +15,7 @@ function ArticleTitleField() {
         id="article-title"
         name="article-title"
         placeholder="Enter article title here"
-        className="bg-brand-input rounded-8 shadow-shadow-db w-full p-3 text-[1rem]"
+        className="bg-brand-light rounded-8 shadow-shadow-db w-full p-3 text-[1rem]"
       />
     </div>
   );

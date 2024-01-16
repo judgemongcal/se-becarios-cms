@@ -10,6 +10,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { FaGear } from 'react-icons/fa6';
 import { MdOutlineRemoveRedEye } from 'react-icons/md';
 import { useEffect } from 'react';
+import { FiUpload } from 'react-icons/fi';
 
 function LoginBtn() {
   const navigate = useNavigate();
@@ -230,6 +231,14 @@ function AdminSettingsBtn() {
   );
 }
 
+function UploadImageBtn() {
+  return (
+    <button className="bg-brand-light hover:bg-brand-input rounded-8 shadow-sm-btn w-fit items-center p-2 duration-300">
+      <FiUpload className=" stroke-brand-black  h-auto w-[28px] " />
+    </button>
+  );
+}
+
 function DeleteAdminBtn() {
   return (
     <button className="bg-brand-red hover:bg-brand-red-dark rounded-8 shadow-sm-btn items-center p-2 duration-300">
@@ -315,4 +324,5 @@ export {
   DashboardViewAllBtn,
   ForApprovalListItemBtn,
   ArchivedListItemBtn,
+  UploadImageBtn,
 };

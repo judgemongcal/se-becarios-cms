@@ -1,4 +1,5 @@
 import ArticleTitleField from '../components/create-post/ArticleTitleField';
+import { UploadImageBtn } from '../components/global/Button';
 import NavBar from '../components/global/NavBar';
 import NavBarMobile from '../components/global/NavBarMobile';
 import PageTitle from '../components/global/PageTitle';
@@ -14,6 +15,7 @@ function CreatePost() {
       <div className="content mt-[10rem] flex w-[100%] flex-col gap-[5rem] px-9 md:mb-[5rem] md:px-16 lg:ml-[21rem] lg:mt-[8rem] lg:pb-[20%]">
         <PageTitle title="Create Post" />
         <ArticleTitleField />
+        <UploadImageBtn />
       </div>
     </div>
   );
