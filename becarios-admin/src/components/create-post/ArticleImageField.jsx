@@ -2,7 +2,7 @@ import { FiUploadCloud } from 'react-icons/fi';
 
 function ArticleImageField() {
   return (
-    <div className="flex flex-col justify-between">
+    <div className="mb-[3rem] flex flex-col justify-between">
       <p className="mb-[0.5rem] text-[1.25rem] font-semibold tracking-wide">
         Article Image{' '}
         <span className="text-brand-red align-middle text-[1.5rem]">

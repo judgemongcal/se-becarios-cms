@@ -1,11 +1,19 @@
-import { FiUploadCloud } from 'react-icons/fi';
 import ArticleTitleField from '../components/create-post/ArticleTitleField';
 import NavBar from '../components/global/NavBar';
 import NavBarMobile from '../components/global/NavBarMobile';
 import PageTitle from '../components/global/PageTitle';
 import ArticleImageField from '../components/create-post/ArticleImageField';
+import {
+  BoldItalicUnderlineToggles,
+  MDXEditor,
+  UndoRedo,
+  quotePlugin,
+  toolbarPlugin,
+} from '@mdxeditor/editor';
+import '@mdxeditor/editor/style.css';
 
 function CreatePost() {
+  const markdown = '> Hello World';
   return (
     <div className="flex flex-col justify-start lg:flex-row ">
       <div className="navs">
@@ -22,6 +30,22 @@ function CreatePost() {
         >
           <ArticleTitleField />
           <ArticleImageField />
+          <MDXEditor
+            markdown={markdown}
+            className="shadow-shadow-db rounded-8"
+            plugins={[
+              toolbarPlugin({
+                toolbarContents: () => (
+                  <>
+                    {' '}
+                    <UndoRedo />
+                    <BoldItalicUnderlineToggles />
+                  </>
+                ),
+              }),
+              quotePlugin(),
+            ]}
+          />
         </form>
       </div>
     </div>
