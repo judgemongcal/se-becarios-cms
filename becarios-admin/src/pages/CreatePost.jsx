@@ -12,7 +12,8 @@ import {
 } from '@mdxeditor/editor';
 import '@mdxeditor/editor/style.css';
 import Markdown from 'react-markdown';
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
+import rehypeRaw from 'rehype-raw';
 
 function CreatePost() {
   const markdown = '> Hello World';
@@ -36,27 +37,37 @@ function CreatePost() {
         >
           <ArticleTitleField />
           <ArticleImageField />
-          <MDXEditor
-            markdown={markdown}
-            className="shadow-shadow-db rounded-8"
-            plugins={[
-              toolbarPlugin({
-                toolbarContents: () => (
-                  <>
-                    {' '}
-                    <UndoRedo />
-                    <BoldItalicUnderlineToggles />
-                  </>
-                ),
-              }),
-              quotePlugin(),
-            ]}
-            onChange={(e) => {
-              setArticleBody(e);
-            }}
-          />
+          <Suspense
+            fallback={
+              <>
+                <p>Loading</p>
+              </>
+            }
+          >
+            <MDXEditor
+              markdown={markdown}
+              className="shadow-shadow-db rounded-8"
+              plugins={[
+                toolbarPlugin({
+                  toolbarContents: () => (
+                    <>
+                      {' '}
+                      <UndoRedo />
+                      <BoldItalicUnderlineToggles />
+                    </>
+                  ),
+                }),
+                quotePlugin(),
+              ]}
+              onChange={(e) => {
+                setArticleBody(e);
+              }}
+            />
+          </Suspense>
 
-          <Markdown>{articleBody}</Markdown>
+          <Markdown rehypePlugins={rehypeRaw}>
+            {articleBody}
+          </Markdown>
         </form>
       </div>
     </div>
