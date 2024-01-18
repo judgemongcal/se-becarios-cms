@@ -11,9 +11,15 @@ import {
   toolbarPlugin,
 } from '@mdxeditor/editor';
 import '@mdxeditor/editor/style.css';
+import Markdown from 'react-markdown';
+import { useState } from 'react';
 
 function CreatePost() {
   const markdown = '> Hello World';
+
+  const [articleBody, setArticleBody] = useState('');
+  // const markdownRef = useRef < MDXEditorMethods > null;
+
   return (
     <div className="flex flex-col justify-start lg:flex-row ">
       <div className="navs">
@@ -45,7 +51,12 @@ function CreatePost() {
               }),
               quotePlugin(),
             ]}
+            onChange={(e) => {
+              setArticleBody(e);
+            }}
           />
+
+          <Markdown>{articleBody}</Markdown>
         </form>
       </div>
     </div>
