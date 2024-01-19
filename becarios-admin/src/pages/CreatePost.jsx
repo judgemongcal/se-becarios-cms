@@ -4,10 +4,16 @@ import NavBarMobile from '../components/global/NavBarMobile';
 import PageTitle from '../components/global/PageTitle';
 import ArticleImageField from '../components/create-post/ArticleImageField';
 import {
+  BlockTypeSelect,
   BoldItalicUnderlineToggles,
+  InsertTable,
+  ListsToggle,
   MDXEditor,
   UndoRedo,
+  headingsPlugin,
+  listsPlugin,
   quotePlugin,
+  tablePlugin,
   toolbarPlugin,
 } from '@mdxeditor/editor';
 import '@mdxeditor/editor/style.css';
@@ -16,7 +22,7 @@ import { Suspense, useState } from 'react';
 import rehypeRaw from 'rehype-raw';
 
 function CreatePost() {
-  const markdown = '> Hello World';
+  const markdown = '';
 
   const [articleBody, setArticleBody] = useState('');
   // const markdownRef = useRef < MDXEditorMethods > null;
@@ -45,29 +51,32 @@ function CreatePost() {
             }
           >
             <MDXEditor
-              markdown={markdown}
+              markdown={articleBody}
               className="shadow-shadow-db rounded-8"
               plugins={[
+                quotePlugin(),
+                listsPlugin(),
+                headingsPlugin(),
+                tablePlugin(),
                 toolbarPlugin({
                   toolbarContents: () => (
                     <>
-                      {' '}
                       <UndoRedo />
                       <BoldItalicUnderlineToggles />
+                      <BlockTypeSelect />
+                      <ListsToggle />
                     </>
                   ),
                 }),
-                quotePlugin(),
               ]}
               onChange={(e) => {
                 setArticleBody(e);
+                console.log(e);
               }}
             />
           </Suspense>
 
-          <Markdown rehypePlugins={rehypeRaw}>
-            {articleBody}
-          </Markdown>
+          <Markdown>{articleBody}</Markdown>
         </form>
       </div>
     </div>
