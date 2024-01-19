@@ -4,22 +4,26 @@ import NavBarMobile from '../components/global/NavBarMobile';
 import PageTitle from '../components/global/PageTitle';
 import ArticleImageField from '../components/create-post/ArticleImageField';
 import {
-  BlockTypeSelect,
-  BoldItalicUnderlineToggles,
-  InsertTable,
-  ListsToggle,
   MDXEditor,
-  UndoRedo,
   headingsPlugin,
   listsPlugin,
   quotePlugin,
   tablePlugin,
   toolbarPlugin,
+  thematicBreakPlugin,
+  markdownShortcutPlugin,
+  BlockTypeSelect,
+  BoldItalicUnderlineToggles,
+  ListsToggle,
+  UndoRedo,
 } from '@mdxeditor/editor';
 import '@mdxeditor/editor/style.css';
 import Markdown from 'react-markdown';
 import { Suspense, useState } from 'react';
 import rehypeRaw from 'rehype-raw';
+import ReactMarkdown from 'react-markdown';
+import gfm from 'remark-gfm';
+import MDXTest from '../components/create-post/testMDX';
 
 function CreatePost() {
   const markdown = '';
@@ -43,7 +47,47 @@ function CreatePost() {
         >
           <ArticleTitleField />
           <ArticleImageField />
-          <Suspense
+          {/* <MDXTest
+            ref={articleBody}
+            onChange={setArticleBody}
+          /> */}
+
+          <MDXEditor
+            markdown={articleBody}
+            className="shadow-shadow-db rounded-8"
+            plugins={[
+              quotePlugin(),
+              listsPlugin(),
+              headingsPlugin(),
+              tablePlugin(),
+              thematicBreakPlugin(),
+              markdownShortcutPlugin(),
+              toolbarPlugin({
+                toolbarContents: () => (
+                  <>
+                    <UndoRedo />
+                    <BoldItalicUnderlineToggles />
+                    <BlockTypeSelect />
+                    <ListsToggle />
+                  </>
+                ),
+              }),
+            ]}
+            onChange={(e) => {
+              setArticleBody(e);
+              console.log(e);
+            }}
+          />
+        </form>
+      </div>
+    </div>
+  );
+}
+
+export default CreatePost;
+
+{
+  /* <Suspense
             fallback={
               <>
                 <p>Loading</p>
@@ -76,11 +120,7 @@ function CreatePost() {
             />
           </Suspense>
 
-          <Markdown>{articleBody}</Markdown>
-        </form>
-      </div>
-    </div>
-  );
+          <ReactMarkdown remarkPlugins={[gfm]}>
+            {articleBody}
+          </ReactMarkdown> */
 }
-
-export default CreatePost;

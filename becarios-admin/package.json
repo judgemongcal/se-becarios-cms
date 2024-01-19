@@ -12,6 +12,9 @@
   "dependencies": {
     "@mdxeditor/editor": "^2.3.2",
     "@react-icons/all-files": "^4.1.0",
+    "@tiptap/pm": "^2.1.16",
+    "@tiptap/react": "^2.1.16",
+    "@tiptap/starter-kit": "^2.1.16",
     "framer-motion": "^10.17.4",
     "hamburger-react": "^2.5.0",
     "react": "^18.2.0",
