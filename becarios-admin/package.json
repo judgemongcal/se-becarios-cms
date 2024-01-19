@@ -12,6 +12,13 @@
   "dependencies": {
     "@mdxeditor/editor": "^2.3.2",
     "@react-icons/all-files": "^4.1.0",
+    "@tiptap/extension-color": "^2.1.16",
+    "@tiptap/extension-document": "^2.1.16",
+    "@tiptap/extension-heading": "^2.1.16",
+    "@tiptap/extension-list-item": "^2.1.16",
+    "@tiptap/extension-paragraph": "^2.1.16",
+    "@tiptap/extension-text": "^2.1.16",
+    "@tiptap/extension-text-style": "^2.1.16",
     "@tiptap/pm": "^2.1.16",
     "@tiptap/react": "^2.1.16",
     "@tiptap/starter-kit": "^2.1.16",

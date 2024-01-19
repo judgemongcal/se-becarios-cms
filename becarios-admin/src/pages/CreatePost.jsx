@@ -24,6 +24,7 @@ import rehypeRaw from 'rehype-raw';
 import ReactMarkdown from 'react-markdown';
 import gfm from 'remark-gfm';
 import MDXTest from '../components/create-post/testMDX';
+import TipTap from '../components/create-post/TipTap';
 
 function CreatePost() {
   const markdown = '';
@@ -40,19 +41,16 @@ function CreatePost() {
 
       <div className="content mt-[10rem] flex w-[100%] flex-col gap-[5rem] px-9 md:mb-[5rem] md:px-16 lg:ml-[21rem] lg:mt-[8rem] lg:pb-[20%]">
         <PageTitle title="Create Post" />
-        <form
-          action="/upload"
-          method="post"
+        {/* <form
+          action=""
+          method=""
           encType="multipart/form-data"
-        >
+        > */}
+        <div className="flex flex-col">
           <ArticleTitleField />
           <ArticleImageField />
-          {/* <MDXTest
-            ref={articleBody}
-            onChange={setArticleBody}
-          /> */}
 
-          <MDXEditor
+          {/* <MDXEditor
             markdown={articleBody}
             className="shadow-shadow-db rounded-8"
             plugins={[
@@ -77,8 +75,10 @@ function CreatePost() {
               setArticleBody(e);
               console.log(e);
             }}
-          />
-        </form>
+          /> */}
+          <TipTap />
+        </div>
+        {/* </form> */}
       </div>
     </div>
   );
