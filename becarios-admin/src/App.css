@@ -25,11 +25,13 @@ dd {
 }
 
 .ProseMirror {
+  box-shadow: 0 2px 5px 0 rgba(206, 205, 205, 0.8);
   padding: 2rem;
-  background: white;
-  border-radius: 0 0 5px 5px;
+  background-color: #f6f6f6;
+  border-radius: 8px;
   min-height: 100px;
 }
+
 .ProseMirror:focus {
   border: none;
   outline: 2px solid #d8d8d8;
@@ -144,8 +146,12 @@ dd {
   font-size: 15px;
 }
 
-button.is_active {
-  background: rgb(197, 197, 197);
+.ProseMirror button.is_active {
+  background: rgb(225, 251, 30);
   padding: 2px 3px;
   border-radius: 2px;
+}
+
+EditorProvider button {
+  background-color: red;
 }

@@ -8,12 +8,3 @@ label {
   font-weight: 700;
   font-size: 1.125rem;
 }
-
-.ProseMirror {
-  box-shadow: 0 2px 5px 0 rgba(206, 205, 205, 0.8);
-  padding: 2rem;
-  border-radius: 8px;
-  background-color: #f6f6f6;
-  font-family: 'Archivo', 'sans-serif';
-  font-size: 1.05rem;
-}

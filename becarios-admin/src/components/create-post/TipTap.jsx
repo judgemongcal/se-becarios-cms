@@ -10,6 +10,19 @@ import {
 } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import React from 'react';
+import {
+  FaBold,
+  FaItalic,
+  FaListUl,
+  FaParagraph,
+  FaStrikethrough,
+} from 'react-icons/fa6';
+import { TbClearFormatting } from 'react-icons/tb';
+import {
+  LuHeading1,
+  LuHeading2,
+  LuHeading3,
+} from 'react-icons/lu';
 
 const MenuBar = () => {
   const { editor } = useCurrentEditor();
@@ -19,7 +32,7 @@ const MenuBar = () => {
   }
 
   return (
-    <div className="flex flex-row justify-evenly gap-2">
+    <div className="grid grid-cols-12 grid-rows-2 justify-evenly gap-3">
       <button
         onClick={() =>
           editor.chain().focus().toggleBold().run()
@@ -27,11 +40,11 @@ const MenuBar = () => {
         disabled={
           !editor.can().chain().focus().toggleBold().run()
         }
-        className={
-          editor.isActive('bold') ? 'is-active' : ''
-        }
+        className={`${
+          editor.isActive('bold') ? 'bg-brand-yellow' : ''
+        } shadow-shadow-db rounded-8 flex items-center justify-center p-3`}
       >
-        bold
+        <FaBold className="h-[20px] w-[20px]" />
       </button>
       <button
         onClick={() =>
@@ -40,11 +53,11 @@ const MenuBar = () => {
         disabled={
           !editor.can().chain().focus().toggleItalic().run()
         }
-        className={
-          editor.isActive('italic') ? 'is-active' : ''
-        }
+        className={`${
+          editor.isActive('italic') ? 'bg-brand-yellow' : ''
+        } shadow-shadow-db rounded-8 flex items-center justify-center p-2`}
       >
-        italic
+        <FaItalic className="h-[20px] w-[20px]" />
       </button>
       <button
         onClick={() =>
@@ -53,30 +66,35 @@ const MenuBar = () => {
         disabled={
           !editor.can().chain().focus().toggleStrike().run()
         }
-        className={
-          editor.isActive('strike') ? 'is-active' : ''
-        }
+        className={`${
+          editor.isActive('strike') ? 'bg-brand-yellow' : ''
+        } shadow-shadow-db rounded-8 flex items-center justify-center p-2`}
       >
-        strike
+        <FaStrikethrough className="h-[20px] w-[20px]" />
       </button>
 
       <button
         onClick={() =>
           editor.chain().focus().unsetAllMarks().run()
         }
+        className="shadow-shadow-db rounded-8 flex items-center justify-center p-2"
       >
-        clear marks
+        <TbClearFormatting className="h-[24px] w-[24px]" />
       </button>
+
       <button
         onClick={() =>
           editor.chain().focus().setParagraph().run()
         }
-        className={
-          editor.isActive('paragraph') ? 'is-active' : ''
-        }
+        className={`${
+          editor.isActive('paragraph')
+            ? 'bg-brand-yellow'
+            : ''
+        } shadow-shadow-db rounded-8 flex items-center justify-center p-2`}
       >
-        paragraph
+        <FaParagraph className="h-[20px] w-[20px]" />
       </button>
+
       <button
         onClick={() =>
           editor
@@ -85,14 +103,15 @@ const MenuBar = () => {
             .toggleHeading({ level: 1 })
             .run()
         }
-        className={
+        className={`${
           editor.isActive('heading', { level: 1 })
-            ? 'is-active'
+            ? 'bg-brand-yellow'
             : ''
-        }
+        } shadow-shadow-db rounded-8 flex items-center justify-center p-2`}
       >
-        h1
+        <LuHeading1 className="h-auto w-[24px]" />
       </button>
+
       <button
         onClick={() =>
           editor
@@ -101,13 +120,13 @@ const MenuBar = () => {
             .toggleHeading({ level: 2 })
             .run()
         }
-        className={
+        className={`${
           editor.isActive('heading', { level: 2 })
-            ? 'is-active'
+            ? 'bg-brand-yellow'
             : ''
-        }
+        } shadow-shadow-db rounded-8 flex items-center justify-center p-2`}
       >
-        h2
+        <LuHeading2 className="h-auto w-[24px]" />
       </button>
       <button
         onClick={() =>
@@ -117,24 +136,26 @@ const MenuBar = () => {
             .toggleHeading({ level: 3 })
             .run()
         }
-        className={
+        className={`${
           editor.isActive('heading', { level: 3 })
-            ? 'is-active'
+            ? 'bg-brand-yellow'
             : ''
-        }
+        } shadow-shadow-db rounded-8 flex items-center justify-center p-2`}
       >
-        h3
+        <LuHeading3 className="h-auto w-[24px]" />
       </button>
 
       <button
         onClick={() =>
           editor.chain().focus().toggleBulletList().run()
         }
-        className={
-          editor.isActive('bulletList') ? 'is-active' : ''
-        }
+        className={`${
+          editor.isActive('bulletList')
+            ? 'bg-brand-yellow'
+            : ''
+        } shadow-shadow-db rounded-8 flex items-center justify-center p-2`}
       >
-        bullet list
+        <FaListUl className="h-auto w-[24px]" />
       </button>
       <button
         onClick={() =>
