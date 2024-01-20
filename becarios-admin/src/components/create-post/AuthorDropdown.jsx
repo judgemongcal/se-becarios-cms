@@ -10,7 +10,7 @@ function AuthorDropdown() {
       <select
         name="cars"
         id="cars"
-        className="bg-brand-yellow rounded-8 flex flex-row p-4  text-[1rem] font-semibold"
+        className="bg-brand-yellow rounded-8 p-4 text-[1.15rem] font-medium"
       >
         <option value="John Doe">John Doe</option>
         <option value="Hannah Yu">Hannah Yu</option>

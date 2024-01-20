@@ -43,7 +43,7 @@ const MenuBar = () => {
         </span>
       </p>
 
-      <div className="bg-brand-black rounded-t-8 -mb-0.5 grid grid-cols-7 grid-rows-2 justify-evenly gap-4 p-4">
+      <div className="bg-brand-black rounded-t-8 -mb-0.5 grid grid-cols-4 grid-rows-2 justify-evenly gap-4 p-4 md:grid-cols-7">
         <button
           onClick={() =>
             editor.chain().focus().undo().run()

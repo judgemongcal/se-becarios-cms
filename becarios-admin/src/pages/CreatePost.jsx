@@ -6,6 +6,10 @@ import ArticleImageField from '../components/create-post/ArticleImageField';
 import { Suspense, useState } from 'react';
 import AuthorDropdown from '../components/create-post/AuthorDropdown';
 import TextEditor from '../components/create-post/TextEditor';
+import {
+  SubmitArticleBtn,
+  SubmitPostModalBtn,
+} from '../components/global/Button';
 
 function CreatePost() {
   const markdown = '';
@@ -32,7 +36,7 @@ function CreatePost() {
           <ArticleImageField />
 
           <TextEditor />
-          <AuthorDropdown />
+          <SubmitArticleBtn />
         </div>
         {/* </form> */}
       </div>
