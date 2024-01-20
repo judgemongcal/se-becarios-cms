@@ -9,7 +9,6 @@ import {
   useCurrentEditor,
 } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
-import React from 'react';
 import {
   FaBold,
   FaCode,
@@ -270,7 +269,7 @@ display: none;
 </blockquote>
 `;
 
-export default function TipTap() {
+export default function TextEditor() {
   return (
     <EditorProvider
       slotBefore={<MenuBar />}
