@@ -12,11 +12,15 @@ import StarterKit from '@tiptap/starter-kit';
 import React from 'react';
 import {
   FaBold,
+  FaCode,
   FaItalic,
+  FaListOl,
   FaListUl,
   FaParagraph,
+  FaQuoteLeft,
   FaStrikethrough,
 } from 'react-icons/fa6';
+import { FaRedo, FaUndo } from 'react-icons/fa';
 import { TbClearFormatting } from 'react-icons/tb';
 import {
   LuHeading1,
@@ -32,7 +36,25 @@ const MenuBar = () => {
   }
 
   return (
-    <div className="grid grid-cols-12 grid-rows-2 justify-evenly gap-3">
+    <div className="bg-brand-black rounded-8 mb-[1.5rem] grid grid-cols-7 grid-rows-2 justify-evenly gap-4 p-4">
+      <button
+        onClick={() => editor.chain().focus().undo().run()}
+        disabled={
+          !editor.can().chain().focus().undo().run()
+        }
+        className="shadow-sm-btn bg-brand-light rounded-8 flex items-center justify-center p-2"
+      >
+        <FaUndo className="h-auto w-[20px]" />
+      </button>
+      <button
+        onClick={() => editor.chain().focus().redo().run()}
+        disabled={
+          !editor.can().chain().focus().redo().run()
+        }
+        className="shadow-sm-btn  rounded-8 bg-brand-light  flex items-center justify-center p-2"
+      >
+        <FaRedo className="h-auto w-[20px]" />
+      </button>
       <button
         onClick={() =>
           editor.chain().focus().toggleBold().run()
@@ -42,7 +64,7 @@ const MenuBar = () => {
         }
         className={`${
           editor.isActive('bold') ? 'bg-brand-yellow' : ''
-        } shadow-shadow-db rounded-8 flex items-center justify-center p-3`}
+        } shadow-sm-btn rounded-8 bg-brand-light flex items-center justify-center p-3`}
       >
         <FaBold className="h-[20px] w-[20px]" />
       </button>
@@ -55,7 +77,7 @@ const MenuBar = () => {
         }
         className={`${
           editor.isActive('italic') ? 'bg-brand-yellow' : ''
-        } shadow-shadow-db rounded-8 flex items-center justify-center p-2`}
+        } shadow-sm-btn rounded-8 bg-brand-light flex items-center justify-center p-2`}
       >
         <FaItalic className="h-[20px] w-[20px]" />
       </button>
@@ -68,7 +90,7 @@ const MenuBar = () => {
         }
         className={`${
           editor.isActive('strike') ? 'bg-brand-yellow' : ''
-        } shadow-shadow-db rounded-8 flex items-center justify-center p-2`}
+        } shadow-sm-btn rounded-8 bg-brand-light flex items-center justify-center p-2`}
       >
         <FaStrikethrough className="h-[20px] w-[20px]" />
       </button>
@@ -77,7 +99,7 @@ const MenuBar = () => {
         onClick={() =>
           editor.chain().focus().unsetAllMarks().run()
         }
-        className="shadow-shadow-db rounded-8 flex items-center justify-center p-2"
+        className="shadow-sm-btn rounded-8 bg-brand-light flex items-center justify-center p-2"
       >
         <TbClearFormatting className="h-[24px] w-[24px]" />
       </button>
@@ -90,7 +112,7 @@ const MenuBar = () => {
           editor.isActive('paragraph')
             ? 'bg-brand-yellow'
             : ''
-        } shadow-shadow-db rounded-8 flex items-center justify-center p-2`}
+        } shadow-sm-btn rounded-8 bg-brand-light flex items-center justify-center p-2`}
       >
         <FaParagraph className="h-[20px] w-[20px]" />
       </button>
@@ -107,7 +129,7 @@ const MenuBar = () => {
           editor.isActive('heading', { level: 1 })
             ? 'bg-brand-yellow'
             : ''
-        } shadow-shadow-db rounded-8 flex items-center justify-center p-2`}
+        } shadow-sm-btn rounded-8 bg-brand-light flex items-center justify-center p-2`}
       >
         <LuHeading1 className="h-auto w-[24px]" />
       </button>
@@ -124,7 +146,7 @@ const MenuBar = () => {
           editor.isActive('heading', { level: 2 })
             ? 'bg-brand-yellow'
             : ''
-        } shadow-shadow-db rounded-8 flex items-center justify-center p-2`}
+        } shadow-sm-btn rounded-8 bg-brand-light flex items-center justify-center p-2`}
       >
         <LuHeading2 className="h-auto w-[24px]" />
       </button>
@@ -140,7 +162,7 @@ const MenuBar = () => {
           editor.isActive('heading', { level: 3 })
             ? 'bg-brand-yellow'
             : ''
-        } shadow-shadow-db rounded-8 flex items-center justify-center p-2`}
+        } shadow-sm-btn rounded-8 bg-brand-light flex items-center justify-center p-2`}
       >
         <LuHeading3 className="h-auto w-[24px]" />
       </button>
@@ -153,7 +175,7 @@ const MenuBar = () => {
           editor.isActive('bulletList')
             ? 'bg-brand-yellow'
             : ''
-        } shadow-shadow-db rounded-8 flex items-center justify-center p-2`}
+        } shadow-sm-btn rounded-8 bg-brand-light flex items-center justify-center p-2`}
       >
         <FaListUl className="h-auto w-[24px]" />
       </button>
@@ -161,48 +183,37 @@ const MenuBar = () => {
         onClick={() =>
           editor.chain().focus().toggleOrderedList().run()
         }
-        className={
-          editor.isActive('orderedList') ? 'is-active' : ''
-        }
+        className={`${
+          editor.isActive('orderedList')
+            ? 'bg-brand-yellow'
+            : ''
+        } shadow-sm-btn rounded-8 bg-brand-light flex items-center justify-center p-2`}
       >
-        ordered list
+        <FaListOl className="h-auto w-[24px]" />
       </button>
       <button
         onClick={() =>
           editor.chain().focus().toggleCodeBlock().run()
         }
-        className={
-          editor.isActive('codeBlock') ? 'is-active' : ''
-        }
+        className={`${
+          editor.isActive('codeBlock')
+            ? 'bg-brand-yellow'
+            : ''
+        } shadow-sm-btn rounded-8 bg-brand-light flex items-center justify-center p-2`}
       >
-        code block
+        <FaCode className="h-auto w-[24px]" />
       </button>
       <button
         onClick={() =>
           editor.chain().focus().toggleBlockquote().run()
         }
-        className={
-          editor.isActive('blockquote') ? 'is-active' : ''
-        }
+        className={`${
+          editor.isActive('blockquote')
+            ? 'bg-brand-yellow'
+            : ''
+        } shadow-sm-btn rounded-8 bg-brand-light flex items-center justify-center p-2`}
       >
-        blockquote
-      </button>
-
-      <button
-        onClick={() => editor.chain().focus().undo().run()}
-        disabled={
-          !editor.can().chain().focus().undo().run()
-        }
-      >
-        undo
-      </button>
-      <button
-        onClick={() => editor.chain().focus().redo().run()}
-        disabled={
-          !editor.can().chain().focus().redo().run()
-        }
-      >
-        redo
+        <FaQuoteLeft className="h-auto w-[24px]" />
       </button>
     </div>
   );

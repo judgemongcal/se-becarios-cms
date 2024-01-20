@@ -34,7 +34,7 @@ dd {
 
 .ProseMirror:focus {
   border: none;
-  outline: 2px solid #d8d8d8;
+  outline: 2px solid #121214;
 }
 
 .ProseMirror > * + * {
@@ -144,14 +144,4 @@ dd {
 
 .heading3 {
   font-size: 15px;
-}
-
-.ProseMirror button.is_active {
-  background: rgb(225, 251, 30);
-  padding: 2px 3px;
-  border-radius: 2px;
-}
-
-EditorProvider button {
-  background-color: red;
 }
