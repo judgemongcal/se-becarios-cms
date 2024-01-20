@@ -166,20 +166,7 @@ const MenuBar = () => {
       >
         blockquote
       </button>
-      <button
-        onClick={() =>
-          editor.chain().focus().setHorizontalRule().run()
-        }
-      >
-        horizontal rule
-      </button>
-      <button
-        onClick={() =>
-          editor.chain().focus().setHardBreak().run()
-        }
-      >
-        hard break
-      </button>
+
       <button
         onClick={() => editor.chain().focus().undo().run()}
         disabled={

@@ -63,8 +63,19 @@ dd {
 
 .ProseMirror h1 {
   font-size: 1.75rem;
-  font-weight: bold;
+  font-weight: 700;
 }
+
+.ProseMirror h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.ProseMirror h3 {
+  font-size: 1.35rem;
+  font-weight: 500;
+}
+
 .ProseMirror code {
   background-color: rgba(#616161, 0.1);
   color: #616161;
