@@ -25,6 +25,7 @@ import ReactMarkdown from 'react-markdown';
 import gfm from 'remark-gfm';
 import MDXTest from '../components/create-post/testMDX';
 import TipTap from '../components/create-post/TipTap';
+import AuthorDropdown from '../components/create-post/AuthorDropdown';
 
 function CreatePost() {
   const markdown = '';
@@ -77,6 +78,7 @@ function CreatePost() {
             }}
           /> */}
           <TipTap />
+          <AuthorDropdown />
         </div>
         {/* </form> */}
       </div>
