@@ -35,185 +35,212 @@ const MenuBar = () => {
   }
 
   return (
-    <div className="bg-brand-black rounded-8 mb-[1.5rem] grid grid-cols-7 grid-rows-2 justify-evenly gap-4 p-4">
-      <button
-        onClick={() => editor.chain().focus().undo().run()}
-        disabled={
-          !editor.can().chain().focus().undo().run()
-        }
-        className="shadow-sm-btn bg-brand-light rounded-8 flex items-center justify-center p-2"
-      >
-        <FaUndo className="h-auto w-[20px]" />
-      </button>
-      <button
-        onClick={() => editor.chain().focus().redo().run()}
-        disabled={
-          !editor.can().chain().focus().redo().run()
-        }
-        className="shadow-sm-btn  rounded-8 bg-brand-light  flex items-center justify-center p-2"
-      >
-        <FaRedo className="h-auto w-[20px]" />
-      </button>
-      <button
-        onClick={() =>
-          editor.chain().focus().toggleBold().run()
-        }
-        disabled={
-          !editor.can().chain().focus().toggleBold().run()
-        }
-        className={`${
-          editor.isActive('bold') ? 'bg-brand-yellow' : ''
-        } shadow-sm-btn rounded-8 bg-brand-light flex items-center justify-center p-3`}
-      >
-        <FaBold className="h-[20px] w-[20px]" />
-      </button>
-      <button
-        onClick={() =>
-          editor.chain().focus().toggleItalic().run()
-        }
-        disabled={
-          !editor.can().chain().focus().toggleItalic().run()
-        }
-        className={`${
-          editor.isActive('italic') ? 'bg-brand-yellow' : ''
-        } shadow-sm-btn rounded-8 bg-brand-light flex items-center justify-center p-2`}
-      >
-        <FaItalic className="h-[20px] w-[20px]" />
-      </button>
-      <button
-        onClick={() =>
-          editor.chain().focus().toggleStrike().run()
-        }
-        disabled={
-          !editor.can().chain().focus().toggleStrike().run()
-        }
-        className={`${
-          editor.isActive('strike') ? 'bg-brand-yellow' : ''
-        } shadow-sm-btn rounded-8 bg-brand-light flex items-center justify-center p-2`}
-      >
-        <FaStrikethrough className="h-[20px] w-[20px]" />
-      </button>
+    <div className="main-container flex flex-col">
+      <p className="mb-[0.5rem] text-[1.25rem] font-semibold tracking-wide">
+        Article Body{' '}
+        <span className="text-brand-red align-middle text-[1.5rem]">
+          *
+        </span>
+      </p>
 
-      <button
-        onClick={() =>
-          editor.chain().focus().unsetAllMarks().run()
-        }
-        className="shadow-sm-btn rounded-8 bg-brand-light flex items-center justify-center p-2"
-      >
-        <TbClearFormatting className="h-[24px] w-[24px]" />
-      </button>
+      <div className="bg-brand-black rounded-t-8 -mb-0.5 grid grid-cols-7 grid-rows-2 justify-evenly gap-4 p-4">
+        <button
+          onClick={() =>
+            editor.chain().focus().undo().run()
+          }
+          disabled={
+            !editor.can().chain().focus().undo().run()
+          }
+          className="shadow-sm-btn bg-brand-light rounded-8 flex items-center justify-center p-2"
+        >
+          <FaUndo className="h-auto w-[20px]" />
+        </button>
+        <button
+          onClick={() =>
+            editor.chain().focus().redo().run()
+          }
+          disabled={
+            !editor.can().chain().focus().redo().run()
+          }
+          className="shadow-sm-btn  rounded-8 bg-brand-light  flex items-center justify-center p-2"
+        >
+          <FaRedo className="h-auto w-[20px]" />
+        </button>
+        <button
+          onClick={() =>
+            editor.chain().focus().toggleBold().run()
+          }
+          disabled={
+            !editor.can().chain().focus().toggleBold().run()
+          }
+          className={`${
+            editor.isActive('bold') ? 'bg-brand-yellow' : ''
+          } shadow-sm-btn rounded-8 bg-brand-light flex items-center justify-center p-3`}
+        >
+          <FaBold className="h-[20px] w-[20px]" />
+        </button>
+        <button
+          onClick={() =>
+            editor.chain().focus().toggleItalic().run()
+          }
+          disabled={
+            !editor
+              .can()
+              .chain()
+              .focus()
+              .toggleItalic()
+              .run()
+          }
+          className={`${
+            editor.isActive('italic')
+              ? 'bg-brand-yellow'
+              : ''
+          } shadow-sm-btn rounded-8 bg-brand-light flex items-center justify-center p-2`}
+        >
+          <FaItalic className="h-[20px] w-[20px]" />
+        </button>
+        <button
+          onClick={() =>
+            editor.chain().focus().toggleStrike().run()
+          }
+          disabled={
+            !editor
+              .can()
+              .chain()
+              .focus()
+              .toggleStrike()
+              .run()
+          }
+          className={`${
+            editor.isActive('strike')
+              ? 'bg-brand-yellow'
+              : ''
+          } shadow-sm-btn rounded-8 bg-brand-light flex items-center justify-center p-2`}
+        >
+          <FaStrikethrough className="h-[20px] w-[20px]" />
+        </button>
 
-      <button
-        onClick={() =>
-          editor.chain().focus().setParagraph().run()
-        }
-        className={`${
-          editor.isActive('paragraph')
-            ? 'bg-brand-yellow'
-            : ''
-        } shadow-sm-btn rounded-8 bg-brand-light flex items-center justify-center p-2`}
-      >
-        <FaParagraph className="h-[20px] w-[20px]" />
-      </button>
+        <button
+          onClick={() =>
+            editor.chain().focus().unsetAllMarks().run()
+          }
+          className="shadow-sm-btn rounded-8 bg-brand-light flex items-center justify-center p-2"
+        >
+          <TbClearFormatting className="h-[24px] w-[24px]" />
+        </button>
 
-      <button
-        onClick={() =>
-          editor
-            .chain()
-            .focus()
-            .toggleHeading({ level: 1 })
-            .run()
-        }
-        className={`${
-          editor.isActive('heading', { level: 1 })
-            ? 'bg-brand-yellow'
-            : ''
-        } shadow-sm-btn rounded-8 bg-brand-light flex items-center justify-center p-2`}
-      >
-        <LuHeading1 className="h-auto w-[24px]" />
-      </button>
+        <button
+          onClick={() =>
+            editor.chain().focus().setParagraph().run()
+          }
+          className={`${
+            editor.isActive('paragraph')
+              ? 'bg-brand-yellow'
+              : ''
+          } shadow-sm-btn rounded-8 bg-brand-light flex items-center justify-center p-2`}
+        >
+          <FaParagraph className="h-[20px] w-[20px]" />
+        </button>
 
-      <button
-        onClick={() =>
-          editor
-            .chain()
-            .focus()
-            .toggleHeading({ level: 2 })
-            .run()
-        }
-        className={`${
-          editor.isActive('heading', { level: 2 })
-            ? 'bg-brand-yellow'
-            : ''
-        } shadow-sm-btn rounded-8 bg-brand-light flex items-center justify-center p-2`}
-      >
-        <LuHeading2 className="h-auto w-[24px]" />
-      </button>
-      <button
-        onClick={() =>
-          editor
-            .chain()
-            .focus()
-            .toggleHeading({ level: 3 })
-            .run()
-        }
-        className={`${
-          editor.isActive('heading', { level: 3 })
-            ? 'bg-brand-yellow'
-            : ''
-        } shadow-sm-btn rounded-8 bg-brand-light flex items-center justify-center p-2`}
-      >
-        <LuHeading3 className="h-auto w-[24px]" />
-      </button>
+        <button
+          onClick={() =>
+            editor
+              .chain()
+              .focus()
+              .toggleHeading({ level: 1 })
+              .run()
+          }
+          className={`${
+            editor.isActive('heading', { level: 1 })
+              ? 'bg-brand-yellow'
+              : ''
+          } shadow-sm-btn rounded-8 bg-brand-light flex items-center justify-center p-2`}
+        >
+          <LuHeading1 className="h-auto w-[24px]" />
+        </button>
 
-      <button
-        onClick={() =>
-          editor.chain().focus().toggleBulletList().run()
-        }
-        className={`${
-          editor.isActive('bulletList')
-            ? 'bg-brand-yellow'
-            : ''
-        } shadow-sm-btn rounded-8 bg-brand-light flex items-center justify-center p-2`}
-      >
-        <FaListUl className="h-auto w-[24px]" />
-      </button>
-      <button
-        onClick={() =>
-          editor.chain().focus().toggleOrderedList().run()
-        }
-        className={`${
-          editor.isActive('orderedList')
-            ? 'bg-brand-yellow'
-            : ''
-        } shadow-sm-btn rounded-8 bg-brand-light flex items-center justify-center p-2`}
-      >
-        <FaListOl className="h-auto w-[24px]" />
-      </button>
-      <button
-        onClick={() =>
-          editor.chain().focus().toggleCodeBlock().run()
-        }
-        className={`${
-          editor.isActive('codeBlock')
-            ? 'bg-brand-yellow'
-            : ''
-        } shadow-sm-btn rounded-8 bg-brand-light flex items-center justify-center p-2`}
-      >
-        <FaCode className="h-auto w-[24px]" />
-      </button>
-      <button
-        onClick={() =>
-          editor.chain().focus().toggleBlockquote().run()
-        }
-        className={`${
-          editor.isActive('blockquote')
-            ? 'bg-brand-yellow'
-            : ''
-        } shadow-sm-btn rounded-8 bg-brand-light flex items-center justify-center p-2`}
-      >
-        <FaQuoteLeft className="h-auto w-[24px]" />
-      </button>
+        <button
+          onClick={() =>
+            editor
+              .chain()
+              .focus()
+              .toggleHeading({ level: 2 })
+              .run()
+          }
+          className={`${
+            editor.isActive('heading', { level: 2 })
+              ? 'bg-brand-yellow'
+              : ''
+          } shadow-sm-btn rounded-8 bg-brand-light flex items-center justify-center p-2`}
+        >
+          <LuHeading2 className="h-auto w-[24px]" />
+        </button>
+        <button
+          onClick={() =>
+            editor
+              .chain()
+              .focus()
+              .toggleHeading({ level: 3 })
+              .run()
+          }
+          className={`${
+            editor.isActive('heading', { level: 3 })
+              ? 'bg-brand-yellow'
+              : ''
+          } shadow-sm-btn rounded-8 bg-brand-light flex items-center justify-center p-2`}
+        >
+          <LuHeading3 className="h-auto w-[24px]" />
+        </button>
+
+        <button
+          onClick={() =>
+            editor.chain().focus().toggleBulletList().run()
+          }
+          className={`${
+            editor.isActive('bulletList')
+              ? 'bg-brand-yellow'
+              : ''
+          } shadow-sm-btn rounded-8 bg-brand-light flex items-center justify-center p-2`}
+        >
+          <FaListUl className="h-auto w-[24px]" />
+        </button>
+        <button
+          onClick={() =>
+            editor.chain().focus().toggleOrderedList().run()
+          }
+          className={`${
+            editor.isActive('orderedList')
+              ? 'bg-brand-yellow'
+              : ''
+          } shadow-sm-btn rounded-8 bg-brand-light flex items-center justify-center p-2`}
+        >
+          <FaListOl className="h-auto w-[24px]" />
+        </button>
+        <button
+          onClick={() =>
+            editor.chain().focus().toggleCodeBlock().run()
+          }
+          className={`${
+            editor.isActive('codeBlock')
+              ? 'bg-brand-yellow'
+              : ''
+          } shadow-sm-btn rounded-8 bg-brand-light flex items-center justify-center p-2`}
+        >
+          <FaCode className="h-auto w-[24px]" />
+        </button>
+        <button
+          onClick={() =>
+            editor.chain().focus().toggleBlockquote().run()
+          }
+          className={`${
+            editor.isActive('blockquote')
+              ? 'bg-brand-yellow'
+              : ''
+          } shadow-sm-btn rounded-8 bg-brand-light flex items-center justify-center p-2`}
+        >
+          <FaQuoteLeft className="h-auto w-[24px]" />
+        </button>
+      </div>
     </div>
   );
 };

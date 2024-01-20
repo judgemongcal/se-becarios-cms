@@ -25,10 +25,10 @@ dd {
 }
 
 .ProseMirror {
-  box-shadow: 0 2px 5px 0 rgba(206, 205, 205, 0.8);
+  box-shadow: 0 0px 5px 0 rgba(206, 205, 205, 0.8);
   padding: 2rem;
   background-color: #f6f6f6;
-  border-radius: 8px;
+  border-radius: 0 0 8px 8px;
   min-height: 100px;
 }
 
