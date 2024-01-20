@@ -1,6 +1,15 @@
+import { useState } from 'react';
 import { FiUploadCloud } from 'react-icons/fi';
 
 function ArticleImageField() {
+  const [imageFile, setImageFile] = useState(null);
+
+  function handleFileChange(e) {
+    const file = e.target.files[0];
+    setImageFile(file);
+    console.log(file);
+  }
+
   return (
     <div className="mb-[3rem] flex flex-col justify-between">
       <p className="mb-[0.5rem] text-[1.25rem] font-semibold tracking-wide">
@@ -31,6 +40,7 @@ function ArticleImageField() {
             type="file"
             className="hidden"
             accept="image/*"
+            onChange={handleFileChange}
           />
         </label>
       </div>
