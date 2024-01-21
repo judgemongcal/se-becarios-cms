@@ -1,15 +1,17 @@
 import { useState } from 'react';
 import { FiUploadCloud } from 'react-icons/fi';
+import UploadIndicator from './UploadIndicator';
 
 function ArticleImageField({
+  articleImageFileName,
+  setArticleImageFileName,
   setArticleImageSrc,
-  setArticleFileName,
 }) {
   function handleArticleImageSrcChange(e) {
     console.log(e.target.value);
     const file = e.target.files[0];
     if (file) {
-      setArticleFileName(file.name);
+      setArticleImageFileName(file.name);
       const reader = new FileReader();
       reader.onloadend = () => {
         setArticleImageSrc(reader.result);
@@ -26,6 +28,11 @@ function ArticleImageField({
           *
         </span>
       </p>
+      {articleImageFileName && (
+        <UploadIndicator
+          articleImageFileName={articleImageFileName}
+        />
+      )}
       <div className="flex w-full items-center justify-center">
         <label
           htmlFor="dropzone-file"

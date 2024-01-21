@@ -9,7 +9,7 @@ import { SubmitArticleBtn } from '../components/global/Button';
 
 function CreatePost() {
   const [articleTitle, setArticleTitle] = useState('');
-  const [articleImageFileName, setArticleFileName] =
+  const [articleImageFileName, setArticleImageFileName] =
     useState('');
   const [articleImageSrc, setArticleImageSrc] =
     useState('');
@@ -30,8 +30,11 @@ function CreatePost() {
             setArticleTitle={setArticleTitle}
           />
           <ArticleImageField
+            articleImageFileName={articleImageFileName}
+            setArticleImageFileName={
+              setArticleImageFileName
+            }
             setArticleImageSrc={setArticleImageSrc}
-            setArticleFileName={setArticleFileName}
           />
 
           <TextEditor
