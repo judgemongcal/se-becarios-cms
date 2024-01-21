@@ -1,4 +1,9 @@
-function ArticleTitleField() {
+function ArticleTitleField({ setArticleTitle }) {
+  function handleTitleChange(e) {
+    setArticleTitle(e.target.value);
+    console.log(e.target.value);
+  }
+
   return (
     <div className="mb-[2rem] flex flex-col justify-start">
       <label
@@ -16,6 +21,7 @@ function ArticleTitleField() {
         name="article-title"
         placeholder="Enter article title here"
         className="bg-brand-light rounded-8 shadow-shadow-db w-full p-3 text-[1rem]"
+        onChange={(e) => handleTitleChange(e)}
       />
     </div>
   );
