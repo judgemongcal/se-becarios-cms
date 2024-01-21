@@ -9,15 +9,13 @@ import { SubmitArticleBtn } from '../components/global/Button';
 import ArticlePreview from '../components/create-post/ArticlePreview';
 
 function CreatePost() {
-  const [articleTitle, setArticleTitle] =
-    useState('Big Sur');
+  const [articleTitle, setArticleTitle] = useState('');
   const [articleImageFileName, setArticleImageFileName] =
-    useState('BigSurTakeII_Mac.jpg');
-  const [articleImageSrc, setArticleImageSrc] = useState(
-    'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQECAQEBAQEBAgICAQEBAgIDAgICAgMDAwIDAwQDAwQFBQUGBggBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQIBAQEBAQECAgIBAQECAgMCAgICAwMDAgMDBAMDBAUFBQYGCP/CABEIDTgXhAMBIgACEQEDEQH/xAAfAAACAgMBAQEBAQAAAAAAAAAFBgQHAwgJAgEKAAv/2gAIAQEAAAAA/LaFLOJr6ZzjsrYSWxRf1IxxM4M3hkhjvwcK8yzY/J/fIAzHlYIX3EWm5IeMpjAlpwnMayKyr59tMqN8C4ZxWEsM0Y8ZyfJESRkhu6/nh+m1TwTREY57zh52EfglSPcyBjn/ANJ+RsJGThnw5AmXF8DJ/uXA9CjTGQDxVoPk/phT0ygIWY4SlYRhbLKkR...',
-  );
+    useState('');
+  const [articleImageSrc, setArticleImageSrc] =
+    useState('');
   const [articleBody, setArticleBody] = useState('');
-  // const [isPreview, setIsPreview] = useState(false);
+  const [isPreview, setIsPreview] = useState(false);
 
   return (
     <div className="flex flex-col justify-start lg:flex-row ">
@@ -27,32 +25,38 @@ function CreatePost() {
       </div>
 
       <div className="content mt-[10rem] flex w-[100%] flex-col gap-[5rem] px-9 md:mb-[5rem] md:px-16 lg:ml-[21rem] lg:mt-[8rem] lg:pb-[20%]">
-        <PageTitle title="Create Post" />
+        {!isPreview ? (
+          <>
+            <PageTitle title="Create Post" />
+            <div className="flex flex-col">
+              <ArticleTitleField
+                setArticleTitle={setArticleTitle}
+              />
+              <ArticleImageField
+                articleImageFileName={articleImageFileName}
+                setArticleImageFileName={
+                  setArticleImageFileName
+                }
+                setArticleImageSrc={setArticleImageSrc}
+              />
 
-        <div className="flex flex-col">
-          <ArticleTitleField
-            setArticleTitle={setArticleTitle}
-          />
-          <ArticleImageField
-            articleImageFileName={articleImageFileName}
-            setArticleImageFileName={
-              setArticleImageFileName
-            }
-            setArticleImageSrc={setArticleImageSrc}
-          />
-
-          <TextEditor
-            articleBody={articleBody}
-            setArticleBody={setArticleBody}
-          />
-          <SubmitArticleBtn />
-
+              <TextEditor
+                articleBody={articleBody}
+                setArticleBody={setArticleBody}
+              />
+            </div>{' '}
+          </>
+        ) : (
           <ArticlePreview
             articleTitle={articleTitle}
             articleImageSrc={articleImageSrc}
             articleBody={articleBody}
           />
-        </div>
+        )}
+        <SubmitArticleBtn
+          isPreview={isPreview}
+          setIsPreview={setIsPreview}
+        />
       </div>
     </div>
   );
