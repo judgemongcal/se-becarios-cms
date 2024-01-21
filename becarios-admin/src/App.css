@@ -23,7 +23,9 @@ dd {
   padding: 0;
   font-family: 'Archivo', sans-serif;
 }
-
+.Preview {
+  line-height: 2;
+}
 .ProseMirror {
   box-shadow: 0 2px 5px 0 rgba(206, 205, 205, 0.8);
   padding: 2rem;
@@ -37,20 +39,25 @@ dd {
   outline: 2px solid #121214;
 }
 
-.ProseMirror > * + * {
+.ProseMirror > * + *,
+.Preview > * + * {
   margin-top: 0.75em;
 }
 
 .ProseMirror ul,
-.ProseMirror ol {
-  padding: 0 2rem;
+.ProseMirror ol,
+.Preview ul,
+.Preview ol {
+  padding: 0.5rem 2rem;
 }
 
-.ProseMirror ul {
+.ProseMirror ul,
+.Preview ul {
   list-style: disc;
 }
 
-.ProseMirror ol {
+.ProseMirror ol,
+.Preview ol {
   list-style-type: decimal;
 }
 
@@ -59,50 +66,72 @@ dd {
 .ProseMirror h3,
 .ProseMirror h4,
 .ProseMirror h5,
-.ProseMirror h6 {
-  line-height: 1.1;
+.ProseMirror h6,
+.Preview h1,
+.Preview h2,
+.Preview h3,
+.Preview h4,
+.Preview h5,
+.Preview h6 {
+  line-height: 2;
 }
 
-.ProseMirror h1 {
+.ProseMirror h1,
+.Preview h1 {
   font-size: 1.75rem;
   font-weight: 700;
 }
 
-.ProseMirror h2 {
+.ProseMirror h2,
+.Preview h2 {
   font-size: 1.5rem;
   font-weight: 600;
 }
 
-.ProseMirror h3 {
+.ProseMirror h3,
+.Preview h3 {
   font-size: 1.35rem;
   font-weight: 500;
 }
 
-.ProseMirror code {
+.Preview p {
+  text-align: justify;
+}
+
+.Preview .Title {
+  font-size: 2.5rem;
+}
+
+.ProseMirror code,
+.Preview code {
   background-color: rgba(#616161, 0.1);
   color: #616161;
 }
 
-.ProseMirror pre {
+.ProseMirror pre,
+.Preview pre {
   background: #0d0d0d;
   color: #fff;
   font-family: 'JetBrainsMono', monospace;
   padding: 0.75rem 1rem;
   border-radius: 0.5rem;
 }
-.ProseMirror code {
+.ProseMirror code,
+.Preview code {
   color: inherit;
   padding: 0;
   background: none;
   font-size: 0.8rem;
 }
 
-.ProseMirror img {
+.ProseMirror img,
+.Preview img {
   max-width: 100%;
   height: auto;
 }
 
-.ProseMirror blockquote {
+.ProseMirror blockquote,
+.Preview blockquote {
   padding-left: 1rem;
   border-left: 5px solid #f2b23c;
   background-color: rgba(242, 178, 60, 0.3);
@@ -111,7 +140,8 @@ dd {
   border-radius: 5px;
 }
 
-.ProseMirror hr {
+.ProseMirror hr,
+.Preview hr {
   border: none;
   border-top: 3px solid #999999;
   margin: 2rem 0;
