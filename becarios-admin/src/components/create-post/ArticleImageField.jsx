@@ -31,6 +31,8 @@ function ArticleImageField({
       {articleImageFileName && (
         <UploadIndicator
           articleImageFileName={articleImageFileName}
+          setArticleImageFileName={setArticleImageFileName}
+          setArticleImageSrc={setArticleImageSrc}
         />
       )}
       <div className="flex w-full items-center justify-center">
