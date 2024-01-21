@@ -2,13 +2,14 @@ import { useState } from 'react';
 import { FiUploadCloud } from 'react-icons/fi';
 
 function ArticleImageField({
-  articleImageSrc,
   setArticleImageSrc,
+  setArticleFileName,
 }) {
   function handleArticleImageSrcChange(e) {
     console.log(e.target.value);
     const file = e.target.files[0];
     if (file) {
+      setArticleFileName(file.name);
       const reader = new FileReader();
       reader.onloadend = () => {
         setArticleImageSrc(reader.result);
