@@ -29,7 +29,10 @@ function CreatePost() {
           />
           <ArticleImageField />
 
-          <TextEditor />
+          <TextEditor
+            articleBody={articleBody}
+            setArticleBody={setArticleBody}
+          />
           <SubmitArticleBtn />
         </div>
       </div>

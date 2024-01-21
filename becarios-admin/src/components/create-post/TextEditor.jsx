@@ -296,12 +296,21 @@ display: none;
 </blockquote>
 `;
 
-export default function TextEditor() {
+export default function TextEditor({
+  articleBody,
+  setArticleBody,
+}) {
+  function handleArticleBodyChange({ editor }) {
+    const updatedBody = editor.getHTML();
+    setArticleBody(updatedBody);
+    console.log(updatedBody);
+  }
   return (
     <EditorProvider
       slotBefore={<MenuBar />}
       extensions={extensions}
-      content={content}
+      content={articleBody}
+      onUpdate={handleArticleBodyChange}
     ></EditorProvider>
   );
 }
