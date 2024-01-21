@@ -27,13 +27,17 @@ function CreatePost() {
           <ArticleTitleField
             setArticleTitle={setArticleTitle}
           />
-          <ArticleImageField />
+          <ArticleImageField
+            articleImageSrc={articleImageSrc}
+            setArticleImageSrc={setArticleImageSrc}
+          />
 
           <TextEditor
             articleBody={articleBody}
             setArticleBody={setArticleBody}
           />
           <SubmitArticleBtn />
+          <img src={articleImageSrc}></img>
         </div>
       </div>
     </div>
