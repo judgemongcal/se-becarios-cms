@@ -256,9 +256,19 @@ function EditItemBtn() {
   );
 }
 
-function AdminSettingsBtn() {
+function AdminSettingsBtn({
+  isGearClicked,
+  setIsGearClicked,
+}) {
+  function handleGearClick(e) {
+    e.preventDefault();
+    setIsGearClicked(!isGearClicked);
+  }
   return (
-    <button className="bg-brand-light hover:bg-brand-yellow rounded-8 shadow-sm-btn items-center p-2 duration-300">
+    <button
+      className="bg-brand-light hover:bg-brand-yellow rounded-8 shadow-sm-btn items-center p-2 duration-300"
+      onClick={(e) => handleGearClick(e)}
+    >
       <FaGear className="fill-brand-black stroke-brand-black  h-[24px] w-[28px] " />
     </button>
   );

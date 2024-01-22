@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import NavBar from '../components/global/NavBar';
 import NavBarMobile from '../components/global/NavBarMobile';
 import PageTitle from '../components/global/PageTitle';
@@ -5,6 +6,8 @@ import AdminList from '../components/settings/AdminList';
 import SuperAdminList from '../components/settings/SuperAdminList';
 
 function Settings() {
+  const [isGearClicked, setIsGearClicked] = useState(false);
+
   return (
     <div className="flex flex-col justify-start lg:flex-row">
       <div className="navs">
@@ -22,8 +25,14 @@ function Settings() {
         </div>
 
         <div className="content mx-auto flex w-[95%] flex-col justify-around gap-[4rem] xl:flex-row">
-          <SuperAdminList />
-          <AdminList />
+          <SuperAdminList
+            isGearClicked={isGearClicked}
+            setIsGearClicked={setIsGearClicked}
+          />
+          <AdminList
+            isGearClicked={isGearClicked}
+            setIsGearClicked={setIsGearClicked}
+          />
         </div>
       </div>
     </div>
