@@ -1,7 +1,7 @@
 import { AdminSettingsBtn } from '../global/Button';
 import AdminListItem from './AdminListItem';
 
-function AdminList({ isGearClicked, setIsGearClicked }) {
+function AdminList({ isAGearClicked, setIsAGearClicked }) {
   return (
     <div className="flex flex-col gap-2  sm:min-w-[100%] md:max-w-[100%] lg:min-w-[50%] lg:max-w-[100%]">
       <div className="mb-[1rem] flex flex-row items-center justify-between">
@@ -9,14 +9,14 @@ function AdminList({ isGearClicked, setIsGearClicked }) {
           Administrator
         </h2>
         <AdminSettingsBtn
-          isGearClicked={isGearClicked}
-          setIsGearClicked={setIsGearClicked}
+          isAGearClicked={isAGearClicked}
+          setIsAGearClicked={setIsAGearClicked}
         />
       </div>
       <div className="items flex flex-col gap-4">
-        <AdminListItem isGearClicked={isGearClicked} />
-        <AdminListItem isGearClicked={isGearClicked} />
-        <AdminListItem isGearClicked={isGearClicked} />
+        <AdminListItem isAGearClicked={isAGearClicked} />
+        <AdminListItem isAGearClicked={isAGearClicked} />
+        <AdminListItem isAGearClicked={isAGearClicked} />
       </div>
     </div>
   );

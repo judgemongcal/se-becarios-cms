@@ -257,12 +257,12 @@ function EditItemBtn() {
 }
 
 function SuperAdminSettingsBtn({
-  isGearClicked,
-  setIsGearClicked,
+  isSAGearClicked,
+  setIsSAGearClicked,
 }) {
   function handleGearClick(e) {
     e.preventDefault();
-    setIsGearClicked(!isGearClicked);
+    setIsSAGearClicked(!isSAGearClicked);
   }
   return (
     <button
@@ -275,12 +275,12 @@ function SuperAdminSettingsBtn({
 }
 
 function AdminSettingsBtn({
-  isGearClicked,
-  setIsGearClicked,
+  isAGearClicked,
+  setIsAGearClicked,
 }) {
   function handleGearClick(e) {
     e.preventDefault();
-    setIsGearClicked(!isGearClicked);
+    setIsAGearClicked(!isAGearClicked);
   }
   return (
     <button

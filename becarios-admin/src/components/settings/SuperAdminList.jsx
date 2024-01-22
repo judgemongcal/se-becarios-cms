@@ -4,8 +4,8 @@ import {
 } from '../global/Button';
 import { SuperAdminListItem } from './SuperAdminListItem';
 function SuperAdminList({
-  isGearClicked,
-  setIsGearClicked,
+  isSAGearClicked,
+  setIsSAGearClicked,
 }) {
   return (
     <div className="flex flex-col gap-2  sm:min-w-[100%] md:max-w-[100%] lg:min-w-[50%] lg:max-w-[100%]">
@@ -14,12 +14,14 @@ function SuperAdminList({
           Super Administrator
         </h2>
         <SuperAdminSettingsBtn
-          isGearClicked={isGearClicked}
-          setIsGearClicked={setIsGearClicked}
+          isSAGearClicked={isSAGearClicked}
+          setIsSAGearClicked={setIsSAGearClicked}
         />
       </div>
       <div className="items flex flex-col gap-4">
-        <SuperAdminListItem isGearClicked={isGearClicked} />
+        <SuperAdminListItem
+          isSAGearClicked={isSAGearClicked}
+        />
       </div>
     </div>
   );
