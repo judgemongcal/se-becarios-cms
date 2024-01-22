@@ -24,7 +24,7 @@ dd {
   font-family: 'Archivo', sans-serif;
 }
 .Preview {
-  line-height: 2;
+  line-height: 1.75;
 }
 .ProseMirror {
   box-shadow: 0 2px 5px 0 rgba(206, 205, 205, 0.8);
@@ -32,6 +32,7 @@ dd {
   background-color: #f6f6f6;
   border-radius: 0 0 8px 8px;
   min-height: 100px;
+  line-height: 1.15;
 }
 
 .ProseMirror:focus {

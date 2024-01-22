@@ -7,6 +7,7 @@ import { useState } from 'react';
 import TextEditor from '../components/create-post/TextEditor';
 import { SubmitArticleBtn } from '../components/global/Button';
 import ArticlePreview from '../components/create-post/ArticlePreview';
+import { PostReqSuccessModal } from '../components/global/Modal';
 
 function CreatePost() {
   const [articleTitle, setArticleTitle] = useState('');
@@ -59,9 +60,10 @@ function CreatePost() {
         <SubmitArticleBtn
           isPreview={isPreview}
           setIsPreview={setIsPreview}
+          setIsButtonPressed={setIsSubmitBtnPressed}
         />
-        {/* {isSubmitBtnPressed && <U} */}
       </div>
+      {/* {isSubmitBtnPressed && <PostReqSuccessModal />} */}
     </div>
   );
 }

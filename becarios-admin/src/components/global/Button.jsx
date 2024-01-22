@@ -92,10 +92,19 @@ function EditArticleBtn() {
   );
 }
 
-function SubmitArticleBtn({ isPreview, setIsPreview }) {
+function SubmitArticleBtn({
+  isPreview,
+  setIsPreview,
+  setIsButtonPressed,
+}) {
   function handleClickPreview(e) {
     e.preventDefault();
     setIsPreview(!isPreview);
+  }
+
+  function handleClickSubmit(e) {
+    e.preventDefault();
+    setIsButtonPressed(true);
   }
 
   return (
@@ -106,7 +115,10 @@ function SubmitArticleBtn({ isPreview, setIsPreview }) {
       >
         {isPreview ? 'Back to Editing' : 'Preview Post'}
       </button>
-      <button className="bg-brand-yellow shadow-shadow-db rounded-10 hover:bg-brand-yellow-dark w-[100%] py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-100">
+      <button
+        className="bg-brand-yellow shadow-shadow-db rounded-10 hover:bg-brand-yellow-dark w-[100%] py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-100"
+        onClick={(e) => handleClickSubmit(e)}
+      >
         Submit Post
       </button>
     </div>
