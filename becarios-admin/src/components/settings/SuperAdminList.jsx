@@ -1,4 +1,7 @@
-import { AdminSettingsBtn } from '../global/Button';
+import {
+  AdminSettingsBtn,
+  SuperAdminSettingsBtn,
+} from '../global/Button';
 import { SuperAdminListItem } from './SuperAdminListItem';
 function SuperAdminList({
   isGearClicked,
@@ -10,7 +13,7 @@ function SuperAdminList({
         <h2 className=" text-left text-[1.10rem] font-medium md:text-[1.5rem]">
           Super Administrator
         </h2>
-        <AdminSettingsBtn
+        <SuperAdminSettingsBtn
           isGearClicked={isGearClicked}
           setIsGearClicked={setIsGearClicked}
         />

@@ -6,7 +6,10 @@ import AdminList from '../components/settings/AdminList';
 import SuperAdminList from '../components/settings/SuperAdminList';
 
 function Settings() {
-  const [isGearClicked, setIsGearClicked] = useState(false);
+  const [isSAGearClicked, setIsSAGearClicked] =
+    useState(false);
+  const [isAGearClicked, setIsAGearClicked] =
+    useState(false);
 
   return (
     <div className="flex flex-col justify-start lg:flex-row">
@@ -26,12 +29,12 @@ function Settings() {
 
         <div className="content mx-auto flex w-[95%] flex-col justify-around gap-[4rem] xl:flex-row">
           <SuperAdminList
-            isGearClicked={isGearClicked}
-            setIsGearClicked={setIsGearClicked}
+            isGearClicked={isSAGearClicked}
+            setIsGearClicked={setIsSAGearClicked}
           />
           <AdminList
-            isGearClicked={isGearClicked}
-            setIsGearClicked={setIsGearClicked}
+            isGearClicked={isAGearClicked}
+            setIsGearClicked={setIsAGearClicked}
           />
         </div>
       </div>
