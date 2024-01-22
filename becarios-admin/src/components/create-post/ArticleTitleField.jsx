@@ -1,4 +1,7 @@
-function ArticleTitleField({ setArticleTitle }) {
+function ArticleTitleField({
+  articleTitle,
+  setArticleTitle,
+}) {
   function handleTitleChange(e) {
     setArticleTitle(e.target.value);
     console.log(e.target.value);
@@ -20,6 +23,7 @@ function ArticleTitleField({ setArticleTitle }) {
         id="article-title"
         name="article-title"
         placeholder="Enter article title here"
+        value={articleTitle}
         className="bg-brand-light rounded-8 shadow-shadow-db w-full p-3 text-[1rem]"
         onChange={(e) => handleTitleChange(e)}
       />

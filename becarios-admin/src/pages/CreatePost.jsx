@@ -10,6 +10,8 @@ import ArticlePreview from '../components/create-post/ArticlePreview';
 
 function CreatePost() {
   const [articleTitle, setArticleTitle] = useState('');
+  const [isSubmitBtnPressed, setIsSubmitBtnPressed] =
+    useState(false);
   const [articleImageFileName, setArticleImageFileName] =
     useState('');
   const [articleImageSrc, setArticleImageSrc] =
@@ -30,6 +32,7 @@ function CreatePost() {
             <PageTitle title="Create Post" />
             <div className="flex flex-col">
               <ArticleTitleField
+                articleTitle={articleTitle}
                 setArticleTitle={setArticleTitle}
               />
               <ArticleImageField
@@ -57,6 +60,7 @@ function CreatePost() {
           isPreview={isPreview}
           setIsPreview={setIsPreview}
         />
+        {/* {isSubmitBtnPressed && <U} */}
       </div>
     </div>
   );

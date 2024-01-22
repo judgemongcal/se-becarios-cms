@@ -3,6 +3,7 @@ import ListItem from '@tiptap/extension-list-item';
 import TextStyle from '@tiptap/extension-text-style';
 import Document from '@tiptap/extension-document';
 import Paragraph from '@tiptap/extension-paragraph';
+import Underline from '@tiptap/extension-underline';
 import Text from '@tiptap/extension-text';
 import {
   EditorProvider,
@@ -18,6 +19,7 @@ import {
   FaParagraph,
   FaQuoteLeft,
   FaStrikethrough,
+  FaUnderline,
 } from 'react-icons/fa6';
 import { FaRedo, FaUndo } from 'react-icons/fa';
 import { TbClearFormatting } from 'react-icons/tb';
@@ -98,6 +100,16 @@ const MenuBar = () => {
           } shadow-sm-btn rounded-8 bg-brand-light flex items-center justify-center p-2`}
         >
           <FaItalic className="h-[20px] w-[20px]" />
+        </button>
+        <button
+          onClick={() =>
+            editor.chain().focus().toggleUnderline().run()
+          }
+          className={`${
+            editor.isActive('underline') ? 'is_active' : ''
+          } shadow-sm-btn rounded-8 bg-brand-light flex items-center justify-center p-2`}
+        >
+          <FaUnderline className="h-[20px] w-[20px]" />
         </button>
         <button
           onClick={() =>
@@ -247,6 +259,7 @@ const MenuBar = () => {
 
 const extensions = [
   Document,
+  Underline,
   Paragraph,
   Text,
   Color.configure({
