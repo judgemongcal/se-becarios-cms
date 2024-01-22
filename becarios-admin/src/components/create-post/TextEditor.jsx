@@ -4,6 +4,7 @@ import TextStyle from '@tiptap/extension-text-style';
 import Document from '@tiptap/extension-document';
 import Paragraph from '@tiptap/extension-paragraph';
 import Underline from '@tiptap/extension-underline';
+import HardBreak from '@tiptap/extension-hard-break';
 import Text from '@tiptap/extension-text';
 import {
   EditorProvider,
@@ -23,6 +24,7 @@ import {
 } from 'react-icons/fa6';
 import { FaRedo, FaUndo } from 'react-icons/fa';
 import { TbClearFormatting } from 'react-icons/tb';
+import { CgSpaceBetweenV } from 'react-icons/cg';
 import {
   LuHeading1,
   LuHeading2,
@@ -240,9 +242,10 @@ const MenuBar = () => {
         >
           <FaCode className="h-auto w-[24px]" />
         </button>
+
         <button
           onClick={() =>
-            editor.chain().focus().toggleBlockquote().run()
+            editor.chain().focus().toggleHard().run()
           }
           className={`${
             editor.isActive('blockquote')
@@ -252,6 +255,14 @@ const MenuBar = () => {
         >
           <FaQuoteLeft className="h-auto w-[24px]" />
         </button>
+        <button
+          onClick={() =>
+            editor.chain().focus().setHardBreak().run()
+          }
+          className="shadow-sm-btn rounded-8 bg-brand-light flex items-center justify-center p-2"
+        >
+          <CgSpaceBetweenV className="h-[24px] w-[24px]" />
+        </button>
       </div>
     </div>
   );
@@ -260,12 +271,16 @@ const MenuBar = () => {
 const extensions = [
   Document,
   Underline,
+  HardBreak,
   Paragraph,
   Text,
   Color.configure({
     types: [TextStyle.name, ListItem.name],
   }),
   TextStyle.configure({ types: [ListItem.name] }),
+  HardBreak.configure({
+    keepMarks: false,
+  }),
   StarterKit.configure({
     bulletList: {
       keepMarks: true,
