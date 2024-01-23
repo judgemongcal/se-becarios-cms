@@ -12,6 +12,7 @@ import { MdOutlineRemoveRedEye } from 'react-icons/md';
 import { useEffect } from 'react';
 import { FiUpload } from 'react-icons/fi';
 import { useCreateArticleContext } from '../../hooks/useCreateArticleContext';
+import TextEditor from '../create-article/TextEditor';
 
 function LoginBtn() {
   const navigate = useNavigate();
@@ -162,12 +163,44 @@ function SubmitPostModalBtn() {
 }
 
 function PostReqSuccessModalBtn() {
+  const navigate = useNavigate();
+  const {
+    setArticleTitle,
+    setArticleImageFileName,
+    setArticleImageSrc,
+    setArticleBody,
+    setIsSubmitBtnPressed,
+    setIsPreview,
+    setIsSubmitConfirmed,
+  } = useCreateArticleContext();
+
+  function handleCreateAnother(e) {
+    e.preventDefault();
+    setArticleTitle('');
+    setArticleImageFileName('');
+    setArticleImageSrc('');
+    setArticleBody('');
+    setIsSubmitBtnPressed(false);
+    setIsPreview(false);
+    setIsSubmitConfirmed(false);
+    window.location.reload();
+  }
+
+  function handleBackHome() {
+    navigate('/dashboard', { replace: true });
+  }
   return (
     <div className="flex flex-row justify-around gap-4 py-2">
-      <button className="bg-brand-blue shadow-shadow-db rounded-10 hover:bg-brand-blue-dark w-[100%] py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-100">
+      <button
+        className="bg-brand-blue shadow-shadow-db rounded-10 hover:bg-brand-blue-dark w-[100%] py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-100"
+        onClick={(e) => handleCreateAnother(e)}
+      >
         Create Another
       </button>
-      <button className="bg-brand-yellow shadow-shadow-db rounded-10 hover:bg-brand-yellow-dark w-[100%] py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-100">
+      <button
+        className="bg-brand-yellow shadow-shadow-db rounded-10 hover:bg-brand-yellow-dark w-[100%] py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-100"
+        onClick={(e) => handleBackHome(e)}
+      >
         Back to Home
       </button>
     </div>

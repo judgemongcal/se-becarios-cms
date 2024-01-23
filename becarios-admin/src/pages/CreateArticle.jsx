@@ -14,19 +14,6 @@ import {
 import { useCreateArticleContext } from '../hooks/useCreateArticleContext';
 
 function CreateArticle() {
-  // const [articleTitle, setArticleTitle] = useState('');
-
-  // const [articleImageFileName, setArticleImageFileName] =
-  //   useState('');
-  // const [articleImageSrc, setArticleImageSrc] =
-  //   useState('');
-  // const [articleBody, setArticleBody] = useState('');
-  // const [isSubmitBtnPressed, setIsSubmitBtnPressed] =
-  //   useState(false);
-  // const [isPreview, setIsPreview] = useState(false);
-  // const [isSubmitConfirmed, setIsSubmitConfirmed] =
-  //   useState(false);
-
   const {
     isPreview,
     isSubmitBtnPressed,
@@ -57,12 +44,7 @@ function CreateArticle() {
         <SubmitArticleBtn />
       </div>
       {isSubmitBtnPressed && !isSubmitConfirmed && (
-        <SubmitPostModal
-        // isSubmitBtnPressed={isSubmitBtnPressed}
-        // setIsSubmitBtnPressed={setIsSubmitBtnPressed}
-        // isSubmitConfirmed={isSubmitConfirmed}
-        // setIsSubmitConfirmed={setIsSubmitConfirmed}
-        />
+        <SubmitPostModal />
       )}
 
       {isSubmitConfirmed && <PostReqSuccessModal />}
