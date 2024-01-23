@@ -30,6 +30,7 @@ import {
   LuHeading2,
   LuHeading3,
 } from 'react-icons/lu';
+import { useCreatePostContext } from '../../hooks/CreatePostContext';
 
 const MenuBar = () => {
   const { editor } = useCurrentEditor();
@@ -245,7 +246,7 @@ const MenuBar = () => {
 
         <button
           onClick={() =>
-            editor.chain().focus().toggleHard().run()
+            editor.chain().focus().toggleBlockquote().run()
           }
           className={`${
             editor.isActive('blockquote')
@@ -324,10 +325,10 @@ display: none;
 </blockquote>
 `;
 
-export default function TextEditor({
-  articleBody,
-  setArticleBody,
-}) {
+export default function TextEditor() {
+  const { articleBody, setArticleBody } =
+    useCreatePostContext();
+
   function handleArticleBodyChange({ editor }) {
     const updatedBody = editor.getHTML();
     setArticleBody(updatedBody);

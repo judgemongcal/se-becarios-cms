@@ -48,10 +48,7 @@ function CreatePost() {
               <ArticleTitleField />
               <ArticleImageField />
 
-              <TextEditor
-              // articleBody={articleBody}
-              // setArticleBody={setArticleBody}
-              />
+              <TextEditor />
             </div>{' '}
           </>
         ) : (
