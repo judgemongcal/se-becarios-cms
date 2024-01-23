@@ -111,6 +111,8 @@ function RejectPostModal() {
 function SubmitPostModal({
   isSubmitBtnPressed,
   setIsSubmitBtnPressed,
+  isSubmitConfirmed,
+  setIsSubmitConfirmed,
 }) {
   return (
     <div className="modal-bg bg-brand-input md:bg-modal-bg  justify-cente fixed top-0 z-[1000] flex h-[100%] w-[100%] items-center">
@@ -126,6 +128,8 @@ function SubmitPostModal({
         <SubmitPostModalBtn
           isSubmitBtnPressed={isSubmitBtnPressed}
           setIsSubmitBtnPressed={setIsSubmitBtnPressed}
+          isSubmitConfirmed={isSubmitConfirmed}
+          setIsSubmitConfirmed={setIsSubmitConfirmed}
         />
       </div>
     </div>

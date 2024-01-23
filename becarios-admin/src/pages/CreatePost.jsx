@@ -14,14 +14,17 @@ import {
 
 function CreatePost() {
   const [articleTitle, setArticleTitle] = useState('');
-  const [isSubmitBtnPressed, setIsSubmitBtnPressed] =
-    useState(false);
+
   const [articleImageFileName, setArticleImageFileName] =
     useState('');
   const [articleImageSrc, setArticleImageSrc] =
     useState('');
   const [articleBody, setArticleBody] = useState('');
+  const [isSubmitBtnPressed, setIsSubmitBtnPressed] =
+    useState(false);
   const [isPreview, setIsPreview] = useState(false);
+  const [isSubmitConfirmed, setIsSubmitConfirmed] =
+    useState(false);
 
   return (
     <div className="flex flex-col justify-start lg:flex-row ">
@@ -66,12 +69,16 @@ function CreatePost() {
           setIsButtonPressed={setIsSubmitBtnPressed}
         />
       </div>
-      {isSubmitBtnPressed && (
+      {isSubmitBtnPressed && !isSubmitConfirmed && (
         <SubmitPostModal
           isSubmitBtnPressed={isSubmitBtnPressed}
           setIsSubmitBtnPressed={setIsSubmitBtnPressed}
+          isSubmitConfirmed={isSubmitConfirmed}
+          setIsSubmitConfirmed={setIsSubmitConfirmed}
         />
       )}
+
+      {isSubmitConfirmed && <PostReqSuccessModal />}
     </div>
   );
 }

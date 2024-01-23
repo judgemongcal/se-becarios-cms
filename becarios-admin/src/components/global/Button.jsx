@@ -128,10 +128,17 @@ function SubmitArticleBtn({
 function SubmitPostModalBtn({
   isSubmitBtnPressed,
   setIsSubmitBtnPressed,
+  isSubmitConfirmed,
+  setIsSubmitConfirmed,
 }) {
   function handleGoBackClicked(e) {
     e.preventDefault();
     setIsSubmitBtnPressed(!isSubmitBtnPressed);
+  }
+
+  function handleSubmitClicked(e) {
+    e.preventDefault();
+    setIsSubmitConfirmed(!isSubmitConfirmed);
   }
 
   return (
@@ -142,7 +149,10 @@ function SubmitPostModalBtn({
       >
         Go Back
       </button>
-      <button className="bg-brand-yellow shadow-shadow-db rounded-10 hover:bg-brand-yellow-dark w-[100%] py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-100">
+      <button
+        className="bg-brand-yellow shadow-shadow-db rounded-10 hover:bg-brand-yellow-dark w-[100%] py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-100"
+        onClick={(e) => handleSubmitClicked(e)}
+      >
         Submit Post
       </button>
     </div>
