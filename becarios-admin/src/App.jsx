@@ -15,8 +15,8 @@ import Settings from './pages/Settings';
 import ManageContent from './pages/ManageContent';
 import PostArchives from './pages/PostArchives';
 import RecentActivities from './pages/RecentActivities';
-import CreatePost from './pages/CreatePost';
-import { CreatePostProvider } from './hooks/CreatePostContext';
+import CreateArticle from './pages/CreateArticle';
+import { CreateArticleProvider } from './hooks/useCreateArticleContext';
 
 function App() {
   return (
@@ -25,13 +25,13 @@ function App() {
         <Route index element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route
-          path="/create-post"
+          path="/create-article"
           element={
-            <CreatePostProvider
-              value={CreatePostProvider.contextValue}
+            <CreateArticleProvider
+              value={CreateArticleProvider.contextValue}
             >
-              <CreatePost />
-            </CreatePostProvider>
+              <CreateArticle />
+            </CreateArticleProvider>
           }
         />
         <Route

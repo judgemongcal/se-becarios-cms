@@ -1,12 +1,12 @@
 import { createContext, useContext, useState } from 'react';
 
-export const CreatePostContext = createContext();
+export const CreateArticleContext = createContext();
 
-export function useCreatePostContext() {
-  return useContext(CreatePostContext);
+export function useCreateArticleContext() {
+  return useContext(CreateArticleContext);
 }
 
-export function CreatePostProvider({ children }) {
+export function CreateArticleProvider({ children }) {
   const [articleTitle, setArticleTitle] = useState('');
 
   const [articleImageFileName, setArticleImageFileName] =
@@ -38,8 +38,8 @@ export function CreatePostProvider({ children }) {
   };
 
   return (
-    <CreatePostContext.Provider value={contextValue}>
+    <CreateArticleContext.Provider value={contextValue}>
       {children}
-    </CreatePostContext.Provider>
+    </CreateArticleContext.Provider>
   );
 }

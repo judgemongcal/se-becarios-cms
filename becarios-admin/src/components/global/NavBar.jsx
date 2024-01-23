@@ -29,11 +29,11 @@ function NavBar() {
         </NavLink>
 
         <NavLink
-          to="/create-post"
+          to="/create-article"
           className="create-post hover:fill-brand-yellow hover:text-brand-yellow flex items-center justify-center gap-2"
         >
-          <HiOutlinePlusCircle className="ml-1 h-auto w-[24px]" />
-          <p>Create Post</p>
+          <HiOutlinePlusCircle className="ml-5 h-auto w-[24px]" />
+          <p>Create Article</p>
         </NavLink>
 
         <NavLink

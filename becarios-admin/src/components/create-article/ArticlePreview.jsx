@@ -1,8 +1,8 @@
-import { useCreatePostContext } from '../../hooks/CreatePostContext';
+import { useCreateArticleContext } from '../../hooks/useCreateArticleContext';
 
 function ArticlePreview() {
   const { articleTitle, articleBody, articleImageSrc } =
-    useCreatePostContext();
+    useCreateArticleContext();
   const parser = new DOMParser();
   const content = parser.parseFromString(
     articleBody,

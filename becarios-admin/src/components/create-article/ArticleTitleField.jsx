@@ -1,8 +1,8 @@
-import { useCreatePostContext } from '../../hooks/CreatePostContext';
+import { useCreateArticleContext } from '../../hooks/useCreateArticleContext';
 
 function ArticleTitleField() {
   const { articleTitle, setArticleTitle } =
-    useCreatePostContext();
+    useCreateArticleContext();
   function handleTitleChange(e) {
     setArticleTitle(e.target.value);
     console.log(e.target.value);

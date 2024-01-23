@@ -11,6 +11,7 @@ import { FaGear } from 'react-icons/fa6';
 import { MdOutlineRemoveRedEye } from 'react-icons/md';
 import { useEffect } from 'react';
 import { FiUpload } from 'react-icons/fi';
+import { useCreateArticleContext } from '../../hooks/useCreateArticleContext';
 
 function LoginBtn() {
   const navigate = useNavigate();
@@ -92,11 +93,10 @@ function EditArticleBtn() {
   );
 }
 
-function SubmitArticleBtn({
-  isPreview,
-  setIsPreview,
-  setIsButtonPressed,
-}) {
+function SubmitArticleBtn() {
+  const { isPreview, setIsPreview, setIsSubmitBtnPressed } =
+    useCreateArticleContext();
+
   function handleClickPreview(e) {
     e.preventDefault();
     setIsPreview(!isPreview);
@@ -104,7 +104,7 @@ function SubmitArticleBtn({
 
   function handleClickSubmit(e) {
     e.preventDefault();
-    setIsButtonPressed(true);
+    setIsSubmitBtnPressed(true);
   }
 
   return (
@@ -125,12 +125,14 @@ function SubmitArticleBtn({
   );
 }
 
-function SubmitPostModalBtn({
-  isSubmitBtnPressed,
-  setIsSubmitBtnPressed,
-  isSubmitConfirmed,
-  setIsSubmitConfirmed,
-}) {
+function SubmitPostModalBtn() {
+  const {
+    isSubmitBtnPressed,
+    setIsSubmitBtnPressed,
+    isSubmitConfirmed,
+    setIsSubmitConfirmed,
+  } = useCreateArticleContext();
+
   function handleGoBackClicked(e) {
     e.preventDefault();
     setIsSubmitBtnPressed(!isSubmitBtnPressed);

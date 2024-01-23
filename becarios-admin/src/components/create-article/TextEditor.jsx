@@ -30,7 +30,7 @@ import {
   LuHeading2,
   LuHeading3,
 } from 'react-icons/lu';
-import { useCreatePostContext } from '../../hooks/CreatePostContext';
+import { useCreateArticleContext } from '../../hooks/useCreateArticleContext';
 
 const MenuBar = () => {
   const { editor } = useCurrentEditor();
@@ -327,7 +327,7 @@ display: none;
 
 export default function TextEditor() {
   const { articleBody, setArticleBody } =
-    useCreatePostContext();
+    useCreateArticleContext();
 
   function handleArticleBodyChange({ editor }) {
     const updatedBody = editor.getHTML();

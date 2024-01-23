@@ -1,19 +1,19 @@
-import ArticleTitleField from '../components/create-post/ArticleTitleField';
+import ArticleTitleField from '../components/create-article/ArticleTitleField';
 import NavBar from '../components/global/NavBar';
 import NavBarMobile from '../components/global/NavBarMobile';
 import PageTitle from '../components/global/PageTitle';
-import ArticleImageField from '../components/create-post/ArticleImageField';
+import ArticleImageField from '../components/create-article/ArticleImageField';
 import { useState } from 'react';
-import TextEditor from '../components/create-post/TextEditor';
+import TextEditor from '../components/create-article/TextEditor';
 import { SubmitArticleBtn } from '../components/global/Button';
-import ArticlePreview from '../components/create-post/ArticlePreview';
+import ArticlePreview from '../components/create-article/ArticlePreview';
 import {
   PostReqSuccessModal,
   SubmitPostModal,
 } from '../components/global/Modal';
-import { useCreatePostContext } from '../hooks/CreatePostContext';
+import { useCreateArticleContext } from '../hooks/useCreateArticleContext';
 
-function CreatePost() {
+function CreateArticle() {
   // const [articleTitle, setArticleTitle] = useState('');
 
   // const [articleImageFileName, setArticleImageFileName] =
@@ -31,7 +31,7 @@ function CreatePost() {
     isPreview,
     isSubmitBtnPressed,
     isSubmitConfirmed,
-  } = useCreatePostContext();
+  } = useCreateArticleContext();
 
   return (
     <div className="flex flex-col justify-start lg:flex-row ">
@@ -52,17 +52,9 @@ function CreatePost() {
             </div>{' '}
           </>
         ) : (
-          <ArticlePreview
-          // articleTitle={articleTitle}
-          // articleImageSrc={articleImageSrc}
-          // articleBody={articleBody}
-          />
+          <ArticlePreview />
         )}
-        <SubmitArticleBtn
-        // isPreview={isPreview}
-        // setIsPreview={setIsPreview}
-        // setIsButtonPressed={setIsSubmitBtnPressed}
-        />
+        <SubmitArticleBtn />
       </div>
       {isSubmitBtnPressed && !isSubmitConfirmed && (
         <SubmitPostModal
@@ -78,4 +70,4 @@ function CreatePost() {
   );
 }
 
-export default CreatePost;
+export default CreateArticle;
