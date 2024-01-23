@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from 'react';
 
-const CreatePostContext = createContext();
+export const CreatePostContext = createContext();
 
 export function useCreatePostContext() {
   return useContext(CreatePostContext);
@@ -23,6 +23,8 @@ export function CreatePostProvider({ children }) {
   const contextValue = {
     articleTitle,
     setArticleTitle,
+    articleImageFileName,
+    setArticleImageFileName,
     articleImageSrc,
     setArticleImageSrc,
     articleBody,

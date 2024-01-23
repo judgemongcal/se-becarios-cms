@@ -16,6 +16,7 @@ import ManageContent from './pages/ManageContent';
 import PostArchives from './pages/PostArchives';
 import RecentActivities from './pages/RecentActivities';
 import CreatePost from './pages/CreatePost';
+import { CreatePostProvider } from './hooks/CreatePostContext';
 
 function App() {
   return (
@@ -25,7 +26,13 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route
           path="/create-post"
-          element={<CreatePost />}
+          element={
+            <CreatePostProvider
+              value={CreatePostProvider.contextValue}
+            >
+              <CreatePost />
+            </CreatePostProvider>
+          }
         />
         <Route
           path="/recent-activities"

@@ -11,20 +11,27 @@ import {
   PostReqSuccessModal,
   SubmitPostModal,
 } from '../components/global/Modal';
+import { useCreatePostContext } from '../hooks/CreatePostContext';
 
 function CreatePost() {
-  const [articleTitle, setArticleTitle] = useState('');
+  // const [articleTitle, setArticleTitle] = useState('');
 
-  const [articleImageFileName, setArticleImageFileName] =
-    useState('');
-  const [articleImageSrc, setArticleImageSrc] =
-    useState('');
-  const [articleBody, setArticleBody] = useState('');
-  const [isSubmitBtnPressed, setIsSubmitBtnPressed] =
-    useState(false);
-  const [isPreview, setIsPreview] = useState(false);
-  const [isSubmitConfirmed, setIsSubmitConfirmed] =
-    useState(false);
+  // const [articleImageFileName, setArticleImageFileName] =
+  //   useState('');
+  // const [articleImageSrc, setArticleImageSrc] =
+  //   useState('');
+  // const [articleBody, setArticleBody] = useState('');
+  // const [isSubmitBtnPressed, setIsSubmitBtnPressed] =
+  //   useState(false);
+  // const [isPreview, setIsPreview] = useState(false);
+  // const [isSubmitConfirmed, setIsSubmitConfirmed] =
+  //   useState(false);
+
+  const {
+    isPreview,
+    isSubmitBtnPressed,
+    isSubmitConfirmed,
+  } = useCreatePostContext();
 
   return (
     <div className="flex flex-col justify-start lg:flex-row ">
@@ -38,43 +45,34 @@ function CreatePost() {
           <>
             <PageTitle title="Create Post" />
             <div className="flex flex-col">
-              <ArticleTitleField
-                articleTitle={articleTitle}
-                setArticleTitle={setArticleTitle}
-              />
-              <ArticleImageField
-                articleImageFileName={articleImageFileName}
-                setArticleImageFileName={
-                  setArticleImageFileName
-                }
-                setArticleImageSrc={setArticleImageSrc}
-              />
+              <ArticleTitleField />
+              <ArticleImageField />
 
               <TextEditor
-                articleBody={articleBody}
-                setArticleBody={setArticleBody}
+              // articleBody={articleBody}
+              // setArticleBody={setArticleBody}
               />
             </div>{' '}
           </>
         ) : (
           <ArticlePreview
-            articleTitle={articleTitle}
-            articleImageSrc={articleImageSrc}
-            articleBody={articleBody}
+          // articleTitle={articleTitle}
+          // articleImageSrc={articleImageSrc}
+          // articleBody={articleBody}
           />
         )}
         <SubmitArticleBtn
-          isPreview={isPreview}
-          setIsPreview={setIsPreview}
-          setIsButtonPressed={setIsSubmitBtnPressed}
+        // isPreview={isPreview}
+        // setIsPreview={setIsPreview}
+        // setIsButtonPressed={setIsSubmitBtnPressed}
         />
       </div>
       {isSubmitBtnPressed && !isSubmitConfirmed && (
         <SubmitPostModal
-          isSubmitBtnPressed={isSubmitBtnPressed}
-          setIsSubmitBtnPressed={setIsSubmitBtnPressed}
-          isSubmitConfirmed={isSubmitConfirmed}
-          setIsSubmitConfirmed={setIsSubmitConfirmed}
+        // isSubmitBtnPressed={isSubmitBtnPressed}
+        // setIsSubmitBtnPressed={setIsSubmitBtnPressed}
+        // isSubmitConfirmed={isSubmitConfirmed}
+        // setIsSubmitConfirmed={setIsSubmitConfirmed}
         />
       )}
 

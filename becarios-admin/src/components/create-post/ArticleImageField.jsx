@@ -1,12 +1,15 @@
 import { useState } from 'react';
 import { FiUploadCloud } from 'react-icons/fi';
 import UploadIndicator from './UploadIndicator';
+import { useCreatePostContext } from '../../hooks/CreatePostContext';
 
-function ArticleImageField({
-  articleImageFileName,
-  setArticleImageFileName,
-  setArticleImageSrc,
-}) {
+function ArticleImageField() {
+  const {
+    articleImageFileName,
+    setArticleImageFileName,
+    setArticleImageSrc,
+  } = useCreatePostContext();
+
   function handleArticleImageSrcChange(e) {
     console.log(e.target.value);
     const file = e.target.files[0];
