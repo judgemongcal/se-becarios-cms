@@ -76,7 +76,7 @@ function NavBarMobile() {
             </motion.button>
           </NavLink>
 
-          {/* CREATE POST */}
+          {/* CREATE ARTICLE */}
           <NavLink
             to="/create-article"
             onClick={closeMenuOnClick}
@@ -90,7 +90,7 @@ function NavBarMobile() {
                 damping: 20,
                 delay: 0.2 + 1 / 10,
               }}
-              className="create-article  hover:fill-brand-yellow hover:text-brand-yellow hover:border-brand-yellow border-brand-gray rounded-10 grid grid-cols-2 items-center gap-2 border-4 px-[4.2rem] py-4"
+              className="create-article  hover:fill-brand-yellow hover:text-brand-yellow hover:border-brand-yellow border-brand-gray rounded-10 grid grid-cols-2 items-center gap-2 border-4 px-[4.2rem] py-4 md:px-[4rem]"
             >
               <HiOutlinePlusCircle className=" ml-3 h-auto w-[36px]" />
               <p className=" ">Create Article</p>
@@ -111,9 +111,9 @@ function NavBarMobile() {
                 damping: 20,
                 delay: 0.2 + 1 / 10,
               }}
-              className="create-post  hover:fill-brand-yellow hover:text-brand-yellow hover:border-brand-yellow border-brand-gray rounded-10 grid grid-cols-2 items-center gap-2 border-4 px-[2.75rem] py-4"
+              className="create-post  hover:fill-brand-yellow hover:text-brand-yellow hover:border-brand-yellow border-brand-gray rounded-10 grid grid-cols-2 items-center gap-2 border-4 px-[2.75rem] py-4 md:px-[2.25rem]"
             >
-              <HiOutlineClock className=" ml-9 h-auto w-[36px]" />
+              <HiOutlineClock className=" ml-9 h-auto w-[36px] md:ml-10" />
               <p className=" ">Recent Activities</p>
             </motion.button>
           </NavLink>
