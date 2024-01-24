@@ -16,6 +16,7 @@ export default {
       'brand-red-dark': '#C32C18',
       'brand-black': '#121214',
       'modal-bg': 'rgba(0,0,0,0.3)',
+      white: '#FFFFFF',
     },
     backgroundImage: {
       gradient:

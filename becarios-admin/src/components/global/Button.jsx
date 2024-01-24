@@ -228,6 +228,19 @@ function AddAdminModalBtn() {
   );
 }
 
+function SelectAdminRoleBtn() {
+  return (
+    <div className="flex justify-between gap-4">
+      <button className="shadow-shadow-db rounded-8 hover:bg-brand-blue w-full bg-white p-3 duration-300">
+        Administrator
+      </button>
+      <button className="shadow-shadow-db 8 rounded-8 hover:bg-brand-yellow w-full bg-white p-3 duration-300">
+        Super Administrator
+      </button>
+    </div>
+  );
+}
+
 function EditAdminModalBtn() {
   return (
     <div className="flex flex-row justify-around gap-4 py-2">
@@ -426,6 +439,7 @@ export {
   PostReqSuccessModalBtn,
   ProceedModalBtn,
   AddAdminModalBtn,
+  SelectAdminRoleBtn,
   EditAdminModalBtn,
   DeleteAdmiModalBtn,
   SubmitEditModalBtn,

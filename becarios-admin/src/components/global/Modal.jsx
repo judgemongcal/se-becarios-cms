@@ -5,11 +5,13 @@ import {
 } from 'react-icons/fa6';
 
 import {
+  AddAdminModalBtn,
   ApproveModalBtn,
   LogoutBtn,
   PostReqSuccessModalBtn,
   ProceedModalBtn,
   RejectModalBtn,
+  SelectAdminRoleBtn,
   SubmitDeleteModalBtn,
   SubmitEditModalBtn,
   SubmitPostModalBtn,
@@ -332,7 +334,7 @@ function AddAdminModal() {
             <div className="flex w-full items-center">
               <label
                 htmlFor="dropzone-file"
-                className="hover:bg-brand-input rounded-8 shadow-shadow-db flex h-fit w-full cursor-pointer flex-col items-center justify-center bg-[#fff] p-2 text-center"
+                className="hover:bg-brand-input rounded-8 shadow-shadow-db flex h-fit w-full cursor-pointer flex-col items-center justify-center bg-white p-2 text-center"
               >
                 <div className="flex flex-col items-center justify-center pb-6 pt-5">
                   <FiUploadCloud className="mb-[0.5rem] h-auto w-[30px] md:mb-[1rem] md:w-[50px]" />
@@ -357,9 +359,20 @@ function AddAdminModal() {
             <img
               src="./src/assets/sample_admin.png"
               alt="admin image"
-              className="shadow-shadow-db  h-[120px] w-auto rounded-[100px] md:h-36"
+              className="shadow-shadow-db  border-brand-yellow h-[120px] w-auto rounded-[100px] border-4 md:h-36"
             />
           </div>
+
+          {/* ROLE */}
+          <label
+            htmlFor="admin-role"
+            aria-required
+            className="text-[1rem] font-normal lg:text-[1.15rem]"
+          >
+            Role <span className="text-brand-red">*</span>
+          </label>
+          <SelectAdminRoleBtn />
+          <AddAdminModalBtn />
         </form>
       </div>
     </div>
