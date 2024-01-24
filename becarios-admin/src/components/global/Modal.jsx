@@ -15,6 +15,7 @@ import {
   SubmitPostModalBtn,
 } from '../global/Button';
 import { useCreateArticleContext } from '../../hooks/useCreateArticleContext';
+import { FiUploadCloud } from 'react-icons/fi';
 
 function ExceededLoginAttemptsModal() {
   return (
@@ -251,8 +252,8 @@ function SignOutModal() {
 
 function AddAdminModal() {
   return (
-    <div className="modal-bg bg-brand-input md:bg-modal-bg fixed top-0 z-[1000] flex h-[100%] w-[100%] items-center justify-center">
-      <div className="modal-container bg-brand-input md:bg-brand-light rounded-10 mx-auto flex w-[100%] flex-col justify-center px-[2rem] py-[2.25rem] text-center md:w-[50%] lg:-mt-[5rem] xl:w-[35%] 2xl:w-[700px]">
+    <div className="modal-bg bg-brand-light md:bg-modal-bg fixed top-0 z-[1000] flex h-[100%] w-[100%] items-center justify-center">
+      <div className="modal-container md:bg-brand-light rounded-10 mx-auto flex w-[100%] flex-col justify-center px-[2rem] py-[2.25rem] text-center md:w-[50%]  xl:w-[50%] 2xl:w-[700px]">
         <h1 className="mb-[3rem] text-[1.25rem] font-semibold md:text-[1.5rem] lg:mb-[4rem]">
           Add New Administrator
         </h1>
@@ -317,6 +318,48 @@ function AddAdminModal() {
             className="rounded-8 shadow-shadow-db mb-4 p-2"
             required
           ></input>
+
+          {/* DISPLAY IMAGE */}
+          <label
+            htmlFor="admin-id"
+            aria-required
+            className="text-[1rem] font-normal lg:text-[1.15rem]"
+          >
+            Display Image{' '}
+            <span className="text-brand-red">*</span>
+          </label>
+          <div className="image-upload flex items-center justify-between gap-4">
+            <div className="flex w-full items-center">
+              <label
+                htmlFor="dropzone-file"
+                className="hover:bg-brand-input rounded-8 shadow-shadow-db flex h-fit w-full cursor-pointer flex-col items-center justify-center bg-[#fff] p-2 text-center"
+              >
+                <div className="flex flex-col items-center justify-center pb-6 pt-5">
+                  <FiUploadCloud className="mb-[0.5rem] h-auto w-[30px] md:mb-[1rem] md:w-[50px]" />
+                  <p className=" mb-1 text-[0.75rem] md:mb-2 xl:text-[0.85rem]">
+                    <span className="font-semibold">
+                      Click to upload
+                    </span>{' '}
+                    or drag and drop
+                  </p>
+                  <p className="text-[0.75rem] xl:text-[0.75rem]">
+                    PNG or JPG files only. (MAX. 5mb)
+                  </p>
+                </div>
+                <input
+                  id="dropzone-file"
+                  type="file"
+                  className="hidden"
+                  accept="image/*"
+                />
+              </label>
+            </div>
+            <img
+              src="./src/assets/sample_admin.png"
+              alt="admin image"
+              className="shadow-shadow-db  h-[120px] w-auto rounded-[100px] md:h-36"
+            />
+          </div>
         </form>
       </div>
     </div>
