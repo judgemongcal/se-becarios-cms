@@ -249,6 +249,80 @@ function SignOutModal() {
   );
 }
 
+function AddAdminModal() {
+  return (
+    <div className="modal-bg bg-brand-input md:bg-modal-bg fixed top-0 z-[1000] flex h-[100%] w-[100%] items-center justify-center">
+      <div className="modal-container bg-brand-input md:bg-brand-light rounded-10 mx-auto flex w-[100%] flex-col justify-center px-[2rem] py-[2.25rem] text-center md:w-[50%] lg:-mt-[5rem] xl:w-[35%] 2xl:w-[700px]">
+        <h1 className="mb-[3rem] text-[1.25rem] font-semibold md:text-[1.5rem] lg:mb-[4rem]">
+          Add New Administrator
+        </h1>
+        <form
+          action=""
+          className=" flex flex-col justify-center gap-2 text-left lg:px-[1rem] 2xl:px-[3rem]"
+        >
+          <h2 className="mb-2 text-[1.15rem] font-semibold lg:text-[1.35rem]">
+            Personal Information
+          </h2>
+          {/* FIRST NAME */}
+          <label
+            htmlFor="first-name"
+            aria-required
+            className="text-[1rem] font-normal lg:text-[1.15rem]"
+          >
+            First Name{' '}
+            <span className="text-brand-red">*</span>
+          </label>
+          <input
+            type="text"
+            id="first-name"
+            name="first-name"
+            placeholder="Enter first name"
+            className="rounded-8 shadow-shadow-db mb-4 p-2"
+            required
+          ></input>
+
+          {/* LAST NAME */}
+          <label
+            htmlFor="last-name"
+            aria-required
+            className="text-[1rem] font-normal lg:text-[1.15rem]"
+          >
+            Last Name{' '}
+            <span className="text-brand-red">*</span>
+          </label>
+          <input
+            type="text"
+            id="last-name"
+            name="last-name"
+            placeholder="Enter last name"
+            className="rounded-8 shadow-shadow-db mb-4 p-2"
+            required
+          ></input>
+
+          {/* CONTACT NUMBER */}
+          <label
+            htmlFor="contact-num"
+            aria-required
+            className="text-[1rem] font-normal lg:text-[1.15rem]"
+          >
+            Contact Number{' '}
+            <span className="text-brand-red">*</span>
+          </label>
+          <input
+            type="text"
+            id="contact-num"
+            name="contact-num"
+            placeholder="Sample Format: 09123456789"
+            // Add number format validation
+            className="rounded-8 shadow-shadow-db mb-4 p-2"
+            required
+          ></input>
+        </form>
+      </div>
+    </div>
+  );
+}
+
 export {
   ExceededLoginAttemptsModal,
   ApprovePostModal,
@@ -260,4 +334,5 @@ export {
   EditReqSuccessModal,
   DeleteReqSuccessModal,
   SignOutModal,
+  AddAdminModal,
 };
