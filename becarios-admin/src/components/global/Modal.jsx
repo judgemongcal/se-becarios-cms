@@ -254,8 +254,8 @@ function SignOutModal() {
 
 function AddAdminModal() {
   return (
-    <div className="modal-bg bg-brand-light md:bg-modal-bg fixed top-0 z-[1000] flex h-[100%] w-[100%] items-center justify-center">
-      <div className="modal-container md:bg-brand-light rounded-10 mx-auto flex w-[100%] flex-col justify-center px-[2rem] py-[2.25rem] text-center md:w-[50%]  xl:w-[50%] 2xl:w-[700px]">
+    <div className="modal-bg bg-brand-light md:bg-modal-bg fixed top-0 z-[1000] flex h-[100%] w-[100%] items-start justify-center overflow-scroll">
+      <div className="modal-container md:bg-brand-light rounded-10 mx-auto flex w-[100%] flex-col justify-center px-[2rem]  py-[2.25rem] text-center md:my-[3rem]  md:w-[50%] xl:w-[50%] 2xl:w-[700px]">
         <h1 className="mb-[3rem] text-[1.25rem] font-semibold md:text-[1.5rem] lg:mb-[4rem]">
           Add New Administrator
         </h1>
@@ -372,6 +372,49 @@ function AddAdminModal() {
             Role <span className="text-brand-red">*</span>
           </label>
           <SelectAdminRoleBtn />
+
+          {/* ACCOUNT DETAILS */}
+
+          <h2 className="mb-2 mt-[3rem] text-[1.15rem] font-semibold lg:text-[1.35rem]">
+            Account Details
+          </h2>
+
+          {/* UST COLLEGE EMAIL */}
+          <label
+            htmlFor="ust-email"
+            aria-required
+            className="text-[1rem] font-normal lg:text-[1.15rem]"
+          >
+            UST College Email{' '}
+            <span className="text-brand-red">*</span>
+          </label>
+          <input
+            type="email"
+            id="ust-email"
+            name="ust-email"
+            placeholder="Enter UST College Email"
+            className="rounded-8 shadow-shadow-db mb-4 p-2"
+            required
+          ></input>
+
+          {/* PASSWORD */}
+          <label
+            htmlFor="password"
+            aria-required
+            className="text-[1rem] font-normal lg:text-[1.15rem]"
+          >
+            Password{' '}
+            <span className="text-brand-red">*</span>
+          </label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Enter password"
+            className="rounded-8 shadow-shadow-db mb-[3rem] p-2"
+            required
+          ></input>
+
           <AddAdminModalBtn />
         </form>
       </div>
