@@ -4,7 +4,7 @@ import NavBarMobile from '../components/global/NavBarMobile';
 import PageTitle from '../components/global/PageTitle';
 import AdminList from '../components/settings/AdminList';
 import SuperAdminList from '../components/settings/SuperAdminList';
-import { AddAdminModal } from '../components/global/Modal';
+import AdminModal from '../components/settings/AdminModal';
 
 function Settings() {
   const [isSAGearClicked, setIsSAGearClicked] =
@@ -39,7 +39,7 @@ function Settings() {
           />
         </div>
       </div>
-      <AddAdminModal />
+      <AdminModal />
     </div>
   );
 }
