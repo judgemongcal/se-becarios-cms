@@ -5,6 +5,7 @@ import AdminList from '../components/settings/AdminList';
 import SuperAdminList from '../components/settings/SuperAdminList';
 import AdminModal from '../components/settings/AdminModal';
 import { useSettingsContext } from '../hooks/useSettingsContext';
+import { RemoveAdminModal } from '../components/global/Modal';
 
 function Settings() {
   const { isAddAdminBtnClicked } = useSettingsContext();
@@ -31,6 +32,7 @@ function Settings() {
         </div>
       </div>
       {isAddAdminBtnClicked && <AdminModal />}
+      <RemoveAdminModal />
     </div>
   );
 }
