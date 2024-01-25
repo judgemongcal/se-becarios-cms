@@ -1,7 +1,11 @@
+import { useSettingsContext } from '../../hooks/useSettingsContext';
 import { AdminSettingsBtn } from '../global/Button';
 import AdminListItem from './AdminListItem';
 
-function AdminList({ isAGearClicked, setIsAGearClicked }) {
+function AdminList() {
+  const { isAGearClicked, setIsAGearClicked } =
+    useSettingsContext();
+
   return (
     <div className="flex flex-col gap-2  sm:min-w-[100%] md:max-w-[100%] lg:min-w-[50%] lg:max-w-[100%]">
       <div className="mb-[1rem] flex flex-row items-center justify-between">

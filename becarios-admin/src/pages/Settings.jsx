@@ -27,7 +27,7 @@ function Settings() {
           <AdminList />
         </div>
       </div>
-      <AdminModal />
+      {/* <AdminModal /> */}
     </div>
   );
 }

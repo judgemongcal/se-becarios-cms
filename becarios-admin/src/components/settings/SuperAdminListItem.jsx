@@ -1,6 +1,9 @@
 import { LuPencil } from 'react-icons/lu';
+import { useSettingsContext } from '../../hooks/useSettingsContext';
 
-export function SuperAdminListItem({ isSAGearClicked }) {
+export function SuperAdminListItem() {
+  const { isSAGearClicked } = useSettingsContext();
+
   return (
     <div className="bg-brand-yellow rounded-8 shadow-shadow-db flex w-[100%] flex-row items-center justify-between gap-2 p-2">
       <div className="admin-name ml-4 py-2 font-medium">
