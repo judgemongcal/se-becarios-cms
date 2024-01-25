@@ -1,6 +1,7 @@
 import {
   FaCheck,
   FaEllipsis,
+  FaPlus,
   FaShareFromSquare,
   FaTrash,
 } from 'react-icons/fa6';
@@ -353,12 +354,17 @@ function AdminSettingsBtn() {
     setIsAGearClicked(!isAGearClicked);
   }
   return (
-    <button
-      className="bg-brand-light hover:bg-brand-yellow rounded-8 shadow-sm-btn items-center p-2 duration-300"
-      onClick={(e) => handleGearClick(e)}
-    >
-      <FaGear className="fill-brand-black stroke-brand-black  h-[24px] w-[28px] " />
-    </button>
+    <div className="flex items-center justify-evenly gap-2">
+      <button
+        className="bg-brand-light hover:bg-brand-yellow rounded-8 shadow-sm-btn items-center p-2 duration-300"
+        onClick={(e) => handleGearClick(e)}
+      >
+        <FaGear className="fill-brand-black stroke-brand-black  h-[24px] w-[28px] " />
+      </button>
+      <button className="bg-brand-yellow hover:bg-brand-yellow-dark rounded-8 shadow-sm-btn items-center p-2 duration-300">
+        <FaPlus className="h-[24px]  w-[28px] fill-white " />
+      </button>
+    </div>
   );
 }
 
