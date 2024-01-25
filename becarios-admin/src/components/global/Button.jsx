@@ -218,12 +218,23 @@ function ProceedModalBtn() {
 }
 
 function AddAdminModalBtn() {
+  const { isAddAdminBtnClicked, setIsAddAdminBtnClicked } =
+    useSettingsContext();
+
+  function handleDiscard(e) {
+    e.preventDefault();
+    setIsAddAdminBtnClicked(!isAddAdminBtnClicked);
+  }
+
   return (
     <div className="flex flex-row justify-around gap-3 py-2">
       <button className="bg-brand-blue shadow-shadow-db rounded-10 hover:bg-brand-blue-dark  w-full py-3 text-[1.05rem] font-semibold text-[#FFFFFF] duration-100">
         Add Admin
       </button>
-      <button className="bg-brand-red shadow-shadow-db rounded-10 hover:bg-brand-red-dark w-full py-3 text-[1.05rem] font-semibold text-[#FFFFFF] duration-100">
+      <button
+        className="bg-brand-red shadow-shadow-db rounded-10 hover:bg-brand-red-dark w-full py-3 text-[1.05rem] font-semibold text-[#FFFFFF] duration-100"
+        onClick={(e) => handleDiscard(e)}
+      >
         Discard Changes
       </button>
     </div>
