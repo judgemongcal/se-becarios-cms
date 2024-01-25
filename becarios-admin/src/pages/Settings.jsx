@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import NavBar from '../components/global/NavBar';
 import NavBarMobile from '../components/global/NavBarMobile';
 import PageTitle from '../components/global/PageTitle';
@@ -7,11 +6,6 @@ import SuperAdminList from '../components/settings/SuperAdminList';
 import AdminModal from '../components/settings/AdminModal';
 
 function Settings() {
-  const [isSAGearClicked, setIsSAGearClicked] =
-    useState(false);
-  const [isAGearClicked, setIsAGearClicked] =
-    useState(false);
-
   return (
     <div className="flex flex-col justify-start lg:flex-row">
       <div className="navs">

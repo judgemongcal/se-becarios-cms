@@ -17,6 +17,7 @@ import PostArchives from './pages/PostArchives';
 import RecentActivities from './pages/RecentActivities';
 import CreateArticle from './pages/CreateArticle';
 import { CreateArticleProvider } from './hooks/useCreateArticleContext';
+import { SettingsProvider } from './hooks/useSettingsContext';
 
 function App() {
   return (
@@ -46,7 +47,16 @@ function App() {
           path="/post-archives"
           element={<PostArchives />}
         />
-        <Route path="/settings" element={<Settings />} />
+        <Route
+          path="/settings"
+          element={
+            <SettingsProvider
+              value={SettingsProvider.contextValue}
+            >
+              <Settings />
+            </SettingsProvider>
+          }
+        />
         <Route path="/sign-out" element={<Login />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
