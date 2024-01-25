@@ -13,6 +13,7 @@ import { useEffect } from 'react';
 import { FiUpload } from 'react-icons/fi';
 import { useCreateArticleContext } from '../../hooks/useCreateArticleContext';
 import TextEditor from '../create-article/TextEditor';
+import { useSettingsContext } from '../../hooks/useSettingsContext';
 
 function LoginBtn() {
   const navigate = useNavigate();
@@ -325,10 +326,10 @@ function EditItemBtn() {
   );
 }
 
-function SuperAdminSettingsBtn({
-  isSAGearClicked,
-  setIsSAGearClicked,
-}) {
+function SuperAdminSettingsBtn() {
+  const { isSAGearClicked, setIsSAGearClicked } =
+    useSettingsContext();
+
   function handleGearClick(e) {
     e.preventDefault();
     setIsSAGearClicked(!isSAGearClicked);
@@ -343,10 +344,10 @@ function SuperAdminSettingsBtn({
   );
 }
 
-function AdminSettingsBtn({
-  isAGearClicked,
-  setIsAGearClicked,
-}) {
+function AdminSettingsBtn() {
+  const { isAGearClicked, setIsAGearClicked } =
+    useSettingsContext();
+
   function handleGearClick(e) {
     e.preventDefault();
     setIsAGearClicked(!isAGearClicked);

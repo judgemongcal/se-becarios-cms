@@ -23,14 +23,8 @@ function Settings() {
         </div>
 
         <div className="content mx-auto flex w-[95%] flex-col justify-around gap-[4rem] xl:flex-row">
-          <SuperAdminList
-            isSAGearClicked={isSAGearClicked}
-            setIsSAGearClicked={setIsSAGearClicked}
-          />
-          <AdminList
-            isAGearClicked={isAGearClicked}
-            setIsAGearClicked={setIsAGearClicked}
-          />
+          <SuperAdminList />
+          <AdminList />
         </div>
       </div>
       <AdminModal />
