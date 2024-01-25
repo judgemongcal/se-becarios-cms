@@ -6,10 +6,14 @@ import SuperAdminList from '../components/settings/SuperAdminList';
 import AdminModal from '../components/settings/AdminModal';
 import { useSettingsContext } from '../hooks/useSettingsContext';
 import { RemoveAdminModal } from '../components/global/Modal';
+import { RemoveAdminSuccessPopup } from '../components/global/Popup';
 
 function Settings() {
-  const { isAddAdminBtnClicked, isRemoveAdminBtnClicked } =
-    useSettingsContext();
+  const {
+    isAddAdminBtnClicked,
+    isRemoveAdminBtnClicked,
+    isRemoveSuccessful,
+  } = useSettingsContext();
 
   return (
     <div className="flex flex-col justify-start lg:flex-row">
@@ -20,6 +24,8 @@ function Settings() {
 
       <div className="content mt-[10rem] flex w-[100%] flex-col gap-[5rem] px-9 md:mb-[5rem] md:px-16 lg:ml-[21rem] lg:mt-[8rem] lg:pb-[20%]">
         <PageTitle title="Settings" />
+        {isRemoveSuccessful && <RemoveAdminSuccessPopup />}
+
         <div className="heading">
           <h2 className="pb-2 text-left text-[1.25rem] font-medium md:text-[1.5rem]">
             Manage Accounts
