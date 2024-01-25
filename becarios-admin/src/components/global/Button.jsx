@@ -346,27 +346,38 @@ function SuperAdminSettingsBtn() {
 }
 
 function AdminSettingsBtn() {
-  const { isAGearClicked, setIsAGearClicked } =
-    useSettingsContext();
+  const {
+    isAGearClicked,
+    setIsAGearClicked,
+    isAddAdminBtnClicked,
+    setIsAddAdminBtnClicked,
+  } = useSettingsContext();
 
   function handleGearClick(e) {
     e.preventDefault();
     setIsAGearClicked(!isAGearClicked);
   }
+
+  function handleAddAdmin(e) {
+    e.preventDefault();
+    setIsAddAdminBtnClicked(!isAddAdminBtnClicked);
+  }
+
   return (
     <div className="flex items-center justify-evenly gap-2">
+      <button
+        className={`bg-brand-yellow hover:bg-brand-yellow-dark rounded-8 shadow-sm-btn items-center p-2 duration-300 ${
+          isAGearClicked ? '' : 'hidden'
+        }`}
+        onClick={(e) => handleAddAdmin(e)}
+      >
+        <FaPlus className="h-[24px]  w-[28px] fill-white " />
+      </button>
       <button
         className="bg-brand-light hover:bg-brand-yellow rounded-8 shadow-sm-btn items-center p-2 duration-300"
         onClick={(e) => handleGearClick(e)}
       >
         <FaGear className="fill-brand-black stroke-brand-black  h-[24px] w-[28px] " />
-      </button>
-      <button
-        className={`bg-brand-yellow hover:bg-brand-yellow-dark rounded-8 shadow-sm-btn items-center p-2 duration-300 ${
-          isAGearClicked ? '' : 'hidden'
-        }`}
-      >
-        <FaPlus className="h-[24px]  w-[28px] fill-white " />
       </button>
     </div>
   );

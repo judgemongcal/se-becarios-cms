@@ -4,8 +4,11 @@ import PageTitle from '../components/global/PageTitle';
 import AdminList from '../components/settings/AdminList';
 import SuperAdminList from '../components/settings/SuperAdminList';
 import AdminModal from '../components/settings/AdminModal';
+import { useSettingsContext } from '../hooks/useSettingsContext';
 
 function Settings() {
+  const { isAddAdminBtnClicked } = useSettingsContext();
+
   return (
     <div className="flex flex-col justify-start lg:flex-row">
       <div className="navs">
@@ -27,7 +30,7 @@ function Settings() {
           <AdminList />
         </div>
       </div>
-      {/* <AdminModal /> */}
+      {isAddAdminBtnClicked && <AdminModal />}
     </div>
   );
 }

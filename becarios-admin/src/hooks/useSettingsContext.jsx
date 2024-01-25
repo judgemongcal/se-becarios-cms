@@ -11,12 +11,16 @@ export function SettingsProvider({ children }) {
     useState(false);
   const [isAGearClicked, setIsAGearClicked] =
     useState(false);
+  const [isAddAdminBtnClicked, setIsAddAdminBtnClicked] =
+    useState(false);
 
   const contextValue = {
     isSAGearClicked,
     setIsSAGearClicked,
     isAGearClicked,
     setIsAGearClicked,
+    isAddAdminBtnClicked,
+    setIsAddAdminBtnClicked,
   };
 
   return (
