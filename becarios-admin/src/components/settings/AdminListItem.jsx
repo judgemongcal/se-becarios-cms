@@ -1,9 +1,12 @@
+import { useSettingsContext } from '../../hooks/useSettingsContext';
 import {
-  DeleteAdminBtn,
+  RemoveAdminBtn,
   EditItemBtn,
 } from '../global/Button';
 
-function AdminListItem({ isAGearClicked }) {
+function AdminListItem() {
+  const { isAGearClicked } = useSettingsContext();
+
   return (
     <div className="bg-brand-blue rounded-8 shadow-shadow-db flex flex-row items-center justify-between gap-2 p-2">
       <div className="admin-name ml-4 py-2 font-medium">
@@ -13,7 +16,7 @@ function AdminListItem({ isAGearClicked }) {
         {isAGearClicked && (
           <>
             <EditItemBtn />
-            <DeleteAdminBtn />{' '}
+            <RemoveAdminBtn />{' '}
           </>
         )}
       </div>

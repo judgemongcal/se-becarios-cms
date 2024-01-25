@@ -1,6 +1,7 @@
 import { FiUploadCloud } from 'react-icons/fi';
 import {
   AddAdminModalBtn,
+  RemoveAdminModalBtn,
   SelectAdminRoleBtn,
 } from '../global/Button';
 

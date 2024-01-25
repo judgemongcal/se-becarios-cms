@@ -8,7 +8,8 @@ import { useSettingsContext } from '../hooks/useSettingsContext';
 import { RemoveAdminModal } from '../components/global/Modal';
 
 function Settings() {
-  const { isAddAdminBtnClicked } = useSettingsContext();
+  const { isAddAdminBtnClicked, isRemoveAdminBtnClicked } =
+    useSettingsContext();
 
   return (
     <div className="flex flex-col justify-start lg:flex-row">
@@ -32,7 +33,7 @@ function Settings() {
         </div>
       </div>
       {isAddAdminBtnClicked && <AdminModal />}
-      <RemoveAdminModal />
+      {isRemoveAdminBtnClicked && <RemoveAdminModal />}
     </div>
   );
 }

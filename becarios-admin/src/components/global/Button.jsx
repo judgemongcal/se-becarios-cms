@@ -267,10 +267,10 @@ function EditAdminModalBtn() {
   );
 }
 
-function DeleteAdmiModalBtn() {
+function RemoveAdminModalBtn() {
   return (
     <div className="flex flex-row justify-around gap-4 py-2">
-      <button className="bg-brand-yellow shadow-shadow-db rounded-1 hover:bg-brand-yellow-dark w-[100%] py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-100">
+      <button className="bg-brand-yellow shadow-shadow-db rounded-10 hover:bg-brand-yellow-dark w-[100%] py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-100">
         Delete Admin
       </button>
       <button className="bg-brand-red shadow-shadow-db rounded-10 hover:bg-brand-red-dark w-[100%] py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-100">
@@ -402,9 +402,22 @@ function UploadImageBtn() {
   );
 }
 
-function DeleteAdminBtn() {
+function RemoveAdminBtn() {
+  const {
+    isRemoveAdminBtnClicked,
+    setIsRemoveAdminBtnClicked,
+  } = useSettingsContext();
+
+  function handleClick(e) {
+    e.preventDefault();
+    setIsRemoveAdminBtnClicked(!isRemoveAdminBtnClicked);
+  }
+
   return (
-    <button className="bg-brand-red hover:bg-brand-red-dark rounded-8 shadow-sm-btn items-center p-2 duration-300">
+    <button
+      className="bg-brand-red hover:bg-brand-red-dark rounded-8 shadow-sm-btn items-center p-2 duration-300"
+      onClick={(e) => handleClick(e)}
+    >
       <FaXmark className="fill-brand-input h-auto w-[24px]" />
     </button>
   );
@@ -474,7 +487,7 @@ export {
   AddAdminModalBtn,
   SelectAdminRoleBtn,
   EditAdminModalBtn,
-  DeleteAdmiModalBtn,
+  RemoveAdminModalBtn,
   SubmitEditModalBtn,
   SubmitDeleteModalBtn,
   GenerateReportBtn,
@@ -482,7 +495,7 @@ export {
   PostedSettingsBtn,
   EditItemBtn,
   AdminSettingsBtn,
-  DeleteAdminBtn,
+  RemoveAdminBtn,
   VisitWebsiteBtn,
   LogoutBtn,
   DashboardViewAllBtn,

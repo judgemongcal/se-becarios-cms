@@ -7,6 +7,7 @@ import {
 import {
   AddAdminModalBtn,
   ApproveModalBtn,
+  RemoveAdminModalBtn,
   LogoutBtn,
   PostReqSuccessModalBtn,
   ProceedModalBtn,
@@ -247,7 +248,7 @@ function RemoveAdminModal() {
           Are you sure you want to remove Admin Name from
           being an Administrator?
         </p>
-        <SubmitDeleteModalBtn />
+        <RemoveAdminModalBtn />
       </div>
     </div>
   );
