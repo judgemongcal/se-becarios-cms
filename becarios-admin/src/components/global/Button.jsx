@@ -15,6 +15,7 @@ import { FiUpload } from 'react-icons/fi';
 import { useCreateArticleContext } from '../../hooks/useCreateArticleContext';
 import TextEditor from '../create-article/TextEditor';
 import { useSettingsContext } from '../../hooks/useSettingsContext';
+import { useSignOutContext } from '../../hooks/useSignOutContext';
 
 function LoginBtn() {
   const navigate = useNavigate();
@@ -34,12 +35,33 @@ function LoginBtn() {
 }
 
 function LogoutBtn() {
+  const navigate = useNavigate();
+
+  const { isSignOutClicked, setIsSignOutClicked } =
+    useSignOutContext();
+
+  function handleSignOut(e) {
+    e.preventDefault();
+    navigate('/', { replace: true });
+  }
+
+  function handleBack(e) {
+    e.preventDefault();
+    setIsSignOutClicked(!isSignOutClicked);
+  }
+
   return (
     <div className="flex flex-row justify-around gap-4 py-2">
-      <button className="bg-brand-green shadow-shadow-db rounded-10 hover:bg-brand-green-dark w-[100%] py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-100">
+      <button
+        className="bg-brand-green shadow-shadow-db rounded-10 hover:bg-brand-green-dark w-[100%] py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-100"
+        onClick={(e) => handleSignOut(e)}
+      >
         Sign Out
       </button>
-      <button className="bg-brand-red shadow-shadow-db rounded-10 hover:bg-brand-red-dark w-[100%] py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-100">
+      <button
+        className="bg-brand-red shadow-shadow-db rounded-10 hover:bg-brand-red-dark w-[100%] py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-100"
+        onClick={(e) => handleBack(e)}
+      >
         Go Back
       </button>
     </div>
