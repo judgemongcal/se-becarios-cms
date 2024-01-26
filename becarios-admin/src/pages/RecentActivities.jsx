@@ -11,8 +11,12 @@ import {
 } from '../components/global/Button';
 import ActivityList from '../components/recent-activities/ActivityList';
 import ActivityPageList from '../components/recent-activities/ActivityPageList';
+import { useSignOutContext } from '../hooks/useSignOutContext';
+import { SignOutModal } from '../components/global/Modal';
 
 function RecentActivities() {
+  const { isSignOutClicked } = useSignOutContext();
+
   return (
     <div className="flex flex-col justify-start lg:flex-row ">
       <div className="navs">
@@ -34,6 +38,7 @@ function RecentActivities() {
           </div>
         </div>
       </div>
+      {isSignOutClicked && <SignOutModal />}
     </div>
   );
 }

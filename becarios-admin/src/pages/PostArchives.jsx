@@ -1,3 +1,4 @@
+import { SignOutModal } from '../components/global/Modal';
 import NavBar from '../components/global/NavBar';
 import NavBarMobile from '../components/global/NavBarMobile';
 import PageTitle from '../components/global/PageTitle';
@@ -5,8 +6,11 @@ import PaginationLabel from '../components/global/PaginationLabel';
 import SearchField from '../components/global/SearchField';
 import ContentFilters from '../components/manage-content/ContentFilters';
 import ContentList from '../components/manage-content/ContentList';
+import { useSignOutContext } from '../hooks/useSignOutContext';
 
 function PostArchives() {
+  const { isSignOutClicked } = useSignOutContext();
+
   return (
     <div className="flex flex-col justify-start lg:flex-row ">
       <div className="navs">
@@ -32,6 +36,7 @@ function PostArchives() {
           <ContentList type="Archived" />
         </div>
       </div>
+      {isSignOutClicked && <SignOutModal />}
     </div>
   );
 }

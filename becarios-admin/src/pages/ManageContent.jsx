@@ -6,8 +6,11 @@ import SearchField from '../components/global/SearchField';
 import ForApprovalList from '../components/manage-content/ForApprovalList';
 import ContentList from '../components/manage-content/ContentList';
 import PaginationLabel from '../components/global/PaginationLabel';
+import { useSignOutContext } from '../hooks/useSignOutContext';
+import { SignOutModal } from '../components/global/Modal';
 
 function ManageContent() {
+  const { isSignOutClicked } = useSignOutContext();
   return (
     <div className="flex flex-col justify-start lg:flex-row">
       <div className="navs">
@@ -27,6 +30,7 @@ function ManageContent() {
           <ContentList type="Posted" />
         </div>
       </div>
+      {isSignOutClicked && <SignOutModal />}
     </div>
   );
 }
