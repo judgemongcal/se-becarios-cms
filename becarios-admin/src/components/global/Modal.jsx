@@ -19,6 +19,7 @@ import {
 } from '../global/Button';
 import { useCreateArticleContext } from '../../hooks/useCreateArticleContext';
 import { FiUploadCloud } from 'react-icons/fi';
+import { useSettingsContext } from '../../hooks/useSettingsContext';
 
 function ExceededLoginAttemptsModal() {
   return (

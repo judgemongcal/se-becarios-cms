@@ -5,8 +5,12 @@ import AdminList from '../components/settings/AdminList';
 import SuperAdminList from '../components/settings/SuperAdminList';
 import AdminModal from '../components/settings/AdminModal';
 import { useSettingsContext } from '../hooks/useSettingsContext';
-import { RemoveAdminModal } from '../components/global/Modal';
+import {
+  RemoveAdminModal,
+  SignOutModal,
+} from '../components/global/Modal';
 import { RemoveAdminSuccessPopup } from '../components/global/Popup';
+import { useSignOutContext } from '../hooks/useSignOutContext';
 
 function Settings() {
   const {
@@ -14,6 +18,8 @@ function Settings() {
     isRemoveAdminBtnClicked,
     isRemoveSuccessful,
   } = useSettingsContext();
+
+  const { isSignOutClicked } = useSignOutContext();
 
   return (
     <div className="flex flex-col justify-start lg:flex-row">
@@ -40,6 +46,7 @@ function Settings() {
       </div>
       {isAddAdminBtnClicked && <AdminModal />}
       {isRemoveAdminBtnClicked && <RemoveAdminModal />}
+      {isSignOutClicked && <SignOutModal />}
     </div>
   );
 }

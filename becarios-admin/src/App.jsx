@@ -18,48 +18,54 @@ import RecentActivities from './pages/RecentActivities';
 import CreateArticle from './pages/CreateArticle';
 import { CreateArticleProvider } from './hooks/useCreateArticleContext';
 import { SettingsProvider } from './hooks/useSettingsContext';
+import { SignOutProvider } from './hooks/useSignOutContext';
 
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route index element={<Login />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route
-          path="/create-article"
-          element={
-            <CreateArticleProvider
-              value={CreateArticleProvider.contextValue}
-            >
-              <CreateArticle />
-            </CreateArticleProvider>
-          }
-        />
-        <Route
-          path="/recent-activities"
-          element={<RecentActivities />}
-        />
-        <Route
-          path="/manage-content"
-          element={<ManageContent />}
-        />
-        <Route
-          path="/post-archives"
-          element={<PostArchives />}
-        />
-        <Route
-          path="/settings"
-          element={
-            <SettingsProvider
-              value={SettingsProvider.contextValue}
-            >
-              <Settings />
-            </SettingsProvider>
-          }
-        />
-        <Route path="/sign-out" element={<Login />} />
-        <Route path="*" element={<PageNotFound />} />
-      </Routes>
+      <SignOutProvider value={SignOutProvider.contextValue}>
+        <Routes>
+          <Route index element={<Login />} />
+          <Route
+            path="/dashboard"
+            element={<Dashboard />}
+          />
+          <Route
+            path="/create-article"
+            element={
+              <CreateArticleProvider
+                value={CreateArticleProvider.contextValue}
+              >
+                <CreateArticle />
+              </CreateArticleProvider>
+            }
+          />
+          <Route
+            path="/recent-activities"
+            element={<RecentActivities />}
+          />
+          <Route
+            path="/manage-content"
+            element={<ManageContent />}
+          />
+          <Route
+            path="/post-archives"
+            element={<PostArchives />}
+          />
+          <Route
+            path="/settings"
+            element={
+              <SettingsProvider
+                value={SettingsProvider.contextValue}
+              >
+                <Settings />
+              </SettingsProvider>
+            }
+          />
+          <Route path="/sign-out" element={<Login />} />
+          <Route path="*" element={<PageNotFound />} />
+        </Routes>
+      </SignOutProvider>
     </BrowserRouter>
     // <>
     //   <NavBarMobile />
