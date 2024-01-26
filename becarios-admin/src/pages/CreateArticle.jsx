@@ -9,11 +9,15 @@ import { SubmitArticleBtn } from '../components/global/Button';
 import ArticlePreview from '../components/create-article/ArticlePreview';
 import {
   PostReqSuccessModal,
+  SignOutModal,
   SubmitPostModal,
 } from '../components/global/Modal';
 import { useCreateArticleContext } from '../hooks/useCreateArticleContext';
+import { useSignOutContext } from '../hooks/useSignOutContext';
 
 function CreateArticle() {
+  const { isSignOutClicked } = useSignOutContext();
+
   const {
     isPreview,
     isSubmitBtnPressed,
@@ -48,6 +52,7 @@ function CreateArticle() {
       )}
 
       {isSubmitConfirmed && <PostReqSuccessModal />}
+      {isSignOutClicked && <SignOutModal />}
     </div>
   );
 }
