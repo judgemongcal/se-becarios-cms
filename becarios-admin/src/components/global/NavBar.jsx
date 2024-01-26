@@ -9,8 +9,11 @@ import {
 } from 'react-icons/hi';
 
 import { NavLink } from 'react-router-dom';
+import { useSignOutContext } from '../../hooks/useSignOutContext';
 
 function NavBar() {
+  const { isSignOutClicked, setIsSignOutClicked } =
+    useSignOutContext();
   return (
     <nav className="bg-brand-black  fixed hidden h-[100%] min-h-[100vh] flex-col items-center gap-[3.5rem] text-white md:w-[20.5rem] lg:flex">
       <img
@@ -69,8 +72,11 @@ function NavBar() {
         </NavLink>
 
         <NavLink
-          to="/sign-out"
+          // to="/sign-out"
           className="sign-out  hover:fill-brand-red hover:text-brand-red flex items-center justify-center gap-2"
+          onClick={() =>
+            setIsSignOutClicked(!isSignOutClicked)
+          }
         >
           <HiOutlineLogout className="-ml-3.5 -mr-0.5 h-auto w-[24px]" />
           <p>Sign Out</p>

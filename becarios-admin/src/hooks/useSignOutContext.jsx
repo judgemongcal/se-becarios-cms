@@ -8,7 +8,7 @@ export function useSignOutContext() {
 
 export function SignOutProvider({ children }) {
   const [isSignOutClicked, setIsSignOutClicked] =
-    useState();
+    useState(false);
 
   const contextValue = {
     isSignOutClicked,
