@@ -12,8 +12,11 @@ import {
   HiOutlineClock,
   HiOutlineLogout,
 } from 'react-icons/hi';
+import { useSignOutContext } from '../../hooks/useSignOutContext';
 
 function NavBarMobile() {
+  const { isSignOutClicked, setIsSignOutClicked } =
+    useSignOutContext();
   const [isOpen, setOpen] = useState(false);
   const ref = useRef(null);
 
@@ -183,7 +186,7 @@ function NavBarMobile() {
 
           {/* SIGN OUT */}
           <NavLink
-            to="/sign-out"
+            // to="/sign-out"
             onClick={closeMenuOnClick}
           >
             <motion.button
@@ -195,6 +198,9 @@ function NavBarMobile() {
                 damping: 20,
                 delay: 0.6 + 1 / 10,
               }}
+              onClick={() =>
+                setIsSignOutClicked(!isSignOutClicked)
+              }
               className="sign-out hover:text-brand-red hover:border-brand-red border-brand-gray rounded-10 grid grid-cols-2 items-center gap-7 border-4 px-[6.25rem] py-4 md:px-[6.8rem]"
             >
               <HiOutlineLogout className="-ml-4 h-auto w-[36px] md:-ml-6" />
