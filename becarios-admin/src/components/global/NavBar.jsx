@@ -31,7 +31,11 @@ function NavBar() {
       <section className="navigation fixed top-[230px] -ml-5 flex flex-col items-center justify-center gap-[3rem] text-[1.15rem]">
         <NavLink
           to="/dashboard"
-          className={`dashboard hover:fill-brand-blue hover:text-brand-blue rounded-10 flex items-center justify-center gap-2 ${
+          className={`dashboard ${
+            !isActiveLink('/dashboard')
+              ? 'hover:fill-brand-blue hover:text-brand-blue'
+              : ''
+          } rounded-10 flex items-center justify-center gap-2 ${
             isActiveLink('/dashboard')
               ? 'text-brand-yellow'
               : ''
@@ -43,7 +47,15 @@ function NavBar() {
 
         <NavLink
           to="/create-article"
-          className="create-post hover:fill-brand-blue hover:text-brand-blue flex items-center justify-center gap-2 "
+          className={`create-article ${
+            !isActiveLink('/create-article')
+              ? 'hover:fill-brand-blue hover:text-brand-blue'
+              : ''
+          } flex items-center justify-center gap-2 ${
+            isActiveLink('/create-article')
+              ? 'text-brand-yellow'
+              : ''
+          }`}
         >
           <HiOutlinePlusCircle className="ml-5 h-auto w-[24px]" />
           <p>Create Article</p>
@@ -51,7 +63,15 @@ function NavBar() {
 
         <NavLink
           to="/recent-activities"
-          className="create-post hover:fill-brand-blue hover:text-brand-blue flex items-center justify-center gap-2"
+          className={`recent-activities ${
+            !isActiveLink('/recent-activities')
+              ? 'hover:fill-brand-blue hover:text-brand-blue'
+              : ''
+          }  flex items-center justify-center gap-2 ${
+            isActiveLink('/recent-activities')
+              ? 'text-brand-yellow'
+              : ''
+          }`}
         >
           <HiOutlineClock className="ml-11 h-auto w-[24px]" />
           <p>Recent Activities</p>
@@ -59,7 +79,15 @@ function NavBar() {
 
         <NavLink
           to="/manage-content"
-          className="manage-content hover:fill-brand-blue hover:text-brand-blue flex items-center justify-center gap-2"
+          className={`manage-content${
+            !isActiveLink('/manage-content')
+              ? 'hover:fill-brand-blue hover:text-brand-blue'
+              : ''
+          }  flex items-center justify-center gap-2 ${
+            isActiveLink('/manage-content')
+              ? 'text-brand-yellow'
+              : ''
+          }`}
         >
           <HiOutlineFolderOpen className="ml-10 h-auto w-[24px]" />
           <p>Manage Content</p>
@@ -67,7 +95,15 @@ function NavBar() {
 
         <NavLink
           to="/post-archives"
-          className="post-archives  hover:fill-brand-blue hover:text-brand-blue flex items-center justify-center gap-2"
+          className={`post-archives ${
+            !isActiveLink('/post-archives')
+              ? 'hover:fill-brand-blue hover:text-brand-blue'
+              : ''
+          }  flex items-center justify-center gap-2 ${
+            isActiveLink('/post-archives')
+              ? 'text-brand-yellow'
+              : ''
+          }`}
         >
           <HiOutlineArchive className="ml-5 h-auto w-[24px]" />
           <p>Post Archives</p>
@@ -75,7 +111,15 @@ function NavBar() {
 
         <NavLink
           to="/settings"
-          className="settings  hover:fill-brand-blue hover:text-brand-blue mb-[30px] flex items-center justify-center gap-2"
+          className={`settings  ${
+            !isActiveLink('/settings')
+              ? 'hover:fill-brand-blue hover:text-brand-blue'
+              : ''
+          }  mb-[30px] flex items-center justify-center gap-2 ${
+            isActiveLink('/settings')
+              ? 'text-brand-yellow'
+              : ''
+          }`}
         >
           <HiOutlineCog className="-ml-5 h-auto w-[24px]" />
           <p>Settings</p>
