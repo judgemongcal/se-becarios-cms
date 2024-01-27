@@ -2,7 +2,7 @@ import { useClickAway } from 'react-use';
 import { useRef, useState } from 'react';
 import { Squash as Hamburger } from 'hamburger-react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import {
   HiOutlineViewBoards,
   HiOutlinePlusCircle,
@@ -19,6 +19,12 @@ function NavBarMobile() {
     useSignOutContext();
   const [isOpen, setOpen] = useState(false);
   const ref = useRef(null);
+
+  const location = useLocation();
+
+  function isActiveLink(path) {
+    return location.pathname === path;
+  }
 
   const handleClickAway = () => {
     if (isOpen) {
@@ -72,7 +78,11 @@ function NavBarMobile() {
                 damping: 20,
                 delay: 0.1 + 1 / 10,
               }}
-              className="dashboard hover:fill-brand-yellow hover:text-brand-yellow hover:border-brand-yellow border-brand-gray rounded-10 grid grid-cols-2 items-center gap-5 border-4 px-[5.5rem] py-4"
+              className={`dashboard  ${
+                isActiveLink('/dashboard')
+                  ? 'border-brand-yellow text-brand-yellow'
+                  : 'border-brand-gray hover:fill-brand-blue hover:text-brand-blue hover:border-brand-blue'
+              } rounded-10 grid grid-cols-2 items-center gap-5 border-4 px-[5.5rem] py-4`}
             >
               <HiOutlineViewBoards className=" -ml-2 h-auto w-[36px]" />
               <p className="-ml-2 ">Dashboard</p>
@@ -93,7 +103,11 @@ function NavBarMobile() {
                 damping: 20,
                 delay: 0.2 + 1 / 10,
               }}
-              className="create-article  hover:fill-brand-yellow hover:text-brand-yellow hover:border-brand-yellow border-brand-gray rounded-10 grid grid-cols-2 items-center gap-2 border-4 px-[4.2rem] py-4 md:px-[4rem]"
+              className={`create-article  ${
+                isActiveLink('/create-article')
+                  ? 'border-brand-yellow text-brand-yellow'
+                  : 'border-brand-gray hover:fill-brand-blue hover:text-brand-blue hover:border-brand-blue'
+              } rounded-10 grid grid-cols-2 items-center gap-2 border-4 px-[4.2rem] py-4 md:px-[4rem]`}
             >
               <HiOutlinePlusCircle className=" ml-3 h-auto w-[36px]" />
               <p className=" ">Create Article</p>
@@ -114,7 +128,11 @@ function NavBarMobile() {
                 damping: 20,
                 delay: 0.2 + 1 / 10,
               }}
-              className="create-post  hover:fill-brand-yellow hover:text-brand-yellow hover:border-brand-yellow border-brand-gray rounded-10 grid grid-cols-2 items-center gap-2 border-4 px-[2.75rem] py-4 md:px-[2.25rem]"
+              className={`create-post   ${
+                isActiveLink('/recent-activities')
+                  ? 'border-brand-yellow text-brand-yellow'
+                  : 'border-brand-gray hover:fill-brand-blue hover:text-brand-blue hover:border-brand-blue'
+              } rounded-10 grid grid-cols-2 items-center gap-2 border-4 px-[2.75rem] py-4 md:px-[2.25rem]`}
             >
               <HiOutlineClock className=" ml-9 h-auto w-[36px] md:ml-10" />
               <p className=" ">Recent Activities</p>
@@ -135,7 +153,11 @@ function NavBarMobile() {
                 damping: 20,
                 delay: 0.3 + 1 / 10,
               }}
-              className="manage-content hover:text-brand-yellow hover:border-brand-yellow border-brand-gray rounded-10 grid grid-cols-2 items-center gap-0.5 border-4 px-[2.95rem] py-4 md:px-[2.6rem]"
+              className={`manage-content  ${
+                isActiveLink('/manage-content')
+                  ? 'border-brand-yellow text-brand-yellow'
+                  : 'border-brand-gray hover:fill-brand-blue hover:text-brand-blue hover:border-brand-blue'
+              } rounded-10 grid grid-cols-2 items-center gap-0.5 border-4 px-[2.95rem] py-4 md:px-[2.6rem]`}
             >
               <HiOutlineFolderOpen className="ml-8 h-auto w-[36px] md:ml-10" />
               <p className="">Manage Content</p>
@@ -156,7 +178,11 @@ function NavBarMobile() {
                 damping: 20,
                 delay: 0.4 + 1 / 10,
               }}
-              className="post-archives hover:text-brand-yellow hover:border-brand-yellow border-brand-gray rounded-10 grid grid-cols-2 items-center gap-2 border-4 px-[4rem] py-4"
+              className={`post-archives  ${
+                isActiveLink('/post-archives')
+                  ? 'border-brand-yellow text-brand-yellow'
+                  : 'border-brand-gray hover:fill-brand-blue hover:text-brand-blue hover:border-brand-blue'
+              } rounded-10 grid grid-cols-2 items-center gap-2 border-4 px-[4rem] py-4`}
             >
               <HiOutlineArchive className="ml-4 h-auto w-[36px] md:ml-4" />
               <p className="">Post Archives</p>
@@ -177,7 +203,11 @@ function NavBarMobile() {
                 damping: 20,
                 delay: 0.5 + 1 / 10,
               }}
-              className="settings  hover:text-brand-yellow hover:border-brand-yellow border-brand-gray rounded-10 grid grid-cols-2 items-center gap-7 border-4 px-[6.6rem] py-4 md:px-[7.15rem]"
+              className={`settings  ${
+                isActiveLink('/settings')
+                  ? 'border-brand-yellow text-brand-yellow'
+                  : 'border-brand-gray hover:fill-brand-blue hover:text-brand-blue hover:border-brand-blue'
+              } rounded-10 grid grid-cols-2 items-center gap-7 border-4 px-[6.6rem] py-4 md:px-[7.15rem]`}
             >
               <HiOutlineCog className=" -ml-6 h-auto w-[36px] md:-ml-9" />
               <p className="-ml-3">Settings</p>
