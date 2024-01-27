@@ -19,6 +19,7 @@ import CreateArticle from './pages/CreateArticle';
 import { CreateArticleProvider } from './hooks/useCreateArticleContext';
 import { SettingsProvider } from './hooks/useSettingsContext';
 import { SignOutProvider } from './hooks/useSignOutContext';
+import { ManageContentProvider } from './hooks/useManageContentContext';
 
 function App() {
   return (
@@ -46,7 +47,13 @@ function App() {
           />
           <Route
             path="/manage-content"
-            element={<ManageContent />}
+            element={
+              <ManageContentProvider
+                value={ManageContentProvider.contextValue}
+              >
+                <ManageContent />
+              </ManageContentProvider>
+            }
           />
           <Route
             path="/post-archives"

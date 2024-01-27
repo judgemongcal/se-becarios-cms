@@ -16,6 +16,7 @@ import { useCreateArticleContext } from '../../hooks/useCreateArticleContext';
 import TextEditor from '../create-article/TextEditor';
 import { useSettingsContext } from '../../hooks/useSettingsContext';
 import { useSignOutContext } from '../../hooks/useSignOutContext';
+import { useManageContentContext } from '../../hooks/useManageContentContext';
 
 function LoginBtn() {
   const navigate = useNavigate();
@@ -368,15 +369,37 @@ function BacktoDashboardBtn() {
   );
 }
 
-function PostedSettingsBtn() {
-  return (
-    <div className="flex gap-4">
-      <button className=" bg-brand-input rounded-8 shadow-shadow-db hover:bg-brand-light active:bg-brand-yellow  w-fit items-center  p-2 duration-300">
-        <FaEllipsis className="fill-brand-black h-auto w-[30px] md:w-[36px]" />
-      </button>
+function PostedSettingsBtn({ id }) {
+  const idVal = id;
+  const {
+    isPostedSettingsClicked,
+    setIsPostedSettingsClicked,
+    targetId,
+    setTargetId,
+  } = useManageContentContext(id);
 
-      <button className=" bg-brand-blue rounded-8 shadow-shadow-db hover:bg-brand-blue-dark flex  w-fit items-center gap-4 p-2 duration-300">
+  function handleSettingsClick(e, id) {
+    e.preventDefault();
+    console.log(idVal);
+    setIsPostedSettingsClicked(!isPostedSettingsClicked);
+    setTargetId(idVal);
+  }
+  return (
+    <div className="flex gap-4" id={id}>
+      <button
+        className={` bg-brand-blue rounded-8 shadow-shadow-db hover:bg-brand-blue-dark ${
+          isPostedSettingsClicked && idVal === targetId
+            ? 'flex'
+            : 'hidden'
+        } w-fit items-center gap-4 p-2 duration-300 `}
+      >
         <LuPencil className=" stroke-brand-light h-auto w-[30px] md:w-[36px] " />
+      </button>
+      <button className=" bg-brand-input rounded-8 shadow-shadow-db hover:bg-brand-light active:bg-brand-yellow  w-fit items-center  p-2 duration-300">
+        <FaEllipsis
+          className="fill-brand-black h-auto w-[30px] md:w-[36px]"
+          onClick={(e) => handleSettingsClick(e)}
+        />
       </button>
     </div>
   );

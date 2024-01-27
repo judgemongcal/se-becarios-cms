@@ -3,7 +3,7 @@ import {
   PostedSettingsBtn,
 } from '../global/Button';
 
-function ContentListItem({ type }) {
+function ContentListItem({ type, id }) {
   return (
     <div className="bg-brand-light req-container shadow-shadow-db rounded-8 flex flex-col items-center gap-2 p-5 md:gap-5 2xl:flex-row">
       <div className="req-img mx-auto flex w-full max-w-[400px] items-center md:w-[70%]">
@@ -27,7 +27,7 @@ function ContentListItem({ type }) {
         </p>
         <div className="btn mt-[1rem] flex w-full flex-row justify-end">
           {type === 'Posted' ? (
-            <PostedSettingsBtn />
+            <PostedSettingsBtn id={id} />
           ) : type === 'Archived' ? (
             <ArchivedListItemBtn />
           ) : (
