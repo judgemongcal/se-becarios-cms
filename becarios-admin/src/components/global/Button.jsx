@@ -370,9 +370,15 @@ function BacktoDashboardBtn() {
 
 function PostedSettingsBtn() {
   return (
-    <button className=" bg-brand-input rounded-8 shadow-shadow-db hover:bg-brand-light w-fit  items-center p-2 duration-300 ">
-      <FaEllipsis className="fill-brand-black h-auto w-[30px] md:w-[36px]" />
-    </button>
+    <div className="flex gap-4">
+      <button className=" bg-brand-input rounded-8 shadow-shadow-db hover:bg-brand-light active:bg-brand-yellow  w-fit items-center  p-2 duration-300">
+        <FaEllipsis className="fill-brand-black h-auto w-[30px] md:w-[36px]" />
+      </button>
+
+      <button className=" bg-brand-blue rounded-8 shadow-shadow-db hover:bg-brand-blue-dark flex  w-fit items-center gap-4 p-2 duration-300">
+        <LuPencil className=" stroke-brand-light h-auto w-[30px] md:w-[36px] " />
+      </button>
+    </div>
   );
 }
 
