@@ -8,12 +8,18 @@ import {
   HiOutlineLogout,
 } from 'react-icons/hi';
 
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { useSignOutContext } from '../../hooks/useSignOutContext';
 
 function NavBar() {
   const { isSignOutClicked, setIsSignOutClicked } =
     useSignOutContext();
+
+  const location = useLocation();
+
+  function isActiveLink(path) {
+    return location.pathname === path;
+  }
   return (
     <nav className="bg-brand-black  fixed hidden h-[100%] min-h-[100vh] flex-col items-center gap-[3.5rem] text-white md:w-[20.5rem] lg:flex">
       <img
@@ -25,7 +31,11 @@ function NavBar() {
       <section className="navigation fixed top-[230px] -ml-5 flex flex-col items-center justify-center gap-[3rem] text-[1.15rem]">
         <NavLink
           to="/dashboard"
-          className="dashboard hover:fill-brand-yellow hover:text-brand-yellow flex items-center justify-center gap-2"
+          className={`dashboard hover:fill-brand-blue hover:text-brand-blue rounded-10 flex items-center justify-center gap-2 ${
+            isActiveLink('/dashboard')
+              ? 'text-brand-yellow'
+              : ''
+          }`}
         >
           <HiOutlineViewBoards className=" h-auto w-[24px]" />
           <p>Dashboard</p>
@@ -33,7 +43,7 @@ function NavBar() {
 
         <NavLink
           to="/create-article"
-          className="create-post hover:fill-brand-yellow hover:text-brand-yellow flex items-center justify-center gap-2"
+          className="create-post hover:fill-brand-blue hover:text-brand-blue flex items-center justify-center gap-2 "
         >
           <HiOutlinePlusCircle className="ml-5 h-auto w-[24px]" />
           <p>Create Article</p>
@@ -41,7 +51,7 @@ function NavBar() {
 
         <NavLink
           to="/recent-activities"
-          className="create-post hover:fill-brand-yellow hover:text-brand-yellow flex items-center justify-center gap-2"
+          className="create-post hover:fill-brand-blue hover:text-brand-blue flex items-center justify-center gap-2"
         >
           <HiOutlineClock className="ml-11 h-auto w-[24px]" />
           <p>Recent Activities</p>
@@ -49,7 +59,7 @@ function NavBar() {
 
         <NavLink
           to="/manage-content"
-          className="manage-content hover:fill-brand-yellow hover:text-brand-yellow flex items-center justify-center gap-2"
+          className="manage-content hover:fill-brand-blue hover:text-brand-blue flex items-center justify-center gap-2"
         >
           <HiOutlineFolderOpen className="ml-10 h-auto w-[24px]" />
           <p>Manage Content</p>
@@ -57,7 +67,7 @@ function NavBar() {
 
         <NavLink
           to="/post-archives"
-          className="post-archives  hover:fill-brand-yellow hover:text-brand-yellow flex items-center justify-center gap-2"
+          className="post-archives  hover:fill-brand-blue hover:text-brand-blue flex items-center justify-center gap-2"
         >
           <HiOutlineArchive className="ml-5 h-auto w-[24px]" />
           <p>Post Archives</p>
@@ -65,7 +75,7 @@ function NavBar() {
 
         <NavLink
           to="/settings"
-          className="settings  hover:fill-brand-yellow hover:text-brand-yellow mb-[30px] flex items-center justify-center gap-2"
+          className="settings  hover:fill-brand-blue hover:text-brand-blue mb-[30px] flex items-center justify-center gap-2"
         >
           <HiOutlineCog className="-ml-5 h-auto w-[24px]" />
           <p>Settings</p>
