@@ -36,7 +36,7 @@ function NavBar() {
 
       <section
         className={`navigation fixed ${
-          pageHeight < 800 ? 'top-[160px]' : 'top-[250px]'
+          pageHeight < 800 ? 'top-[160px]' : 'top-[220px]'
         } -ml-5 flex flex-col items-center justify-center ${
           pageHeight < 800 ? 'gap-[2rem]' : 'gap-[3rem]'
         } text-[1.15rem]`}
