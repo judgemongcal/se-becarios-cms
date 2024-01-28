@@ -10,6 +10,7 @@ import {
 
 import { NavLink, useLocation } from 'react-router-dom';
 import { useSignOutContext } from '../../hooks/useSignOutContext';
+import UserInfo from './UserInfo';
 
 function NavBar() {
   const { isSignOutClicked, setIsSignOutClicked } =
@@ -21,14 +22,16 @@ function NavBar() {
     return location.pathname === path;
   }
   return (
-    <nav className="bg-brand-black  fixed hidden h-[100%] min-h-[100vh] flex-col items-center gap-[3.5rem] text-white md:w-[20.5rem] lg:flex">
+    <nav className="bg-brand-black  fixed hidden h-[100%] min-h-[100vh] flex-col items-center justify-center gap-[3.5rem] text-white md:w-[20.5rem] lg:flex">
       <img
         src="./src/assets/org_logo.png"
         alt=""
         className="fixed top-[50px] mb-10 mt-[60px] w-[180px]"
       />
-      <div className="user-details"></div>
+
       <section className="navigation fixed top-[230px] -ml-5 flex flex-col items-center justify-center gap-[3rem] text-[1.15rem]">
+        <UserInfo />
+
         <NavLink
           to="/dashboard"
           className={`dashboard ${
