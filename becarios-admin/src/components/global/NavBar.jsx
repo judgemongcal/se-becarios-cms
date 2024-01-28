@@ -18,18 +18,29 @@ function NavBar() {
 
   const location = useLocation();
 
+  const pageHeight = window.innerHeight;
+  console.log(pageHeight);
   function isActiveLink(path) {
     return location.pathname === path;
   }
   return (
-    <nav className="bg-brand-black  fixed hidden h-[100%] min-h-[100vh] flex-col items-center justify-center gap-[3.5rem] text-white md:w-[20.5rem] lg:flex">
+    <nav
+      className="bg-brand-black  gap-[3.5rem]' fixed hidden h-[100%] min-h-[100vh] flex-col items-center justify-center
+      overflow-auto text-white md:w-[20.5rem] lg:flex"
+    >
       <img
         src="./src/assets/org_logo.png"
         alt=""
-        className="fixed top-[50px] mb-10 mt-[60px] w-[180px]"
+        className="fixed top-[20px]  mt-[60px] w-[180px]"
       />
 
-      <section className="navigation fixed top-[230px] -ml-5 flex flex-col items-center justify-center gap-[3rem] text-[1.15rem]">
+      <section
+        className={`navigation fixed ${
+          pageHeight < 800 ? 'top-[160px]' : 'top-[250px]'
+        } -ml-5 flex flex-col items-center justify-center ${
+          pageHeight < 800 ? 'gap-[2rem]' : 'gap-[3rem]'
+        } text-[1.15rem]`}
+      >
         <UserInfo />
 
         <NavLink
@@ -108,7 +119,7 @@ function NavBar() {
               : ''
           }`}
         >
-          <HiOutlineArchive className="ml-5 h-auto w-[24px]" />
+          <HiOutlineArchive className="ml-4 h-auto w-[24px]" />
           <p>Post Archives</p>
         </NavLink>
 
@@ -124,7 +135,7 @@ function NavBar() {
               : ''
           }`}
         >
-          <HiOutlineCog className="-ml-5 h-auto w-[24px]" />
+          <HiOutlineCog className="-ml-7 h-auto w-[24px]" />
           <p>Settings</p>
         </NavLink>
 
