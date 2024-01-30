@@ -8,6 +8,7 @@ import NavBarMobile from './NavBarMobile';
 import NavBar from './NavBar';
 import { useState } from 'react';
 import { UserAuth } from '../../hooks/useAuthContext';
+import { auth } from '../../server/firebase';
 
 const hasNotExceed = true;
 const limit = 5;
@@ -15,12 +16,22 @@ const limit = 5;
 function loginForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
   const { signIn } = UserAuth();
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    s;
+    setError('');
+
+    try {
+      await signIn(username, password);
+      console.log('success!');
+    } catch (error) {
+      setError(error.message);
+      console.log(error.message);
+      console.log(error);
+    }
   }
 
   return (

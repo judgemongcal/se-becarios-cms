@@ -23,10 +23,10 @@ export function AuthContextProvider({ children }) {
     );
   }
 
-  const contextValue = { user };
+  const contextValue = { user, signIn };
 
   return (
-    <AuthContext.Provider valu={contextValue}>
+    <AuthContext.Provider value={contextValue}>
       {children}
     </AuthContext.Provider>
   );
