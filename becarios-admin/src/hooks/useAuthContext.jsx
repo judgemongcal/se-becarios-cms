@@ -20,11 +20,12 @@ export function UserAuth() {
 export function AuthContextProvider({ children }) {
   const [user, setUser] = useState({});
 
+  //   This useEffect executes the necessary updates on the currentUser whenever there are changes on login
+  //   this has no dependencies so it runs on mount
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(
       auth,
       (currentUser) => {
-        console.log(currentUser);
         setUser(currentUser);
       },
     );
@@ -42,7 +43,11 @@ export function AuthContextProvider({ children }) {
     );
   }
 
-  const contextValue = { user, signIn };
+  function logOut() {
+    return signOut(auth);
+  }
+
+  const contextValue = { user, signIn, logOut };
 
   return (
     <AuthContext.Provider value={contextValue}>

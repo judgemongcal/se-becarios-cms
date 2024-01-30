@@ -17,6 +17,7 @@ import TextEditor from '../create-article/TextEditor';
 import { useSettingsContext } from '../../hooks/useSettingsContext';
 import { useSignOutContext } from '../../hooks/useSignOutContext';
 import { useManageContentContext } from '../../hooks/useManageContentContext';
+import { UserAuth } from '../../hooks/useAuthContext';
 
 function LoginBtn() {
   return (
@@ -28,13 +29,19 @@ function LoginBtn() {
 
 function LogoutBtn() {
   const navigate = useNavigate();
+  const { logOut } = UserAuth();
 
   const { isSignOutClicked, setIsSignOutClicked } =
     useSignOutContext();
 
-  function handleSignOut(e) {
+  async function handleSignOut(e) {
     e.preventDefault();
-    navigate('/', { replace: true });
+    try {
+      await logOut();
+      navigate('/', { replace: true });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   function handleBack(e) {

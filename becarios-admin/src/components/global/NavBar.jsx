@@ -19,7 +19,6 @@ function NavBar() {
   const location = useLocation();
 
   const pageHeight = window.innerHeight;
-  console.log(pageHeight);
   function isActiveLink(path) {
     return location.pathname === path;
   }
