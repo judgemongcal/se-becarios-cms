@@ -6,34 +6,52 @@ import { ExceededLoginAttemptsModal } from './Modal';
 import AdminListItem from '../settings/AdminListItem';
 import NavBarMobile from './NavBarMobile';
 import NavBar from './NavBar';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { UserAuth } from '../../hooks/useAuthContext';
 import { auth } from '../../server/firebase';
 import { useNavigate } from 'react-router-dom';
+import { InvalidLoginCredentialsPopup } from './Popup';
 
 const hasNotExceed = true;
 const limit = 5;
 
-function loginForm() {
+function LoginForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [isInvalid, setIsInvalid] = useState(false);
   const [error, setError] = useState('');
 
   const navigate = useNavigate();
 
   const { signIn } = UserAuth();
 
+  useEffect(() => {
+    if (isInvalid) {
+      const timer = setTimeout(
+        () => setIsInvalid(!isInvalid),
+        3000,
+      );
+
+      return () => clearTimeout(timer);
+    }
+  }, [isInvalid]);
+
   async function handleSubmit(e) {
     e.preventDefault();
     setError('');
+    setIsInvalid(!isInvalid);
 
     try {
       await signIn(username, password);
       navigate('/dashboard', { replace: false });
     } catch (error) {
       setError(error.message);
-      console.log(error.message);
-      console.log(error.code);
+      if (
+        error.code === 'auth/invalid-email' ||
+        error.code === 'auth/invalid-credentials'
+      ) {
+        setIsInvalid(!isInvalid);
+      }
     }
   }
 
@@ -80,11 +98,17 @@ function loginForm() {
           <h1 className="mb-10 text-[1.75rem] font-bold">
             ADMIN LOGIN
           </h1>
+
           <div className="credentials flex w-[20rem] flex-col justify-center lg:w-[27rem]">
+            {isInvalid && <InvalidLoginCredentialsPopup />}
             <label htmlFor="username" className="mb-2">
               UST College Email
             </label>
-            <div className="username-input  bg-brand-input shadow-shadow-db rounded-8 mb-5 flex flex-row gap-4 p-2.5">
+            <div
+              className={`username-input  bg-brand-input shadow-shadow-db rounded-8 mb-5 flex flex-row gap-4 p-2.5 ${
+                isInvalid && 'border-brand-invalid border-4'
+              }`}
+            >
               <FiMail className="ml-2 h-auto w-8" />
 
               <input
@@ -92,7 +116,8 @@ function loginForm() {
                 id="username"
                 name="username"
                 placeholder="juan.delacruz.med@ust.edu.ph"
-                className="bg-brand-input w-full text-[18px] xl:mr-12"
+                className="bg-brand-input ${ w-full text-[18px] xl:mr-12
+                  "
                 onChange={(e) =>
                   setUsername(e.target.value)
                 }
@@ -102,7 +127,11 @@ function loginForm() {
             <label htmlFor="password" className=" mb-2">
               Password
             </label>
-            <div className="username-input  bg-brand-input shadow-shadow-db rounded-8 mb-5 flex flex-row gap-4 p-2.5">
+            <div
+              className={`password-input  bg-brand-input shadow-shadow-db rounded-8 mb-5 flex flex-row gap-4 p-2.5 ${
+                isInvalid && 'border-brand-invalid border-4'
+              }`}
+            >
               <FiKey className="ml-2 h-auto w-8" />
               <input
                 type="password"
@@ -129,4 +158,4 @@ function loginForm() {
   );
 }
 
-export default loginForm;
+export default LoginForm;

@@ -15,6 +15,7 @@ export default {
       'brand-red': '#D9422D',
       'brand-red-dark': '#C32C18',
       'brand-black': '#121214',
+      'brand-invalid': '#EF0107',
       'modal-bg': 'rgba(0,0,0,0.3)',
       white: '#FFFFFF',
     },
