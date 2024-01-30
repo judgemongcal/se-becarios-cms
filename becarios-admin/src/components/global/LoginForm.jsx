@@ -26,7 +26,7 @@ function LoginForm() {
   const { signIn } = UserAuth();
 
   useEffect(() => {
-    if (isInvalid) {
+    if (isInvalid && error) {
       const timer = setTimeout(
         () => setIsInvalid(!isInvalid),
         3000,
@@ -34,12 +34,12 @@ function LoginForm() {
 
       return () => clearTimeout(timer);
     }
-  }, [isInvalid]);
+  }, [isInvalid, error]);
 
   async function handleSubmit(e) {
     e.preventDefault();
     setError('');
-    setIsInvalid(!isInvalid);
+    setIsInvalid(false);
 
     try {
       await signIn(username, password);
@@ -50,7 +50,7 @@ function LoginForm() {
         error.code === 'auth/invalid-email' ||
         error.code === 'auth/invalid-credentials'
       ) {
-        setIsInvalid(!isInvalid);
+        setIsInvalid(false);
       }
     }
   }
