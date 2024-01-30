@@ -6,11 +6,23 @@ import { ExceededLoginAttemptsModal } from './Modal';
 import AdminListItem from '../settings/AdminListItem';
 import NavBarMobile from './NavBarMobile';
 import NavBar from './NavBar';
+import { useState } from 'react';
+import { UserAuth } from '../../hooks/useAuthContext';
 
 const hasNotExceed = true;
 const limit = 5;
 
 function loginForm() {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  const { signIn } = UserAuth();
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    s;
+  }
+
   return (
     <div className="main-div flex flex-row justify-around gap-10">
       <div className="brand-img bg-login rounded-login hidden h-[100vh] w-[50%] bg-cover xl:block"></div>
@@ -43,7 +55,7 @@ function loginForm() {
 
       {hasNotExceed ? (
         <form
-          action=""
+          onSubmit={(e) => handleSubmit(e)}
           className="mx-auto  mt-[25%] flex flex-col items-center self-center xl:mt-[-2%]"
         >
           <img
@@ -67,6 +79,9 @@ function loginForm() {
                 name="username"
                 placeholder="juan.delacruz.med@ust.edu.ph"
                 className="bg-brand-input w-full text-[18px] xl:mr-12"
+                onChange={(e) =>
+                  setUsername(e.target.value)
+                }
               />
             </div>
 
@@ -81,6 +96,9 @@ function loginForm() {
                 name="password"
                 placeholder="Enter your password here"
                 className=" bg-brand-input w-full text-[18px]"
+                onChange={(e) =>
+                  setPassword(e.target.value)
+                }
               />
               <IoEyeSharp className="mr-2 h-auto w-8" />
             </div>

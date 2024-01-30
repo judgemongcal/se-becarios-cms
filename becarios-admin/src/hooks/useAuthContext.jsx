@@ -4,6 +4,7 @@ import {
   signOut,
   onAuthStateChanged,
 } from 'firebase/auth';
+import { auth } from '../server/firebase';
 
 const AuthContext = createContext();
 
@@ -14,7 +15,15 @@ export function UserAuth() {
 export function AuthContextProvider({ children }) {
   const [user, setUser] = useState({});
 
-  const contextValue = {};
+  function signIn(email, password) {
+    return signInWithEmailAndPassword(
+      auth,
+      email,
+      password,
+    );
+  }
+
+  const contextValue = { user };
 
   return (
     <AuthContext.Provider valu={contextValue}>
