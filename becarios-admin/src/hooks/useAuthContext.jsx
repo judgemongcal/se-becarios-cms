@@ -1,4 +1,9 @@
-import { createContext, useContext, useState } from 'react';
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 import {
   signInWithEmailAndPassword,
   signOut,
@@ -14,6 +19,20 @@ export function UserAuth() {
 
 export function AuthContextProvider({ children }) {
   const [user, setUser] = useState({});
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(
+      auth,
+      (currentUser) => {
+        console.log(currentUser);
+        setUser(currentUser);
+      },
+    );
+
+    return () => {
+      unsubscribe();
+    };
+  }, []);
 
   function signIn(email, password) {
     return signInWithEmailAndPassword(

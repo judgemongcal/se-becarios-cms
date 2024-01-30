@@ -19,17 +19,8 @@ import { useSignOutContext } from '../../hooks/useSignOutContext';
 import { useManageContentContext } from '../../hooks/useManageContentContext';
 
 function LoginBtn() {
-  const navigate = useNavigate();
-
-  // function goToDashboard() {
-  //   navigate('/dashboard', { replace: false });
-  // }
-
   return (
-    <button
-      className=" bg-gradient shadow-shadow-db transition-scale rounded-8 w-[100%] py-4 text-[1.15rem] font-bold text-[#FFFFFF] duration-100 ease-in hover:scale-105"
-      // onClick={goToDashboard}
-    >
+    <button className=" bg-gradient shadow-shadow-db transition-scale rounded-8 w-[100%] py-4 text-[1.15rem] font-bold text-[#FFFFFF] duration-100 ease-in hover:scale-105">
       Log In
     </button>
   );

@@ -9,6 +9,7 @@ import NavBar from './NavBar';
 import { useState } from 'react';
 import { UserAuth } from '../../hooks/useAuthContext';
 import { auth } from '../../server/firebase';
+import { useNavigate } from 'react-router-dom';
 
 const hasNotExceed = true;
 const limit = 5;
@@ -18,6 +19,8 @@ function loginForm() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
+  const navigate = useNavigate();
+
   const { signIn } = UserAuth();
 
   async function handleSubmit(e) {
@@ -26,11 +29,11 @@ function loginForm() {
 
     try {
       await signIn(username, password);
-      console.log('success!');
+      navigate('/dashboard', { replace: false });
     } catch (error) {
       setError(error.message);
       console.log(error.message);
-      console.log(error);
+      console.log(error.code);
     }
   }
 
