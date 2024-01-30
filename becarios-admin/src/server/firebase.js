@@ -1,24 +1,22 @@
-import admin from 'firebase-admin';
-import * as fs from 'fs';
+// Import the functions you need from the SDKs you need
+import { initializeApp } from 'firebase/app';
+import { getAuth } from 'firebase/auth';
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Read the content of the JSON file
-const serviceAccount = JSON.parse(
-  fs.readFileSync('./serviceAccountKeys.json', 'utf8'),
-);
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: 'AIzaSyAlIS7nmCaYzvKKg818jGvQqJWjaBLGR3U',
+  authDomain: 'project-best-cms.firebaseapp.com',
+  projectId: 'project-best-cms',
+  storageBucket: 'project-best-cms.appspot.com',
+  messagingSenderId: '777370033183',
+  appId: '1:777370033183:web:bd710e702e7b84c5b8492a',
+  measurementId: 'G-VYNX38BF9P',
+};
 
-// Initialize Firebase using the provided service account
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-});
-
-// Access the Firestore database
-const db = admin.firestore();
-
-// Check if Firebase is initialized
-if (admin.apps.length === 0) {
-  console.error('Firebase is not initialized');
-} else {
-  console.log('Firebase is initialized');
-}
-
-export { db };
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
+export default app;
