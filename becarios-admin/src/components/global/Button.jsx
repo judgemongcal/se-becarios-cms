@@ -38,6 +38,7 @@ function LogoutBtn() {
     e.preventDefault();
     try {
       await logOut();
+      setIsSignOutClicked(false);
       navigate('/', { replace: true });
     } catch (error) {
       console.log(error);

@@ -50,8 +50,8 @@ function LoginForm() {
         error.code === 'auth/invalid-email' ||
         error.code === 'auth/invalid-credentials'
       ) {
-        setIsInvalid(false);
       }
+      setIsInvalid(true);
     }
   }
 
