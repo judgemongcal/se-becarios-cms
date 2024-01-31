@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from 'react';
+import { UserAuth } from './useAuthContext';
 
 export const UserInfoContext = createContext();
 
@@ -8,6 +9,9 @@ export function useUserInfoContext() {
 
 export function UserInfoProvider({ children }) {
   const [userInfo, setUserInfo] = useState({});
+  const { user } = UserAuth();
+
+  const userEmail = user.email;
 
   const contextValue = {
     userInfo,

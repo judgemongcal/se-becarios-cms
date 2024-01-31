@@ -27,7 +27,7 @@ export const auth = getAuth(app);
 export default app;
 
 // Initialize Firestore Services
-const db = getFirestore();
+export const db = getFirestore();
 const colRef = collection(db, 'admin_credentials'); // Collection Ref
 
 // Get Collection Data
