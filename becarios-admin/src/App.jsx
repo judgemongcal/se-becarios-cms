@@ -22,6 +22,7 @@ import { SignOutProvider } from './hooks/useSignOutContext';
 import { ManageContentProvider } from './hooks/useManageContentContext';
 import { AuthContextProvider } from './hooks/useAuthContext';
 import ProtectedRoute from './pages/ProtectedRoute';
+import { UserInfoProvider } from './hooks/useUserInfoContext';
 
 function App() {
   return (
@@ -32,76 +33,80 @@ function App() {
         <SignOutProvider
           value={SignOutProvider.contextValue}
         >
-          <Routes>
-            <Route index element={<Login />} />
+          <UserInfoProvider
+            value={UserInfoProvider.contextValue}
+          >
+            <Routes>
+              <Route index element={<Login />} />
 
-            <Route
-              path="/dashboard"
-              element={
-                <ProtectedRoute>
-                  <Dashboard />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/create-article"
-              element={
-                <ProtectedRoute>
-                  <CreateArticleProvider
-                    value={
-                      CreateArticleProvider.contextValue
-                    }
-                  >
-                    <CreateArticle />
-                  </CreateArticleProvider>
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/recent-activities"
-              element={
-                <ProtectedRoute>
-                  <RecentActivities />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/manage-content"
-              element={
-                <ProtectedRoute>
-                  <ManageContentProvider
-                    value={
-                      ManageContentProvider.contextValue
-                    }
-                  >
-                    <ManageContent />
-                  </ManageContentProvider>
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/post-archives"
-              element={
-                <ProtectedRoute>
-                  <PostArchives />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/settings"
-              element={
-                <ProtectedRoute>
-                  <SettingsProvider
-                    value={SettingsProvider.contextValue}
-                  >
-                    <Settings />
-                  </SettingsProvider>
-                </ProtectedRoute>
-              }
-            />
-            {/* <Route path="/sign-out" element={<Login />} /> */}
-            <Route path="*" element={<PageNotFound />} />
-          </Routes>
+              <Route
+                path="/dashboard"
+                element={
+                  <ProtectedRoute>
+                    <Dashboard />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/create-article"
+                element={
+                  <ProtectedRoute>
+                    <CreateArticleProvider
+                      value={
+                        CreateArticleProvider.contextValue
+                      }
+                    >
+                      <CreateArticle />
+                    </CreateArticleProvider>
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/recent-activities"
+                element={
+                  <ProtectedRoute>
+                    <RecentActivities />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/manage-content"
+                element={
+                  <ProtectedRoute>
+                    <ManageContentProvider
+                      value={
+                        ManageContentProvider.contextValue
+                      }
+                    >
+                      <ManageContent />
+                    </ManageContentProvider>
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/post-archives"
+                element={
+                  <ProtectedRoute>
+                    <PostArchives />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/settings"
+                element={
+                  <ProtectedRoute>
+                    <SettingsProvider
+                      value={SettingsProvider.contextValue}
+                    >
+                      <Settings />
+                    </SettingsProvider>
+                  </ProtectedRoute>
+                }
+              />
+              {/* <Route path="/sign-out" element={<Login />} /> */}
+              <Route path="*" element={<PageNotFound />} />
+            </Routes>
+          </UserInfoProvider>
         </SignOutProvider>
       </AuthContextProvider>
     </BrowserRouter>

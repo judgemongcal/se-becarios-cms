@@ -18,7 +18,7 @@ export function UserAuth() {
 }
 
 export function AuthContextProvider({ children }) {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(null);
 
   //   This useEffect executes the necessary updates on the currentUser whenever there are changes on login
   //   this has no dependencies so it runs on mount

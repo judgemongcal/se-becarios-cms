@@ -1,8 +1,11 @@
-import { createContext, useContext, useState } from 'react';
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 import { UserAuth } from './useAuthContext';
-import { db } from '../server/firebase';
-import { getDocs, collection } from 'firebase/firestore';
-import { firestore } from 'firebase';
+import { getUserInfo } from '../server/firebase';
 
 export const UserInfoContext = createContext();
 
@@ -14,22 +17,26 @@ export function UserInfoProvider({ children }) {
   const [userInfo, setUserInfo] = useState({});
   const { user } = UserAuth();
 
-  const userEmail = user.email;
-  const colRef = collection(db, 'admin-credentials');
+  useEffect(() => {
+    async function fetchUser() {
+      if (user && user.email) {
+        try {
+          const userEmail = user.email;
+          const currentUser = await getUserInfo(
+            userEmail,
+            user,
+          );
 
-  async function searchUser(userEmail) {
-    try {
-      const queryRes = await firestore
-        .collection('admin-credentials')
-        .where('email', '==', userEmail)
-        .get();
-      console.log(queryRes);
-    } catch (error) {
-      console.log(error);
+          setUserInfo(currentUser);
+          console.log(currentUser);
+          console.log(user);
+        } catch (error) {
+          console.log(error);
+        }
+      }
     }
-  }
-
-  searchUser(userEmail);
+    fetchUser();
+  }, [user]);
 
   const contextValue = {
     userInfo,

@@ -5,9 +5,6 @@ import {
   getFirestore,
   collection,
   getDocs,
-  Firestore,
-  doc,
-  getDoc,
 } from 'firebase/firestore';
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -32,20 +29,26 @@ export default app;
 
 // Initialize Firestore Services
 export const db = getFirestore();
-const colRef = collection(db, 'admin_credentials'); // Collection Ref
 
-// Get Collection Data
-getDocs(colRef).then((snapshot) => {
-  let admins = [];
-  snapshot.docs.forEach((doc) => {
+export async function getUserInfo(email, user) {
+  const colRef = collection(db, 'admin_credentials'); // Collection Ref
+  let admins;
+  // if (!user || user === '') {
+  //   throw new Error('User not authenticated');
+  // }
+
+  // Get Collection Data
+
+  admins = [];
+  const snapshot = await getDocs(colRef);
+  snapshot.docs.map((doc) => {
     admins.push({ ...doc.data(), id: doc.id });
+    // console.log(doc);
   });
-  console.log(admins);
 
   const selected = admins.find(
-    (admin) =>
-      admin.email === 'cheyanne.almirante.sci@ust.edu.ph',
+    (admin) => admin.email === email,
   );
 
-  console.log(selected);
-});
+  return selected;
+}
