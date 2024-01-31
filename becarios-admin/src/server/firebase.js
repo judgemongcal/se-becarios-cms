@@ -5,7 +5,11 @@ import {
   getFirestore,
   collection,
   getDocs,
+  Firestore,
+  doc,
+  getDoc,
 } from 'firebase/firestore';
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -37,4 +41,11 @@ getDocs(colRef).then((snapshot) => {
     admins.push({ ...doc.data(), id: doc.id });
   });
   console.log(admins);
+
+  const selected = admins.find(
+    (admin) =>
+      admin.email === 'cheyanne.almirante.sci@ust.edu.ph',
+  );
+
+  console.log(selected);
 });
