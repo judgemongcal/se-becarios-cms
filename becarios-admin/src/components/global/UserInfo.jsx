@@ -1,4 +1,8 @@
+import { useUserInfoContext } from '../../hooks/useUserInfoContext';
+
 function UserInfo() {
+  const { userInfo } = useUserInfoContext();
+
   return (
     <div className="user-info ml-5 flex flex-col items-center justify-center gap-4">
       <img
@@ -6,7 +10,11 @@ function UserInfo() {
         alt=""
         className="border-brand-blue h-auto w-[100px] rounded-[100%] border-[5px]"
       />
-      <h1>Hannah Yu</h1>
+      <h1>
+        {!userInfo
+          ? 'Loading...'
+          : `${userInfo.first_name} ${userInfo.last_name}`}
+      </h1>
     </div>
   );
 }
