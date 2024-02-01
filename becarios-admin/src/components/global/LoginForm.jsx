@@ -1,23 +1,12 @@
-import {
-  LoginBtn,
-  PostedSettingsBtn,
-  ResetPasswordBtn,
-} from './Button';
+import { LoginBtn, ResetPasswordBtn } from './Button';
 import { FiKey, FiMail } from 'react-icons/fi';
 import { IoEyeSharp } from 'react-icons/io5';
 
-import { ExceededLoginAttemptsModal } from './Modal';
-import AdminListItem from '../settings/AdminListItem';
-import NavBarMobile from './NavBarMobile';
-import NavBar from './NavBar';
 import { useEffect, useState } from 'react';
 import { UserAuth } from '../../hooks/useAuthContext';
-import { auth } from '../../server/firebase';
+
 import { useNavigate } from 'react-router-dom';
 import { InvalidLoginCredentialsPopup } from './Popup';
-
-const hasNotExceed = true;
-const limit = 5;
 
 function LoginForm() {
   const [username, setUsername] = useState('');
