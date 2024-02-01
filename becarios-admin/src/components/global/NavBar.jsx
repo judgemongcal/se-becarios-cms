@@ -70,23 +70,23 @@ function NavBar() {
               : ''
           }`}
         >
-          <HiOutlinePlusCircle className="ml-5 h-auto w-[24px]" />
+          <HiOutlinePlusCircle className="-mt-[2px] ml-5 h-auto w-[24px]" />
           <p>Create Article</p>
         </NavLink>
 
         <NavLink
           to="/recent-activities"
-          className={`recent-activities ${
+          className={`recent-activities  ${
             !isActiveLink('/recent-activities')
               ? 'hover:fill-brand-blue hover:text-brand-blue'
               : ''
-          }  flex items-center justify-center gap-2 ${
+          }  flex items-center justify-center gap-2  ${
             isActiveLink('/recent-activities')
               ? 'text-brand-yellow'
               : ''
           }`}
         >
-          <HiOutlineClock className="ml-11 h-auto w-[24px]" />
+          <HiOutlineClock className="-mt-[4px] ml-11 h-auto w-[24px] " />
           <p>Recent Activities</p>
         </NavLink>
 
@@ -102,7 +102,7 @@ function NavBar() {
               : ''
           }`}
         >
-          <HiOutlineFolderOpen className="ml-10 h-auto w-[24px]" />
+          <HiOutlineFolderOpen className="-mt-[4px] ml-10 h-auto w-[24px]" />
           <p>Manage Content</p>
         </NavLink>
 
@@ -118,7 +118,7 @@ function NavBar() {
               : ''
           }`}
         >
-          <HiOutlineArchive className="ml-4 h-auto w-[24px]" />
+          <HiOutlineArchive className="-mt-[4px] ml-4 h-auto w-[24px]" />
           <p>Post Archives</p>
         </NavLink>
 
@@ -145,7 +145,7 @@ function NavBar() {
             setIsSignOutClicked(!isSignOutClicked)
           }
         >
-          <HiOutlineLogout className="-ml-3.5 -mr-0.5 h-auto w-[24px]" />
+          <HiOutlineLogout className="-ml-3.5 -mr-0.5 -mt-[4px] h-[24px] w-auto" />
           <p>Sign Out</p>
         </NavLink>
       </section>
