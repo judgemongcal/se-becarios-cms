@@ -20,10 +20,34 @@ function InvalidLoginCredentialsPopup() {
 
 function ApprovePostReqSuccessPopup() {
   return (
-    <div className="bg-brand-green rounded-10 my-4 flex flex-row items-center justify-center gap-2 px-4 py-2 text-center text-white">
-      <FaRegCircleCheck className=" h-auto w-8 md:ml-[1rem] lg:ml-0" />
-      <p className=" ml-0 text-[10px] md:text-[12px] lg:ml-0">
+    <div className="bg-brand-green rounded-10 my-4 flex flex-row items-center justify-center gap-3 px-4 py-2 text-center text-white">
+      <FaRegCircleCheck className=" h-auto w-10 md:ml-[1rem] lg:ml-0" />
+      <p className=" ml-0 text-[12px] md:text-[14px] lg:ml-0">
         Article post request has been approved successfully.
+      </p>
+    </div>
+  );
+}
+
+function EmailResetSuccessPopup() {
+  return (
+    <div className="bg-brand-green rounded-10 my-4 flex flex-row items-center justify-center gap-3 px-4 py-3 text-center text-white">
+      <FaRegCircleCheck className=" h-auto w-14 md:ml-[1rem] lg:ml-0" />
+      <p className=" ml-0 text-[12px] md:text-[14px] lg:ml-0">
+        Your password has been reset! Please check your
+        email for further instructions.
+      </p>
+    </div>
+  );
+}
+
+function EmailResetInvalidPopup() {
+  return (
+    <div className="bg-brand-invalid rounded-10 my-4 flex flex-row items-center justify-center gap-3 px-4 py-3 text-center text-white">
+      <FaRegCircleXmark className=" h-auto w-12 md:ml-[1rem] lg:ml-0" />
+      <p className=" ml-0 text-[12px] md:text-[14px] lg:ml-0">
+        Error! The email you entered is invalid. Please try
+        again.
       </p>
     </div>
   );
@@ -112,6 +136,8 @@ function GenReportSuccessPopup() {
 
 export {
   InvalidLoginCredentialsPopup,
+  EmailResetSuccessPopup,
+  EmailResetInvalidPopup,
   ApprovePostReqSuccessPopup,
   PostReqFailedPopup,
   RejectPostReqSuccessPopup,

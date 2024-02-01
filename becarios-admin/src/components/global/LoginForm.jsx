@@ -6,7 +6,11 @@ import { useEffect, useState } from 'react';
 import { UserAuth } from '../../hooks/useAuthContext';
 
 import { useNavigate } from 'react-router-dom';
-import { InvalidLoginCredentialsPopup } from './Popup';
+import {
+  EmailResetInvalidPopup,
+  EmailResetSuccessPopup,
+  InvalidLoginCredentialsPopup,
+} from './Popup';
 
 function LoginForm() {
   const [username, setUsername] = useState('');
@@ -110,7 +114,8 @@ function LoginForm() {
           {isInvalid && !forgotPasswordClicked && (
             <InvalidLoginCredentialsPopup />
           )}
-
+          <EmailResetSuccessPopup />
+          <EmailResetInvalidPopup />
           {!forgotPasswordClicked && (
             <>
               <label htmlFor="username" className="mb-2">
