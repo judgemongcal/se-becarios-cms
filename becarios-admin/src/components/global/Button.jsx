@@ -18,6 +18,7 @@ import { useSettingsContext } from '../../hooks/useSettingsContext';
 import { useSignOutContext } from '../../hooks/useSignOutContext';
 import { useManageContentContext } from '../../hooks/useManageContentContext';
 import { UserAuth } from '../../hooks/useAuthContext';
+import { useUserInfoContext } from '../../hooks/useUserInfoContext';
 
 function LoginBtn() {
   return (
@@ -33,6 +34,7 @@ function LogoutBtn() {
 
   const { isSignOutClicked, setIsSignOutClicked } =
     useSignOutContext();
+  const { userInfo, setUserInfo } = useUserInfoContext();
 
   async function handleSignOut(e) {
     e.preventDefault();
@@ -40,6 +42,7 @@ function LogoutBtn() {
       await logOut();
       setIsSignOutClicked(false);
       navigate('/', { replace: true });
+      setUserInfo({});
     } catch (error) {
       console.log(error);
     }

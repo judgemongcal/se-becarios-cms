@@ -6,6 +6,7 @@ import {
 } from 'react';
 import { UserAuth } from './useAuthContext';
 import { getUserInfo } from '../server/firebase';
+import { useSignOutContext } from './useSignOutContext';
 
 export const UserInfoContext = createContext();
 
@@ -15,6 +16,7 @@ export function useUserInfoContext() {
 
 export function UserInfoProvider({ children }) {
   const [userInfo, setUserInfo] = useState({});
+
   const { user } = UserAuth();
 
   useEffect(() => {
@@ -40,6 +42,7 @@ export function UserInfoProvider({ children }) {
 
   const contextValue = {
     userInfo,
+    setUserInfo,
   };
 
   return (
