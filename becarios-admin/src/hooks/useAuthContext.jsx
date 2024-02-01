@@ -6,6 +6,7 @@ import {
 } from 'react';
 import {
   signInWithEmailAndPassword,
+  sendPasswordResetEmail,
   signOut,
   onAuthStateChanged,
 } from 'firebase/auth';
@@ -43,11 +44,20 @@ export function AuthContextProvider({ children }) {
     );
   }
 
+  function resetPassword(email) {
+    return sendPasswordResetEmail(auth, email);
+  }
+
   function logOut() {
     return signOut(auth);
   }
 
-  const contextValue = { user, signIn, logOut };
+  const contextValue = {
+    user,
+    signIn,
+    resetPassword,
+    logOut,
+  };
 
   return (
     <AuthContext.Provider value={contextValue}>

@@ -11,6 +11,7 @@ import { InvalidLoginCredentialsPopup } from './Popup';
 function LoginForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
   const [isInvalid, setIsInvalid] = useState(false);
   const [error, setError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -19,7 +20,7 @@ function LoginForm() {
 
   const navigate = useNavigate();
 
-  const { signIn } = UserAuth();
+  const { signIn, resetPassword } = UserAuth();
 
   useEffect(() => {
     if (isInvalid && error) {
@@ -43,6 +44,20 @@ function LoginForm() {
     } catch (error) {
       setError(error.message);
       setIsInvalid(true);
+    }
+  }
+
+  async function handleReset(e) {
+    e.preventDefault();
+    setError('');
+    setIsInvalid(false);
+
+    try {
+      await resetPassword(email);
+    } catch (error) {
+      setError(error.message);
+      setIsInvalid(true);
+      console.log(error);
     }
   }
 
@@ -73,7 +88,11 @@ function LoginForm() {
       </div>
 
       <form
-        onSubmit={(e) => handleSubmit(e)}
+        onSubmit={(e) => {
+          !forgotPasswordClicked
+            ? handleSubmit(e)
+            : handleReset(e);
+        }}
         className="mx-auto  mt-[25%] flex flex-col items-center self-center xl:mt-[-2%]"
       >
         <img
@@ -170,7 +189,7 @@ function LoginForm() {
                   placeholder="juan.delacruz.med@ust.edu.ph"
                   className="bg-brand-input ${ w-full text-[18px] xl:mr-12
                   "
-                  // onChange={(e) => setUsername(e.target.value)}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
             </>
