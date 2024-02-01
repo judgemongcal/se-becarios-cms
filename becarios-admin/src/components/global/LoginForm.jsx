@@ -1,6 +1,6 @@
 import { LoginBtn, ResetPasswordBtn } from './Button';
 import { FiKey, FiMail } from 'react-icons/fi';
-import { IoEyeSharp } from 'react-icons/io5';
+import { IoEyeOff, IoEyeSharp } from 'react-icons/io5';
 
 import { useEffect, useState } from 'react';
 import { UserAuth } from '../../hooks/useAuthContext';
@@ -38,7 +38,7 @@ function LoginForm() {
       return () => clearTimeout(timer);
     }
 
-    if (!isResetSuccessful) {
+    if (!isResetSuccessful || isResetSuccessful) {
       const timer2 = setTimeout(
         () => setIsResetSuccessful(null),
         3000,
@@ -179,14 +179,23 @@ function LoginForm() {
                     setPassword(e.target.value)
                   }
                 />
-                <IoEyeSharp
-                  className={`${
-                    showPassword ? `fill-brand-blue` : ''
-                  } mr-2 h-auto w-8`}
-                  onClick={() =>
-                    setShowPassword(!showPassword)
-                  }
-                />
+                {!showPassword && (
+                  <IoEyeSharp
+                    className=" mr-2 h-auto w-8"
+                    onClick={() =>
+                      setShowPassword(!showPassword)
+                    }
+                  />
+                )}
+
+                {showPassword && (
+                  <IoEyeOff
+                    className="fill-brand-blue mr-2 h-auto w-8"
+                    onClick={() =>
+                      setShowPassword(!showPassword)
+                    }
+                  />
+                )}
               </div>
             </>
           )}
