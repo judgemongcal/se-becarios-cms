@@ -17,6 +17,8 @@ function LoginForm() {
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [isInvalid, setIsInvalid] = useState(false);
+  const [isResetSuccessful, setIsResetSuccessful] =
+    useState(null);
   const [error, setError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [forgotPasswordClicked, setForgotPasswordClicked] =
@@ -35,7 +37,16 @@ function LoginForm() {
 
       return () => clearTimeout(timer);
     }
-  }, [isInvalid, error]);
+
+    if (!isResetSuccessful) {
+      const timer2 = setTimeout(
+        () => setIsResetSuccessful(null),
+        3000,
+      );
+
+      return () => clearTimeout(timer2);
+    }
+  }, [isInvalid, error, isResetSuccessful]);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -54,13 +65,15 @@ function LoginForm() {
   async function handleReset(e) {
     e.preventDefault();
     setError('');
-    setIsInvalid(false);
+    // setIsInvalid(false);
+    setIsResetSuccessful(null);
 
     try {
       await resetPassword(email);
+      setIsResetSuccessful(true);
     } catch (error) {
       setError(error.message);
-      setIsInvalid(true);
+      setIsResetSuccessful(false);
       console.log(error);
     }
   }
@@ -114,8 +127,12 @@ function LoginForm() {
           {isInvalid && !forgotPasswordClicked && (
             <InvalidLoginCredentialsPopup />
           )}
-          <EmailResetSuccessPopup />
-          <EmailResetInvalidPopup />
+          {isResetSuccessful === true && (
+            <EmailResetSuccessPopup />
+          )}
+          {isResetSuccessful === false && (
+            <EmailResetInvalidPopup />
+          )}
           {!forgotPasswordClicked && (
             <>
               <label htmlFor="username" className="mb-2">
@@ -183,7 +200,10 @@ function LoginForm() {
               </label>
 
               <div
-                className={`fp-username-input  bg-brand-input shadow-shadow-db rounded-8 mb-8 flex flex-row gap-4 p-2.5`}
+                className={`fp-username-input  bg-brand-input shadow-shadow-db rounded-8 mb-8 flex flex-row gap-4 p-2.5 ${
+                  isResetSuccessful === false &&
+                  'border-brand-invalid border-4'
+                }`}
               >
                 <FiMail className="ml-2 h-auto w-8" />
 
