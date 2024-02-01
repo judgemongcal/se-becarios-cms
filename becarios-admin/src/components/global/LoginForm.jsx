@@ -20,6 +20,7 @@ function LoginForm() {
   const [password, setPassword] = useState('');
   const [isInvalid, setIsInvalid] = useState(false);
   const [error, setError] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
   const navigate = useNavigate();
 
@@ -134,7 +135,7 @@ function LoginForm() {
             >
               <FiKey className="ml-2 h-auto w-8" />
               <input
-                type="password"
+                type={showPassword ? `text` : `password`}
                 id="password"
                 name="password"
                 placeholder="Enter your password here"
@@ -143,7 +144,14 @@ function LoginForm() {
                   setPassword(e.target.value)
                 }
               />
-              <IoEyeSharp className="mr-2 h-auto w-8" />
+              <IoEyeSharp
+                className={`${
+                  showPassword ? `fill-brand-blue` : ''
+                } mr-2 h-auto w-8`}
+                onClick={() =>
+                  setShowPassword(!showPassword)
+                }
+              />
             </div>
             <p className="mb-2 cursor-pointer self-center text-gray-500">
               Forgot Password?
