@@ -28,6 +28,14 @@ function LoginBtn() {
   );
 }
 
+function ResetPasswordBtn() {
+  return (
+    <button className=" bg-brand-yellow hover:bg-brand-yellow-dark shadow-shadow-db transition-scale rounded-8 w-[100%] py-4 text-[1.15rem] font-bold text-[#FFFFFF] duration-100 ease-in hover:scale-105">
+      Reset Password
+    </button>
+  );
+}
+
 function LogoutBtn() {
   const navigate = useNavigate();
   const { logOut } = UserAuth();
@@ -554,6 +562,7 @@ function ArchivedListItemBtn() {
 
 export {
   LoginBtn,
+  ResetPasswordBtn,
   ViewAllBtn,
   ApproveModalBtn,
   RejectModalBtn,
