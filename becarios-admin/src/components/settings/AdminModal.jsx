@@ -4,7 +4,8 @@ import {
   RemoveAdminModalBtn,
   SelectAdminRoleBtn,
 } from '../global/Button';
-import { useSettingsContext } from '../../hooks/useSettingsContext';
+
+import { useAdminContext } from '../../hooks/useAdminContext';
 
 function AdminModal() {
   const {
@@ -15,7 +16,7 @@ function AdminModal() {
     setAdminRole,
     setAdminEmail,
     setAdminPassword,
-  } = useSettingsContext();
+  } = useAdminContext();
 
   return (
     <div className="modal-bg bg-brand-light md:bg-modal-bg fixed top-0 z-[1000] flex h-[100%] w-[100%] items-start justify-center overflow-scroll">
@@ -45,6 +46,9 @@ function AdminModal() {
             name="first-name"
             placeholder="Enter first name"
             className="rounded-8 shadow-shadow-db mb-4 p-2"
+            onChange={(e) =>
+              setAdminFirstName(e.target.value)
+            }
             required
           ></input>
 
