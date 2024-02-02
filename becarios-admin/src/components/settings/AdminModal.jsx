@@ -4,8 +4,19 @@ import {
   RemoveAdminModalBtn,
   SelectAdminRoleBtn,
 } from '../global/Button';
+import { useSettingsContext } from '../../hooks/useSettingsContext';
 
 function AdminModal() {
+  const {
+    setAdminFirstName,
+    setAdminLastName,
+    setAdminContactNum,
+    setAdminImageSrc,
+    setAdminRole,
+    setAdminEmail,
+    setAdminPassword,
+  } = useSettingsContext();
+
   return (
     <div className="modal-bg bg-brand-light md:bg-modal-bg fixed top-0 z-[1000] flex h-[100%] w-[100%] items-start justify-center overflow-scroll">
       <div className="modal-container md:bg-brand-light rounded-10 mx-auto flex w-[100%] flex-col justify-center px-[2rem]  py-[2.25rem] text-center md:my-[3rem]  md:w-[50%] xl:w-[50%] 2xl:w-[700px]">
