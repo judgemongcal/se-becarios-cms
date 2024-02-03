@@ -19,6 +19,7 @@ import { useSignOutContext } from '../../hooks/useSignOutContext';
 import { useManageContentContext } from '../../hooks/useManageContentContext';
 import { UserAuth } from '../../hooks/useAuthContext';
 import { useUserInfoContext } from '../../hooks/useUserInfoContext';
+import { useAdminContext } from '../../hooks/useAdminContext';
 
 function LoginBtn() {
   return (
@@ -275,12 +276,30 @@ function AddAdminModalBtn() {
 }
 
 function SelectAdminRoleBtn() {
+  const { setAdminRole } = useAdminContext();
+
+  function handleAdminRoleClick(e) {
+    e.preventDefault();
+    setAdminRole('Admin');
+  }
+
+  function handleSuperAdminRoleClick(e) {
+    e.preventDefault();
+    setAdminRole('Super Admin');
+  }
+
   return (
     <div className="flex justify-between gap-4">
-      <button className="shadow-shadow-db rounded-8 hover:bg-brand-blue w-full bg-white p-3 duration-300">
+      <button
+        className="shadow-shadow-db rounded-8 hover:bg-brand-blue w-full bg-white p-3 duration-300"
+        onClick={(e) => handleAdminRoleClick(e)}
+      >
         Administrator
       </button>
-      <button className="shadow-shadow-db 8 rounded-8 hover:bg-brand-yellow w-full bg-white p-3 duration-300">
+      <button
+        className="shadow-shadow-db 8 rounded-8 hover:bg-brand-yellow w-full bg-white p-3 duration-300"
+        onClick={(e) => handleSuperAdminRoleClick(e)}
+      >
         Super Administrator
       </button>
     </div>

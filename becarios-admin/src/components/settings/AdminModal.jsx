@@ -13,7 +13,6 @@ function AdminModal() {
     setAdminLastName,
     setAdminContactNum,
     setAdminImageSrc,
-    setAdminRole,
     setAdminEmail,
     setAdminPassword,
   } = useAdminContext();
