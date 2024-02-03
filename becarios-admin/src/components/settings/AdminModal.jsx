@@ -6,10 +6,12 @@ import {
 } from '../global/Button';
 
 import { useAdminContext } from '../../hooks/useAdminContext';
-import { FaCheck } from 'react-icons/fa6';
-import { useEffect } from 'react';
+import { FaCheck, FaEye } from 'react-icons/fa6';
+import { useEffect, useState } from 'react';
 
 function AdminModal() {
+  const [showPassword, setShowPassword] = useState(false);
+
   const {
     setAdminFirstName,
     setAdminLastName,
@@ -48,17 +50,19 @@ function AdminModal() {
       );
 
     if (
-      adminPassword.length != 0 &&
+      adminPassword.length > 0 &&
       !hasNumber &&
       !hasSpecialCharacter &&
       charCount < 8
     ) {
       setIsPasswordInvalid(true);
+    } else if (!hasNumber && !hasSpecialCharacter) {
+      setIsPasswordInvalid(true);
+    } else if (!hasNumber || !hasSpecialCharacter) {
+      setIsPasswordInvalid(true);
     } else {
       setIsPasswordInvalid(false);
     }
-
-    console.log(hasSpecialCharacter);
   }, [adminPassword, setIsPasswordInvalid]);
 
   function handleAdminImageSrcChange(e) {
@@ -264,20 +268,31 @@ function AdminModal() {
             Password{' '}
             <span className="text-brand-red">*</span>
           </label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            placeholder="Enter password"
-            className={`rounded-8 shadow-shadow-db p-2 ${
+          <div
+            className={`rounded-8 shadow-shadow-db flex flex-row items-center justify-between gap-2 bg-white p-2 ${
               isPasswordInvalid &&
+              adminPassword.length > 1 &&
               'border-brand-invalid border-4'
             }`}
-            required
-            onChange={(e) =>
-              setAdminPassword(e.target.value)
-            }
-          ></input>
+          >
+            <input
+              type={showPassword ? 'text' : 'password'}
+              id="password"
+              name="password"
+              placeholder="Enter password"
+              className="w-full"
+              required
+              onChange={(e) =>
+                setAdminPassword(e.target.value)
+              }
+            ></input>
+            <FaEye
+              className={`h-auto w-[20px] ${
+                showPassword && 'fill-brand-blue'
+              }`}
+              onClick={() => setShowPassword(!showPassword)}
+            />
+          </div>
           <div className="password-reqs mb-[2rem] flex flex-col justify-center gap-0">
             <div
               className={`chars flex flex-row items-center gap-1 ${

@@ -10,7 +10,7 @@ import { LuPencil } from 'react-icons/lu';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { FaGear } from 'react-icons/fa6';
 import { MdOutlineRemoveRedEye } from 'react-icons/md';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { FiUpload } from 'react-icons/fi';
 import { useCreateArticleContext } from '../../hooks/useCreateArticleContext';
 import TextEditor from '../create-article/TextEditor';
@@ -277,31 +277,34 @@ function AddAdminModalBtn() {
 
 function SelectAdminRoleBtn() {
   const { adminRole, setAdminRole } = useAdminContext();
+  const [isSuperAdmin, setIsSuperAdmin] = useState(null);
 
   function handleAdminRoleClick(e) {
     e.preventDefault();
     setAdminRole('Admin');
+    setIsSuperAdmin(false);
   }
 
   function handleSuperAdminRoleClick(e) {
     e.preventDefault();
     setAdminRole('Super Admin');
+    setIsSuperAdmin(true);
   }
 
   return (
     <div className="flex justify-between gap-4">
       <button
-        className={`shadow-shadow-db rounded-8 hover:bg-brand-blue w-full bg-white p-3 duration-300 ${
-          adminRole === 'Admin' && 'bg-brand-blue'
+        className={`shadow-shadow-db rounded-8 hover:bg-brand-blue w-full  p-3 duration-300 ${
+          isSuperAdmin ? 'bg-white' : 'bg-brand-blue'
         }`}
         onClick={(e) => handleAdminRoleClick(e)}
       >
         Administrator
       </button>
       <button
-        className={`shadow-shadow-db 8 rounded-8 hover:bg-brand-yellow w-full bg-white p-3 duration-300 ${
-          adminRole === 'Super Admin' && 'bg-brand-yellow'
-        }`}
+        className={`shadow-shadow-db rounded-8 hover:bg-brand-yellow-dark  w-full  p-3 duration-300 ${
+          isSuperAdmin ? 'bg-brand-yellow' : 'bg-white'
+        } `}
         onClick={(e) => handleSuperAdminRoleClick(e)}
       >
         Super Administrator
