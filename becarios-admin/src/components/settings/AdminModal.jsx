@@ -7,6 +7,7 @@ import {
 
 import { useAdminContext } from '../../hooks/useAdminContext';
 import { FaCheck } from 'react-icons/fa6';
+import { useEffect } from 'react';
 
 function AdminModal() {
   const {
@@ -15,9 +16,26 @@ function AdminModal() {
     setAdminContactNum,
     setAdminImageSrc,
     adminImageSrc,
+    adminEmail,
     setAdminEmail,
     setAdminPassword,
+    isEmailInvalid,
+    setIsEmailInvalid,
+    isPasswordInvalid,
+    setIsPasswordInvalid,
   } = useAdminContext();
+
+  useEffect(() => {
+    // This effect will run whenever adminEmail changes
+    if (
+      adminEmail.includes('@') &&
+      !adminEmail.endsWith('ust.edu.ph')
+    ) {
+      setIsEmailInvalid(true);
+    } else {
+      setIsEmailInvalid(false);
+    }
+  }, [adminEmail, setIsEmailInvalid]);
 
   function handleAdminImageSrcChange(e) {
     console.log(e.target.value);
@@ -188,10 +206,30 @@ function AdminModal() {
             id="ust-email"
             name="ust-email"
             placeholder="Enter UST College Email"
-            className="rounded-8 shadow-shadow-db mb-4 p-2"
+            className={`rounded-8 shadow-shadow-db p-2 ${
+              isEmailInvalid &&
+              'border-brand-invalid border-4'
+            }`}
             required
-            onChange={(e) => setAdminEmail(e.target.value)}
+            onChange={(e) =>
+              setAdminEmail(e.target.value.toLowerCase())
+            }
           ></input>
+          <div className="password-reqs mb-2 flex flex-col justify-center gap-0">
+            <div
+              className={`spec-chars flex flex-row items-center gap-1 ${
+                isEmailInvalid != null &&
+                adminEmail.includes('@ust.edu.ph')
+                  ? 'text-brand-green'
+                  : 'opacity-50'
+              }`}
+            >
+              <FaCheck />
+              <p>
+                Must be your UST College email (@ust.edu.ph)
+              </p>
+            </div>
+          </div>
 
           {/* PASSWORD */}
           <label
@@ -207,7 +245,10 @@ function AdminModal() {
             id="password"
             name="password"
             placeholder="Enter password"
-            className="rounded-8 shadow-shadow-db p-2"
+            className={`rounded-8 shadow-shadow-db p-2 ${
+              isPasswordInvalid &&
+              'border-brand-invalid border-4'
+            }`}
             required
             onChange={(e) =>
               setAdminPassword(e.target.value)
