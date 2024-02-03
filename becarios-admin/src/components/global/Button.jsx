@@ -276,7 +276,7 @@ function AddAdminModalBtn() {
 }
 
 function SelectAdminRoleBtn() {
-  const { setAdminRole } = useAdminContext();
+  const { adminRole, setAdminRole } = useAdminContext();
 
   function handleAdminRoleClick(e) {
     e.preventDefault();
@@ -291,13 +291,17 @@ function SelectAdminRoleBtn() {
   return (
     <div className="flex justify-between gap-4">
       <button
-        className="shadow-shadow-db rounded-8 hover:bg-brand-blue w-full bg-white p-3 duration-300"
+        className={`shadow-shadow-db rounded-8 hover:bg-brand-blue w-full bg-white p-3 duration-300 ${
+          adminRole === 'Admin' && 'bg-brand-blue'
+        }`}
         onClick={(e) => handleAdminRoleClick(e)}
       >
         Administrator
       </button>
       <button
-        className="shadow-shadow-db 8 rounded-8 hover:bg-brand-yellow w-full bg-white p-3 duration-300"
+        className={`shadow-shadow-db 8 rounded-8 hover:bg-brand-yellow w-full bg-white p-3 duration-300 ${
+          adminRole === 'Super Admin' && 'bg-brand-yellow'
+        }`}
         onClick={(e) => handleSuperAdminRoleClick(e)}
       >
         Super Administrator
