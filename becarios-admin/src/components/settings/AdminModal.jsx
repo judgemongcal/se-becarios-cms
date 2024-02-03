@@ -68,6 +68,9 @@ function AdminModal() {
             placeholder="Enter last name"
             className="rounded-8 shadow-shadow-db mb-4 p-2"
             required
+            onChange={(e) =>
+              setAdminLastName(e.target.value)
+            }
           ></input>
 
           {/* CONTACT NUMBER */}
@@ -87,6 +90,9 @@ function AdminModal() {
             // Add number format validation
             className="rounded-8 shadow-shadow-db mb-4 p-2"
             required
+            onChange={(e) =>
+              setAdminContactNum(e.target.value)
+            }
           ></input>
 
           {/* DISPLAY IMAGE */}
