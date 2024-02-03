@@ -127,6 +127,9 @@ function AdminModal() {
                   type="file"
                   className="hidden"
                   accept="image/*"
+                  onChange={(e) =>
+                    setAdminImageSrc(e.target.value)
+                  }
                 />
               </label>
             </div>
@@ -169,6 +172,7 @@ function AdminModal() {
             placeholder="Enter UST College Email"
             className="rounded-8 shadow-shadow-db mb-4 p-2"
             required
+            onChange={(e) => setAdminEmail(e.target.value)}
           ></input>
 
           {/* PASSWORD */}
@@ -187,6 +191,9 @@ function AdminModal() {
             placeholder="Enter password"
             className="rounded-8 shadow-shadow-db mb-[3rem] p-2"
             required
+            onChange={(e) =>
+              setAdminPassword(e.target.value)
+            }
           ></input>
 
           <AddAdminModalBtn />
