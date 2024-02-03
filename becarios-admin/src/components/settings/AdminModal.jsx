@@ -6,6 +6,7 @@ import {
 } from '../global/Button';
 
 import { useAdminContext } from '../../hooks/useAdminContext';
+import { FaCheck } from 'react-icons/fa6';
 
 function AdminModal() {
   const {
@@ -153,7 +154,7 @@ function AdminModal() {
                   : './src/assets/sample_admin.png'
               }`}
               alt="admin image"
-              className="shadow-shadow-db  border-brand-yellow h-[120px] w-[120px] rounded-[100%] border-4 md:h-[150px] md:w-[150px]"
+              className="shadow-shadow-db  border-brand-blue h-[120px] w-[120px] rounded-[100%] border-8 md:h-[150px] md:w-[150px]"
             />
           </div>
 
@@ -206,12 +207,29 @@ function AdminModal() {
             id="password"
             name="password"
             placeholder="Enter password"
-            className="rounded-8 shadow-shadow-db mb-[3rem] p-2"
+            className="rounded-8 shadow-shadow-db p-2"
             required
             onChange={(e) =>
               setAdminPassword(e.target.value)
             }
           ></input>
+          <div className="password-reqs mb-[2rem] flex flex-col justify-center gap-0">
+            <div
+              className={`chars flex flex-row items-center gap-1 opacity-50`}
+            >
+              <FaCheck />
+              <p>Must have at least 8 characters</p>
+            </div>
+            <div
+              className={`spec-chars flex flex-row items-center gap-1 opacity-50`}
+            >
+              <FaCheck />
+              <p>
+                Must have contain a number and a special
+                character
+              </p>
+            </div>
+          </div>
 
           <AddAdminModalBtn />
         </form>
