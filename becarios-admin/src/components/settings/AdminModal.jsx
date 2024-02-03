@@ -13,9 +13,23 @@ function AdminModal() {
     setAdminLastName,
     setAdminContactNum,
     setAdminImageSrc,
+    adminImageSrc,
     setAdminEmail,
     setAdminPassword,
   } = useAdminContext();
+
+  function handleAdminImageSrcChange(e) {
+    console.log(e.target.value);
+    const file = e.target.files[0];
+    if (file) {
+      setAdminImageSrc(file.name);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setAdminImageSrc(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  }
 
   return (
     <div className="modal-bg bg-brand-light md:bg-modal-bg fixed top-0 z-[1000] flex h-[100%] w-[100%] items-start justify-center overflow-scroll">
@@ -127,15 +141,19 @@ function AdminModal() {
                   className="hidden"
                   accept="image/*"
                   onChange={(e) =>
-                    setAdminImageSrc(e.target.value)
+                    handleAdminImageSrcChange(e)
                   }
                 />
               </label>
             </div>
             <img
-              src="./src/assets/sample_admin.png"
+              src={`${
+                adminImageSrc
+                  ? adminImageSrc
+                  : './src/assets/sample_admin.png'
+              }`}
               alt="admin image"
-              className="shadow-shadow-db  border-brand-yellow h-[120px] w-auto rounded-[100px] border-4 md:h-36"
+              className="shadow-shadow-db  border-brand-yellow h-[120px] w-[120px] rounded-[100%] border-4 md:h-[150px] md:w-[150px]"
             />
           </div>
 

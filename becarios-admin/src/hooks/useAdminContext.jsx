@@ -20,6 +20,7 @@ export function AdminProvider({ children }) {
     setAdminFirstName,
     setAdminLastName,
     setAdminContactNum,
+    adminImageSrc,
     setAdminImageSrc,
     setAdminRole,
     setAdminEmail,
