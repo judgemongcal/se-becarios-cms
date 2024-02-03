@@ -18,6 +18,7 @@ function AdminModal() {
     adminImageSrc,
     adminEmail,
     setAdminEmail,
+    adminPassword,
     setAdminPassword,
     isEmailInvalid,
     setIsEmailInvalid,
@@ -25,8 +26,8 @@ function AdminModal() {
     setIsPasswordInvalid,
   } = useAdminContext();
 
+  // Email Validation
   useEffect(() => {
-    // This effect will run whenever adminEmail changes
     if (
       adminEmail.includes('@') &&
       !adminEmail.endsWith('ust.edu.ph')
@@ -36,6 +37,29 @@ function AdminModal() {
       setIsEmailInvalid(false);
     }
   }, [adminEmail, setIsEmailInvalid]);
+
+  // Password Validation
+  useEffect(() => {
+    const charCount = adminPassword.length;
+    const hasNumber = /\d/.test(adminPassword);
+    const hasSpecialCharacter =
+      /[`!@#$%^&*()_+\-=[{};':"\\|,.<>/?~]/.test(
+        adminPassword,
+      );
+
+    if (
+      adminPassword.length != 0 &&
+      !hasNumber &&
+      !hasSpecialCharacter &&
+      charCount < 8
+    ) {
+      setIsPasswordInvalid(true);
+    } else {
+      setIsPasswordInvalid(false);
+    }
+
+    console.log(hasSpecialCharacter);
+  }, [adminPassword, setIsPasswordInvalid]);
 
   function handleAdminImageSrcChange(e) {
     console.log(e.target.value);
@@ -256,13 +280,23 @@ function AdminModal() {
           ></input>
           <div className="password-reqs mb-[2rem] flex flex-col justify-center gap-0">
             <div
-              className={`chars flex flex-row items-center gap-1 opacity-50`}
+              className={`chars flex flex-row items-center gap-1 ${
+                adminPassword.length >= 8
+                  ? 'text-brand-green'
+                  : 'opacity-50'
+              }`}
             >
               <FaCheck />
               <p>Must have at least 8 characters</p>
             </div>
             <div
-              className={`spec-chars flex flex-row items-center gap-1 opacity-50`}
+              className={`spec-chars flex flex-row items-center gap-1 ${
+                isPasswordInvalid === false &&
+                isPasswordInvalid != null &&
+                adminPassword.length > 0
+                  ? 'text-brand-green'
+                  : 'opacity-50'
+              }`}
             >
               <FaCheck />
               <p>

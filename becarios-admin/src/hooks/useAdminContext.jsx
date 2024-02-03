@@ -17,8 +17,8 @@ export function AdminProvider({ children }) {
   const [adminPassword, setAdminPassword] = useState('');
   const [isEmailInvalid, setIsEmailInvalid] =
     useState(null);
-  const [isPasswordInvalid, setisPasswordInvalid] =
-    useState(false);
+  const [isPasswordInvalid, setIsPasswordInvalid] =
+    useState(null);
 
   const contextValue = {
     setAdminFirstName,
@@ -29,11 +29,12 @@ export function AdminProvider({ children }) {
     setAdminRole,
     adminEmail,
     setAdminEmail,
+    adminPassword,
     setAdminPassword,
     isEmailInvalid,
     setIsEmailInvalid,
     isPasswordInvalid,
-    setisPasswordInvalid,
+    setIsPasswordInvalid,
   };
 
   return (
