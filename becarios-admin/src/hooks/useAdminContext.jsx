@@ -40,7 +40,9 @@ export function AdminProvider({ children }) {
   const contextValue = {
     adminFirstName,
     setAdminFirstName,
+    adminLastName,
     setAdminLastName,
+    adminContactNum,
     setAdminContactNum,
     adminImageSrc,
     setAdminImageSrc,

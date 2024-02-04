@@ -15,6 +15,7 @@ import {
   RemoveAdminSuccessPopup,
 } from '../components/global/Popup';
 import { useSignOutContext } from '../hooks/useSignOutContext';
+import { useEffect } from 'react';
 
 function Settings() {
   const {
@@ -28,6 +29,17 @@ function Settings() {
 
   const { isSignOutClicked } = useSignOutContext();
 
+  useEffect(() => {
+    if (isAddAdminSuccessful) {
+      const timer = setTimeout(
+        () =>
+          setIsAddAdminSuccessful(!isAddAdminSuccessful),
+        3000,
+      );
+
+      return () => clearTimeout(timer);
+    }
+  }, [isAddAdminSuccessful, setIsAddAdminSuccessful]);
   return (
     <div className="flex flex-col justify-start lg:flex-row">
       <div className="navs">
@@ -40,7 +52,7 @@ function Settings() {
         {isRemoveSuccessful && <RemoveAdminSuccessPopup />}
 
         <div className="heading">
-          <AddAdminSuccessPopup />
+          {isAddAdminSuccessful && <AddAdminSuccessPopup />}
           <h2 className="pb-2 text-left text-[1.25rem] font-medium md:text-[1.5rem]">
             Manage Accounts
           </h2>
