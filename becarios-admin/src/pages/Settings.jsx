@@ -10,7 +10,10 @@ import {
   RemoveAdminModal,
   SignOutModal,
 } from '../components/global/Modal';
-import { RemoveAdminSuccessPopup } from '../components/global/Popup';
+import {
+  AddAdminSuccessPopup,
+  RemoveAdminSuccessPopup,
+} from '../components/global/Popup';
 import { useSignOutContext } from '../hooks/useSignOutContext';
 
 function Settings() {
@@ -19,6 +22,8 @@ function Settings() {
     isRemoveAdminBtnClicked,
     isRemoveSuccessful,
     isAddAdminClicked,
+    isAddAdminSuccessful,
+    setIsAddAdminSuccessful,
   } = useSettingsContext();
 
   const { isSignOutClicked } = useSignOutContext();
@@ -35,6 +40,7 @@ function Settings() {
         {isRemoveSuccessful && <RemoveAdminSuccessPopup />}
 
         <div className="heading">
+          <AddAdminSuccessPopup />
           <h2 className="pb-2 text-left text-[1.25rem] font-medium md:text-[1.5rem]">
             Manage Accounts
           </h2>
