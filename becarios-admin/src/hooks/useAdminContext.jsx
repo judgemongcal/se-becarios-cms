@@ -21,11 +21,13 @@ export function AdminProvider({ children }) {
     useState(null);
 
   const contextValue = {
+    adminFirstName,
     setAdminFirstName,
     setAdminLastName,
     setAdminContactNum,
     adminImageSrc,
     setAdminImageSrc,
+    adminRole,
     setAdminRole,
     adminEmail,
     setAdminEmail,
