@@ -20,6 +20,7 @@ import { useManageContentContext } from '../../hooks/useManageContentContext';
 import { UserAuth } from '../../hooks/useAuthContext';
 import { useUserInfoContext } from '../../hooks/useUserInfoContext';
 import { useAdminContext } from '../../hooks/useAdminContext';
+import { createAdminAuth } from '../../server/API/SettingsAPI';
 
 function LoginBtn() {
   return (
@@ -259,9 +260,12 @@ function AddAdminModalBtn() {
     setIsAddAdminClicked,
   } = useSettingsContext();
 
+  const { resetAdminFields } = useAdminContext();
+
   function handleDiscard(e) {
     e.preventDefault();
     setIsAddAdminBtnClicked(!isAddAdminBtnClicked);
+    resetAdminFields();
   }
 
   function handleAddAdmin(e) {
@@ -296,16 +300,25 @@ function ConfirmAddAdminModalBtn() {
     setIsAddAdminClicked,
   } = useSettingsContext();
 
+  const { adminEmail, adminPassword, resetAdminFields } =
+    useAdminContext();
+
   function handleBack(e) {
     e.preventDefault();
+    resetAdminFields();
     setIsAddAdminBtnClicked(!isAddAdminBtnClicked);
     setIsAddAdminClicked(!isAddAdminClicked);
   }
 
   function handleAdd(e) {
     e.preventDefault();
-    setIsAddAdminBtnClicked(false);
-    setIsAddAdminClicked(false);
+    try {
+      createAdminAuth(adminEmail, adminPassword);
+      setIsAddAdminBtnClicked(false);
+      setIsAddAdminClicked(false);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (

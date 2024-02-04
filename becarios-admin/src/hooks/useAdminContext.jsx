@@ -20,6 +20,23 @@ export function AdminProvider({ children }) {
   const [isPasswordInvalid, setIsPasswordInvalid] =
     useState(null);
 
+  function resetAdminFields() {
+    setAdminFirstName('');
+    setAdminLastName('');
+    setAdminContactNum('');
+    setAdminImageSrc('');
+    setAdminRole('');
+    setAdminEmail('');
+    setAdminPassword('');
+    setIsEmailInvalid(null);
+    setIsPasswordInvalid(null);
+  }
+
+  function resetValidation() {
+    setIsEmailInvalid(null);
+    setIsPasswordInvalid(null);
+  }
+
   const contextValue = {
     adminFirstName,
     setAdminFirstName,
@@ -37,6 +54,8 @@ export function AdminProvider({ children }) {
     setIsEmailInvalid,
     isPasswordInvalid,
     setIsPasswordInvalid,
+    resetAdminFields,
+    resetValidation,
   };
 
   return (
