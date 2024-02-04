@@ -288,6 +288,44 @@ function AddAdminModalBtn() {
   );
 }
 
+function ConfirmAddAdminModalBtn() {
+  const {
+    isAddAdminBtnClicked,
+    setIsAddAdminBtnClicked,
+    isAddAdminClicked,
+    setIsAddAdminClicked,
+  } = useSettingsContext();
+
+  function handleBack(e) {
+    e.preventDefault();
+    setIsAddAdminBtnClicked(!isAddAdminBtnClicked);
+    setIsAddAdminClicked(!isAddAdminClicked);
+  }
+
+  function handleAdd(e) {
+    e.preventDefault();
+    setIsAddAdminBtnClicked(false);
+    setIsAddAdminClicked(false);
+  }
+
+  return (
+    <div className="flex flex-row justify-around gap-3 py-2">
+      <button
+        className="bg-brand-blue shadow-shadow-db rounded-10 hover:bg-brand-blue-dark  w-full py-3 text-[1.05rem] font-semibold text-[#FFFFFF] duration-100"
+        onClick={(e) => handleAdd(e)}
+      >
+        Confirm
+      </button>
+      <button
+        className="bg-brand-red shadow-shadow-db rounded-10 hover:bg-brand-red-dark w-full py-3 text-[1.05rem] font-semibold text-[#FFFFFF] duration-100"
+        onClick={(e) => handleBack(e)}
+      >
+        Go Back
+      </button>
+    </div>
+  );
+}
+
 function SelectAdminRoleBtn() {
   const { adminRole, setAdminRole } = useAdminContext();
   const [isSuperAdmin, setIsSuperAdmin] = useState(null);
@@ -610,6 +648,7 @@ export {
   PostReqSuccessModalBtn,
   ProceedModalBtn,
   AddAdminModalBtn,
+  ConfirmAddAdminModalBtn,
   SelectAdminRoleBtn,
   EditAdminModalBtn,
   RemoveAdminModalBtn,
