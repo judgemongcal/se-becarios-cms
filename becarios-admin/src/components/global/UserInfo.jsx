@@ -11,8 +11,8 @@ function UserInfo() {
         className="border-brand-blue h-auto w-[100px] rounded-[100%] border-[5px]"
       />
       <h1>
-        {userInfo && userInfo.first_name
-          ? `${userInfo.first_name} ${userInfo.last_name}`
+        {userInfo
+          ? `${userInfo.firstName} ${userInfo.lastName}`
           : 'Loading...'}
       </h1>
     </div>

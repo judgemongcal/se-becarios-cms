@@ -19,6 +19,8 @@ export function SettingsProvider({ children }) {
   ] = useState();
   const [isRemoveSuccessful, setIsRemoveSuccessful] =
     useState(false);
+  const [isAddAdminClicked, setIsAddAdminClicked] =
+    useState(false);
 
   const contextValue = {
     isSAGearClicked,
@@ -31,6 +33,8 @@ export function SettingsProvider({ children }) {
     setIsRemoveAdminBtnClicked,
     isRemoveSuccessful,
     setIsRemoveSuccessful,
+    isAddAdminClicked,
+    setIsAddAdminClicked,
   };
 
   return (

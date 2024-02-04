@@ -6,6 +6,7 @@ import SuperAdminList from '../components/settings/SuperAdminList';
 import AdminModal from '../components/settings/AdminModal';
 import { useSettingsContext } from '../hooks/useSettingsContext';
 import {
+  AddAdminModal,
   RemoveAdminModal,
   SignOutModal,
 } from '../components/global/Modal';
@@ -17,6 +18,7 @@ function Settings() {
     isAddAdminBtnClicked,
     isRemoveAdminBtnClicked,
     isRemoveSuccessful,
+    isAddAdminClicked,
   } = useSettingsContext();
 
   const { isSignOutClicked } = useSignOutContext();
@@ -45,6 +47,7 @@ function Settings() {
         </div>
       </div>
       {isAddAdminBtnClicked && <AdminModal />}
+      {isAddAdminClicked && <AddAdminModal />}
       {isRemoveAdminBtnClicked && <RemoveAdminModal />}
       {isSignOutClicked && <SignOutModal />}
     </div>

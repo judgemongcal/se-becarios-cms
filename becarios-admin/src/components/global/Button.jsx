@@ -252,17 +252,30 @@ function ProceedModalBtn() {
 }
 
 function AddAdminModalBtn() {
-  const { isAddAdminBtnClicked, setIsAddAdminBtnClicked } =
-    useSettingsContext();
+  const {
+    isAddAdminBtnClicked,
+    setIsAddAdminBtnClicked,
+    isAddAdminClicked,
+    setIsAddAdminClicked,
+  } = useSettingsContext();
 
   function handleDiscard(e) {
     e.preventDefault();
     setIsAddAdminBtnClicked(!isAddAdminBtnClicked);
   }
 
+  function handleAddAdmin(e) {
+    e.preventDefault();
+    setIsAddAdminBtnClicked(!isAddAdminBtnClicked);
+    setIsAddAdminClicked(!isAddAdminClicked);
+  }
+
   return (
     <div className="flex flex-row justify-around gap-3 py-2">
-      <button className="bg-brand-blue shadow-shadow-db rounded-10 hover:bg-brand-blue-dark  w-full py-3 text-[1.05rem] font-semibold text-[#FFFFFF] duration-100">
+      <button
+        className="bg-brand-blue shadow-shadow-db rounded-10 hover:bg-brand-blue-dark  w-full py-3 text-[1.05rem] font-semibold text-[#FFFFFF] duration-100"
+        onClick={(e) => handleAddAdmin(e)}
+      >
         Add Admin
       </button>
       <button
