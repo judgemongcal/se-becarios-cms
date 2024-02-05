@@ -301,6 +301,8 @@ function ConfirmAddAdminModalBtn() {
     setIsAddAdminBtnClicked,
     isAddAdminClicked,
     setIsAddAdminClicked,
+    isAddAdminSuccessful,
+    setIsAddAdminSuccessful,
   } = useSettingsContext();
 
   const {
@@ -337,6 +339,7 @@ function ConfirmAddAdminModalBtn() {
       );
       setIsAddAdminBtnClicked(false);
       setIsAddAdminClicked(false);
+      setIsAddAdminSuccessful(!isAddAdminSuccessful);
       resetAdminFields();
     } catch (error) {
       console.log(error);

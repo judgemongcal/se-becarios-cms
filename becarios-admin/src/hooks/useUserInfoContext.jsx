@@ -7,6 +7,7 @@ import {
 import { UserAuth } from './useAuthContext';
 import { getUserInfo } from '../server/firebase';
 import { useSignOutContext } from './useSignOutContext';
+import { useSettingsContext } from './useSettingsContext';
 
 export const UserInfoContext = createContext();
 
@@ -38,7 +39,7 @@ export function UserInfoProvider({ children }) {
       }
     }
     fetchUser();
-  }, []);
+  }, [user]);
 
   const contextValue = {
     userInfo,

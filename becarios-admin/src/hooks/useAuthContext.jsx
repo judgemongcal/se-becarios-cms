@@ -9,6 +9,8 @@ import {
   sendPasswordResetEmail,
   signOut,
   onAuthStateChanged,
+  setPersistence,
+  browserSessionPersistence,
 } from 'firebase/auth';
 import { auth } from '../server/firebase';
 import { useSignOutContext } from './useSignOutContext';
@@ -20,8 +22,7 @@ export function UserAuth() {
 }
 
 export function AuthContextProvider({ children }) {
-  const [user, setUser] = useState(null);
-  const { isSignOutClicked } = useSignOutContext();
+  const [user, setUser] = useState({});
 
   //   This useEffect executes the necessary updates on the currentUser whenever there are changes on login
   //   this has no dependencies so it runs on mount
