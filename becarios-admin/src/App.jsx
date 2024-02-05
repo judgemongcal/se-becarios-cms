@@ -28,11 +28,9 @@ import { AdminProvider } from './hooks/useAdminContext';
 function App() {
   return (
     <BrowserRouter>
-      <AuthContextProvider
-        value={AuthContextProvider.contextValue}
-      >
-        <SignOutProvider
-          value={SignOutProvider.contextValue}
+      <SignOutProvider value={SignOutProvider.contextValue}>
+        <AuthContextProvider
+          value={AuthContextProvider.contextValue}
         >
           <UserInfoProvider
             value={UserInfoProvider.contextValue}
@@ -112,8 +110,8 @@ function App() {
               <Route path="*" element={<PageNotFound />} />
             </Routes>
           </UserInfoProvider>
-        </SignOutProvider>
-      </AuthContextProvider>
+        </AuthContextProvider>
+      </SignOutProvider>
     </BrowserRouter>
     // <>
     //   <NavBarMobile />

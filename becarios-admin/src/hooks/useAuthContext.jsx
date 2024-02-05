@@ -11,6 +11,7 @@ import {
   onAuthStateChanged,
 } from 'firebase/auth';
 import { auth } from '../server/firebase';
+import { useSignOutContext } from './useSignOutContext';
 
 const AuthContext = createContext();
 
@@ -20,6 +21,7 @@ export function UserAuth() {
 
 export function AuthContextProvider({ children }) {
   const [user, setUser] = useState(null);
+  const { isSignOutClicked } = useSignOutContext();
 
   //   This useEffect executes the necessary updates on the currentUser whenever there are changes on login
   //   this has no dependencies so it runs on mount
@@ -34,6 +36,7 @@ export function AuthContextProvider({ children }) {
     return () => {
       unsubscribe();
     };
+    // }
   }, []);
 
   function signIn(email, password) {

@@ -38,7 +38,7 @@ export function UserInfoProvider({ children }) {
       }
     }
     fetchUser();
-  }, [user]);
+  }, []);
 
   const contextValue = {
     userInfo,
