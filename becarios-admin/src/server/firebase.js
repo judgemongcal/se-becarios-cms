@@ -1,7 +1,11 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
+<<<<<<< HEAD
 
 import admin from 'firebase-admin';
+=======
+// import admin from 'firebase-admin';
+>>>>>>> parent of f65aaa7 (installed fs package)
 import { getAuth } from 'firebase/auth';
 import {
   getFirestore,
@@ -9,6 +13,11 @@ import {
   getDocs,
 } from 'firebase/firestore';
 
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: 'AIzaSyAlIS7nmCaYzvKKg818jGvQqJWjaBLGR3U',
   authDomain: 'project-best-cms.firebaseapp.com',
@@ -21,11 +30,17 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+<<<<<<< HEAD
 
 export const auth = getAuth(app);
 export default app;
 
 export const adminAuth = admin.auth();
+=======
+export const auth = getAuth(app);
+export default app;
+
+>>>>>>> parent of f65aaa7 (installed fs package)
 // Initialize Firestore Services
 export const db = getFirestore();
 
