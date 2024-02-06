@@ -4,7 +4,7 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { useAdminContext } from '../../hooks/useAdminContext';
 
 export async function createAdminAuth(email, password) {
-  await createUserWithEmailAndPassword(
+  return createUserWithEmailAndPassword(
     auth,
     email,
     password,

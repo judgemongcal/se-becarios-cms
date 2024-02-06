@@ -1,6 +1,5 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
-// import admin from 'firebase-admin';
 import { getAuth } from 'firebase/auth';
 import {
   getFirestore,
@@ -30,9 +29,6 @@ export default app;
 
 // Initialize Firestore Services
 export const db = getFirestore();
-
-// Access the database
-// export const dbAdmin = admin.firestore();
 
 export async function getUserInfo(email, user) {
   const colRef = collection(db, 'admin_credentials'); // Collection Ref
