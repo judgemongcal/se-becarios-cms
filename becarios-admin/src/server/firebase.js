@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
-
+import * as fs from 'fs';
 import admin from 'firebase-admin';
 import { getAuth } from 'firebase/auth';
 import {
@@ -21,9 +21,14 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-
+const serviceAccount = JSON.parse(fs.)
 export const auth = getAuth(app);
 export default app;
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: 'https://project-best-cms.firebaseio.com',
+});
 
 export const adminAuth = admin.auth();
 // Initialize Firestore Services
