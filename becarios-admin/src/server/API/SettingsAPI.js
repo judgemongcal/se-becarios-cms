@@ -1,14 +1,26 @@
 import { addDoc, collection } from 'firebase/firestore';
-import { auth, db } from '../Firebase';
+import { adminAuth, auth, db } from '../Firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { useAdminContext } from '../../hooks/useAdminContext';
 
 export async function createAdminAuth(email, password) {
-  await createUserWithEmailAndPassword(
-    auth,
-    email,
-    password,
-  );
+  // await createUserWithEmailAndPassword(
+  //   auth,
+  //   email,
+  //   password,
+  // );
+  try {
+    const userRecord = await adminAuth.auth().createUser({
+      email: email,
+      password: password,
+    });
+    console.log(
+      'Successfully created new user',
+      userRecord.uid,
+    );
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export async function createAdminCredentials(
