@@ -23,6 +23,8 @@
     "@tiptap/pm": "^2.1.16",
     "@tiptap/react": "^2.1.16",
     "@tiptap/starter-kit": "^2.1.16",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
     "firebase": "^10.7.2",
     "framer-motion": "^10.17.4",
     "hamburger-react": "^2.5.0",
