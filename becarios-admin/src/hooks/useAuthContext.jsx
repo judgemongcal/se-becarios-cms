@@ -11,6 +11,7 @@ import {
   onAuthStateChanged,
   setPersistence,
   browserSessionPersistence,
+  fetchSignInMethodsForEmail,
 } from 'firebase/auth';
 import { auth } from '../server/firebase';
 import { useSignOutContext } from './useSignOutContext';
@@ -48,8 +49,12 @@ export function AuthContextProvider({ children }) {
     );
   }
 
-  function resetPassword(email) {
-    return sendPasswordResetEmail(auth, email);
+  async function resetPassword(email) {
+    try {
+      await sendPasswordResetEmail(auth, email);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   function logOut() {

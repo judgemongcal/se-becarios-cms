@@ -327,7 +327,7 @@ function ConfirmAddAdminModalBtn() {
     e.preventDefault();
 
     try {
-      // await createAdminAuth(adminEmail, adminPassword);
+      await createAdminAuth(adminEmail, adminPassword);
       const response = await fetch(
         'http://localhost:5001/add-admin',
         {
@@ -342,6 +342,7 @@ function ConfirmAddAdminModalBtn() {
           }),
         },
       );
+
       const data = await response.json();
       console.log(data);
       console.log(adminRole);

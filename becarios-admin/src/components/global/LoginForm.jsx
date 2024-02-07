@@ -15,7 +15,7 @@ import {
 function LoginForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [email, setEmail] = useState('');
+  const [emailInput, setEmailInput] = useState('');
   const [isInvalid, setIsInvalid] = useState(false);
   const [isResetSuccessful, setIsResetSuccessful] =
     useState(null);
@@ -65,13 +65,15 @@ function LoginForm() {
   async function handleReset(e) {
     e.preventDefault();
     setError('');
-    // setIsInvalid(false);
+    setIsInvalid(false);
     setIsResetSuccessful(null);
 
     try {
-      await resetPassword(email);
+      await resetPassword(emailInput);
       setIsResetSuccessful(true);
+      console.log('correct');
     } catch (error) {
+      console.log('wrong');
       setError(error.message);
       setIsResetSuccessful(false);
       console.log(error);
@@ -223,7 +225,10 @@ function LoginForm() {
                   placeholder="juan.delacruz.med@ust.edu.ph"
                   className="bg-brand-input ${ w-full text-[18px] xl:mr-12
                   "
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={(e) => {
+                    console.log(e.target.value);
+                    setEmailInput(e.target.value);
+                  }}
                 />
               </div>
             </>
