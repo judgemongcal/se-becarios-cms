@@ -11,6 +11,7 @@ export function AdminProvider({ children }) {
   const [adminLastName, setAdminLastName] = useState('');
   const [adminContactNum, setAdminContactNum] =
     useState('');
+  const [adminImgFile, setAdminImgFile] = useState();
   const [adminImageSrc, setAdminImageSrc] = useState('');
   const [adminRole, setAdminRole] = useState('');
   const [adminEmail, setAdminEmail] = useState('');
@@ -44,6 +45,8 @@ export function AdminProvider({ children }) {
     setAdminLastName,
     adminContactNum,
     setAdminContactNum,
+    adminImgFile,
+    setAdminImgFile,
     adminImageSrc,
     setAdminImageSrc,
     adminRole,

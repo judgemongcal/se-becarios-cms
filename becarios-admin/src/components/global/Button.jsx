@@ -311,6 +311,7 @@ function ConfirmAddAdminModalBtn() {
     adminPassword,
     adminEmail,
     adminContactNum,
+    adminImgFile,
     adminImageSrc,
     adminRole,
     resetAdminFields,
@@ -327,32 +328,39 @@ function ConfirmAddAdminModalBtn() {
     e.preventDefault();
 
     try {
-      await createAdminAuth(adminEmail, adminPassword);
-      const response = await fetch(
-        'http://localhost:5001/add-admin-auth',
+      // const response = await fetch(
+      //   'http://localhost:5001/add-admin-auth',
+      //   {
+      //     method: 'POST',
+      //     headers: { 'content-type': 'application/json' },
+      //     body: JSON.stringify({
+      //       contactNumber: adminContactNum,
+      //       email: adminEmail,
+      //       firstName: adminFirstName,
+      //       lastName: adminLastName,
+      //       role: adminRole,
+      //     }),
+      //   },
+      // );
+
+      // const data = await response.json();
+      // console.log(data);
+      console.log(adminRole);
+      const formData = new FormData();
+      formData.append('admin-image', adminImgFile);
+      formData.append('contactNumber', adminContactNum);
+      formData.append('email', adminEmail);
+      formData.append('firstName', adminFirstName);
+      formData.append('lastName', adminLastName);
+      formData.append('role', adminRole);
+
+      await fetch(
+        'http://localhost:5001/add-admin-credentials',
         {
           method: 'POST',
-          headers: { 'content-type': 'application/json' },
-          body: JSON.stringify({
-            contactNumber: adminContactNum,
-            email: adminEmail,
-            firstName: adminFirstName,
-            lastName: adminLastName,
-            role: adminRole,
-          }),
-        },
-      );
 
-      const data = await response.json();
-      console.log(data);
-      console.log(adminRole);
-      await createAdminCredentials(
-        adminFirstName,
-        adminLastName,
-        adminEmail,
-        adminContactNum,
-        adminImageSrc,
-        adminRole,
+          body: formData,
+        },
       );
       setIsAddAdminBtnClicked(false);
       setIsAddAdminClicked(false);

@@ -41,13 +41,17 @@ const port = 5001;
 
 app.use(
   bodyParser.urlencoded({
+    limit: '25mb',
     extended: false,
   }),
 );
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: '25mb' }));
 
 //handles upload
-const upload = multer({ storage: multer.memoryStorage() });
+const upload = multer({
+  storage: multer.memoryStorage(),
+  limits: { fileSize: 5 * 1024 * 1024 },
+});
 
 // FETCH ARTICLES
 
@@ -79,7 +83,6 @@ app.post('/add-admin-auth', async (req, res) => {
         contactNumber,
         email,
         firstName,
-        image: null,
         lastName,
         role,
       })
@@ -98,8 +101,9 @@ app.post('/add-admin-auth', async (req, res) => {
 // ADD ADMIN CREDENTIALS
 app.post(
   '/add-admin-credentials',
-  upload.single('image'),
+  upload.single('admin-image'),
   async (req, res) => {
+    console.log(req.body);
     const dateTime = new Date();
     const {
       contactNumber,
@@ -108,19 +112,23 @@ app.post(
       lastName,
       role,
     } = req.body;
-
+    console.log(req.file);
     try {
       const storageRef = ref(
         storage,
-        `admin_photo/${req.image + dateTime}`,
+        `admin_photos/${req.file + dateTime}`,
       );
-      const metaData = {
-        contentType: req.file.mimetype,
-      };
+      let metadata = {};
+      if (req.file) {
+        metadata = { contentType: req.file.type };
+      } else {
+        console.log('No File Uploaded');
+      }
+
       const snapshot = await uploadBytesResumable(
         storageRef,
         req.file.buffer,
-        metaData,
+        metadata,
       );
       const downloadURL = await getDownloadURL(
         snapshot.ref,
@@ -148,6 +156,7 @@ app.post(
         downloadURL: downloadURL,
       });
     } catch (error) {
+      console.log(error);
       return res.status(400).send(error.message);
     }
   },

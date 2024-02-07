@@ -16,6 +16,8 @@ function AdminModal() {
     setAdminFirstName,
     setAdminLastName,
     setAdminContactNum,
+    adminImgFile,
+    setAdminImgFile,
     setAdminImageSrc,
     adminImageSrc,
     adminEmail,
@@ -68,6 +70,8 @@ function AdminModal() {
   function handleAdminImageSrcChange(e) {
     console.log(e.target.value);
     const file = e.target.files[0];
+    console.log(file);
+    setAdminImgFile(file);
     if (file) {
       setAdminImageSrc(file.name);
       const reader = new FileReader();
@@ -86,7 +90,9 @@ function AdminModal() {
         </h1>
         <form
           action=""
+          method="POST"
           className=" flex flex-col justify-center gap-2 text-left lg:px-[1rem] 2xl:px-[3rem]"
+          encType="multipart/form-data"
         >
           <h2 className="mb-2 text-[1.15rem] font-semibold lg:text-[1.35rem]">
             Personal Information
@@ -185,6 +191,7 @@ function AdminModal() {
                 <input
                   id="dropzone-file"
                   type="file"
+                  name="admin-image"
                   className="hidden"
                   accept="image/*"
                   onChange={(e) =>
@@ -200,7 +207,7 @@ function AdminModal() {
                   : './src/assets/sample_admin.png'
               }`}
               alt="admin image"
-              className="shadow-shadow-db  border-brand-blue h-[120px] w-[120px] rounded-[100%] border-8 md:h-[150px] md:w-[150px]"
+              className="shadow-shadow-db  border-brand-blue  h-[120px] w-[120px] rounded-[100%] border-8 md:h-[150px] md:w-[150px]"
             />
           </div>
 
