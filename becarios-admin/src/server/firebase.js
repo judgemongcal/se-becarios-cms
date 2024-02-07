@@ -6,6 +6,7 @@ import {
   collection,
   getDocs,
 } from 'firebase/firestore';
+import { getStorage } from 'firebase/storage';
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -28,7 +29,8 @@ export const auth = getAuth(app);
 export default app;
 
 // Initialize Firestore Services
-export const db = getFirestore();
+export const db = getFirestore(app);
+export const storage = getStorage(app);
 
 export async function getUserInfo(email, user) {
   const colRef = collection(db, 'admin_credentials'); // Collection Ref

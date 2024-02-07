@@ -329,7 +329,7 @@ function ConfirmAddAdminModalBtn() {
     try {
       await createAdminAuth(adminEmail, adminPassword);
       const response = await fetch(
-        'http://localhost:5001/add-admin',
+        'http://localhost:5001/add-admin-auth',
         {
           method: 'POST',
           headers: { 'content-type': 'application/json' },
