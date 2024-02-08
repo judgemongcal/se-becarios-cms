@@ -256,6 +256,8 @@ function ProceedModalBtn() {
 }
 
 function AddAdminModalBtn() {
+  const [isComplete, setIsComplete] = useState(false);
+
   const {
     isAddAdminBtnClicked,
     setIsAddAdminBtnClicked,
@@ -263,24 +265,62 @@ function AddAdminModalBtn() {
     setIsAddAdminClicked,
   } = useSettingsContext();
 
-  const { resetAdminFields } = useAdminContext();
+  const {
+    resetAdminFields,
+    adminFirstName,
+    adminLastName,
+    adminContactNum,
+    adminImgFile,
+    adminRole,
+    adminPassword,
+    isPasswordInvalid,
+    isEmailInvalid,
+  } = useAdminContext();
+
+  useEffect(() => {
+    setIsComplete(
+      !!(
+        adminFirstName &&
+        adminLastName &&
+        adminContactNum &&
+        adminImgFile &&
+        adminRole &&
+        adminPassword &&
+        isPasswordInvalid === false &&
+        isEmailInvalid === false
+      ),
+    );
+  }, [
+    adminContactNum,
+    adminFirstName,
+    adminLastName,
+    adminImgFile,
+    adminRole,
+    adminPassword,
+    isPasswordInvalid,
+    isEmailInvalid,
+  ]);
 
   function handleDiscard(e) {
     e.preventDefault();
     setIsAddAdminBtnClicked(!isAddAdminBtnClicked);
+    setIsComplete(false);
     resetAdminFields();
   }
 
   function handleAddAdmin(e) {
     e.preventDefault();
-    setIsAddAdminBtnClicked(!isAddAdminBtnClicked);
-    setIsAddAdminClicked(!isAddAdminClicked);
+    console.log(isComplete);
+    // setIsAddAdminBtnClicked(!isAddAdminBtnClicked);
+    // setIsAddAdminClicked(!isAddAdminClicked);
   }
 
   return (
     <div className="flex flex-row justify-around gap-3 py-2">
       <button
-        className="bg-brand-blue shadow-shadow-db rounded-10 hover:bg-brand-blue-dark  w-full py-3 text-[1.05rem] font-semibold text-[#FFFFFF] duration-100"
+        className={`bg-brand-blue shadow-shadow-db rounded-10 hover:bg-brand-blue-dark  w-full py-3 text-[1.05rem] font-semibold text-[#FFFFFF] duration-100 ${
+          isComplete === true ? '' : 'disabled opacity-50'
+        }`}
         onClick={(e) => handleAddAdmin(e)}
       >
         Add Admin
@@ -328,23 +368,21 @@ function ConfirmAddAdminModalBtn() {
     e.preventDefault();
 
     try {
-      // const response = await fetch(
-      //   'http://localhost:5001/add-admin-auth',
-      //   {
-      //     method: 'POST',
-      //     headers: { 'content-type': 'application/json' },
-      //     body: JSON.stringify({
-      //       contactNumber: adminContactNum,
-      //       email: adminEmail,
-      //       firstName: adminFirstName,
-      //       lastName: adminLastName,
-      //       role: adminRole,
-      //     }),
-      //   },
-      // );
+      const response = await fetch(
+        'http://localhost:5001/add-admin-auth',
+        {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({
+            contactNumber: adminContactNum,
+            email: adminEmail,
+            firstName: adminFirstName,
+            lastName: adminLastName,
+            role: adminRole,
+          }),
+        },
+      );
 
-      // const data = await response.json();
-      // console.log(data);
       console.log(adminRole);
       const formData = new FormData();
       formData.append('admin-image', adminImgFile);
@@ -374,7 +412,7 @@ function ConfirmAddAdminModalBtn() {
   return (
     <div className="flex flex-row justify-around gap-3 py-2">
       <button
-        className="bg-brand-blue shadow-shadow-db rounded-10 hover:bg-brand-blue-dark  w-full py-3 text-[1.05rem] font-semibold text-[#FFFFFF] duration-100"
+        className="bg-brand-blue shadow-shadow-db rounded-10 hover:bg-brand-blue-dark  disabled w-full py-3 text-[1.05rem] font-semibold text-[#FFFFFF] duration-100 "
         onClick={(e) => handleAdd(e)}
       >
         Confirm
