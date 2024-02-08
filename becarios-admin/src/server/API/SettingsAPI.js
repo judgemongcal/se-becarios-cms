@@ -1,4 +1,9 @@
-import { collection, getDocs } from 'firebase/firestore';
+import {
+  collection,
+  getDocs,
+  where,
+  query,
+} from 'firebase/firestore';
 import { auth, db } from '../firebase.js';
 
 export async function fetchAllAdmins() {
@@ -6,7 +11,8 @@ export async function fetchAllAdmins() {
 
   try {
     const colRef = collection(db, 'admin_credentials');
-    const allAdminsSnapshot = await getDocs(colRef);
+    const q = query(colRef, where('role', '==', 'Admin'));
+    const allAdminsSnapshot = await getDocs(q);
     // Extract admin data from the snapshot
     const allAdmins = [];
     allAdminsSnapshot.forEach((doc) => {
