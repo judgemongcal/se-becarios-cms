@@ -363,7 +363,7 @@ function ConfirmAddAdminModalBtn() {
 
   function handleBack(e) {
     e.preventDefault();
-    resetAdminFields();
+    // resetAdminFields();
     setIsAddAdminBtnClicked(!isAddAdminBtnClicked);
     setIsAddAdminClicked(!isAddAdminClicked);
   }
@@ -521,12 +521,26 @@ function EditAdminModalBtn() {
   function handleDiscard(e) {
     e.preventDefault();
     setIsAddAdminBtnClicked(!isAddAdminBtnClicked);
+    resetAdminFields();
     setIsComplete(false);
     resetAdminFields();
   }
+
+  function handleEditAdmin(e) {
+    e.preventDefault();
+    console.log(isComplete);
+    setIsAddAdminBtnClicked(!isAddAdminBtnClicked);
+    setIsAddAdminClicked(!isAddAdminClicked);
+  }
+
   return (
     <div className="flex flex-row justify-around gap-4 py-2">
-      <button className="bg-brand-blue shadow-shadow-db rounded-10 hover:bg-brand-blue-dark w-[100%] py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-100">
+      <button
+        className={`bg-brand-blue shadow-shadow-db rounded-10 hover:bg-brand-blue-dark w-[100%] py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-100 ${
+          isComplete ? '' : 'disable opacity-50'
+        }`}
+        onClick={(e) => handleEditAdmin(e)}
+      >
         Edit Admin Details
       </button>
       <button

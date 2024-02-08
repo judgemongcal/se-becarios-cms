@@ -25,6 +25,7 @@ export function AdminProvider({ children }) {
     setAdminFirstName('');
     setAdminLastName('');
     setAdminContactNum('');
+    setAdminImgFile();
     setAdminImageSrc('');
     setAdminRole('');
     setAdminEmail('');
