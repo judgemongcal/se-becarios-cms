@@ -137,7 +137,7 @@ app.post(
       await addDoc(collection(db, 'admin_credentials'), {
         contactNumber: contactNumber || null,
         email: email || null,
-        'firstName ': firstName || null,
+        firstName: firstName || null,
         image: downloadURL || null,
         lastName: lastName || null,
         role: role || null,
