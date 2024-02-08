@@ -13,8 +13,11 @@ function AdminModal() {
   const [showPassword, setShowPassword] = useState(false);
 
   const {
+    adminFirstName,
     setAdminFirstName,
+    adminLastName,
     setAdminLastName,
+    adminContactNum,
     setAdminContactNum,
     adminImgFile,
     setAdminImgFile,
@@ -110,6 +113,7 @@ function AdminModal() {
             type="text"
             id="first-name"
             name="first-name"
+            value={adminFirstName}
             placeholder="Enter first name"
             className="rounded-8 shadow-shadow-db mb-4 p-2"
             onChange={(e) =>
@@ -131,6 +135,7 @@ function AdminModal() {
             type="text"
             id="last-name"
             name="last-name"
+            value={adminLastName}
             placeholder="Enter last name"
             className="rounded-8 shadow-shadow-db mb-4 p-2"
             required
@@ -152,6 +157,7 @@ function AdminModal() {
             type="text"
             id="contact-num"
             name="contact-num"
+            value={adminContactNum}
             placeholder="Sample Format: 09123456789"
             // Add number format validation
             className="rounded-8 shadow-shadow-db mb-4 p-2"
@@ -204,7 +210,9 @@ function AdminModal() {
               src={`${
                 adminImageSrc
                   ? adminImageSrc
-                  : './src/assets/sample_admin.png'
+                  : adminImgFile
+                    ? adminImgFile
+                    : './src/assets/sample_admin.png'
               }`}
               alt="admin image"
               className="shadow-shadow-db  border-brand-blue  h-[120px] w-[120px] rounded-[100%] border-8 md:h-[150px] md:w-[150px]"
@@ -240,6 +248,7 @@ function AdminModal() {
             type="email"
             id="ust-email"
             name="ust-email"
+            value={adminEmail}
             placeholder="Enter UST College Email"
             className={`rounded-8 shadow-shadow-db p-2 ${
               isEmailInvalid &&
@@ -286,6 +295,7 @@ function AdminModal() {
               type={showPassword ? 'text' : 'password'}
               id="password"
               name="password"
+              value={adminPassword}
               placeholder="Enter password"
               className="w-full"
               required

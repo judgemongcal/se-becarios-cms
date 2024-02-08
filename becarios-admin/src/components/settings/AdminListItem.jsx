@@ -7,7 +7,6 @@ import {
 function AdminListItem({ admin }) {
   const { isAGearClicked } = useSettingsContext();
   const { firstName, lastName } = admin.data;
-  console.log(firstName, lastName);
   const id = admin.id;
 
   return (
@@ -23,7 +22,7 @@ function AdminListItem({ admin }) {
       <div className="admin-btns flex flex-row gap-2">
         {isAGearClicked && (
           <>
-            <EditItemBtn />
+            <EditItemBtn id={id} />
             <RemoveAdminBtn />{' '}
           </>
         )}

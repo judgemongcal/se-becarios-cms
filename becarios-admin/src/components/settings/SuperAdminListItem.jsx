@@ -4,7 +4,6 @@ import { useSettingsContext } from '../../hooks/useSettingsContext';
 export function SuperAdminListItem({ admin }) {
   const { isSAGearClicked } = useSettingsContext();
   const { firstName, lastName } = admin.data;
-  console.log(firstName, lastName);
   const id = admin.id;
 
   return (

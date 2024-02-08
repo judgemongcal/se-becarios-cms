@@ -3,12 +3,13 @@ import {
   getDocs,
   where,
   query,
+  getDoc,
+  doc,
 } from 'firebase/firestore';
 import { auth, db } from '../firebase.js';
+import { useState } from 'react';
 
 export async function fetchAllAdmins() {
-  console.log('calling');
-
   try {
     const colRef = collection(db, 'admin_credentials');
     const q = query(colRef, where('role', '==', 'Admin'));
@@ -18,7 +19,7 @@ export async function fetchAllAdmins() {
     allAdminsSnapshot.forEach((doc) => {
       allAdmins.push({ data: doc.data(), id: doc.id });
     });
-    console.log(allAdmins);
+
     return allAdmins;
   } catch (error) {
     console.error(
@@ -30,8 +31,6 @@ export async function fetchAllAdmins() {
 }
 
 export async function fetchSuperAdmin() {
-  console.log('calling');
-
   try {
     const colRef = collection(db, 'admin_credentials');
     const q = query(
@@ -44,7 +43,6 @@ export async function fetchSuperAdmin() {
     superAdminSnapshot.forEach((doc) => {
       superAdmin.push({ data: doc.data(), id: doc.id });
     });
-    console.log(superAdmin);
     return superAdmin;
   } catch (error) {
     console.error(
@@ -52,5 +50,16 @@ export async function fetchSuperAdmin() {
       error,
     );
     throw error;
+  }
+}
+
+export async function fetchAdminById(id) {
+  try {
+    const docRef = doc(db, 'admin_credentials', id);
+    const docSnapshot = await getDoc(docRef);
+    const docData = docSnapshot.data();
+    return docData;
+  } catch (error) {
+    console.log('Error: ', error);
   }
 }

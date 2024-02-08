@@ -20,6 +20,7 @@ import { useManageContentContext } from '../../hooks/useManageContentContext';
 import { UserAuth } from '../../hooks/useAuthContext';
 import { useUserInfoContext } from '../../hooks/useUserInfoContext';
 import { useAdminContext } from '../../hooks/useAdminContext';
+import { fetchAdminById } from '../../server/API/SettingsAPI';
 // import {
 //   createAdminAuth,
 //   createAdminCredentials,
@@ -596,9 +597,42 @@ function PostedSettingsBtn({ id }) {
   );
 }
 
-function EditItemBtn() {
+function EditItemBtn({ id }) {
+  const {
+    setAdminFirstName,
+    setAdminLastName,
+    setAdminContactNum,
+    setAdminImgFile,
+    setAdminEmail,
+    setAdminPassword,
+  } = useAdminContext();
+
+  const { AddAdminBtnClicked, setIsAddAdminBtnClicked } =
+    useSettingsContext();
+
+  async function handleClick(e) {
+    e.preventDefault();
+    console.log(id);
+    try {
+      const data = await fetchAdminById(id);
+      console.log(data);
+      setAdminFirstName(data.firstName);
+      setAdminLastName(data.lastName);
+      setAdminEmail(data.email);
+      setAdminImgFile(data.image);
+      setAdminContactNum(data.contactNumber);
+    } catch (error) {
+      console.log(error);
+    }
+
+    setIsAddAdminBtnClicked(!AddAdminBtnClicked);
+  }
+
   return (
-    <button className="bg-brand-light hover:bg-brand-black rounded-8 shadow-sm-btn items-center p-2 duration-300">
+    <button
+      className="bg-brand-light hover:bg-brand-black rounded-8 shadow-sm-btn items-center p-2 duration-300"
+      onClick={(e) => handleClick(e)}
+    >
       <LuPencil className="fill-brand-input stroke-brand-black  h-[20px] w-[24px] " />
     </button>
   );
