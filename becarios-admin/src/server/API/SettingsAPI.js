@@ -10,7 +10,7 @@ export async function fetchAllAdmins() {
     // Extract admin data from the snapshot
     const allAdmins = [];
     allAdminsSnapshot.forEach((doc) => {
-      allAdmins.push(doc.data());
+      allAdmins.push({ data: doc.data(), id: doc.id });
     });
     console.log(allAdmins);
     return allAdmins;
