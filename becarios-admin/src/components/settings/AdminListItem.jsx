@@ -17,7 +17,7 @@ function AdminListItem({ admin }) {
     >
       <div className="admin-name ml-4 py-2 font-medium">
         <p>
-          {admin.data.firstName} {admin.data.lastName}{' '}
+          {firstName} {lastName}{' '}
         </p>
       </div>
       <div className="admin-btns flex flex-row gap-2">

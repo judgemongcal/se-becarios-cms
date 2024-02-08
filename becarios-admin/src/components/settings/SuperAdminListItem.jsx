@@ -1,13 +1,22 @@
 import { LuPencil } from 'react-icons/lu';
 import { useSettingsContext } from '../../hooks/useSettingsContext';
 
-export function SuperAdminListItem() {
+export function SuperAdminListItem({ admin }) {
   const { isSAGearClicked } = useSettingsContext();
+  const { firstName, lastName } = admin.data;
+  console.log(firstName, lastName);
+  const id = admin.id;
 
   return (
-    <div className="bg-brand-yellow rounded-8 shadow-shadow-db flex w-[100%] flex-row items-center justify-between gap-2 p-2">
+    <div
+      key={id}
+      className="bg-brand-yellow rounded-8 shadow-shadow-db flex w-[100%] flex-row items-center justify-between gap-2 p-2"
+    >
       <div className="admin-name ml-4 py-2 font-medium">
-        <p>John Doe</p>
+        <p>
+          {' '}
+          {firstName} {lastName}{' '}
+        </p>
       </div>
       <div className="admin-btns flex flex-row gap-2">
         <div

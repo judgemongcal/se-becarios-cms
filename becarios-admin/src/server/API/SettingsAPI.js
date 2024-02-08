@@ -28,3 +28,29 @@ export async function fetchAllAdmins() {
     throw error;
   }
 }
+
+export async function fetchSuperAdmin() {
+  console.log('calling');
+
+  try {
+    const colRef = collection(db, 'admin_credentials');
+    const q = query(
+      colRef,
+      where('role', '==', 'Super Admin'),
+    );
+    const superAdminSnapshot = await getDocs(q);
+    // Extract admin data from the snapshot
+    const superAdmin = [];
+    superAdminSnapshot.forEach((doc) => {
+      superAdmin.push({ data: doc.data(), id: doc.id });
+    });
+    console.log(superAdmin);
+    return superAdmin;
+  } catch (error) {
+    console.error(
+      'Error fetching login credentials',
+      error,
+    );
+    throw error;
+  }
+}
