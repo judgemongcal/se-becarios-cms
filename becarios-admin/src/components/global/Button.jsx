@@ -470,12 +470,69 @@ function SelectAdminRoleBtn() {
 }
 
 function EditAdminModalBtn() {
+  const [isComplete, setIsComplete] = useState(false);
+
+  const {
+    isAddAdminBtnClicked,
+    setIsAddAdminBtnClicked,
+    isAddAdminClicked,
+    setIsAddAdminClicked,
+  } = useSettingsContext();
+
+  const {
+    resetAdminFields,
+    adminFirstName,
+    adminLastName,
+    adminEmail,
+    adminContactNum,
+    adminImgFile,
+    adminRole,
+    adminPassword,
+    isPasswordInvalid,
+    isEmailInvalid,
+  } = useAdminContext();
+
+  useEffect(() => {
+    setIsComplete(
+      !!(
+        adminFirstName &&
+        adminLastName &&
+        adminEmail &&
+        adminContactNum &&
+        adminImgFile &&
+        adminRole &&
+        adminPassword &&
+        isPasswordInvalid === false &&
+        isEmailInvalid === false
+      ),
+    );
+  }, [
+    adminContactNum,
+    adminFirstName,
+    adminLastName,
+    adminEmail,
+    adminImgFile,
+    adminRole,
+    adminPassword,
+    isPasswordInvalid,
+    isEmailInvalid,
+  ]);
+
+  function handleDiscard(e) {
+    e.preventDefault();
+    setIsAddAdminBtnClicked(!isAddAdminBtnClicked);
+    setIsComplete(false);
+    resetAdminFields();
+  }
   return (
     <div className="flex flex-row justify-around gap-4 py-2">
       <button className="bg-brand-blue shadow-shadow-db rounded-10 hover:bg-brand-blue-dark w-[100%] py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-100">
         Edit Admin Details
       </button>
-      <button className="bg-brand-red shadow-shadow-db rounded-10 hover:bg-brand-red-dark w-[100%] py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-100">
+      <button
+        className="bg-brand-red shadow-shadow-db rounded-10 hover:bg-brand-red-dark w-[100%] py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-100"
+        onClick={(e) => handleDiscard(e)}
+      >
         Discard Changes
       </button>
     </div>
@@ -605,13 +662,18 @@ function EditItemBtn({ id }) {
     setAdminImgFile,
     setAdminEmail,
     setAdminPassword,
+    setAdminRole,
   } = useAdminContext();
 
-  const { AddAdminBtnClicked, setIsAddAdminBtnClicked } =
-    useSettingsContext();
+  const {
+    AddAdminBtnClicked,
+    setIsAddAdminBtnClicked,
+    setIsEditingAdmin,
+  } = useSettingsContext();
 
   async function handleClick(e) {
     e.preventDefault();
+    setIsEditingAdmin(true);
     console.log(id);
     try {
       const data = await fetchAdminById(id);
@@ -621,6 +683,9 @@ function EditItemBtn({ id }) {
       setAdminEmail(data.email);
       setAdminImgFile(data.image);
       setAdminContactNum(data.contactNumber);
+      setAdminRole(data.role);
+
+      await fetchAdminAuthByEmail(data.email);
     } catch (error) {
       console.log(error);
     }
@@ -662,6 +727,7 @@ function AdminSettingsBtn() {
     setIsAGearClicked,
     isAddAdminBtnClicked,
     setIsAddAdminBtnClicked,
+    setIsEditingAdmin,
   } = useSettingsContext();
 
   function handleGearClick(e) {
@@ -672,6 +738,7 @@ function AdminSettingsBtn() {
   function handleAddAdmin(e) {
     e.preventDefault();
     setIsAddAdminBtnClicked(!isAddAdminBtnClicked);
+    setIsEditingAdmin(false);
   }
 
   return (

@@ -63,3 +63,11 @@ export async function fetchAdminById(id) {
     console.log('Error: ', error);
   }
 }
+
+// export async function fetchAdminAuthByEmail(email) {
+//   try {
+//     console.log(user);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// }

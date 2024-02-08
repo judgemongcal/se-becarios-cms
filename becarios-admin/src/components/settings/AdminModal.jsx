@@ -1,6 +1,7 @@
 import { FiUploadCloud } from 'react-icons/fi';
 import {
   AddAdminModalBtn,
+  EditAdminModalBtn,
   RemoveAdminModalBtn,
   SelectAdminRoleBtn,
 } from '../global/Button';
@@ -8,6 +9,7 @@ import {
 import { useAdminContext } from '../../hooks/useAdminContext';
 import { FaCheck, FaEye } from 'react-icons/fa6';
 import { useEffect, useState } from 'react';
+import { useSettingsContext } from '../../hooks/useSettingsContext';
 
 function AdminModal() {
   const [showPassword, setShowPassword] = useState(false);
@@ -32,6 +34,8 @@ function AdminModal() {
     isPasswordInvalid,
     setIsPasswordInvalid,
   } = useAdminContext();
+
+  const { isEditingAdmin } = useSettingsContext();
 
   // Email Validation
   useEffect(() => {
@@ -89,7 +93,9 @@ function AdminModal() {
     <div className="modal-bg bg-brand-light md:bg-modal-bg fixed top-0 z-[1000] flex h-[100%] w-[100%] items-start justify-center overflow-scroll">
       <div className="modal-container md:bg-brand-light rounded-10 mx-auto flex w-[100%] flex-col justify-center px-[2rem]  py-[2.25rem] text-center md:my-[3rem]  md:w-[50%] xl:w-[50%] 2xl:w-[700px]">
         <h1 className="mb-[3rem] text-[1.25rem] font-semibold md:text-[1.5rem] lg:mb-[4rem]">
-          Add New Administrator
+          {isEditingAdmin
+            ? `Edit Administrator`
+            : `Add New Administrator`}
         </h1>
         <form
           action=""
@@ -281,7 +287,9 @@ function AdminModal() {
             aria-required
             className="text-[1rem] font-normal lg:text-[1.15rem]"
           >
-            Password{' '}
+            {isEditingAdmin
+              ? 'Update Password '
+              : 'Password '}
             <span className="text-brand-red">*</span>
           </label>
           <div
@@ -338,7 +346,11 @@ function AdminModal() {
             </div>
           </div>
 
-          <AddAdminModalBtn />
+          {isEditingAdmin ? (
+            <EditAdminModalBtn />
+          ) : (
+            <AddAdminModalBtn />
+          )}
         </form>
       </div>
     </div>
