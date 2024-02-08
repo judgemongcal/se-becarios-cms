@@ -269,6 +269,7 @@ function AddAdminModalBtn() {
     resetAdminFields,
     adminFirstName,
     adminLastName,
+    adminEmail,
     adminContactNum,
     adminImgFile,
     adminRole,
@@ -282,6 +283,7 @@ function AddAdminModalBtn() {
       !!(
         adminFirstName &&
         adminLastName &&
+        adminEmail &&
         adminContactNum &&
         adminImgFile &&
         adminRole &&
@@ -294,6 +296,7 @@ function AddAdminModalBtn() {
     adminContactNum,
     adminFirstName,
     adminLastName,
+    adminEmail,
     adminImgFile,
     adminRole,
     adminPassword,
@@ -311,8 +314,8 @@ function AddAdminModalBtn() {
   function handleAddAdmin(e) {
     e.preventDefault();
     console.log(isComplete);
-    // setIsAddAdminBtnClicked(!isAddAdminBtnClicked);
-    // setIsAddAdminClicked(!isAddAdminClicked);
+    setIsAddAdminBtnClicked(!isAddAdminBtnClicked);
+    setIsAddAdminClicked(!isAddAdminClicked);
   }
 
   return (
