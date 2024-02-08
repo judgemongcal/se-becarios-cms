@@ -20,10 +20,10 @@ import { useManageContentContext } from '../../hooks/useManageContentContext';
 import { UserAuth } from '../../hooks/useAuthContext';
 import { useUserInfoContext } from '../../hooks/useUserInfoContext';
 import { useAdminContext } from '../../hooks/useAdminContext';
-import {
-  createAdminAuth,
-  createAdminCredentials,
-} from '../../server/API/SettingsAPI';
+// import {
+//   createAdminAuth,
+//   createAdminCredentials,
+// } from '../../server/API/SettingsAPI';
 
 function LoginBtn() {
   return (

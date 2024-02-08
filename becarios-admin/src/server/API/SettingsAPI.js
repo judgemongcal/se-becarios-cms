@@ -1,37 +1,24 @@
-import { addDoc, collection } from 'firebase/firestore';
-import { auth, db } from '../Firebase';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { useAdminContext } from '../../hooks/useAdminContext';
+import { collection, getDocs } from 'firebase/firestore';
+import { auth, db } from '../firebase.js';
 
-export async function createAdminAuth(email, password) {
-  return createUserWithEmailAndPassword(
-    auth,
-    email,
-    password,
-  );
-}
+export async function fetchAllAdmins() {
+  console.log('calling');
 
-export async function createAdminCredentials(
-  adminFirstName,
-  adminLastName,
-  adminEmail,
-  adminContactNum,
-  adminImageSrc,
-  adminRole,
-) {
-  console.log(adminRole);
-
-  const docRef = await addDoc(
-    collection(db, 'admin_credentials'),
-    {
-      contactNumber: adminContactNum,
-      email: adminEmail,
-      firstName: adminFirstName,
-      image: null,
-      lastName: adminLastName,
-      role: adminRole,
-    },
-  );
-
-  return docRef;
+  try {
+    const colRef = collection(db, 'admin_credentials');
+    const allAdminsSnapshot = await getDocs(colRef);
+    // Extract admin data from the snapshot
+    const allAdmins = [];
+    allAdminsSnapshot.forEach((doc) => {
+      allAdmins.push(doc.data());
+    });
+    console.log(allAdmins);
+    return allAdmins;
+  } catch (error) {
+    console.error(
+      'Error fetching login credentials',
+      error,
+    );
+    throw error;
+  }
 }

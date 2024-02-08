@@ -1,8 +1,19 @@
+import { useEffect, useState } from 'react';
 import { useSettingsContext } from '../../hooks/useSettingsContext';
 import { AdminSettingsBtn } from '../global/Button';
 import AdminListItem from './AdminListItem';
+import { fetchAllAdmins } from '../../server/API/SettingsAPI';
 
 function AdminList() {
+  const [adminList, setAdminList] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setAdminList(await fetchAllAdmins());
+    };
+
+    fetchData();
+  }, []);
   return (
     <div className="flex flex-col gap-2  sm:min-w-[100%] md:max-w-[100%] lg:min-w-[50%] lg:max-w-[100%]">
       <div className="mb-[1rem] flex flex-row items-center justify-between">
