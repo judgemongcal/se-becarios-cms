@@ -20,6 +20,7 @@ export function AdminProvider({ children }) {
     useState(null);
   const [isPasswordInvalid, setIsPasswordInvalid] =
     useState(null);
+  const [currentDocId, setCurrentDocId] = useState();
 
   function resetAdminFields() {
     setAdminFirstName('');
@@ -62,6 +63,8 @@ export function AdminProvider({ children }) {
     setIsPasswordInvalid,
     resetAdminFields,
     resetValidation,
+    currentDocId,
+    setCurrentDocId,
   };
 
   return (

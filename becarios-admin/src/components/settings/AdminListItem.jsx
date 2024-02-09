@@ -1,3 +1,4 @@
+import { useAdminContext } from '../../hooks/useAdminContext';
 import { useSettingsContext } from '../../hooks/useSettingsContext';
 import {
   RemoveAdminBtn,

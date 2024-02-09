@@ -769,6 +769,7 @@ function EditItemBtn({ id }) {
     setAdminEmail,
     setAdminPassword,
     setAdminRole,
+    setCurrentDocId,
   } = useAdminContext();
 
   const {
@@ -779,6 +780,7 @@ function EditItemBtn({ id }) {
 
   async function handleClick(e) {
     e.preventDefault();
+    setCurrentDocId(id);
     setIsEditingAdmin(true);
     console.log(id);
     try {
