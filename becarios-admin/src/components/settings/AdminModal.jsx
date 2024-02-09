@@ -252,6 +252,7 @@ function AdminModal() {
           </label>
           <input
             type="email"
+            disabled={isEditingAdmin}
             id="ust-email"
             name="ust-email"
             value={adminEmail}
@@ -259,7 +260,7 @@ function AdminModal() {
             className={`rounded-8 shadow-shadow-db p-2 ${
               isEmailInvalid &&
               'border-brand-invalid border-4'
-            }`}
+            } ${isEditingAdmin ? 'opacity-70' : ''}`}
             required
             onChange={(e) =>
               setAdminEmail(e.target.value.toLowerCase())
