@@ -554,6 +554,7 @@ function EditAdminModalBtn() {
     setIsAddAdminBtnClicked,
     isAddAdminClicked,
     setIsAddAdminClicked,
+    isEditingAdmin,
   } = useSettingsContext();
 
   const {
@@ -614,7 +615,9 @@ function EditAdminModalBtn() {
     <div className="flex flex-row justify-around gap-4 py-2">
       <button
         className={`bg-brand-blue shadow-shadow-db rounded-10 hover:bg-brand-blue-dark w-[100%] py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-100 ${
-          isComplete ? '' : 'disable opacity-50'
+          isComplete || isEditingAdmin
+            ? ''
+            : 'disable opacity-50'
         }`}
         onClick={(e) => handleEditAdmin(e)}
       >
