@@ -64,10 +64,25 @@ export async function fetchAdminById(id) {
   }
 }
 
-// export async function fetchAdminAuthByEmail(email) {
-//   try {
-//     console.log(user);
-//   } catch (error) {
-//     console.log(error);
-//   }
-// }
+export async function removeAdmin(adminID) {
+  try {
+    const adminCollection = db.collection(
+      'admin_credentials',
+    );
+    const adminDoc = await adminCollection
+      .doc(adminID)
+      .get();
+
+    if (adminDoc.exists) {
+      // Document exists, proceed with deletion
+      await adminCollection.doc(adminID).delete();
+      console.log('Admin removed successfully');
+    } else {
+      // Document doesn't exist
+      console.log('Admin not found');
+    }
+  } catch (error) {
+    console.error('Error removing admin', error);
+    throw error;
+  }
+}

@@ -451,6 +451,7 @@ function ConfirmEditAdminModalBtn() {
     adminImageSrc,
     adminRole,
     resetAdminFields,
+    currentDocId,
   } = useAdminContext();
 
   function handleBack(e) {
@@ -463,46 +464,30 @@ function ConfirmEditAdminModalBtn() {
   async function handleAdd(e) {
     e.preventDefault();
 
-    // try {
-    //   const response = await fetch(
-    //     'http://localhost:5001/add-admin-auth',
-    //     {
-    //       method: 'POST',
-    //       headers: { 'content-type': 'application/json' },
-    //       body: JSON.stringify({
-    //         contactNumber: adminContactNum,
-    //         email: adminEmail,
-    //         firstName: adminFirstName,
-    //         lastName: adminLastName,
-    //         role: adminRole,
-    //       }),
-    //     },
-    // );
+    try {
+      const formData = new FormData();
+      formData.append('admin-image', adminImgFile);
+      formData.append('contactNumber', adminContactNum);
+      formData.append('email', adminEmail);
+      formData.append('firstName', adminFirstName);
+      formData.append('lastName', adminLastName);
+      formData.append('role', adminRole);
 
-    //   console.log(adminRole);
-    //   const formData = new FormData();
-    //   formData.append('admin-image', adminImgFile);
-    //   formData.append('contactNumber', adminContactNum);
-    //   formData.append('email', adminEmail);
-    //   formData.append('firstName', adminFirstName);
-    //   formData.append('lastName', adminLastName);
-    //   formData.append('role', adminRole);
+      await fetch(
+        `http://localhost:5001/edit-admin-credentials/${currentDocId}`,
+        {
+          method: 'POST',
 
-    //   await fetch(
-    //     'http://localhost:5001/add-admin-credentials',
-    //     {
-    //       method: 'POST',
-
-    //       body: formData,
-    //     },
-    //   );
-    //   setIsAddAdminBtnClicked(false);
-    //   setIsAddAdminClicked(false);
-    //   setIsAddAdminSuccessful(!isAddAdminSuccessful);
-    //   resetAdminFields();
-    // } catch (error) {
-    //   console.log(error);
-    // }
+          body: formData,
+        },
+      );
+      setIsAddAdminBtnClicked(false);
+      setIsAddAdminClicked(false);
+      setIsAddAdminSuccessful(!isAddAdminSuccessful);
+      resetAdminFields();
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
@@ -782,7 +767,6 @@ function EditItemBtn({ id }) {
     e.preventDefault();
     setCurrentDocId(id);
     setIsEditingAdmin(true);
-    console.log(id);
     try {
       const data = await fetchAdminById(id);
       console.log(data);

@@ -17,6 +17,7 @@ import {
   SubmitEditModalBtn,
   SubmitPostModalBtn,
   ConfirmAddAdminModalBtn,
+  ConfirmEditAdminModalBtn,
 } from '../global/Button';
 import { useCreateArticleContext } from '../../hooks/useCreateArticleContext';
 import { FiUploadCloud } from 'react-icons/fi';
@@ -276,7 +277,11 @@ function AddAdminModal() {
             : `Are you sure you want to add {adminFirstName} as a 
           ${adminRole}?`}
         </p>
-        <ConfirmAddAdminModalBtn />
+        {isEditingAdmin ? (
+          <ConfirmEditAdminModalBtn />
+        ) : (
+          <ConfirmAddAdminModalBtn />
+        )}
       </div>
     </div>
   );

@@ -17,7 +17,12 @@ import {
   ref,
   uploadBytesResumable,
 } from 'firebase/storage';
-import { addDoc, collection } from 'firebase/firestore';
+import {
+  addDoc,
+  collection,
+  doc,
+  updateDoc,
+} from 'firebase/firestore';
 
 const serviceAccount = JSON.parse(
   fs.readFileSync('./serviceAccountKeys.json', 'utf8'),
@@ -151,6 +156,84 @@ app.post(
 
       return res.send({
         message: 'file uploaded to firebase storage',
+        name: req.image,
+        type: req.image,
+        downloadURL: downloadURL,
+      });
+    } catch (error) {
+      console.log(error);
+      return res.status(400).send(error.message);
+    }
+  },
+);
+
+// EDIT ADMIN CREDENTIALS
+
+app.post(
+  '/edit-admin-credentials/:id',
+  upload.single('admin-image'),
+  async (req, res) => {
+    console.log(req.body);
+    const dateTime = new Date();
+    const {
+      contactNumber,
+      email,
+      firstName,
+      lastName,
+      role,
+    } = req.body;
+    let downloadURL;
+    const adminImage = req.body['admin-image'];
+    console.log(req.file);
+    console.log('Here: ' + adminImage);
+
+    try {
+      if (adminImage === undefined) {
+        const storageRef = ref(
+          storage,
+          `admin_photos/${req.file + dateTime}`,
+        );
+        let metadata = {};
+        if (req.file) {
+          metadata = { contentType: req.file.type };
+        } else {
+          console.log('No File Uploaded');
+        }
+
+        const snapshot = await uploadBytesResumable(
+          storageRef,
+          req.file.buffer,
+          metadata,
+        );
+        downloadURL = await getDownloadURL(snapshot.ref);
+      } else {
+        downloadURL = adminImage;
+      }
+
+      const docRef = doc(
+        db,
+        'admin_credentials',
+        req.params.id,
+      );
+
+      await updateDoc(docRef, {
+        contactNumber: contactNumber || null,
+        email: email || null,
+        firstName: firstName || null,
+        image: downloadURL || null,
+        lastName: lastName || null,
+        role: role || null,
+      })
+        .then(() => {
+          console.log('Doc updated successfully');
+        })
+        .catch((error) => {
+          console.log(`Error in updating doc: ${error}`);
+        });
+
+      return res.send({
+        message:
+          'file uploaded to firebase storage and doc updated',
         name: req.image,
         type: req.image,
         downloadURL: downloadURL,
