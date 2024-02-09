@@ -245,6 +245,38 @@ app.post(
   },
 );
 
+// UPDATE ADMIN PASSWORD
+
+app.post('/updatePasswordByEmail', async (req, res) => {
+  const { email, newPassword } = req.body;
+  console.log('START: ' + email);
+  try {
+    // Get the user record by email
+    const userRecord = await auth.getUserByEmail(email);
+    console.log(userRecord);
+    // Extract the UID from the user record
+    const uid = userRecord.uid;
+    console.log('UID: ' + uid);
+
+    // Update user's password
+    await auth.updateUser(uid, {
+      password: newPassword,
+    });
+
+    res.status(200).json({
+      message: `Password updated successfully for user with email: ${email}`,
+    });
+  } catch (error) {
+    console.error(
+      'Error updating password:',
+      error.message,
+    );
+    res.status(500).json({
+      error: 'An error occurred while updating password',
+    });
+  }
+});
+
 // Server Status Checker
 app.listen(port, () => {
   console.log(`Server is running on ${port}`);

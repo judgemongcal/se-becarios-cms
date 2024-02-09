@@ -481,6 +481,31 @@ function ConfirmEditAdminModalBtn() {
           body: formData,
         },
       );
+
+      if (adminPassword != '' && adminPassword != null) {
+        try {
+          console.log(adminEmail);
+          const res = await fetch(
+            `http://localhost:5001/updatePasswordByEmail`,
+            {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                email: adminEmail,
+                newPassword: adminPassword,
+              }),
+            },
+          );
+          console.log(res);
+        } catch (error) {
+          console.log(
+            `Error with updating password: `,
+            error,
+          );
+        }
+      }
       setIsAddAdminBtnClicked(false);
       setIsAddAdminClicked(false);
       setIsAddAdminSuccessful(!isAddAdminSuccessful);
