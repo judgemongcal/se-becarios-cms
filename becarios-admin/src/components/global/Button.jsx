@@ -431,6 +431,98 @@ function ConfirmAddAdminModalBtn() {
   );
 }
 
+function ConfirmEditAdminModalBtn() {
+  const {
+    isAddAdminBtnClicked,
+    setIsAddAdminBtnClicked,
+    isAddAdminClicked,
+    setIsAddAdminClicked,
+    isAddAdminSuccessful,
+    setIsAddAdminSuccessful,
+  } = useSettingsContext();
+
+  const {
+    adminFirstName,
+    adminLastName,
+    adminPassword,
+    adminEmail,
+    adminContactNum,
+    adminImgFile,
+    adminImageSrc,
+    adminRole,
+    resetAdminFields,
+  } = useAdminContext();
+
+  function handleBack(e) {
+    e.preventDefault();
+    // resetAdminFields();
+    setIsAddAdminBtnClicked(!isAddAdminBtnClicked);
+    setIsAddAdminClicked(!isAddAdminClicked);
+  }
+
+  async function handleAdd(e) {
+    e.preventDefault();
+
+    // try {
+    //   const response = await fetch(
+    //     'http://localhost:5001/add-admin-auth',
+    //     {
+    //       method: 'POST',
+    //       headers: { 'content-type': 'application/json' },
+    //       body: JSON.stringify({
+    //         contactNumber: adminContactNum,
+    //         email: adminEmail,
+    //         firstName: adminFirstName,
+    //         lastName: adminLastName,
+    //         role: adminRole,
+    //       }),
+    //     },
+    // );
+
+    //   console.log(adminRole);
+    //   const formData = new FormData();
+    //   formData.append('admin-image', adminImgFile);
+    //   formData.append('contactNumber', adminContactNum);
+    //   formData.append('email', adminEmail);
+    //   formData.append('firstName', adminFirstName);
+    //   formData.append('lastName', adminLastName);
+    //   formData.append('role', adminRole);
+
+    //   await fetch(
+    //     'http://localhost:5001/add-admin-credentials',
+    //     {
+    //       method: 'POST',
+
+    //       body: formData,
+    //     },
+    //   );
+    //   setIsAddAdminBtnClicked(false);
+    //   setIsAddAdminClicked(false);
+    //   setIsAddAdminSuccessful(!isAddAdminSuccessful);
+    //   resetAdminFields();
+    // } catch (error) {
+    //   console.log(error);
+    // }
+  }
+
+  return (
+    <div className="flex flex-row justify-around gap-3 py-2">
+      <button
+        className="bg-brand-blue shadow-shadow-db rounded-10 hover:bg-brand-blue-dark  disabled w-full py-3 text-[1.05rem] font-semibold text-[#FFFFFF] duration-100 "
+        onClick={(e) => handleAdd(e)}
+      >
+        Confirm Edit
+      </button>
+      <button
+        className="bg-brand-red shadow-shadow-db rounded-10 hover:bg-brand-red-dark w-full py-3 text-[1.05rem] font-semibold text-[#FFFFFF] duration-100"
+        onClick={(e) => handleBack(e)}
+      >
+        Go Back
+      </button>
+    </div>
+  );
+}
+
 function SelectAdminRoleBtn() {
   const { adminRole, setAdminRole } = useAdminContext();
   const [isSuperAdmin, setIsSuperAdmin] = useState(null);
@@ -868,6 +960,7 @@ export {
   ProceedModalBtn,
   AddAdminModalBtn,
   ConfirmAddAdminModalBtn,
+  ConfirmEditAdminModalBtn,
   SelectAdminRoleBtn,
   EditAdminModalBtn,
   RemoveAdminModalBtn,
