@@ -20,10 +20,7 @@ import { useManageContentContext } from '../../hooks/useManageContentContext';
 import { UserAuth } from '../../hooks/useAuthContext';
 import { useUserInfoContext } from '../../hooks/useUserInfoContext';
 import { useAdminContext } from '../../hooks/useAdminContext';
-import {
-  fetchAdminById,
-  removeAdminAndUser,
-} from '../../server/API/SettingsAPI';
+import { fetchAdminById } from '../../server/API/SettingsAPI';
 // import {
 //   createAdminAuth,
 //   createAdminCredentials,
@@ -676,12 +673,23 @@ function RemoveAdminModalBtn() {
     setIsRemoveAdminBtnClicked(!isRemoveAdminBtnClicked);
   }
 
-  function handleDelete(e) {
+  async function handleDelete(e) {
     e.preventDefault();
-    setIsRemoveAdminBtnClicked(!isRemoveAdminBtnClicked);
-    setIsRemoveSuccessful(!isRemoveSuccessful);
+
     try {
-      removeAdminAndUser(adminEmail);
+      const response = await fetch(
+        'http://localhost:5001/removeAdminCredAndAuth',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email: adminEmail }),
+        },
+      );
+      console.log('success! ' + response);
+      setIsRemoveAdminBtnClicked(!isRemoveAdminBtnClicked);
+      setIsRemoveSuccessful(!isRemoveSuccessful);
     } catch (error) {
       console.log('Error Deleting Admin: ' + error);
     }

@@ -279,7 +279,7 @@ function AddAdminModal() {
         <p className="mx-[3rem] mb-[2rem] text-[1rem] font-medium">
           {isEditingAdmin
             ? `Are you sure you want to edit ${adminFirstName}'s information? `
-            : `Are you sure you want to add {adminFirstName} as a 
+            : `Are you sure you want to add ${adminFirstName} as a 
           ${adminRole}?`}
         </p>
         {isEditingAdmin ? (
