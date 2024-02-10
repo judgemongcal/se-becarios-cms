@@ -25,6 +25,7 @@ function Settings() {
     isAddAdminClicked,
     isAddAdminSuccessful,
     setIsAddAdminSuccessful,
+    setIsRemoveSuccessful,
   } = useSettingsContext();
 
   const { isSignOutClicked } = useSignOutContext();
@@ -40,6 +41,18 @@ function Settings() {
       return () => clearTimeout(timer);
     }
   }, [isAddAdminSuccessful, setIsAddAdminSuccessful]);
+
+  useEffect(() => {
+    if (isRemoveSuccessful) {
+      const timer = setTimeout(
+        () => setIsRemoveSuccessful(!isRemoveSuccessful),
+        3000,
+      );
+
+      return () => clearTimeout(timer);
+    }
+  }, [isRemoveSuccessful, setIsRemoveSuccessful]);
+
   return (
     <div className="flex flex-col justify-start lg:flex-row">
       <div className="navs">

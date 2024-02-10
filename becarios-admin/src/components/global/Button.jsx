@@ -20,7 +20,10 @@ import { useManageContentContext } from '../../hooks/useManageContentContext';
 import { UserAuth } from '../../hooks/useAuthContext';
 import { useUserInfoContext } from '../../hooks/useUserInfoContext';
 import { useAdminContext } from '../../hooks/useAdminContext';
-import { fetchAdminById } from '../../server/API/SettingsAPI';
+import {
+  fetchAdminById,
+  removeAdminAndUser,
+} from '../../server/API/SettingsAPI';
 // import {
 //   createAdminAuth,
 //   createAdminCredentials,
@@ -666,6 +669,8 @@ function RemoveAdminModalBtn() {
     setIsRemoveSuccessful,
   } = useSettingsContext();
 
+  const { adminEmail } = useAdminContext();
+
   function handleBack(e) {
     e.preventDefault();
     setIsRemoveAdminBtnClicked(!isRemoveAdminBtnClicked);
@@ -675,6 +680,11 @@ function RemoveAdminModalBtn() {
     e.preventDefault();
     setIsRemoveAdminBtnClicked(!isRemoveAdminBtnClicked);
     setIsRemoveSuccessful(!isRemoveSuccessful);
+    try {
+      removeAdminAndUser(adminEmail);
+    } catch (error) {
+      console.log('Error Deleting Admin: ' + error);
+    }
   }
 
   return (
