@@ -889,7 +889,7 @@ function UploadImageBtn() {
   );
 }
 
-function RemoveAdminBtn({}) {
+function RemoveAdminBtn({ id }) {
   const {
     isRemoveAdminBtnClicked,
     setIsRemoveAdminBtnClicked,
@@ -908,18 +908,20 @@ function RemoveAdminBtn({}) {
 
   async function handleClick(e) {
     e.preventDefault();
-    const data = await fetchAdminById(id);
-    setAdminFirstName(data.firstName);
-    setAdminLastName(data.lastName);
-    setAdminEmail(data.email);
-    setAdminImgFile(data.image);
-    setAdminContactNum(data.contactNumber);
-    setAdminRole(data.role);
-  }
 
-  function handleClick(e) {
-    e.preventDefault();
-    setIsRemoveAdminBtnClicked(!isRemoveAdminBtnClicked);
+    try {
+      const data = await fetchAdminById(id);
+      console.log(data);
+      setAdminFirstName(data.firstName);
+      setAdminLastName(data.lastName);
+      setAdminEmail(data.email);
+      setAdminImgFile(data.image);
+      setAdminContactNum(data.contactNumber);
+      setAdminRole(data.role);
+      setIsRemoveAdminBtnClicked(!isRemoveAdminBtnClicked);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (

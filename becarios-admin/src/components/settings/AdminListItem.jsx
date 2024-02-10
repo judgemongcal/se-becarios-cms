@@ -10,6 +10,9 @@ function AdminListItem({ admin }) {
   const { firstName, lastName } = admin.data;
   const id = admin.id;
 
+  const { setAdminFirstName, setAdminLastName, s } =
+    useAdminContext();
+
   return (
     <div
       key={id}
@@ -24,7 +27,7 @@ function AdminListItem({ admin }) {
         {isAGearClicked && (
           <>
             <EditItemBtn id={id} />
-            <RemoveAdminBtn />{' '}
+            <RemoveAdminBtn id={id} />{' '}
           </>
         )}
       </div>

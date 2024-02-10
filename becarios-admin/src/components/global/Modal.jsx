@@ -251,8 +251,11 @@ function RemoveAdminModal() {
           WARNING: You are about to remove an Administrator.
         </h1>
         <p className="mx-[3rem] mb-[2rem] text-[1rem] font-medium">
-          Are you sure you want to remove {adminFirstName}{' '}
-          {adminLastName} from being an Administrator?
+          Are you sure you want to remove{' '}
+          <strong>
+            {adminFirstName} {adminLastName}
+          </strong>{' '}
+          from being an <strong>Administrator</strong>?
         </p>
         <RemoveAdminModalBtn />
       </div>
