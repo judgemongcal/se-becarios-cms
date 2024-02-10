@@ -1,4 +1,4 @@
-import express, { query } from 'express';
+import express, { query as expressQuery } from 'express';
 import multer from 'multer';
 import * as fs from 'fs';
 import cors from 'cors';
@@ -18,6 +18,7 @@ import {
   uploadBytesResumable,
 } from 'firebase/storage';
 import {
+  Query,
   addDoc,
   collection,
   deleteDoc,
@@ -25,6 +26,7 @@ import {
   getDocs,
   updateDoc,
   where,
+  query,
 } from 'firebase/firestore';
 
 const serviceAccount = JSON.parse(
@@ -294,17 +296,17 @@ app.post('/updatePasswordByEmail', async (req, res) => {
 // }
 
 // // Remove a user account on Firebase Authentication
-// async function removeUserAccount(userId) {
-//   try {
-//     // Get the user reference
-//     const user = await auth.getUser(userId);
-//     // Delete the user
-//     await auth.deleteUser(userId);
-//     console.log(`User ${userId} successfully removed`);
-//   } catch (error) {
-//     console.log('Error removing user account');
-//   }
-// }
+async function removeUserAccount(userId) {
+  try {
+    // Get the user reference
+    const user = await auth.getUser(userId);
+    // Delete the user
+    await auth.deleteUser(userId);
+    console.log(`User ${userId} successfully removed`);
+  } catch (error) {
+    console.log('Error removing user account');
+  }
+}
 
 // // Remove an admin from the collection and Firebase Authentication
 // export async function removeAdminAndUser(email) {
@@ -346,10 +348,10 @@ async function getUserIdByEmail(email) {
   return user.uid;
 }
 
-// Remove a user account on Firebase Authentication
-async function removeUserAccount(userId) {
-  await auth.deleteUser(userId);
-}
+// // Remove a user account on Firebase Authentication
+// async function removeUserAccount(userId) {
+//   await auth.deleteUser(userId);
+// }
 
 app.post('/removeAdminCredAndAuth', async (req, res) => {
   const { email } = req.body;
@@ -364,11 +366,14 @@ app.post('/removeAdminCredAndAuth', async (req, res) => {
       db,
       'admin_credentials',
     );
+
     const adminQuery = query(
       adminCollection,
       where('email', '==', email),
     );
+
     console.log(adminQuery);
+
     const querySnapshot = await getDocs(adminQuery);
     if (!querySnapshot.empty) {
       // Admin found, proceed with deletion);
