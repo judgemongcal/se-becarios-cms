@@ -86,3 +86,59 @@ export async function removeAdmin(adminID) {
     throw error;
   }
 }
+
+// GET FIREBASE ADMIN AUTH USER ID BY EMAIL
+export async function getUserIdByEmail(email) {
+  try {
+    // Get the user record by email
+    const userRecord = await auth.getUserByEmail(email);
+    // Extract and return the user ID
+    const userId = userRecord.uid;
+    return userId;
+  } catch (error) {
+    console.log('Error getting user ID by email');
+  }
+}
+
+// REMOVE A USER FROM FIREBASE AUTH
+export async function removeUserAccount(userId) {
+  try {
+    // Get the user reference
+    const user = await auth.getUser(userId);
+    // Delete the user
+    await auth.deleteUser(userId);
+    console.log(`User ${userId} successfully removed`);
+  } catch (error) {
+    console.log('Error removing user account');
+  }
+}
+
+// DELETE ADMIN
+
+export async function removeAdminAndUser(email) {
+  try {
+    // Get Firebase Admin Authentication user ID by email
+    const userId = await getUserIdByEmail(email);
+    // Remove a user account on Firebase Authentication
+    await removeUserAccount(userId);
+    // Remove an Admin from the collection
+    const adminCollection = db.collection(
+      'admin_credentials',
+    );
+    const adminQuery = await adminCollection
+      .where('email', '==', email)
+      .get();
+    if (!adminQuery.empty) {
+      // Admin found, proceed with deletion
+      const adminID = adminQuery.docs[0].id;
+      await adminCollection.doc(adminID).delete();
+      console.log('Admin removed successfully');
+    } else {
+      // Admin not found in the collection
+      throw new Error('Admin not found');
+    }
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}

@@ -889,11 +889,33 @@ function UploadImageBtn() {
   );
 }
 
-function RemoveAdminBtn() {
+function RemoveAdminBtn({}) {
   const {
     isRemoveAdminBtnClicked,
     setIsRemoveAdminBtnClicked,
   } = useSettingsContext();
+
+  const {
+    setAdminFirstName,
+    setAdminLastName,
+    setAdminContactNum,
+    setAdminImgFile,
+    setAdminEmail,
+    setAdminPassword,
+    setAdminRole,
+    setCurrentDocId,
+  } = useAdminContext();
+
+  async function handleClick(e) {
+    e.preventDefault();
+    const data = await fetchAdminById(id);
+    setAdminFirstName(data.firstName);
+    setAdminLastName(data.lastName);
+    setAdminEmail(data.email);
+    setAdminImgFile(data.image);
+    setAdminContactNum(data.contactNumber);
+    setAdminRole(data.role);
+  }
 
   function handleClick(e) {
     e.preventDefault();
