@@ -408,6 +408,9 @@ function ConfirmAddAdminModalBtn() {
       setIsAddAdminClicked(false);
       setIsAddAdminSuccessful(!isAddAdminSuccessful);
       resetAdminFields();
+      setTimeout(function () {
+        window.location.reload();
+      }, 2000);
     } catch (error) {
       console.log(error);
     }
@@ -694,6 +697,10 @@ function RemoveAdminModalBtn() {
       console.log('success! ' + response);
       setIsRemoveAdminBtnClicked(!isRemoveAdminBtnClicked);
       setIsRemoveSuccessful(!isRemoveSuccessful);
+
+      setTimeout(function () {
+        window.location.reload();
+      }, 2000);
     } catch (error) {
       console.log('Error Deleting Admin: ' + error);
     }
