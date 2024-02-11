@@ -282,19 +282,6 @@ app.post('/updatePasswordByEmail', async (req, res) => {
   }
 });
 
-// // Get Firebase Admin Authentication user ID by email
-// async function getUserIdByEmail(email) {
-//   try {
-//     // Get the user record by email
-//     const userRecord = await auth.getUserByEmail(email);
-//     // Extract and return the user ID
-//     const userId = userRecord.uid;
-//     return userId;
-//   } catch (error) {
-//     console.log('Error getting user ID by email');
-//   }
-// }
-
 // // Remove a user account on Firebase Authentication
 async function removeUserAccount(userId) {
   try {
@@ -308,35 +295,6 @@ async function removeUserAccount(userId) {
   }
 }
 
-// // Remove an admin from the collection and Firebase Authentication
-// export async function removeAdminAndUser(email) {
-//   try {
-//     // Get Firebase Admin Authentication user ID by email
-//     const userId = await getUserIdByEmail(email);
-//     // Remove a user account on Firebase Authentication
-//     await removeUserAccount(userId);
-//     // Remove an Admin from the collection
-//     const adminCollection = db.collection(
-//       'admin_credentials',
-//     );
-//     const adminQuery = await adminCollection
-//       .where('email', '==', email)
-//       .get();
-//     if (!adminQuery.empty) {
-//       // Admin found, proceed with deletion
-//       const adminID = adminQuery.docs[0].id;
-//       await adminCollection.doc(adminID).delete();
-//       console.log('Admin removed successfully');
-//     } else {
-//       // Admin not found in the collection
-//       throw new Error('Admin not found');
-//     }
-//   } catch (error) {
-//     console.error(error);
-//     throw error;
-//   }
-// }
-
 // Server Status Checker
 app.listen(port, () => {
   console.log(`Server is running on ${port}`);
@@ -349,9 +307,6 @@ async function getUserIdByEmail(email) {
 }
 
 // // Remove a user account on Firebase Authentication
-// async function removeUserAccount(userId) {
-//   await auth.deleteUser(userId);
-// }
 
 app.post('/removeAdminCredAndAuth', async (req, res) => {
   const { email } = req.body;
@@ -376,19 +331,15 @@ app.post('/removeAdminCredAndAuth', async (req, res) => {
 
     const querySnapshot = await getDocs(adminQuery);
     if (!querySnapshot.empty) {
-      // Admin found, proceed with deletion);
-      // const adminID = querySnapshot.docs[0].ref;
       querySnapshot.forEach(async (doc) => {
         await deleteDoc(doc.ref);
       });
 
-      // await adminCollection.doc(adminID).delete();
       console.log('Admin removed successfully');
       res
         .status(200)
         .send({ message: 'Admin removed successfully' });
     } else {
-      // Admin not found in the collection
       throw new Error('Admin not found');
     }
   } catch (error) {
