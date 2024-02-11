@@ -837,7 +837,7 @@ function EditItemBtn({ id }) {
 
   return (
     <button
-      className="bg-brand-light hover:bg-brand-black rounded-8 shadow-sm-btn items-center p-2 duration-300"
+      className={`bg-brand-light hover:bg-brand-black rounded-8 shadow-sm-btn items-center p-2 duration-300`}
       onClick={(e) => handleClick(e)}
     >
       <LuPencil className="fill-brand-input stroke-brand-black  h-[20px] w-[24px] " />
@@ -921,6 +921,8 @@ function RemoveAdminBtn({ id }) {
     setIsRemoveAdminBtnClicked,
   } = useSettingsContext();
 
+  const { userInfo } = useUserInfoContext();
+
   const {
     setAdminFirstName,
     setAdminLastName,
@@ -952,7 +954,9 @@ function RemoveAdminBtn({ id }) {
 
   return (
     <button
-      className="bg-brand-red hover:bg-brand-red-dark rounded-8 shadow-sm-btn items-center p-2 duration-300"
+      className={`bg-brand-red hover:bg-brand-red-dark rounded-8 shadow-sm-btn items-center p-2 duration-300 ${
+        userInfo.role == 'Super Admin' ? '' : 'hidden'
+      }`}
       onClick={(e) => handleClick(e)}
     >
       <FaXmark className="fill-brand-input h-auto w-[24px]" />
