@@ -1,5 +1,6 @@
 import { useAdminContext } from '../../hooks/useAdminContext';
 import { useSettingsContext } from '../../hooks/useSettingsContext';
+import { useUserInfoContext } from '../../hooks/useUserInfoContext';
 import {
   RemoveAdminBtn,
   EditItemBtn,
@@ -7,16 +8,19 @@ import {
 
 function AdminListItem({ admin }) {
   const { isAGearClicked } = useSettingsContext();
+  const { userInfo } = useUserInfoContext();
   const { firstName, lastName } = admin.data;
   const id = admin.id;
 
-  const { setAdminFirstName, setAdminLastName, s } =
+  const { setAdminFirstName, setAdminLastName } =
     useAdminContext();
 
   return (
     <div
       key={id}
-      className="bg-brand-blue rounded-8 shadow-shadow-db flex flex-row items-center justify-between gap-2 p-2"
+      className={`bg-brand-blue rounded-8 shadow-shadow-db flex flex-row items-center justify-between gap-2 p-2 ${
+        userInfo.id === id ? '' : 'opacity-80'
+      }`}
     >
       <div className="admin-name ml-4 py-2 font-medium">
         <p>
@@ -24,12 +28,14 @@ function AdminListItem({ admin }) {
         </p>
       </div>
       <div className="admin-btns flex flex-row gap-2">
-        {isAGearClicked && (
-          <>
-            <EditItemBtn id={id} />
-            <RemoveAdminBtn id={id} />{' '}
-          </>
-        )}
+        {isAGearClicked &&
+          userInfo.firstName === firstName &&
+          userInfo.lastName === lastName && (
+            <>
+              <EditItemBtn id={id} />
+              <RemoveAdminBtn id={id} />{' '}
+            </>
+          )}
       </div>
     </div>
   );
