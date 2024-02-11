@@ -513,6 +513,9 @@ function ConfirmEditAdminModalBtn() {
       setIsAddAdminClicked(false);
       setIsAddAdminSuccessful(!isAddAdminSuccessful);
       resetAdminFields();
+      setTimeout(function () {
+        window.location.reload();
+      }, 2000);
     } catch (error) {
       console.log(error);
     }
