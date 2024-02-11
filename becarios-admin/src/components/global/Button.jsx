@@ -864,6 +864,8 @@ function SuperAdminSettingsBtn() {
 }
 
 function AdminSettingsBtn() {
+  const { userInfo } = useUserInfoContext();
+
   const {
     isAGearClicked,
     setIsAGearClicked,
@@ -887,7 +889,9 @@ function AdminSettingsBtn() {
     <div className="flex items-center justify-evenly gap-2">
       <button
         className={`bg-brand-yellow hover:bg-brand-yellow-dark rounded-8 shadow-sm-btn items-center p-2 duration-300 ${
-          isAGearClicked ? '' : 'hidden'
+          isAGearClicked && userInfo.role == 'Super Admin'
+            ? ''
+            : 'hidden'
         }`}
         onClick={(e) => handleAddAdmin(e)}
       >
