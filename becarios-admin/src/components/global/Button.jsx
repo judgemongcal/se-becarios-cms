@@ -553,7 +553,9 @@ function SelectAdminRoleBtn() {
     <div className="flex justify-between gap-4">
       <button
         className={`shadow-shadow-db rounded-8 hover:bg-brand-blue w-full  p-3 duration-300 ${
-          isSuperAdmin ? 'bg-white' : 'bg-brand-blue'
+          isSuperAdmin || adminRole == 'Super Admin'
+            ? 'bg-white'
+            : 'bg-brand-blue'
         }`}
         onClick={(e) => handleAdminRoleClick(e)}
       >
@@ -561,7 +563,9 @@ function SelectAdminRoleBtn() {
       </button>
       <button
         className={`shadow-shadow-db rounded-8 hover:bg-brand-yellow-dark  w-full  p-3 duration-300 ${
-          isSuperAdmin ? 'bg-brand-yellow' : 'bg-white'
+          isSuperAdmin || adminRole == 'Super Admin'
+            ? 'bg-brand-yellow'
+            : 'bg-white'
         } `}
         onClick={(e) => handleSuperAdminRoleClick(e)}
       >

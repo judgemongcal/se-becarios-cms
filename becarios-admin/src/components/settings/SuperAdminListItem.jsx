@@ -1,8 +1,11 @@
 import { LuPencil } from 'react-icons/lu';
 import { useSettingsContext } from '../../hooks/useSettingsContext';
+import { EditItemBtn } from '../global/Button';
+import { useUserInfoContext } from '../../hooks/useUserInfoContext';
 
 export function SuperAdminListItem({ admin }) {
   const { isSAGearClicked } = useSettingsContext();
+  const { userInfo } = useUserInfoContext();
   const { firstName, lastName } = admin.data;
   const id = admin.id;
 
@@ -18,15 +21,11 @@ export function SuperAdminListItem({ admin }) {
         </p>
       </div>
       <div className="admin-btns flex flex-row gap-2">
-        <div
-          className={`hover:bg-brand-black bg-brand-light rounded-8 shadow-sm-btn items-center p-3 duration-300  ${
-            isSAGearClicked ? '' : 'hidden'
-          }`}
-        >
-          <LuPencil
-            className={`fill-brand-input h-[16px] w-[16px]`}
-          />
-        </div>
+        {isSAGearClicked && (
+          <>
+            <EditItemBtn id={id} />
+          </>
+        )}
       </div>
     </div>
   );

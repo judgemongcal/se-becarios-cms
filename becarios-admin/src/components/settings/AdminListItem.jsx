@@ -19,7 +19,7 @@ function AdminListItem({ admin }) {
     <div
       key={id}
       className={`bg-brand-blue rounded-8 shadow-shadow-db flex flex-row items-center justify-between gap-2 p-2 ${
-        userInfo.id === id ? '' : 'opacity-80'
+        userInfo.id === id ? '' : 'opacity-70'
       }`}
     >
       <div className="admin-name ml-4 py-2 font-medium">
