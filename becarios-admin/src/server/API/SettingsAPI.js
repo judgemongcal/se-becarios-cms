@@ -6,6 +6,7 @@ import {
   getDoc,
   doc,
   deleteDoc,
+  updateDoc,
 } from 'firebase/firestore';
 import { auth, db } from '../firebase.js';
 import { useState } from 'react';
@@ -85,5 +86,38 @@ export async function removeAdmin(adminID) {
   } catch (error) {
     console.error('Error removing admin', error);
     throw error;
+  }
+}
+
+// Turn Admin into Super Admin
+
+export async function assignAsSuperAdmin(
+  superAdminID,
+  adminID,
+) {
+  const docRefSuperAdmin = doc(
+    db,
+    'admin_credentials',
+    superAdminID,
+  );
+  const docRefAdmin = doc(db, 'admin_credentials', adminID);
+
+  const superAdminData = {
+    role: 'Super Admin',
+  };
+
+  const adminData = {
+    role: 'Admin',
+  };
+
+  try {
+    await updateDoc(docRefSuperAdmin, superAdminData);
+    await updateDoc(docRefAdmin, adminData);
+    setTimeout(function () {
+      window.location.reload();
+    }, 2000);
+    console.log('Success!');
+  } catch (error) {
+    console.log(error);
   }
 }

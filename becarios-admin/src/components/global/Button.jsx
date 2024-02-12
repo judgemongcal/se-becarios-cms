@@ -20,7 +20,10 @@ import { useManageContentContext } from '../../hooks/useManageContentContext';
 import { UserAuth } from '../../hooks/useAuthContext';
 import { useUserInfoContext } from '../../hooks/useUserInfoContext';
 import { useAdminContext } from '../../hooks/useAdminContext';
-import { fetchAdminById } from '../../server/API/SettingsAPI';
+import {
+  assignAsSuperAdmin,
+  fetchAdminById,
+} from '../../server/API/SettingsAPI';
 // import {
 //   createAdminAuth,
 //   createAdminCredentials,
@@ -340,8 +343,21 @@ function AddAdminModalBtn() {
 }
 
 function AssignSuperAdminBtn() {
+  const { userInfo } = useUserInfoContext();
+  const { currentDocId } = useAdminContext();
+  async function handleClick(e) {
+    e.preventDefault();
+    try {
+      await assignAsSuperAdmin(currentDocId, userInfo.id);
+    } catch (error) {
+      console.log(error);
+    }
+  }
   return (
-    <button className=" bg-brand-input shadow-shadow-db transition-scale rounded-8 hover:bg-brand-yellow mb-3 w-[100%] py-2 text-[1.15rem] font-semibold  duration-100 ease-in hover:scale-105">
+    <button
+      className=" bg-brand-input shadow-shadow-db transition-scale rounded-8 hover:bg-brand-yellow mb-3 w-[100%] py-2 text-[1.15rem] font-semibold  duration-100 ease-in hover:scale-105"
+      onClick={(e) => handleClick(e)}
+    >
       Assign as Super Administrator
     </button>
   );
