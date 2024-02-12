@@ -326,7 +326,9 @@ function AddAdminModalBtn() {
     <div className="flex flex-row justify-around gap-3 py-2">
       <button
         className={`bg-brand-blue shadow-shadow-db rounded-10 hover:bg-brand-blue-dark  w-full py-3 text-[1.05rem] font-semibold text-[#FFFFFF] duration-100 ${
-          isComplete === true ? '' : 'disabled opacity-50'
+          isComplete === true
+            ? ''
+            : 'disabled pointer-events-none opacity-50'
         }`}
         onClick={(e) => handleAddAdmin(e)}
       >
@@ -463,6 +465,7 @@ function ConfirmAssignSuperAdminModalBtn() {
     isAddAdminClicked,
     setIsAddAdminClicked,
     setIsAssignBtnClicked,
+    setIsAssignSuccessful,
   } = useSettingsContext();
 
   const { currentDocId } = useAdminContext();
@@ -480,6 +483,8 @@ function ConfirmAssignSuperAdminModalBtn() {
     e.preventDefault();
     try {
       await assignAsSuperAdmin(currentDocId, userInfo.id);
+      setIsAssignBtnClicked(false);
+      setIsAssignSuccessful(true);
     } catch (error) {
       console.log(error);
     }
@@ -905,8 +910,6 @@ function EditItemBtn({ id }) {
       setAdminImgFile(data.image);
       setAdminContactNum(data.contactNumber);
       setAdminRole(data.role);
-
-      await fetchAdminAuthByEmail(data.email);
     } catch (error) {
       console.log(error);
     }

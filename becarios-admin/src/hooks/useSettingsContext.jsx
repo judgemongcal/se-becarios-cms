@@ -27,7 +27,8 @@ export function SettingsProvider({ children }) {
     useState(false);
   const [isAssignBtnClicked, setIsAssignBtnClicked] =
     useState(false);
-
+  const [isAssignSuccessful, setIsAssignSuccessful] =
+    useState(false);
   const contextValue = {
     isSAGearClicked,
     setIsSAGearClicked,
@@ -47,6 +48,8 @@ export function SettingsProvider({ children }) {
     setIsEditingAdmin,
     isAssignBtnClicked,
     setIsAssignBtnClicked,
+    isAssignSuccessful,
+    setIsAssignSuccessful,
   };
 
   return (

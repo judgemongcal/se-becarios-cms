@@ -13,6 +13,7 @@ import {
 } from '../components/global/Modal';
 import {
   AddAdminSuccessPopup,
+  AssignSuperAdminSuccessPopup,
   RemoveAdminSuccessPopup,
 } from '../components/global/Popup';
 import { useSignOutContext } from '../hooks/useSignOutContext';
@@ -28,6 +29,8 @@ function Settings() {
     setIsAddAdminSuccessful,
     setIsRemoveSuccessful,
     isAssignBtnClicked,
+    isAssignSuccessful,
+    setIsAssignSuccessful,
   } = useSettingsContext();
 
   const { isSignOutClicked } = useSignOutContext();
@@ -55,6 +58,17 @@ function Settings() {
     }
   }, [isRemoveSuccessful, setIsRemoveSuccessful]);
 
+  useEffect(() => {
+    if (isAssignSuccessful) {
+      const timer = setTimeout(
+        () => setIsAssignSuccessful(!isAssignSuccessful),
+        3000,
+      );
+
+      return () => clearTimeout(timer);
+    }
+  }, [isAssignSuccessful, setIsAssignSuccessful]);
+
   return (
     <div className="flex flex-col justify-start lg:flex-row">
       <div className="navs">
@@ -64,10 +78,16 @@ function Settings() {
 
       <div className="content mt-[10rem] flex w-[100%] flex-col gap-[5rem] px-9 md:mb-[5rem] md:px-16 lg:ml-[21rem] lg:mt-[8rem] lg:pb-[20%]">
         <PageTitle title="Settings" />
-        {isRemoveSuccessful && <RemoveAdminSuccessPopup />}
 
         <div className="heading">
           {isAddAdminSuccessful && <AddAdminSuccessPopup />}
+          {isRemoveSuccessful && (
+            <RemoveAdminSuccessPopup />
+          )}
+          {isAssignSuccessful && (
+            <AssignSuperAdminSuccessPopup />
+          )}
+
           <h2 className="pb-2 text-left text-[1.25rem] font-medium md:text-[1.5rem]">
             Manage Accounts
           </h2>

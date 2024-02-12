@@ -12,9 +12,11 @@ import { useAdminContext } from '../../hooks/useAdminContext';
 import { FaCheck, FaEye } from 'react-icons/fa6';
 import { useEffect, useState } from 'react';
 import { useSettingsContext } from '../../hooks/useSettingsContext';
+import { useUserInfoContext } from '../../hooks/useUserInfoContext';
 
 function AdminModal() {
   const [showPassword, setShowPassword] = useState(false);
+  const { currentDocId } = useAdminContext();
 
   const {
     adminFirstName,
@@ -38,6 +40,7 @@ function AdminModal() {
   } = useAdminContext();
 
   const { isEditingAdmin } = useSettingsContext();
+  const { userInfo } = useUserInfoContext();
 
   // Email Validation
   useEffect(() => {
@@ -214,16 +217,17 @@ function AdminModal() {
                 />
               </label>
             </div>
+
             <img
               src={`${
                 adminImageSrc
                   ? adminImageSrc
                   : adminImgFile
                     ? adminImgFile
-                    : './src/assets/sample_admin.png'
+                    : '../src/assets/sample_admin.webp'
               }`}
               alt="admin image"
-              className="shadow-shadow-db  border-brand-blue  h-[120px] w-[120px] rounded-[100%] border-8 md:h-[150px] md:w-[150px]"
+              className="shadow-shadow-db  border-brand-blue  h-[120px] w-[120px] rounded-[80%] border-8 md:h-[150px] md:w-[150px]"
             />
           </div>
 
@@ -348,12 +352,13 @@ function AdminModal() {
               </p>
             </div>
           </div>
-
-          {isEditingAdmin ? (
-            <>
+          {isEditingAdmin &&
+            userInfo.role == 'Super Admin' &&
+            userInfo.id != currentDocId && (
               <AssignSuperAdminBtn />
-              <EditAdminModalBtn />
-            </>
+            )}
+          {isEditingAdmin ? (
+            <EditAdminModalBtn />
           ) : (
             <AddAdminModalBtn />
           )}
