@@ -1,7 +1,9 @@
 import { FiUploadCloud } from 'react-icons/fi';
 import {
   AddAdminModalBtn,
+  AssignSuperAdminBtn,
   EditAdminModalBtn,
+  LoginBtn,
   RemoveAdminModalBtn,
   SelectAdminRoleBtn,
 } from '../global/Button';
@@ -348,7 +350,10 @@ function AdminModal() {
           </div>
 
           {isEditingAdmin ? (
-            <EditAdminModalBtn />
+            <>
+              <AssignSuperAdminBtn />
+              <EditAdminModalBtn />
+            </>
           ) : (
             <AddAdminModalBtn />
           )}

@@ -339,6 +339,14 @@ function AddAdminModalBtn() {
   );
 }
 
+function AssignSuperAdminBtn() {
+  return (
+    <button className=" bg-brand-input shadow-shadow-db transition-scale rounded-8 hover:bg-brand-yellow mb-3 w-[100%] py-2 text-[1.15rem] font-semibold  duration-100 ease-in hover:scale-105">
+      Assign as Super Administrator
+    </button>
+  );
+}
+
 function ConfirmAddAdminModalBtn() {
   const {
     isAddAdminBtnClicked,
@@ -559,7 +567,7 @@ function SelectAdminRoleBtn() {
     <div className="flex justify-between gap-4">
       <button
         className={`shadow-shadow-db rounded-8 hover:bg-brand-blue w-full  p-3 duration-300 ${
-          isSuperAdmin || adminRole == 'Super Admin'
+          adminRole != 'Admin'
             ? 'bg-white'
             : 'bg-brand-blue'
         }`}
@@ -567,7 +575,7 @@ function SelectAdminRoleBtn() {
       >
         Administrator
       </button>
-      <button
+      {/* <button
         className={`shadow-shadow-db rounded-8 hover:bg-brand-yellow-dark  w-full  p-3 duration-300 ${
           isSuperAdmin || adminRole == 'Super Admin'
             ? 'bg-brand-yellow'
@@ -576,7 +584,7 @@ function SelectAdminRoleBtn() {
         onClick={(e) => handleSuperAdminRoleClick(e)}
       >
         Super Administrator
-      </button>
+      </button> */}
     </div>
   );
 }
@@ -1038,6 +1046,7 @@ export {
   ProceedModalBtn,
   AddAdminModalBtn,
   ConfirmAddAdminModalBtn,
+  AssignSuperAdminBtn,
   ConfirmEditAdminModalBtn,
   SelectAdminRoleBtn,
   EditAdminModalBtn,
