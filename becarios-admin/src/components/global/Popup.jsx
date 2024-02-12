@@ -2,6 +2,7 @@ import {
   FaRegCircleXmark,
   FaRegCircleCheck,
 } from 'react-icons/fa6';
+import { useAdminContext } from '../../hooks/useAdminContext';
 
 const tries = 5;
 
@@ -101,22 +102,42 @@ function AdminErrorPopup() {
 }
 
 function EditAdminInfoSuccessPopup() {
+  const { adminFirstName, adminLastName } =
+    useAdminContext();
   return (
     <div className="bg-brand-green rounded-10 my-4 flex flex-row items-center justify-center gap-2 px-4 py-2 text-center text-white">
       <FaRegCircleCheck className="h-auto w-8 md:ml-[1rem] lg:ml-0" />
       <p className="ml-0 text-[10px] md:text-[12px] lg:ml-0">
-        Administrator details has been edited successfully.
+        Administrator information of {adminFirstName}{' '}
+        {adminLastName} has been edited successfully.
       </p>
     </div>
   );
 }
 
 function RemoveAdminSuccessPopup() {
+  const { adminFirstName, adminLastName } =
+    useAdminContext();
   return (
     <div className="bg-brand-green rounded-10 my-4 flex flex-row items-center justify-center gap-2 px-4 py-2 text-center text-white">
       <FaRegCircleCheck className="h-auto w-8 md:ml-[1rem] lg:ml-0" />
       <p className="ml-0 text-[10px] md:text-[12px] lg:ml-0">
-        Administrator has been removed successfully.
+        {adminFirstName} {adminLastName} has been removed as
+        an Administrator successfully.
+      </p>
+    </div>
+  );
+}
+
+function AssignSuperAdminSuccessPopup() {
+  const { adminFirstName, adminLastName } =
+    useAdminContext();
+  return (
+    <div className="bg-brand-green rounded-10 my-4 flex flex-row items-center justify-center gap-2 px-4 py-2 text-center text-white">
+      <FaRegCircleCheck className="h-auto w-8 md:ml-[1rem] lg:ml-0" />
+      <p className="ml-0 text-[10px] md:text-[12px] lg:ml-0">
+        Successfully assigned {adminFirstName}{' '}
+        {adminLastName} as a Super Administrator.
       </p>
     </div>
   );
@@ -146,4 +167,5 @@ export {
   EditAdminInfoSuccessPopup,
   RemoveAdminSuccessPopup,
   GenReportSuccessPopup,
+  AssignSuperAdminSuccessPopup,
 };
