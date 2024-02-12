@@ -342,27 +342,6 @@ function AddAdminModalBtn() {
   );
 }
 
-function AssignSuperAdminBtn() {
-  const { userInfo } = useUserInfoContext();
-  const { currentDocId } = useAdminContext();
-  async function handleClick(e) {
-    e.preventDefault();
-    try {
-      await assignAsSuperAdmin(currentDocId, userInfo.id);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-  return (
-    <button
-      className=" bg-brand-input shadow-shadow-db transition-scale rounded-8 hover:bg-brand-yellow mb-3 w-[100%] py-2 text-[1.15rem] font-semibold  duration-100 ease-in hover:scale-105"
-      onClick={(e) => handleClick(e)}
-    >
-      Assign as Super Administrator
-    </button>
-  );
-}
-
 function ConfirmAddAdminModalBtn() {
   const {
     isAddAdminBtnClicked,
@@ -445,6 +424,72 @@ function ConfirmAddAdminModalBtn() {
       <button
         className="bg-brand-blue shadow-shadow-db rounded-10 hover:bg-brand-blue-dark  disabled w-full py-3 text-[1.05rem] font-semibold text-[#FFFFFF] duration-100 "
         onClick={(e) => handleAdd(e)}
+      >
+        Confirm
+      </button>
+      <button
+        className="bg-brand-red shadow-shadow-db rounded-10 hover:bg-brand-red-dark w-full py-3 text-[1.05rem] font-semibold text-[#FFFFFF] duration-100"
+        onClick={(e) => handleBack(e)}
+      >
+        Go Back
+      </button>
+    </div>
+  );
+}
+
+function AssignSuperAdminBtn() {
+  const { setIsAssignBtnClicked, setIsAddAdminBtnClicked } =
+    useSettingsContext();
+
+  async function handleClick(e) {
+    e.preventDefault();
+    setIsAssignBtnClicked(true);
+    setIsAddAdminBtnClicked(false);
+  }
+  return (
+    <button
+      className=" bg-brand-input shadow-shadow-db transition-scale rounded-8 hover:bg-brand-yellow mb-3 w-[100%] py-2 text-[1.15rem] font-semibold  duration-100 ease-in hover:scale-105"
+      onClick={(e) => handleClick(e)}
+    >
+      Assign as Super Administrator
+    </button>
+  );
+}
+
+function ConfirmAssignSuperAdminModalBtn() {
+  const {
+    isAddAdminBtnClicked,
+    setIsAddAdminBtnClicked,
+    isAddAdminClicked,
+    setIsAddAdminClicked,
+    setIsAssignBtnClicked,
+  } = useSettingsContext();
+
+  const { currentDocId } = useAdminContext();
+  const { userInfo } = useUserInfoContext();
+
+  function handleBack(e) {
+    e.preventDefault();
+    // resetAdminFields();
+    setIsAddAdminBtnClicked(!isAddAdminBtnClicked);
+    // setIsAddAdminClicked(!isAddAdminClicked);
+    setIsAssignBtnClicked(false);
+  }
+
+  async function handleAssign(e) {
+    e.preventDefault();
+    try {
+      await assignAsSuperAdmin(currentDocId, userInfo.id);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  return (
+    <div className="flex flex-row justify-around gap-3 py-2">
+      <button
+        className="bg-brand-blue shadow-shadow-db rounded-10 hover:bg-brand-blue-dark  disabled w-full py-3 text-[1.05rem] font-semibold text-[#FFFFFF] duration-100 "
+        onClick={(e) => handleAssign(e)}
       >
         Confirm
       </button>
@@ -1083,4 +1128,5 @@ export {
   UploadImageBtn,
   SubmitArticleBtn,
   SuperAdminSettingsBtn,
+  ConfirmAssignSuperAdminModalBtn,
 };
