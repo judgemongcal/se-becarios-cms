@@ -41,6 +41,19 @@ function AdminModal() {
 
   const { isEditingAdmin } = useSettingsContext();
   const { userInfo } = useUserInfoContext();
+  const [imgSrc, setImgSrc] = useState(
+    '../src/assets/sample_admin.webp',
+  );
+
+  useEffect(() => {
+    if (adminImgFile && adminImgFile != '') {
+      setImgSrc(adminImgFile);
+    } else if (adminImageSrc && adminImageSrc != '') {
+      setImgSrc(adminImageSrc);
+    } else {
+      setImgSrc('../src/assets/sample_admin.webp');
+    }
+  }, [adminImgFile, adminImageSrc, setImgSrc]);
 
   // Email Validation
   useEffect(() => {
@@ -218,14 +231,15 @@ function AdminModal() {
               </label>
             </div>
 
-            <img
-              src={`${
+            {/* `${
                 adminImageSrc
                   ? adminImageSrc
                   : adminImgFile
                     ? adminImgFile
                     : '../src/assets/sample_admin.webp'
-              }`}
+              }` */}
+            <img
+              src={imgSrc}
               alt="admin image"
               className="shadow-shadow-db  border-brand-blue  h-[120px] w-[120px] rounded-[80%] border-8 md:h-[150px] md:w-[150px]"
             />
