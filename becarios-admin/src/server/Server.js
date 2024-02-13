@@ -388,7 +388,7 @@ app.post(
         dateCreated: dateTime,
         image: downloadURL,
         isApproved: isApproved === 'true',
-        isArchived,
+        isArchived: false,
       })
         .then(() => {
           console.log('Doc written successfully');
