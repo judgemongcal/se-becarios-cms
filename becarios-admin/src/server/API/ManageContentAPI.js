@@ -76,13 +76,14 @@ export async function fetchPostedArticles() {
 // Fetches articles according to title
 export async function searchArticleByTitle(keyword = '') {
   try {
-    const articleCollection = db.collection('articles');
+    const articleCollection = collection(db, 'articles');
     // Fetch all articles
-    const snapshot = await articleCollection.get();
+    const snapshot = await getDocs(articleCollection);
     // Extract articles data from the snapshot
     const matchingArticles = [];
     snapshot.forEach((doc) => {
       const articleData = doc.data();
+      console.log(articleData);
       // Convert Timestamp to Date for readable format
       articleData.datePosted =
         articleData.datePosted.toDate();
@@ -95,7 +96,10 @@ export async function searchArticleByTitle(keyword = '') {
           .includes(keyword.toLowerCase()) &&
         articleData.isApproved === true
       ) {
-        matchingArticles.push(articleData);
+        matchingArticles.push({
+          data: doc.data(),
+          id: doc.id,
+        });
       }
     });
     return matchingArticles;

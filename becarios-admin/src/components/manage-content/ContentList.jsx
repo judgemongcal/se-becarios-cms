@@ -16,12 +16,13 @@ function ContentList({ type }) {
     setSortOrder,
     setSearchQuery,
   } = useManageContentContext();
-  const [articles, setArticles] = useState([]);
+  const { articles, setArticles } =
+    useManageContentContext();
 
   useEffect(() => {
     console.log('Sort Order:', sortOrder);
     console.log('Search Query:', searchQuery);
-
+    articles.forEach((article) => console.log(article));
     const fetchArticlesData = async () => {
       try {
         let articlesData;
@@ -74,7 +75,7 @@ function ContentList({ type }) {
 
     // Call the asynchronous function
     fetchArticlesData();
-  }, [sortOrder, searchQuery]);
+  }, [sortOrder, searchQuery, setArticles]);
 
   // Handlers for sorting and searching
   const handleSortAlphaUp = () => setSortOrder('alpha-asc');
@@ -89,6 +90,7 @@ function ContentList({ type }) {
     <div className=" rounded-8 mt-[2rem] flex w-[100%] flex-col gap-2 sm:min-w-[100%] md:max-w-[100%] lg:min-w-[40vh] lg:max-w-[100%]">
       <div className="req-items -mt-5 mb-4 flex flex-col gap-6 md:grid md:grid-cols-3 ">
         {/* CONVERT INTO ARRAY.MAP */}
+
         {articles.map((article) => (
           <ContentListItem
             type={type}
