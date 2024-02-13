@@ -10,6 +10,7 @@ import {
   EditorProvider,
   useCurrentEditor,
 } from '@tiptap/react';
+
 import StarterKit from '@tiptap/starter-kit';
 import {
   FaBold,
@@ -30,7 +31,9 @@ import {
   LuHeading2,
   LuHeading3,
 } from 'react-icons/lu';
+
 import { useCreateArticleContext } from '../../hooks/useCreateArticleContext';
+import { useEffect } from 'react';
 
 const MenuBar = () => {
   const { editor } = useCurrentEditor();
@@ -334,6 +337,40 @@ export default function TextEditor() {
     setArticleBody(updatedBody);
     console.log(updatedBody);
   }
+
+  // useEffect(() => {
+  //   async function updateContent() {
+  //     const parser = new DOMParser();
+  //     const content = parser.parseFromString(
+  //       articleBody,
+  //       'text/html',
+  //     );
+
+  //     setArticleBody(content);
+  //   }
+
+  //   updateContent();
+  // }, [articleBody, setArticleBody]);
+
+  // useEffect(() => {
+  //   async function updateContent() {
+  //     const parser = new DOMParser();
+  //     const parsedContent = parser.parseFromString(
+  //       articleBody,
+  //       'text/html',
+  //     );
+
+  //     // Check if the parsed content is different from the current articleBody state
+  //     const newContent =
+  //       parsedContent.documentElement.innerHTML;
+  //     // if (newContent !== articleBody) {
+  //     setArticleBody(newContent);
+  //     // }
+  //   }
+
+  //   updateContent();
+  // }, [articleBody, setArticleBody]);
+
   return (
     <EditorProvider
       slotBefore={<MenuBar />}

@@ -20,7 +20,6 @@ export function CreateArticleProvider({ children }) {
   const [isSubmitConfirmed, setIsSubmitConfirmed] =
     useState(false);
   const [articleImgFile, setArticleImgFile] = useState();
-  const [ArticleToEdit, setArticleToEdit] = useState({});
 
   const contextValue = {
     articleTitle,
@@ -39,8 +38,6 @@ export function CreateArticleProvider({ children }) {
     setIsSubmitConfirmed,
     articleImgFile,
     setArticleImgFile,
-    ArticleToEdit,
-    setArticleToEdit,
   };
 
   return (

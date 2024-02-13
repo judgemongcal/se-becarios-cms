@@ -26,23 +26,42 @@ function EditArticle() {
     setArticleImageFileName,
     setArticleImageSrc,
     setArticleBody,
+    isPreview,
+    setIsPreview,
+    isSubmitBtnPressed,
+    isSubmitConfirmed,
   } = useCreateArticleContext();
 
   useEffect(() => {
     async function fetchData() {
+      setIsPreview(true);
       const data = await fetchArticleById(id);
       console.log(data);
       setArticleTitle(data.title);
-      setArticleBody(data.body);
+
+      const parser = new DOMParser();
+      const parsedContent = parser.parseFromString(
+        data.body,
+        'text/html',
+      );
+
+      // Check if the parsed content is different from the current articleBody state
+      const newContent =
+        parsedContent.documentElement.innerHTML;
+      console.log(newContent);
+      setArticleBody(newContent);
+      // setArticleImageFileName(data.image);
+      setArticleImageSrc(data.image);
     }
     fetchData();
-  }, [id, setArticleTitle, setArticleBody]);
-
-  const {
-    isPreview,
-    isSubmitBtnPressed,
-    isSubmitConfirmed,
-  } = useCreateArticleContext();
+  }, [
+    id,
+    setIsPreview,
+    setArticleTitle,
+    setArticleBody,
+    setArticleImageFileName,
+    setArticleImageSrc,
+  ]);
 
   return (
     <div className="flex flex-col justify-start lg:flex-row ">
