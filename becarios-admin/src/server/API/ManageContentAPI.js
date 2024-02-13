@@ -73,6 +73,38 @@ export async function fetchPostedArticles() {
   }
 }
 
+// Fetches articles according to title
+export async function searchArticleByTitle(keyword = '') {
+  try {
+    const articleCollection = db.collection('articles');
+    // Fetch all articles
+    const snapshot = await articleCollection.get();
+    // Extract articles data from the snapshot
+    const matchingArticles = [];
+    snapshot.forEach((doc) => {
+      const articleData = doc.data();
+      // Convert Timestamp to Date for readable format
+      articleData.datePosted =
+        articleData.datePosted.toDate();
+      articleData.dateCreated =
+        articleData.dateCreated.toDate();
+      // Check if the lowercase title contains the lowercase keyword
+      if (
+        articleData.title
+          .toLowerCase()
+          .includes(keyword.toLowerCase()) &&
+        articleData.isApproved === true
+      ) {
+        matchingArticles.push(articleData);
+      }
+    });
+    return matchingArticles;
+  } catch (error) {
+    console.error('Error fetching articles', error);
+    throw error;
+  }
+}
+
 // Fetch Articles by Alphabetical Order
 export async function fetchAllPostedArticlesAZ(
   sortOrder = 'asc',
