@@ -4,11 +4,17 @@ import {
 } from '../global/Button';
 
 function ContentListItem({ type, id, data }) {
-  const { author, dateCreated, image, title } = data;
-  const date = new Date(
-    dateCreated.seconds * 1000 +
-      dateCreated.nanoseconds / 1000000,
-  );
+  const { author, datePosted, image, title } = data;
+  let date;
+  if (datePosted && datePosted.seconds) {
+    date = new Date(
+      datePosted.seconds * 1000 +
+        (datePosted.nanoseconds || 0) / 1000000,
+    );
+  } else {
+    // Set a default date or handle the case where datePosted is not available
+    date = new Date(); // Set a default date (e.g., current date/time)
+  }
   const months = [
     'January',
     'February',
