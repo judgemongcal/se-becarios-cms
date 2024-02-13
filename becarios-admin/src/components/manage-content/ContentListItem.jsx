@@ -54,7 +54,7 @@ function ContentListItem({ type, id, data }) {
           <p>{postTime}</p>
         </div>
         <p className="author mx-auto text-[0.9rem] md:text-[1rem] 2xl:mx-0">
-          Submitted by: {author}
+          Written by: {author}
         </p>
         <div className="btn mt-[1rem] flex w-full flex-row justify-end">
           {type === 'Posted' ? (
