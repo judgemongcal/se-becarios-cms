@@ -32,7 +32,7 @@ export function UserInfoProvider({ children }) {
 
           setUserInfo(currentUser);
           console.log(currentUser);
-          console.log(user);
+          // console.log(user);
         } catch (error) {
           console.log(error);
         }

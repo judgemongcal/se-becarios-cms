@@ -41,7 +41,6 @@ function ContentListItem({ type, id, data }) {
       : date.getMinutes()
   } ${date.getHours() >= 12 ? 'PM' : 'AM'}`;
 
-  console.log(postDate, postTime);
   return (
     <div className="bg-brand-light req-container shadow-shadow-db rounded-8 flex flex-col items-center gap-2 p-5 md:gap-5 2xl:flex-row">
       <div className="req-img mx-auto flex w-full max-w-[400px] items-center md:w-[70%]">

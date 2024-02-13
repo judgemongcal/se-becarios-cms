@@ -24,6 +24,7 @@ import { AuthContextProvider } from './hooks/useAuthContext';
 import ProtectedRoute from './pages/ProtectedRoute';
 import { UserInfoProvider } from './hooks/useUserInfoContext';
 import { AdminProvider } from './hooks/useAdminContext';
+import EditArticle from './pages/EditArticle';
 
 function App() {
   return (
@@ -37,7 +38,6 @@ function App() {
           >
             <Routes>
               <Route index element={<Login />} />
-
               <Route
                 path="/dashboard"
                 element={
@@ -60,6 +60,21 @@ function App() {
                   </ProtectedRoute>
                 }
               />
+              <Route
+                path="/edit-article"
+                element={
+                  <ProtectedRoute>
+                    <CreateArticleProvider
+                      value={
+                        CreateArticleProvider.contextValue
+                      }
+                    >
+                      <EditArticle />
+                    </CreateArticleProvider>
+                  </ProtectedRoute>
+                }
+              />
+
               <Route
                 path="/recent-activities"
                 element={

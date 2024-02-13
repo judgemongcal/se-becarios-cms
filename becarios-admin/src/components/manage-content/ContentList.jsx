@@ -20,9 +20,9 @@ function ContentList({ type }) {
     useManageContentContext();
 
   useEffect(() => {
-    console.log('Sort Order:', sortOrder);
-    console.log('Search Query:', searchQuery);
-    articles.forEach((article) => console.log(article));
+    // console.log('Sort Order:', sortOrder);
+    // console.log('Search Query:', searchQuery);
+
     const fetchArticlesData = async () => {
       try {
         let articlesData;
@@ -34,7 +34,7 @@ function ContentList({ type }) {
           articlesData = await fetchPostedArticles();
         }
 
-        console.log('Fetched Articles:', articlesData);
+        // console.log('Fetched Articles:', articlesData);
 
         let sortedArticles;
 
@@ -59,13 +59,13 @@ function ContentList({ type }) {
             sortedArticles = articlesData;
         }
 
-        console.log('Current sortOrder:', sortOrder);
+        // console.log('Current sortOrder:', sortOrder);
         // Ensure sortedArticles is an array
         sortedArticles = Array.isArray(sortedArticles)
           ? sortedArticles
           : [];
 
-        console.log('sortedArticles: ', sortedArticles);
+        // console.log('sortedArticles: ', sortedArticles);
 
         setArticles(sortedArticles);
       } catch (error) {

@@ -25,6 +25,7 @@ import { useCreateArticleContext } from '../../hooks/useCreateArticleContext';
 import { FiUploadCloud } from 'react-icons/fi';
 import { useSettingsContext } from '../../hooks/useSettingsContext';
 import { useAdminContext } from '../../hooks/useAdminContext';
+import { useUserInfoContext } from '../../hooks/useUserInfoContext';
 
 function ExceededLoginAttemptsModal() {
   return (
@@ -186,6 +187,7 @@ function DeletePostModal() {
 }
 
 function PostReqSuccessModal() {
+  const { userInfo } = useUserInfoContext();
   return (
     <div className="modal-bg bg-brand-input md:bg-modal-bg  justify-cente fixed top-0 z-[1000] flex h-[100%] w-[100%] items-center">
       <div className="modal-container bg-brand-input rounded-10 3xl:w-[25%] mx-auto flex w-[100%] flex-col justify-center px-[2rem] py-[2.25rem] text-center md:w-[50%] xl:w-[35%] 2xl:w-[500px]">
@@ -194,10 +196,16 @@ function PostReqSuccessModal() {
           Post Request Submitted.
         </h1>
         <p className="mx-[3rem] mb-[2rem] text-[1rem] font-medium">
-          Your post request has been submitted. It is now
-          pending for the approval of the super
-          administrator. We appreciate your patience!
+          {`Your article ${
+            userInfo.role !== 'Super Admin'
+              ? ''
+              : 'post request'
+          } has been submitted. ${
+            userInfo.role !== 'Super Admin' &&
+            'It is now pending for the approval of the super administrator'
+          }. We appreciate your patience!`}
         </p>
+
         <PostReqSuccessModalBtn />
       </div>
     </div>
