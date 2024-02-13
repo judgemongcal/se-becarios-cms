@@ -39,8 +39,19 @@ const MenuBar = () => {
     return null;
   }
 
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      event.preventDefault(); // Prevent form submission
+      // Add any other handling you need for the keypress event
+    }
+  };
+
   return (
-    <div className="main-container flex flex-col">
+    <div
+      className="main-container flex flex-col"
+      onClick={(e) => e.preventDefault()}
+      onKeyDown={(e) => handleKeyPress(e)}
+    >
       <p className="mb-[0.5rem] text-[1.25rem] font-semibold tracking-wide">
         Article Body{' '}
         <span className="text-brand-red align-middle text-[1.5rem]">
@@ -48,11 +59,15 @@ const MenuBar = () => {
         </span>
       </p>
 
-      <div className="bg-brand-black rounded-t-8 -mb-0.5 grid grid-cols-4 grid-rows-2 justify-evenly gap-4 p-4 md:grid-cols-7">
+      <div
+        className="bg-brand-black rounded-t-8 -mb-0.5 grid grid-cols-4 grid-rows-2 justify-evenly gap-4 p-4 md:grid-cols-7"
+        onClick={(e) => e.preventDefault()}
+      >
         <button
-          onClick={() =>
-            editor.chain().focus().undo().run()
-          }
+          onClick={(e) => {
+            e.preventDefault(e);
+            editor.chain().focus().undo().run();
+          }}
           disabled={
             !editor.can().chain().focus().undo().run()
           }
@@ -61,9 +76,10 @@ const MenuBar = () => {
           <FaUndo className="h-auto w-[20px]" />
         </button>
         <button
-          onClick={() =>
-            editor.chain().focus().redo().run()
-          }
+          onClick={(e) => {
+            e.preventDefault();
+            editor.chain().focus().redo().run();
+          }}
           disabled={
             !editor.can().chain().focus().redo().run()
           }
@@ -72,9 +88,10 @@ const MenuBar = () => {
           <FaRedo className="h-auto w-[20px]" />
         </button>
         <button
-          onClick={() =>
-            editor.chain().focus().toggleBold().run()
-          }
+          onClick={(e) => {
+            e.preventDefault(e);
+            editor.chain().focus().toggleBold().run();
+          }}
           disabled={
             !editor.can().chain().focus().toggleBold().run()
           }
@@ -85,9 +102,10 @@ const MenuBar = () => {
           <FaBold className="h-[20px] w-[20px]" />
         </button>
         <button
-          onClick={() =>
-            editor.chain().focus().toggleItalic().run()
-          }
+          onClick={(e) => {
+            e.preventDefault();
+            editor.chain().focus().toggleItalic().run();
+          }}
           disabled={
             !editor
               .can()
@@ -105,9 +123,10 @@ const MenuBar = () => {
           <FaItalic className="h-[20px] w-[20px]" />
         </button>
         <button
-          onClick={() =>
-            editor.chain().focus().toggleUnderline().run()
-          }
+          onClick={(e) => {
+            e.preventDefault(e);
+            editor.chain().focus().toggleUnderline().run();
+          }}
           className={`${
             editor.isActive('underline') ? 'is_active' : ''
           } shadow-sm-btn rounded-8 bg-brand-light flex items-center justify-center p-2`}
@@ -136,9 +155,10 @@ const MenuBar = () => {
         </button>
 
         <button
-          onClick={() =>
-            editor.chain().focus().unsetAllMarks().run()
-          }
+          onClick={(e) => {
+            e.preventDefault();
+            editor.chain().focus().unsetAllMarks().run();
+          }}
           className="shadow-sm-btn rounded-8 bg-brand-light flex items-center justify-center p-2"
         >
           <TbClearFormatting className="h-[24px] w-[24px]" />
@@ -157,14 +177,15 @@ const MenuBar = () => {
           <FaParagraph className="h-[20px] w-[20px]" />
         </button>
 
-        <button
-          onClick={() =>
+        <div
+          onClick={(e) => {
+            e.preventDefault();
             editor
               .chain()
               .focus()
               .toggleHeading({ level: 1 })
-              .run()
-          }
+              .run();
+          }}
           className={`${
             editor.isActive('heading', { level: 1 })
               ? 'bg-brand-yellow'
@@ -172,7 +193,7 @@ const MenuBar = () => {
           } shadow-sm-btn rounded-8 bg-brand-light flex items-center justify-center p-2`}
         >
           <LuHeading1 className="h-auto w-[24px]" />
-        </button>
+        </div>
 
         <button
           onClick={() =>
@@ -191,13 +212,14 @@ const MenuBar = () => {
           <LuHeading2 className="h-auto w-[24px]" />
         </button>
         <button
-          onClick={() =>
+          onClick={(e) => {
+            e.preventDefault();
             editor
               .chain()
               .focus()
               .toggleHeading({ level: 3 })
-              .run()
-          }
+              .run();
+          }}
           className={`${
             editor.isActive('heading', { level: 3 })
               ? 'bg-brand-yellow'
@@ -208,9 +230,10 @@ const MenuBar = () => {
         </button>
 
         <button
-          onClick={() =>
-            editor.chain().focus().toggleBulletList().run()
-          }
+          onClick={(e) => {
+            e.preventDefault();
+            editor.chain().focus().toggleBulletList().run();
+          }}
           className={`${
             editor.isActive('bulletList')
               ? 'bg-brand-yellow'
@@ -220,9 +243,14 @@ const MenuBar = () => {
           <FaListUl className="h-auto w-[24px]" />
         </button>
         <button
-          onClick={() =>
-            editor.chain().focus().toggleOrderedList().run()
-          }
+          onClick={(e) => {
+            e.preventDefault();
+            editor
+              .chain()
+              .focus()
+              .toggleOrderedList()
+              .run();
+          }}
           className={`${
             editor.isActive('orderedList')
               ? 'bg-brand-yellow'
@@ -232,9 +260,10 @@ const MenuBar = () => {
           <FaListOl className="h-auto w-[24px]" />
         </button>
         <button
-          onClick={() =>
-            editor.chain().focus().toggleCodeBlock().run()
-          }
+          onClick={(e) => {
+            e.preventDefault();
+            editor.chain().focus().toggleCodeBlock().run();
+          }}
           className={`${
             editor.isActive('codeBlock')
               ? 'bg-brand-yellow'
@@ -245,9 +274,10 @@ const MenuBar = () => {
         </button>
 
         <button
-          onClick={() =>
-            editor.chain().focus().toggleBlockquote().run()
-          }
+          onClick={(e) => {
+            e.preventDefault();
+            editor.chain().focus().toggleBlockquote().run();
+          }}
           className={`${
             editor.isActive('blockquote')
               ? 'bg-brand-yellow'
@@ -257,9 +287,10 @@ const MenuBar = () => {
           <FaQuoteLeft className="h-auto w-[24px]" />
         </button>
         <button
-          onClick={() =>
-            editor.chain().focus().setHardBreak().run()
-          }
+          onClick={(e) => {
+            e.preventDefault();
+            editor.chain().focus().setHardBreak().run();
+          }}
           className="shadow-sm-btn rounded-8 bg-brand-light flex items-center justify-center p-2"
         >
           <CgSpaceBetweenV className="h-[24px] w-[24px]" />

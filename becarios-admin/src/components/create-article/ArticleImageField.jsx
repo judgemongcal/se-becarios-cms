@@ -8,6 +8,7 @@ function ArticleImageField() {
     articleImageFileName,
     setArticleImageFileName,
     setArticleImageSrc,
+    setArticleImgFile,
   } = useCreateArticleContext();
 
   function handleArticleImageSrcChange(e) {
@@ -15,6 +16,7 @@ function ArticleImageField() {
     const file = e.target.files[0];
     if (file) {
       setArticleImageFileName(file.name);
+      setArticleImgFile(file);
       const reader = new FileReader();
       reader.onloadend = () => {
         setArticleImageSrc(reader.result);
@@ -58,6 +60,7 @@ function ArticleImageField() {
           <input
             id="dropzone-file"
             type="file"
+            name="article-image"
             className="hidden"
             accept="image/*"
             onChange={(e) => handleArticleImageSrcChange(e)}

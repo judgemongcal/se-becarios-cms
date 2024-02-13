@@ -60,7 +60,7 @@ app.use(bodyParser.json({ limit: '25mb' }));
 //handles upload
 const upload = multer({
   storage: multer.memoryStorage(),
-  limits: { fileSize: 5 * 1024 * 1024 },
+  limits: { fileSize: 25 * 1024 * 1024 },
 });
 
 // FETCH ARTICLES
@@ -347,3 +347,65 @@ app.post('/removeAdminCredAndAuth', async (req, res) => {
     res.status(500).send({ error: error.toString() });
   }
 });
+
+///////////////////////////////// CREATE ARTICLE
+
+// ADD ADMIN CREDENTIALS
+app.post(
+  '/add-article',
+  upload.single('article-image'),
+  async (req, res) => {
+    console.log(req.body);
+    const dateTime = new Date();
+    const { author, title, body, isApproved, isArchived } =
+      req.body;
+    console.log(req.file);
+    try {
+      const storageRef = ref(
+        storage,
+        `article_photos/${req.file + dateTime}`,
+      );
+      let metadata = {};
+      if (req.file) {
+        metadata = { contentType: req.file.type };
+      } else {
+        console.log('No File Uploaded');
+      }
+
+      const snapshot = await uploadBytesResumable(
+        storageRef,
+        req.file.buffer,
+        metadata,
+      );
+      const downloadURL = await getDownloadURL(
+        snapshot.ref,
+      );
+
+      await addDoc(collection(db, 'articles'), {
+        author,
+        title,
+        body,
+        dateCreated: dateTime,
+        image: downloadURL,
+        isApproved: isApproved === 'true',
+        isArchived,
+      })
+        .then(() => {
+          console.log('Doc written successfully');
+        })
+        .catch((error) => {
+          console.log(`Error in writing doc: ${error}`);
+        });
+
+      return res.send({
+        message: 'file uploaded to firebase storage',
+        name: req.image,
+        type: req.image,
+        downloadURL: downloadURL,
+      });
+    } catch (error) {
+      console.log(error);
+      return res.status(400).send(error.message);
+    }
+  },
+);

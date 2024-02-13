@@ -171,11 +171,17 @@ function SubmitArticleBtn() {
 }
 
 function SubmitPostModalBtn() {
+  const { userInfo } = useUserInfoContext();
+
   const {
     isSubmitBtnPressed,
     setIsSubmitBtnPressed,
     isSubmitConfirmed,
     setIsSubmitConfirmed,
+    articleTitle,
+    articleBody,
+    articleImageSrc,
+    articleImgFile,
   } = useCreateArticleContext();
 
   function handleGoBackClicked(e) {
@@ -183,9 +189,30 @@ function SubmitPostModalBtn() {
     setIsSubmitBtnPressed(!isSubmitBtnPressed);
   }
 
-  function handleSubmitClicked(e) {
+  async function handleSubmitClicked(e) {
     e.preventDefault();
-    setIsSubmitConfirmed(!isSubmitConfirmed);
+
+    try {
+      const authorName = `${userInfo.firstName} ${userInfo.lastName}`;
+      const isSuperAdmin = userInfo.role == 'Super Admin';
+      const articleData = new FormData();
+      articleData.append('author', authorName);
+      articleData.append('title', articleTitle);
+      articleData.append('body', articleBody);
+      articleData.append('article-image', articleImgFile);
+      articleData.append(
+        'isApproved',
+        Boolean(isSuperAdmin),
+      );
+      articleData.append('isArchived', false);
+      await fetch('http://localhost:5001/add-article', {
+        method: 'POST',
+        body: articleData,
+      });
+      setIsSubmitConfirmed(!isSubmitConfirmed);
+    } catch (error) {
+      console.log('Error in submitting article: ' + error);
+    }
   }
 
   return (

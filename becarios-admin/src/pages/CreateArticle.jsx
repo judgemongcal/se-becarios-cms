@@ -35,12 +35,15 @@ function CreateArticle() {
         {!isPreview ? (
           <>
             <PageTitle title="Create Post" />
-            <div className="flex flex-col">
+            <form
+              method="POST"
+              encType="multipart/form-data"
+              className="flex flex-col"
+            >
               <ArticleTitleField />
               <ArticleImageField />
-
               <TextEditor />
-            </div>{' '}
+            </form>{' '}
           </>
         ) : (
           <ArticlePreview />
