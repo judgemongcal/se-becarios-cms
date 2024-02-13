@@ -61,7 +61,7 @@ function App() {
                 }
               />
               <Route
-                path="/edit-article"
+                path="/edit-article/:id"
                 element={
                   <ProtectedRoute>
                     <CreateArticleProvider
@@ -92,7 +92,14 @@ function App() {
                         ManageContentProvider.contextValue
                       }
                     >
-                      <ManageContent />
+                      {' '}
+                      <CreateArticleProvider
+                        value={
+                          CreateArticleProvider.contextValue
+                        }
+                      >
+                        <ManageContent />
+                      </CreateArticleProvider>
                     </ManageContentProvider>
                   </ProtectedRoute>
                 }

@@ -63,6 +63,7 @@ function ArticleImageField() {
             name="article-image"
             className="hidden"
             accept="image/*"
+            value={articleImageFileName}
             onChange={(e) => handleArticleImageSrcChange(e)}
           />
         </label>

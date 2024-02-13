@@ -24,6 +24,7 @@ import {
   assignAsSuperAdmin,
   fetchAdminById,
 } from '../../server/API/SettingsAPI';
+import { fetchArticleById } from '../../server/API/ManageContentAPI';
 // import {
 //   createAdminAuth,
 //   createAdminCredentials,
@@ -872,12 +873,13 @@ function BacktoDashboardBtn() {
 
 function PostedSettingsBtn({ id }) {
   const idVal = id;
+  const navigate = useNavigate();
   const {
     isPostedSettingsClicked,
     setIsPostedSettingsClicked,
     targetId,
     setTargetId,
-  } = useManageContentContext(id);
+  } = useManageContentContext();
 
   function handleSettingsClick(e, id) {
     e.preventDefault();
@@ -885,6 +887,12 @@ function PostedSettingsBtn({ id }) {
     setIsPostedSettingsClicked(!isPostedSettingsClicked);
     setTargetId(idVal);
   }
+
+  async function handleEditClick(e) {
+    e.preventDefault();
+    navigate(`/edit-article/${idVal}`, { replace: true });
+  }
+
   return (
     <div className="flex gap-4" id={id}>
       <button
@@ -894,7 +902,10 @@ function PostedSettingsBtn({ id }) {
             : 'hidden'
         } w-fit items-center gap-4 p-2 duration-300 `}
       >
-        <LuPencil className=" stroke-brand-light h-auto w-[30px] md:w-[36px] " />
+        <LuPencil
+          className=" stroke-brand-light h-auto w-[30px] md:w-[36px] "
+          onClick={(e) => handleEditClick(e)}
+        />
       </button>
       <button className=" bg-brand-input rounded-8 shadow-shadow-db hover:bg-brand-light active:bg-brand-yellow  w-fit items-center  p-2 duration-300">
         <FaEllipsis

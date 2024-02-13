@@ -213,3 +213,15 @@ export async function fetchAllPostedArticles09(
     throw error;
   }
 }
+
+// Fetch Article by ID
+export async function fetchArticleById(id) {
+  try {
+    const docRef = doc(db, 'articles', id);
+    const docSnapshot = await getDoc(docRef);
+    const docData = docSnapshot.data();
+    return docData;
+  } catch (error) {
+    console.log('Error: ', error);
+  }
+}

@@ -3,7 +3,7 @@ import NavBar from '../components/global/NavBar';
 import NavBarMobile from '../components/global/NavBarMobile';
 import PageTitle from '../components/global/PageTitle';
 import ArticleImageField from '../components/create-article/ArticleImageField';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import TextEditor from '../components/create-article/TextEditor';
 import { SubmitArticleBtn } from '../components/global/Button';
 import ArticlePreview from '../components/create-article/ArticlePreview';
@@ -14,9 +14,29 @@ import {
 } from '../components/global/Modal';
 import { useCreateArticleContext } from '../hooks/useCreateArticleContext';
 import { useSignOutContext } from '../hooks/useSignOutContext';
+import { useParams } from 'react-router-dom';
+import { fetchArticleById } from '../server/API/ManageContentAPI';
 
 function EditArticle() {
   const { isSignOutClicked } = useSignOutContext();
+  const { id } = useParams();
+
+  const {
+    setArticleTitle,
+    setArticleImageFileName,
+    setArticleImageSrc,
+    setArticleBody,
+  } = useCreateArticleContext();
+
+  useEffect(() => {
+    async function fetchData() {
+      const data = await fetchArticleById(id);
+      console.log(data);
+      setArticleTitle(data.title);
+      setArticleBody(data.body);
+    }
+    fetchData();
+  }, [id, setArticleTitle, setArticleBody]);
 
   const {
     isPreview,
