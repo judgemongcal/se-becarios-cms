@@ -11,33 +11,28 @@ import {
 } from '../../server/API/GlobalAPI';
 import { useManageContentContext } from '../../hooks/useManageContentContext';
 
+
 function ContentList({ type }) {
   const context = useManageContentContext();
   console.log('Context:', context);
-  const {
-    sortOrder ='',
-    searchQuery,
-    setSortOrder,
-    setSearchQuery,
-  } = useManageContentContext() || {};
-  const { articles = '', setArticles } =
-    useManageContentContext() || {};
+  const { sortOrder = '', searchQuery, setSortOrder, setSearchQuery } = useManageContentContext() || {};
+  const [articles, setArticles] = useState([]);
 
   useEffect(() => {
-    // console.log('Sort Order:', sortOrder);
-    // console.log('Search Query:', searchQuery);
+    console.log('Sort Order:', sortOrder);
+    console.log('Search Query:', searchQuery);
 
     const fetchArticlesData = async () => {
       try {
         let articlesData;
 
-         if (searchQuery && searchQuery !== '') {
+        if (searchQuery && searchQuery !== '') {
           articlesData = await searchArticleByTitle(searchQuery,type);
         } else {
           articlesData = await (type === 'Posted' ? fetchPostedArticles() : fetchArchivedPost());
         }
 
-        // console.log('Fetched Articles:', articlesData);
+        console.log('Fetched Articles:', articlesData, type);
 
         let sortedArticles;
 
@@ -72,16 +67,13 @@ function ContentList({ type }) {
 
     // Call the asynchronous function
     fetchArticlesData();
-  }, [sortOrder, searchQuery, setArticles, type]);
-
+  }, [sortOrder, searchQuery, type]);
 
   // Handlers for sorting and searching
   const handleSortAlphaUp = () => setSortOrder('alpha-asc');
-  const handleSortAlphaDown = () =>
-    setSortOrder('alpha-desc');
+  const handleSortAlphaDown = () => setSortOrder('alpha-desc');
   const handleSortDateAsc = () => setSortOrder('date-asc');
-  const handleSortDateDesc = () =>
-    setSortOrder('date-desc');
+  const handleSortDateDesc = () => setSortOrder('date-desc');
   const handleSearch = (query) => setSearchQuery(query);
 
   return (
