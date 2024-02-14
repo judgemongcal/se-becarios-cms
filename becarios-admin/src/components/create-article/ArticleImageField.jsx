@@ -7,8 +7,10 @@ function ArticleImageField() {
   const {
     articleImageFileName,
     setArticleImageFileName,
+    articleImgFile,
     setArticleImageSrc,
     setArticleImgFile,
+    articleImageSrc,
   } = useCreateArticleContext();
 
   function handleArticleImageSrcChange(e) {
@@ -17,6 +19,7 @@ function ArticleImageField() {
     if (file) {
       setArticleImageFileName(file.name);
       setArticleImgFile(file);
+      console.log(file);
       const reader = new FileReader();
       reader.onloadend = () => {
         setArticleImageSrc(reader.result);
@@ -40,12 +43,22 @@ function ArticleImageField() {
           setArticleImageSrc={setArticleImageSrc}
         />
       )}
-      <div className="flex w-full items-center justify-center">
+      <div
+        className="rounded-8 flex w-full items-center justify-center bg-opacity-50"
+        style={{
+          backgroundImage: articleImageSrc
+            ? `url(${articleImageSrc})`
+            : 'none',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          opacity: 0.8, // Adjust the opacity here // Ensure the background stays behind the content
+        }}
+      >
         <label
           htmlFor="dropzone-file"
-          className="hover:bg-brand-input rounded-8 bg-brand-light shadow-shadow-db flex h-64 w-full cursor-pointer flex-col items-center justify-center"
+          className={`hover:bg-brand-input rounded-8  shadow-shadow-db flex h-64 w-full cursor-pointer flex-col items-center justify-center`}
         >
-          <div className="flex flex-col items-center justify-center pb-6 pt-5">
+          <div className=" z-50 flex flex-col items-center justify-center pb-6 pt-5 opacity-100">
             <FiUploadCloud className="mb-[1rem] h-auto w-[50px]" />
             <p className="mb-2 text-sm">
               <span className="font-semibold">
@@ -63,7 +76,6 @@ function ArticleImageField() {
             name="article-image"
             className="hidden"
             accept="image/*"
-            value={articleImageFileName}
             onChange={(e) => handleArticleImageSrcChange(e)}
           />
         </label>

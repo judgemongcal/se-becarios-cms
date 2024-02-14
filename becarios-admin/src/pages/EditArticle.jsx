@@ -5,7 +5,10 @@ import PageTitle from '../components/global/PageTitle';
 import ArticleImageField from '../components/create-article/ArticleImageField';
 import { useEffect, useState } from 'react';
 import TextEditor from '../components/create-article/TextEditor';
-import { SubmitArticleBtn } from '../components/global/Button';
+import {
+  EditArticleBtn,
+  SubmitArticleBtn,
+} from '../components/global/Button';
 import ArticlePreview from '../components/create-article/ArticlePreview';
 import {
   PostReqSuccessModal,
@@ -87,7 +90,7 @@ function EditArticle() {
         ) : (
           <ArticlePreview />
         )}
-        <SubmitArticleBtn />
+        <EditArticleBtn />
       </div>
       {isSubmitBtnPressed && !isSubmitConfirmed && (
         <SubmitPostModal />
