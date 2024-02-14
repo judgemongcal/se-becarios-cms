@@ -1,11 +1,8 @@
 import {
-  BsArrowUp,
-  BsArrowDown,
-  BsCalendarWeek,
   BsSortAlphaUp,
   BsSortAlphaDown,
 } from 'react-icons/bs';
-
+import React from 'react';
 import { GoArrowLeft, GoArrowRight } from 'react-icons/go';
 import { useManageContentContext } from '../../hooks/useManageContentContext';
 
@@ -17,7 +14,7 @@ function ContentFilters() {
     handleSortDateDesc,
     handleNavigateLeft,
     handleNavigateRight,
-  } = useManageContentContext();
+  } = useManageContentContext() || {};
 
   return (
     <div className=" mt-2 flex w-[100%] flex-row justify-between gap-3  md:gap-5">

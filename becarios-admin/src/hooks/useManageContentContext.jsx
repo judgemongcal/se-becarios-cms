@@ -17,7 +17,6 @@ export function ManageContentProvider({ children }) {
   // Sorting and Searching State
   const [sortOrder, setSortOrder] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
-  const [articles, setArticles] = useState([]);
 
   // Event handlers
   const handleSortAlphaUp = () => {
@@ -53,8 +52,6 @@ export function ManageContentProvider({ children }) {
     handleSortAlphaDown,
     handleSortDateAsc,
     handleSortDateDesc,
-    articles,
-    setArticles,
   };
 
   return (
