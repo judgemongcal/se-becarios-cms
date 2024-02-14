@@ -7,6 +7,7 @@ import SearchField from '../components/global/SearchField';
 import ContentFilters from '../components/manage-content/ContentFilters';
 import ContentList from '../components/manage-content/ContentList';
 import { useSignOutContext } from '../hooks/useSignOutContext';
+import { useManageContentContext } from '../hooks/useManageContentContext';
 
 function PostArchives() {
   const { isSignOutClicked } = useSignOutContext();

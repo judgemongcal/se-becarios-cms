@@ -4,7 +4,7 @@ import {
 } from '../global/Button';
 
 function ContentListItem({ type, id, data }) {
-  const { author, datePosted, image, title } = data;
+  const { author = 'Unknown Author', datePosted = { seconds: 0, nanoseconds: 0 }, image, title = 'Untitled' } = data || {};
   let date;
   if (datePosted && datePosted.seconds) {
     date = new Date(

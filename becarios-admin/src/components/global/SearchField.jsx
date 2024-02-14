@@ -10,6 +10,17 @@ import { searchArticleByTitle } from '../../server/API/ManageContentAPI';
 
 function SearchField({ type }) {
   const [searchInput, setSearchInput] = useState('');
+  const context = useManageContentContext();
+  const handleSearch = () => {
+    context.setSearchQuery(searchInput);
+    context.setSortOrder('');
+  };
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleSearch();
+    }
+  };
+/*
   const { articles, setArticles } =
     useManageContentContext();
 
@@ -17,7 +28,7 @@ function SearchField({ type }) {
     const fetched = await searchArticleByTitle(searchInput);
     setArticles(fetched);
   }
-
+*/
   return (
     <>
       <h1 className=" text-[1.5rem] font-semibold md:text-[1.75rem] ">
@@ -38,7 +49,7 @@ function SearchField({ type }) {
             onChange={(e) => {
               setSearchInput(e.target.value);
               console.log(e.target.value);
-            }}
+            }}onKeyDown={handleKeyDown}
           />
         </div>
         <button
