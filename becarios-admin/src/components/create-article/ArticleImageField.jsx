@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FiUploadCloud } from 'react-icons/fi';
 import UploadIndicator from './UploadIndicator';
 import { useCreateArticleContext } from '../../hooks/useCreateArticleContext';
@@ -28,6 +28,11 @@ function ArticleImageField() {
     }
   }
 
+  useEffect(() => {
+    setArticleImageSrc(articleImageSrc);
+    console.log(articleImageSrc);
+  }, [articleImageSrc, setArticleImageSrc]);
+
   return (
     <div className="mb-[3rem] flex flex-col justify-between">
       <p className="mb-[0.5rem] text-[1.25rem] font-semibold tracking-wide">
@@ -56,7 +61,11 @@ function ArticleImageField() {
       >
         <label
           htmlFor="dropzone-file"
-          className={`hover:bg-brand-input rounded-8  shadow-shadow-db flex h-64 w-full cursor-pointer flex-col items-center justify-center`}
+          className={`hover:bg-brand-input rounded-8  shadow-shadow-db flex h-64 w-full cursor-pointer flex-col items-center justify-center ${
+            articleImageSrc
+              ? articleImageSrc
+              : 'bg-brand-light'
+          }`}
         >
           <div className=" z-50 flex flex-col items-center justify-center pb-6 pt-5 opacity-100">
             <FiUploadCloud className="mb-[1rem] h-auto w-[50px]" />

@@ -118,7 +118,7 @@ export async function fetchAllPostedArticlesAZ(
     const q = query(
       colRef,
       where('isApproved', '==', true),
-      where('isArchived', '==', false),
+      // where('isArchived', '==', false),
     );
 
     const filteredArticlesSnapshot = await getDocs(q);
@@ -143,7 +143,7 @@ export async function fetchAllPostedArticlesAZ(
             sensitivity: 'base',
           }),
     );
-
+    console.log(allPostedArticles);
     return allPostedArticles;
   } catch (error) {
     console.error(
