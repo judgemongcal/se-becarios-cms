@@ -21,7 +21,7 @@ export function EditArticleProvider({ children }) {
   const [isEditBtnPressed, setIsEditBtnPressed] =
     useState(false);
   const [isPreview, setIsPreview] = useState(false);
-  const [isSubmitConfirmed, setIsSubmitConfirmed] =
+  const [isEditConfirmed, setIsEditConfirmed] =
     useState(false);
   const [EditArticleImgFile, setEditArticleImgFile] =
     useState();
@@ -39,8 +39,8 @@ export function EditArticleProvider({ children }) {
     setIsPreview,
     isEditBtnPressed,
     setIsEditBtnPressed,
-    isSubmitConfirmed,
-    setIsSubmitConfirmed,
+    isEditConfirmed,
+    setIsEditConfirmed,
     EditArticleImgFile,
     setEditArticleImgFile,
   };

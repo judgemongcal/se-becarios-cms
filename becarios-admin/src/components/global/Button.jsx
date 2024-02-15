@@ -304,8 +304,17 @@ function PostReqSuccessModalBtn() {
 }
 
 function ProceedModalBtn() {
+  const navigate = useNavigate();
+
+  function handleProceed(e) {
+    e.preventDefault(e);
+    navigate('/manage-content', { replace: true });
+  }
   return (
-    <button className="bg-brand-yellow shadow-shadow-db rounded-10 hover:bg-brand-yellow-dark w-[100%] py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-100">
+    <button
+      className="bg-brand-yellow shadow-shadow-db rounded-10 hover:bg-brand-yellow-dark w-[100%] py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-100"
+      onClick={(e) => handleProceed(e)}
+    >
       Proceed
     </button>
   );
@@ -866,6 +875,11 @@ function SubmitEditModalBtn() {
     setIsEditBtnPressed(!isEditBtnPressed);
   }
 
+  function handleConfirmEdit(e) {
+    e.preventDefault(e);
+    setIsEditConfirmed(!isEditConfirmed);
+  }
+
   return (
     <div className="flex flex-row justify-around gap-4 py-2">
       <button
@@ -874,7 +888,10 @@ function SubmitEditModalBtn() {
       >
         Go Back
       </button>
-      <button className="bg-brand-blue shadow-shadow-db rounded-10 hover:bg-brand-blue-dark w-[100%] py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-100">
+      <button
+        className="bg-brand-blue shadow-shadow-db rounded-10 hover:bg-brand-blue-dark w-[100%] py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-100"
+        onClick={(e) => handleConfirmEdit(e)}
+      >
         Submit Request
       </button>
     </div>
