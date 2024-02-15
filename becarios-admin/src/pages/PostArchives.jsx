@@ -1,4 +1,8 @@
-import { SignOutModal } from '../components/global/Modal';
+import {
+  DeletePostModal,
+  DeleteReqSuccessModal,
+  SignOutModal,
+} from '../components/global/Modal';
 import NavBar from '../components/global/NavBar';
 import NavBarMobile from '../components/global/NavBarMobile';
 import PageTitle from '../components/global/PageTitle';
@@ -8,9 +12,16 @@ import ContentFilters from '../components/manage-content/ContentFilters';
 import ContentList from '../components/manage-content/ContentList';
 import { useSignOutContext } from '../hooks/useSignOutContext';
 import { useManageContentContext } from '../hooks/useManageContentContext';
+import { useArchiveContext } from '../hooks/useArchiveContext';
 
 function PostArchives() {
   const { isSignOutClicked } = useSignOutContext();
+  const {
+    isDeleteBtnClicked,
+    isDeleteConfirmed,
+    isDeleteSuccessful,
+    isDeleteFailed,
+  } = useArchiveContext();
 
   return (
     <div className="flex flex-col justify-start lg:flex-row ">
@@ -37,6 +48,10 @@ function PostArchives() {
           <ContentList type="Archived" />
         </div>
       </div>
+      {isDeleteBtnClicked && <DeletePostModal />}
+      {isDeleteSuccessful && (
+        <DeleteReqSuccessModal type="archive" />
+      )}
       {isSignOutClicked && <SignOutModal />}
     </div>
   );

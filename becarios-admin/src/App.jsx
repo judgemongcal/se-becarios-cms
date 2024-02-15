@@ -26,6 +26,7 @@ import ProtectedRoute from './pages/ProtectedRoute';
 import { UserInfoProvider } from './hooks/useUserInfoContext';
 import { AdminProvider } from './hooks/useAdminContext';
 import EditArticle from './pages/EditArticle';
+import { ArchiveProvider } from './hooks/useArchiveContext';
 
 function App() {
   return (
@@ -115,7 +116,11 @@ function App() {
                 path="/post-archives"
                 element={
                   <ProtectedRoute>
-                    <PostArchives />
+                    <ArchiveProvider
+                      value={ArchiveProvider.contextValue}
+                    >
+                      <PostArchives />
+                    </ArchiveProvider>
                   </ProtectedRoute>
                 }
               />

@@ -203,3 +203,12 @@ export async function archiveArticlebyID(id, role) {
     console.log(error);
   }
 }
+
+export async function deleteArticlebyID(id) {
+  try {
+    const docRef = doc(db, 'articles', id);
+    await deleteDoc(docRef);
+  } catch (error) {
+    console.log(error);
+  }
+}

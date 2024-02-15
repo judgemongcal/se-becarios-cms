@@ -30,9 +30,11 @@ import {
 } from '../../server/API/SettingsAPI';
 import {
   archiveArticlebyID,
+  deleteArticlebyID,
   fetchArticleById,
 } from '../../server/API/ManageContentAPI';
 import { useEditArticleContext } from '../../hooks/useEditArticleContext';
+import { useArchiveContext } from '../../hooks/useArchiveContext';
 // import {
 //   createAdminAuth,
 //   createAdminCredentials,
@@ -323,12 +325,16 @@ function PostReqSuccessModalBtn() {
   );
 }
 
-function ProceedModalBtn() {
+function ProceedModalBtn({ type }) {
   const navigate = useNavigate();
 
   function handleProceed(e) {
     e.preventDefault(e);
-    navigate('/manage-content', { replace: true });
+    if (type == 'archive') {
+      window.location.reload();
+    } else {
+      navigate('/manage-content', { replace: true });
+    }
   }
   return (
     <button
@@ -984,12 +990,46 @@ function SubmitEditModalBtn() {
 }
 
 function SubmitDeleteModalBtn() {
+  const {
+    isDeleteBtnClicked,
+    setIsDeleteBtnClicked,
+    isDeleteConfirmed,
+    setIsDeleteConfirmed,
+    currentDocId,
+    isDeleteSuccessful,
+    setIsDeleteSuccessful,
+    isDeleteFailed,
+    setIsDeleteFailed,
+  } = useArchiveContext();
+
+  function handleBack(e) {
+    e.preventDefault();
+    setIsDeleteBtnClicked(!isDeleteBtnClicked);
+  }
+
+  async function handleDelete(e) {
+    e.preventDefault();
+    try {
+      await deleteArticlebyID(currentDocId);
+      setIsDeleteBtnClicked(!isDeleteBtnClicked);
+      setIsDeleteSuccessful(!isDeleteSuccessful);
+    } catch (error) {
+      setIsDeleteFailed(!isDeleteFailed);
+    }
+  }
+
   return (
     <div className="flex flex-row justify-around gap-4 py-2">
-      <button className="bg-brand-red shadow-shadow-db rounded-10 hover:bg-brand-red-dark w-[100%] py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-100">
+      <button
+        className="bg-brand-red shadow-shadow-db rounded-10 hover:bg-brand-red-dark w-[100%] py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-100"
+        onClick={(e) => handleBack(e)}
+      >
         Go Back
       </button>
-      <button className="bg-brand-yellow shadow-shadow-db rounded-10 hover:bg-brand-yellow-dark w-[100%] py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-100">
+      <button
+        className="bg-brand-yellow shadow-shadow-db rounded-10 hover:bg-brand-yellow-dark w-[100%] py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-100"
+        onClick={(e) => handleDelete(e)}
+      >
         Submit Request
       </button>
     </div>
@@ -1312,7 +1352,21 @@ function ForApprovalListItemBtn() {
   );
 }
 
-function ArchivedListItemBtn() {
+function ArchivedListItemBtn({ id }) {
+  const idVal = id;
+
+  const {
+    isDeleteBtnClicked,
+    setIsDeleteBtnClicked,
+    setCurrentDocId,
+  } = useArchiveContext();
+
+  async function handleDelete(e) {
+    e.preventDefault();
+    setIsDeleteBtnClicked(!isDeleteBtnClicked);
+    setCurrentDocId(idVal);
+  }
+
   return (
     <div className="mt-4 flex flex-row justify-start gap-3">
       <button className="bg-brand-blue hover:bg-brand-blue-dark rounded-8 shadow-sm-btn items-center p-2 duration-300">
@@ -1321,7 +1375,10 @@ function ArchivedListItemBtn() {
       <button className="bg-brand-yellow hover:bg-brand-yellow-dark rounded-8 shadow-sm-btn items-center p-2 duration-300">
         <FaShareFromSquare className="fill-brand-input h-auto w-[25px] md:w-[30px]" />
       </button>
-      <button className="bg-brand-red hover:bg-brand-red-dark rounded-8 shadow-sm-btn items-center p-2 duration-300">
+      <button
+        className="bg-brand-red hover:bg-brand-red-dark rounded-8 shadow-sm-btn items-center p-2 duration-300"
+        onClick={(e) => handleDelete(e)}
+      >
         <FaTrash className="fill-brand-input h-auto w-[25px] md:w-[30px]" />
       </button>
     </div>

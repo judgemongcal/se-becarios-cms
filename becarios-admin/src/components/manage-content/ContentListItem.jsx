@@ -71,7 +71,7 @@ function ContentListItem({ type, id, data }) {
         {type === 'Posted' ? (
           <PostedSettingsBtn id={id} />
         ) : type === 'Archived' ? (
-          <ArchivedListItemBtn />
+          <ArchivedListItemBtn id={id} />
         ) : (
           ''
         )}
