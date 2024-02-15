@@ -20,6 +20,7 @@ import {
   ConfirmEditAdminModalBtn,
   AssignSuperAdminBtn,
   ConfirmAssignSuperAdminModalBtn,
+  SubmitArchiveModalBtn,
 } from '../global/Button';
 import { useCreateArticleContext } from '../../hooks/useCreateArticleContext';
 import { FiUploadCloud } from 'react-icons/fi';
@@ -168,19 +169,19 @@ function EditPostModal() {
   );
 }
 
-function DeletePostModal() {
+function ArchivePostModal() {
   return (
     <div className="modal-bg bg-brand-input md:bg-modal-bg  justify-cente fixed top-0 z-[1000] flex h-[100%] w-[100%] items-center">
       <div className="modal-container bg-brand-input rounded-10 3xl:w-[25%] mx-auto flex w-[100%] flex-col justify-center px-[2rem] py-[2.25rem] text-center md:w-[50%] xl:w-[35%] 2xl:w-[500px]">
         <BsExclamationCircle className="fill-brand-red stroke-brand-red mb-4 h-[100px] w-auto stroke-[0.055px]" />
         <h1 className="text-brand-red mb-6 text-[1.5rem] font-semibold leading-[1.65rem]">
-          You are about to send a delete
-          <br /> request for an existing post.
+          You are about to archive
+          <br /> an existing post.
         </h1>
         <p className="mx-[3rem] mb-[2rem] text-[1rem] font-medium">
           Do you want to proceed?
         </p>
-        <SubmitDeleteModalBtn />
+        <SubmitArchiveModalBtn />
       </div>
     </div>
   );
@@ -244,6 +245,31 @@ function DeleteReqSuccessModal() {
           pending for the approval of the super
           administrator. We appreciate your patience!
         </p>
+        <ProceedModalBtn />
+      </div>
+    </div>
+  );
+}
+
+function ArchiveReqSuccessModal() {
+  const { userInfo } = useUserInfoContext();
+  const isSuperAdmin = userInfo.role === 'Super Admin';
+
+  return (
+    <div className="modal-bg bg-brand-input md:bg-modal-bg  justify-cente fixed top-0 z-[1000] flex h-[100%] w-[100%] items-center">
+      <div className="modal-container bg-brand-input rounded-10 3xl:w-[25%] mx-auto flex w-[100%] flex-col justify-center px-[2rem] py-[2.25rem] text-center md:w-[50%] xl:w-[35%] 2xl:w-[500px]">
+        <FaRegCircleCheck className="fill-brand-blue stroke-brand-blue mb-4 h-[100px] w-auto stroke-[0.055px]" />
+        <h1 className="text-brand-blue mb-6 text-[1.5rem] font-semibold leading-[1.65rem]">
+          {isSuperAdmin
+            ? 'Post has been archived.'
+            : 'Your Archive Request has been submitted.'}
+        </h1>
+        {!isSuperAdmin && (
+          <p className="mx-[3rem] mb-[2rem] text-[1rem] font-medium">
+            It is now pending for the approval of the super
+            administrator. We appreciate your patience!
+          </p>
+        )}
         <ProceedModalBtn />
       </div>
     </div>
@@ -354,7 +380,8 @@ export {
   RejectPostModal,
   SubmitPostModal,
   EditPostModal,
-  DeletePostModal,
+  ArchivePostModal,
+  ArchiveReqSuccessModal,
   PostReqSuccessModal,
   EditReqSuccessModal,
   DeleteReqSuccessModal,

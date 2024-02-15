@@ -28,7 +28,10 @@ import {
   assignAsSuperAdmin,
   fetchAdminById,
 } from '../../server/API/SettingsAPI';
-import { fetchArticleById } from '../../server/API/ManageContentAPI';
+import {
+  archiveArticlebyID,
+  fetchArticleById,
+} from '../../server/API/ManageContentAPI';
 import { useEditArticleContext } from '../../hooks/useEditArticleContext';
 // import {
 //   createAdminAuth,
@@ -134,6 +137,10 @@ function EditArticleBtn() {
     setIsPreview,
     setIsEditBtnPressed,
     isEditBtnPressed,
+    isArchiveBtnPressed,
+    setIsArchiveBtnPressed,
+    isArchiveConfirmed,
+    setIsArchiveConfirmed,
   } = useEditArticleContext();
 
   function handleClickPreview(e) {
@@ -146,10 +153,18 @@ function EditArticleBtn() {
     setIsEditBtnPressed(!isEditBtnPressed);
   }
 
+  function handleArchive(e) {
+    e.preventDefault();
+    setIsArchiveBtnPressed(!isArchiveBtnPressed);
+  }
+
   return (
     <div className="flex flex-row justify-around gap-4 py-2">
-      <button className="bg-brand-red shadow-shadow-db rounded-10 hover:bg-brand-red-dark w-[100%] py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-100">
-        Delete Post
+      <button
+        className="bg-brand-red shadow-shadow-db rounded-10 hover:bg-brand-red-dark w-[100%] py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-100"
+        onClick={(e) => handleArchive(e)}
+      >
+        Archive Post
       </button>
       <button
         className="bg-brand-blue shadow-shadow-db rounded-10 hover:bg-brand-blue-dark w-[100%] py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-100"
@@ -897,7 +912,7 @@ function SubmitEditModalBtn() {
       const authorName = `${userInfo.firstName} ${userInfo.lastName}`;
       const isSuperAdmin = userInfo.role == 'Super Admin';
       const articleData = new FormData();
-      articleData.append('author', authorName);
+      articleData.append('lastEditedBy', authorName);
       articleData.append('title', articleTitle);
       articleData.append('body', articleBody);
       articleData.append(
@@ -948,6 +963,55 @@ function SubmitDeleteModalBtn() {
         Go Back
       </button>
       <button className="bg-brand-yellow shadow-shadow-db rounded-10 hover:bg-brand-yellow-dark w-[100%] py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-100">
+        Submit Request
+      </button>
+    </div>
+  );
+}
+
+function SubmitArchiveModalBtn() {
+  const {
+    isArchiveBtnPressed,
+    setIsArchiveBtnPressed,
+    isArchiveConfirmed,
+    setIsArchiveConfirmed,
+  } = useEditArticleContext();
+
+  const { id } = useParams();
+
+  const { userInfo } = useUserInfoContext();
+
+  const currentRole = userInfo.role;
+
+  function handleBack(e) {
+    e.preventDefault();
+    setIsArchiveBtnPressed(!isArchiveBtnPressed);
+  }
+
+  async function handleArchive(e) {
+    try {
+      e.preventDefault();
+      await archiveArticlebyID(id, currentRole);
+      setIsArchiveConfirmed(!isArchiveConfirmed);
+      setIsArchiveBtnPressed(!isArchiveBtnPressed);
+      console.log(currentRole);
+    } catch (error) {
+      console.log('Error in archiving: ' + error);
+    }
+  }
+
+  return (
+    <div className="flex flex-row justify-around gap-4 py-2">
+      <button
+        className="bg-brand-red shadow-shadow-db rounded-10 hover:bg-brand-red-dark w-[100%] py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-100"
+        onClick={(e) => handleBack(e)}
+      >
+        Go Back
+      </button>
+      <button
+        className="bg-brand-yellow shadow-shadow-db rounded-10 hover:bg-brand-yellow-dark w-[100%] py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-100"
+        onClick={(e) => handleArchive(e)}
+      >
         Submit Request
       </button>
     </div>
@@ -1254,6 +1318,7 @@ export {
   RemoveAdminModalBtn,
   SubmitEditModalBtn,
   SubmitDeleteModalBtn,
+  SubmitArchiveModalBtn,
   GenerateReportBtn,
   BacktoDashboardBtn,
   PostedSettingsBtn,

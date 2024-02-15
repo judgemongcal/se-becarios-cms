@@ -170,10 +170,13 @@ export async function fetchArticleById(id) {
   }
 }
 
-export async function editDoc(id, data) {
+export async function archiveArticlebyID(id, role) {
   try {
     const docRef = doc(db, 'articles', id);
-    updateDoc(docRef);
+    updateDoc(docRef, {
+      isArchived: true,
+      isApproved: role === 'Super Admin',
+    });
   } catch (error) {
     console.log(error);
   }

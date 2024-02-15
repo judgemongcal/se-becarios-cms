@@ -25,6 +25,10 @@ export function EditArticleProvider({ children }) {
     useState(false);
   const [EditArticleImgFile, setEditArticleImgFile] =
     useState();
+  const [isArchiveBtnPressed, setIsArchiveBtnPressed] =
+    useState(false);
+  const [isArchiveConfirmed, setIsArchiveConfirmed] =
+    useState(false);
 
   const contextValue = {
     EditArticleTitle,
@@ -43,6 +47,10 @@ export function EditArticleProvider({ children }) {
     setIsEditConfirmed,
     EditArticleImgFile,
     setEditArticleImgFile,
+    isArchiveBtnPressed,
+    setIsArchiveBtnPressed,
+    isArchiveConfirmed,
+    setIsArchiveConfirmed,
   };
 
   return (

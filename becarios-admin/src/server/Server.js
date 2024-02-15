@@ -419,8 +419,13 @@ app.post(
   async (req, res) => {
     console.log(req.body);
     const dateTime = new Date();
-    const { author, title, body, isApproved, isArchived } =
-      req.body;
+    const {
+      lastEditedBy,
+      title,
+      body,
+      isApproved,
+      isArchived,
+    } = req.body;
     let downloadURL;
     const articleImage = req.body['article-image'];
     console.log(req.file);
@@ -452,7 +457,7 @@ app.post(
       const docRef = doc(db, 'articles', req.params.id);
 
       await updateDoc(docRef, {
-        author,
+        lastEditedBy,
         title,
         body,
         dateCreated: dateTime,

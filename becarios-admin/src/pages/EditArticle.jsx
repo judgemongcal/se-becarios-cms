@@ -11,6 +11,8 @@ import {
 } from '../components/global/Button';
 import ArticlePreview from '../components/create-article/ArticlePreview';
 import {
+  ArchivePostModal,
+  ArchiveReqSuccessModal,
   EditPostModal,
   EditReqSuccessModal,
   PostReqSuccessModal,
@@ -33,6 +35,10 @@ function EditArticle() {
     setIsPreview,
     isEditBtnPressed,
     isEditConfirmed,
+    isArchiveBtnPressed,
+    setIsArchiveBtnPressed,
+    isArchiveConfirmed,
+    setIsArchiveConfirmed,
   } = useEditArticleContext();
 
   const {
@@ -103,7 +109,8 @@ function EditArticle() {
       {isEditBtnPressed && !isEditConfirmed && (
         <EditPostModal />
       )}
-
+      {isArchiveBtnPressed && <ArchivePostModal />}
+      {isArchiveConfirmed && <ArchiveReqSuccessModal />}
       {isEditConfirmed && <EditReqSuccessModal />}
       {isSignOutClicked && <SignOutModal />}
     </div>
