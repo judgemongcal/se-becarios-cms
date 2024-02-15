@@ -6,6 +6,7 @@ import {
   getDoc,
   doc,
   deleteDoc,
+  updateDoc,
 } from 'firebase/firestore';
 import { auth, db } from '../firebase.js';
 import { useState } from 'react';
@@ -166,5 +167,14 @@ export async function fetchArticleById(id) {
     return docData;
   } catch (error) {
     console.log('Error: ', error);
+  }
+}
+
+export async function editDoc(id, data) {
+  try {
+    const docRef = doc(db, 'articles', id);
+    updateDoc(docRef);
+  } catch (error) {
+    console.log(error);
   }
 }

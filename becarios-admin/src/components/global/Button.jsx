@@ -7,7 +7,11 @@ import {
 } from 'react-icons/fa6';
 import { FaXmark } from 'react-icons/fa6';
 import { LuPencil } from 'react-icons/lu';
-import { NavLink, useNavigate } from 'react-router-dom';
+import {
+  NavLink,
+  useNavigate,
+  useParams,
+} from 'react-router-dom';
 import { FaGear } from 'react-icons/fa6';
 import { MdOutlineRemoveRedEye } from 'react-icons/md';
 import { useEffect, useState } from 'react';
@@ -870,14 +874,53 @@ function SubmitEditModalBtn() {
     isEditConfirmed,
   } = useEditArticleContext();
 
+  const {
+    articleTitle,
+    articleBody,
+    articleImageSrc,
+    articleImgFile,
+  } = useCreateArticleContext();
+  const { userInfo } = useUserInfoContext();
+
+  const { id } = useParams();
+
   function handleBack(e) {
     e.preventDefault();
     setIsEditBtnPressed(!isEditBtnPressed);
   }
 
-  function handleConfirmEdit(e) {
+  async function handleConfirmEdit(e) {
     e.preventDefault(e);
     setIsEditConfirmed(!isEditConfirmed);
+
+    try {
+      const authorName = `${userInfo.firstName} ${userInfo.lastName}`;
+      const isSuperAdmin = userInfo.role == 'Super Admin';
+      const articleData = new FormData();
+      articleData.append('author', authorName);
+      articleData.append('title', articleTitle);
+      articleData.append('body', articleBody);
+      articleData.append(
+        'article-image',
+        articleImgFile ? articleImgFile : articleImageSrc,
+      );
+      articleData.append(
+        'isApproved',
+        Boolean(isSuperAdmin),
+      );
+      articleData.append('isArchived', false);
+      articleData.append('isEdited', true);
+      await fetch(
+        `http://localhost:5001/edit-article-credentials/${id}`,
+        {
+          method: 'POST',
+          body: articleData,
+        },
+      );
+      setIsEditConfirmed(!isEditConfirmed);
+    } catch (error) {
+      console.log('Error in submitting article: ' + error);
+    }
   }
 
   return (

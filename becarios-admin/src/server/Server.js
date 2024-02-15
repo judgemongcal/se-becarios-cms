@@ -350,7 +350,7 @@ app.post('/removeAdminCredAndAuth', async (req, res) => {
 
 ///////////////////////////////// CREATE ARTICLE
 
-// ADD ADMIN CREDENTIALS
+// ADD ARTICLE
 app.post(
   '/add-article',
   upload.single('article-image'),
@@ -389,6 +389,7 @@ app.post(
         image: downloadURL,
         isApproved: isApproved === 'true',
         isArchived: false,
+        isEdited: false,
       })
         .then(() => {
           console.log('Doc written successfully');
@@ -399,6 +400,77 @@ app.post(
 
       return res.send({
         message: 'file uploaded to firebase storage',
+        name: req.image,
+        type: req.image,
+        downloadURL: downloadURL,
+      });
+    } catch (error) {
+      console.log(error);
+      return res.status(400).send(error.message);
+    }
+  },
+);
+
+// EDIT ARTICLE
+
+app.post(
+  '/edit-article-credentials/:id',
+  upload.single('article-image'),
+  async (req, res) => {
+    console.log(req.body);
+    const dateTime = new Date();
+    const { author, title, body, isApproved, isArchived } =
+      req.body;
+    let downloadURL;
+    const articleImage = req.body['article-image'];
+    console.log(req.file);
+    console.log('Here: ' + articleImage);
+
+    try {
+      if (articleImage === undefined) {
+        const storageRef = ref(
+          storage,
+          `article_photos/${req.file + dateTime}`,
+        );
+        let metadata = {};
+        if (req.file) {
+          metadata = { contentType: req.file.type };
+        } else {
+          console.log('No File Uploaded');
+        }
+
+        const snapshot = await uploadBytesResumable(
+          storageRef,
+          req.file.buffer,
+          metadata,
+        );
+        downloadURL = await getDownloadURL(snapshot.ref);
+      } else {
+        downloadURL = articleImage;
+      }
+
+      const docRef = doc(db, 'articles', req.params.id);
+
+      await updateDoc(docRef, {
+        author,
+        title,
+        body,
+        dateCreated: dateTime,
+        image: downloadURL,
+        isApproved: isApproved === 'true',
+        isArchived: false,
+        isEdited: true,
+      })
+        .then(() => {
+          console.log('Doc updated successfully');
+        })
+        .catch((error) => {
+          console.log(`Error in updating doc: ${error}`);
+        });
+
+      return res.send({
+        message:
+          'file uploaded to firebase storage and doc updated',
         name: req.image,
         type: req.image,
         downloadURL: downloadURL,
