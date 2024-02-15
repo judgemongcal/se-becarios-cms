@@ -25,6 +25,7 @@ import {
   fetchAdminById,
 } from '../../server/API/SettingsAPI';
 import { fetchArticleById } from '../../server/API/ManageContentAPI';
+import { useEditArticleContext } from '../../hooks/useEditArticleContext';
 // import {
 //   createAdminAuth,
 //   createAdminCredentials,
@@ -124,12 +125,21 @@ function RejectModalBtn() {
 }
 
 function EditArticleBtn() {
-  const { isPreview, setIsPreview, setIsSubmitBtnPressed } =
-    useCreateArticleContext();
+  const {
+    isPreview,
+    setIsPreview,
+    setIsEditBtnPressed,
+    isEditBtnPressed,
+  } = useEditArticleContext();
 
   function handleClickPreview(e) {
     e.preventDefault();
     setIsPreview(!isPreview);
+  }
+
+  function handleSubmitEidt(e) {
+    e.preventDefault();
+    setIsEditBtnPressed(!isEditBtnPressed);
   }
 
   return (
@@ -143,7 +153,10 @@ function EditArticleBtn() {
       >
         {isPreview ? 'Edit Article' : 'Preview Article'}
       </button>
-      <button className="bg-brand-yellow shadow-shadow-db rounded-10 hover:bg-brand-yellow-dark w-[100%] py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-100">
+      <button
+        className="bg-brand-yellow shadow-shadow-db rounded-10 hover:bg-brand-yellow-dark w-[100%] py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-100"
+        onClick={(e) => handleSubmitEidt(e)}
+      >
         Submit Edit
       </button>
     </div>
@@ -841,9 +854,24 @@ function RemoveAdminModalBtn() {
 }
 
 function SubmitEditModalBtn() {
+  const {
+    setIsEditBtnPressed,
+    isEditBtnPressed,
+    setIsEditConfirmed,
+    isEditConfirmed,
+  } = useEditArticleContext();
+
+  function handleBack(e) {
+    e.preventDefault();
+    setIsEditBtnPressed(!isEditBtnPressed);
+  }
+
   return (
     <div className="flex flex-row justify-around gap-4 py-2">
-      <button className="bg-brand-red shadow-shadow-db rounded-10 hover:bg-brand-red-dark w-[100%] py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-100">
+      <button
+        className="bg-brand-red shadow-shadow-db rounded-10 hover:bg-brand-red-dark w-[100%] py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-100"
+        onClick={(e) => handleBack(e)}
+      >
         Go Back
       </button>
       <button className="bg-brand-blue shadow-shadow-db rounded-10 hover:bg-brand-blue-dark w-[100%] py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-100">

@@ -6,7 +6,7 @@ export function useEditArticleContext() {
   return useContext(EditArticleContext);
 }
 
-export function CreateArticleProvider({ children }) {
+export function EditArticleProvider({ children }) {
   const [EditArticleTitle, setEditArticleTitle] =
     useState('');
 
@@ -18,7 +18,7 @@ export function CreateArticleProvider({ children }) {
     useState('');
   const [EditArticleBody, setEditArticleBody] =
     useState('');
-  const [isSubmitBtnPressed, setIsSubmitBtnPressed] =
+  const [isEditBtnPressed, setIsEditBtnPressed] =
     useState(false);
   const [isPreview, setIsPreview] = useState(false);
   const [isSubmitConfirmed, setIsSubmitConfirmed] =
@@ -37,8 +37,8 @@ export function CreateArticleProvider({ children }) {
     setEditArticleBody,
     isPreview,
     setIsPreview,
-    isSubmitBtnPressed,
-    setIsSubmitBtnPressed,
+    isEditBtnPressed,
+    setIsEditBtnPressed,
     isSubmitConfirmed,
     setIsSubmitConfirmed,
     EditArticleImgFile,

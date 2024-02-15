@@ -11,30 +11,35 @@ import {
 } from '../components/global/Button';
 import ArticlePreview from '../components/create-article/ArticlePreview';
 import {
+  EditPostModal,
+  EditReqSuccessModal,
   PostReqSuccessModal,
   SignOutModal,
   SubmitPostModal,
 } from '../components/global/Modal';
-import { useCreateArticleContext } from '../hooks/useCreateArticleContext';
+
 import { useSignOutContext } from '../hooks/useSignOutContext';
 import { useParams } from 'react-router-dom';
 import { fetchArticleById } from '../server/API/ManageContentAPI';
+import { useEditArticleContext } from '../hooks/useEditArticleContext';
+import { useCreateArticleContext } from '../hooks/useCreateArticleContext';
 
 function EditArticle() {
   const { isSignOutClicked } = useSignOutContext();
   const { id } = useParams();
 
   const {
+    isPreview,
+    setIsPreview,
+    isEditBtnPressed,
+    isEditConfirmed,
+  } = useEditArticleContext();
+
+  const {
     setArticleTitle,
     setArticleImageFileName,
     setArticleImageSrc,
     setArticleBody,
-    isPreview,
-    setIsPreview,
-    isEditBtnPressed,
-    setIsEditBtnPressed,
-    isEditConfirmed,
-    setIsEditConfirmed,
   } = useCreateArticleContext();
 
   useEffect(() => {
@@ -96,10 +101,10 @@ function EditArticle() {
         <EditArticleBtn />
       </div>
       {isEditBtnPressed && !isEditConfirmed && (
-        <SubmitPostModal />
+        <EditPostModal />
       )}
 
-      {isEditConfirmed && <PostReqSuccessModal />}
+      {isEditConfirmed && <EditReqSuccessModal />}
       {isSignOutClicked && <SignOutModal />}
     </div>
   );

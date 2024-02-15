@@ -21,6 +21,7 @@ import { SettingsProvider } from './hooks/useSettingsContext';
 import { SignOutProvider } from './hooks/useSignOutContext';
 import { ManageContentProvider } from './hooks/useManageContentContext';
 import { AuthContextProvider } from './hooks/useAuthContext';
+import { EditArticleProvider } from './hooks/useEditArticleContext';
 import ProtectedRoute from './pages/ProtectedRoute';
 import { UserInfoProvider } from './hooks/useUserInfoContext';
 import { AdminProvider } from './hooks/useAdminContext';
@@ -69,7 +70,13 @@ function App() {
                         CreateArticleProvider.contextValue
                       }
                     >
-                      <EditArticle />
+                      <EditArticleProvider
+                        value={
+                          EditArticleProvider.contextValue
+                        }
+                      >
+                        <EditArticle />
+                      </EditArticleProvider>
                     </CreateArticleProvider>
                   </ProtectedRoute>
                 }
