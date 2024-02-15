@@ -70,6 +70,7 @@ function EditArticle() {
     <div className="flex flex-col justify-start lg:flex-row ">
       <div className="navs">
         <NavBar />
+
         <NavBarMobile />
       </div>
 

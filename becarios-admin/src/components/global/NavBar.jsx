@@ -28,7 +28,7 @@ function NavBar() {
       overflow-auto text-white md:w-[20.5rem] lg:flex"
     >
       <img
-        src="./src/assets/org_logo.png"
+        src="../src/assets/org_logo.png"
         alt=""
         className="fixed top-[20px]  mt-[60px] w-[180px]"
       />

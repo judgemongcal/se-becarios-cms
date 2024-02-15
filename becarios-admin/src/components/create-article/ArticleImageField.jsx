@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { FiUploadCloud } from 'react-icons/fi';
 import UploadIndicator from './UploadIndicator';
 import { useCreateArticleContext } from '../../hooks/useCreateArticleContext';
+import { useParams } from 'react-router-dom';
 
 function ArticleImageField() {
   const {
@@ -12,6 +13,8 @@ function ArticleImageField() {
     setArticleImgFile,
     articleImageSrc,
   } = useCreateArticleContext();
+
+  const { id } = useParams();
 
   function handleArticleImageSrcChange(e) {
     console.log(e.target.value);
@@ -41,6 +44,13 @@ function ArticleImageField() {
           *
         </span>
       </p>
+      {id && !articleImgFile && (
+        <p className="bg-brand-yellow rounded-8 mb-[1.5rem] w-fit px-3 py-2 text-[1rem] font-medium tracking-wide">
+          NOTE: This article has an existing image. View
+          image by clicking the{' '}
+          <strong>Preview Article</strong> button below.
+        </p>
+      )}
       {articleImageFileName && (
         <UploadIndicator
           articleImageFileName={articleImageFileName}
