@@ -39,10 +39,10 @@ function NavBarMobile() {
   };
 
   return (
-    <div className="fixed w-[100%] lg:hidden">
+    <div className="fixed z-50 w-[100%] lg:hidden">
       <div className="bg-brand-black rounded-b-8 flex flex-row items-center justify-between p-8">
         <img
-          src="./src/assets/org_logo.png"
+          src="../src/assets/org_logo.png"
           alt=""
           className="w-[150px] "
         />

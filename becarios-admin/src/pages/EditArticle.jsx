@@ -31,8 +31,10 @@ function EditArticle() {
     setArticleBody,
     isPreview,
     setIsPreview,
-    isSubmitBtnPressed,
-    isSubmitConfirmed,
+    isEditBtnPressed,
+    setIsEditBtnPressed,
+    isEditConfirmed,
+    setIsEditConfirmed,
   } = useCreateArticleContext();
 
   useEffect(() => {
@@ -93,11 +95,11 @@ function EditArticle() {
         )}
         <EditArticleBtn />
       </div>
-      {isSubmitBtnPressed && !isSubmitConfirmed && (
+      {isEditBtnPressed && !isEditConfirmed && (
         <SubmitPostModal />
       )}
 
-      {isSubmitConfirmed && <PostReqSuccessModal />}
+      {isEditConfirmed && <PostReqSuccessModal />}
       {isSignOutClicked && <SignOutModal />}
     </div>
   );
