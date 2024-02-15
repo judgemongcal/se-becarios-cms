@@ -1,6 +1,8 @@
 import {
   DeletePostModal,
   DeleteReqSuccessModal,
+  RetrieveArchivedPostModal,
+  RetrieveReqSuccessModal,
   SignOutModal,
 } from '../components/global/Modal';
 import NavBar from '../components/global/NavBar';
@@ -21,6 +23,9 @@ function PostArchives() {
     isDeleteConfirmed,
     isDeleteSuccessful,
     isDeleteFailed,
+    isPutBackBtnClicked,
+    isPutBackSuccessful,
+    isPutBackBtnFailed,
   } = useArchiveContext();
 
   return (
@@ -49,6 +54,8 @@ function PostArchives() {
         </div>
       </div>
       {isDeleteBtnClicked && <DeletePostModal />}
+      {isPutBackBtnClicked && <RetrieveArchivedPostModal />}
+      {isPutBackSuccessful && <RetrieveReqSuccessModal />}
       {isDeleteSuccessful && (
         <DeleteReqSuccessModal type="archive" />
       )}

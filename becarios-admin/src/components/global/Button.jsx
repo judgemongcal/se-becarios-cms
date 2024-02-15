@@ -1087,6 +1087,48 @@ function SubmitArchiveModalBtn() {
   );
 }
 
+function SubmitRetrieveArchiveModalBtn() {
+  const { userInfo } = useUserInfoContext();
+  const {
+    isPutBackBtnClicked,
+    setIsPutBackBtnClicked,
+    isPutBackSuccessful,
+    setIsPutBackSuccessful,
+    isPutBackFailed,
+    setIsPutBackFailed,
+  } = useArchiveContext();
+
+  const currentRole = userInfo.role;
+
+  function handleBack(e) {
+    e.preventDefault();
+    setIsPutBackBtnClicked(!isPutBackBtnClicked);
+  }
+
+  async function handleRetrieve(e) {
+    e.preventDefault();
+    setIsPutBackBtnClicked(!isPutBackBtnClicked);
+    setIsPutBackSuccessful(!isPutBackSuccessful);
+  }
+
+  return (
+    <div className="flex flex-row justify-around gap-4 py-2">
+      <button
+        className="bg-brand-red shadow-shadow-db rounded-10 hover:bg-brand-red-dark w-[100%] py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-100"
+        onClick={(e) => handleBack(e)}
+      >
+        Go Back
+      </button>
+      <button
+        className="bg-brand-yellow shadow-shadow-db rounded-10 hover:bg-brand-yellow-dark w-[100%] py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-100"
+        onClick={(e) => handleRetrieve(e)}
+      >
+        Submit Request
+      </button>
+    </div>
+  );
+}
+
 function GenerateReportBtn() {
   return (
     <button className="bg-brand-green shadow-shadow-db rounded-10 hover:bg-brand-green-dark px-4 py-2 text-[1rem] font-semibold text-[#FFFFFF] duration-300 md:px-5 md:text-[1.25rem]">
@@ -1359,12 +1401,20 @@ function ArchivedListItemBtn({ id }) {
     isDeleteBtnClicked,
     setIsDeleteBtnClicked,
     setCurrentDocId,
+    isPutBackBtnClicked,
+    setIsPutBackBtnClicked,
   } = useArchiveContext();
 
-  async function handleDelete(e) {
+  function handleDelete(e) {
     e.preventDefault();
     setIsDeleteBtnClicked(!isDeleteBtnClicked);
     setCurrentDocId(idVal);
+  }
+
+  function handlePutBack(e) {
+    e.preventDefault();
+    setCurrentDocId(idVal);
+    setIsPutBackBtnClicked(!isPutBackBtnClicked);
   }
 
   return (
@@ -1372,7 +1422,10 @@ function ArchivedListItemBtn({ id }) {
       <button className="bg-brand-blue hover:bg-brand-blue-dark rounded-8 shadow-sm-btn items-center p-2 duration-300">
         <MdOutlineRemoveRedEye className="fill-brand-input h-auto w-[25px] md:w-[30px]" />
       </button>
-      <button className="bg-brand-yellow hover:bg-brand-yellow-dark rounded-8 shadow-sm-btn items-center p-2 duration-300">
+      <button
+        className="bg-brand-yellow hover:bg-brand-yellow-dark rounded-8 shadow-sm-btn items-center p-2 duration-300"
+        onClick={(e) => handlePutBack(e)}
+      >
         <FaShareFromSquare className="fill-brand-input h-auto w-[25px] md:w-[30px]" />
       </button>
       <button
@@ -1421,4 +1474,5 @@ export {
   SuperAdminSettingsBtn,
   ConfirmAssignSuperAdminModalBtn,
   TryAgainBtn,
+  SubmitRetrieveArchiveModalBtn,
 };

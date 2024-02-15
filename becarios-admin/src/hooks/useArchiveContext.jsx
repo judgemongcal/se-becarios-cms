@@ -16,6 +16,12 @@ export function ArchiveProvider({ children }) {
   const [isDeleteFailed, setIsDeleteFailed] =
     useState(false);
   const [currentDocId, setCurrentDocId] = useState('');
+  const [isPutBackBtnClicked, setIsPutBackBtnClicked] =
+    useState(false);
+  const [isPutBackSuccessful, setIsPutBackSuccessful] =
+    useState(false);
+  const [isPutBackFailed, setIsPutBackFailed] =
+    useState(false);
 
   const contextValue = {
     isDeleteBtnClicked,
@@ -28,6 +34,12 @@ export function ArchiveProvider({ children }) {
     setIsDeleteFailed,
     currentDocId,
     setCurrentDocId,
+    isPutBackBtnClicked,
+    setIsPutBackBtnClicked,
+    isPutBackSuccessful,
+    setIsPutBackSuccessful,
+    isPutBackFailed,
+    setIsPutBackFailed,
   };
 
   return (
