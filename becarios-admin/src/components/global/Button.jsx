@@ -32,6 +32,7 @@ import {
   archiveArticlebyID,
   deleteArticlebyID,
   fetchArticleById,
+  retrieveArticlebyID,
 } from '../../server/API/ManageContentAPI';
 import { useEditArticleContext } from '../../hooks/useEditArticleContext';
 import { useArchiveContext } from '../../hooks/useArchiveContext';
@@ -1096,6 +1097,7 @@ function SubmitRetrieveArchiveModalBtn() {
     setIsPutBackSuccessful,
     isPutBackFailed,
     setIsPutBackFailed,
+    currentDocId,
   } = useArchiveContext();
 
   const currentRole = userInfo.role;
@@ -1107,8 +1109,14 @@ function SubmitRetrieveArchiveModalBtn() {
 
   async function handleRetrieve(e) {
     e.preventDefault();
-    setIsPutBackBtnClicked(!isPutBackBtnClicked);
-    setIsPutBackSuccessful(!isPutBackSuccessful);
+    try {
+      await retrieveArticlebyID(currentDocId, currentRole);
+      setIsPutBackBtnClicked(!isPutBackBtnClicked);
+      setIsPutBackSuccessful(!isPutBackSuccessful);
+    } catch (error) {
+      setIsPutBackBtnClicked(!isPutBackBtnClicked);
+      setIsPutBackFailed(!isPutBackFailed);
+    }
   }
 
   return (

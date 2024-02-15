@@ -144,20 +144,19 @@ export async function getCurrentPendingArticleCount() {
     const q = query(
       articleCollection,
       where('isApproved', '==', false),
-      where('isArchived', '==', false),
     );
     const pendingArticlesSnapshot1 = await getDocs(q);
 
-    const q2 = query(
-      articleCollection,
-      where('isArchiveApproved', '==', false),
-    );
+    // const q2 = query(
+    //   articleCollection,
+    //   where('isArchiveApproved', '==', true),
+    // );
 
-    const pendingArticlesSnapshot2 = await getDocs(q2);
+    // const pendingArticlesSnapshot2 = await getDocs(q2);
 
     const pendingArticlesSnapshot3 = [
       ...pendingArticlesSnapshot1.docs,
-      ...pendingArticlesSnapshot2.docs,
+      // ...pendingArticlesSnapshot2.docs,
     ];
 
     const uniqueResults = Array.from(
@@ -208,6 +207,20 @@ export async function deleteArticlebyID(id) {
   try {
     const docRef = doc(db, 'articles', id);
     await deleteDoc(docRef);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function retrieveArticlebyID(id, role) {
+  console.log(id, role);
+  try {
+    const docRef = doc(db, 'articles', id);
+    updateDoc(docRef, {
+      isArchived: false,
+      isApproved: role === 'Super Admin',
+      isArchiveApproved: false,
+    });
   } catch (error) {
     console.log(error);
   }
