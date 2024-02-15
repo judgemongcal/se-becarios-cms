@@ -12,6 +12,7 @@ import {
 import ArticlePreview from '../components/create-article/ArticlePreview';
 import {
   ArchivePostModal,
+  ArchiveReqFailedModal,
   ArchiveReqSuccessModal,
   EditPostModal,
   EditReqSuccessModal,
@@ -39,6 +40,7 @@ function EditArticle() {
     setIsArchiveBtnPressed,
     isArchiveConfirmed,
     setIsArchiveConfirmed,
+    isArchiveFailed,
   } = useEditArticleContext();
 
   const {
@@ -111,6 +113,7 @@ function EditArticle() {
       )}
       {isArchiveBtnPressed && <ArchivePostModal />}
       {isArchiveConfirmed && <ArchiveReqSuccessModal />}
+      {isArchiveFailed && <ArchiveReqFailedModal />}
       {isEditConfirmed && <EditReqSuccessModal />}
       {isSignOutClicked && <SignOutModal />}
     </div>

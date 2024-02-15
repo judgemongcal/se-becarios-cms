@@ -1,4 +1,9 @@
-import { createContext, useContext, useState } from 'react';
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 
 export const EditArticleContext = createContext();
 
@@ -29,6 +34,18 @@ export function EditArticleProvider({ children }) {
     useState(false);
   const [isArchiveConfirmed, setIsArchiveConfirmed] =
     useState(false);
+  const [isArchiveFailed, setIsArchiveFailed] =
+    useState(false);
+
+  // useEffect(() => {
+  //   let timer;
+  //   if (isArchiveFailed) {
+  //     timer = setTimeout(() => {
+  //       setIsArchiveFailed(false);
+  //     }, 3000);
+  //   }
+  //   return () => clearTimeout(timer);
+  // }, [isArchiveFailed, setIsArchiveFailed]);
 
   const contextValue = {
     EditArticleTitle,
@@ -51,6 +68,8 @@ export function EditArticleProvider({ children }) {
     setIsArchiveBtnPressed,
     isArchiveConfirmed,
     setIsArchiveConfirmed,
+    isArchiveFailed,
+    setIsArchiveFailed,
   };
 
   return (

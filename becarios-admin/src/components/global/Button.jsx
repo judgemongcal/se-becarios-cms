@@ -339,6 +339,29 @@ function ProceedModalBtn() {
   );
 }
 
+function TryAgainBtn() {
+  const navigate = useNavigate();
+  const {
+    isArchiveConfirmed,
+    setIsArchiveConfirmed,
+    isArchiveFailed,
+    setIsArchiveFailed,
+  } = useEditArticleContext();
+
+  function handleTryAgain(e) {
+    e.preventDefault(e);
+    setIsArchiveFailed(!isArchiveFailed);
+  }
+  return (
+    <button
+      className="bg-brand-yellow shadow-shadow-db rounded-10 hover:bg-brand-yellow-dark w-[100%] py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-100"
+      onClick={(e) => handleTryAgain(e)}
+    >
+      Try Again
+    </button>
+  );
+}
+
 function AddAdminModalBtn() {
   const [isComplete, setIsComplete] = useState(false);
 
@@ -887,6 +910,8 @@ function SubmitEditModalBtn() {
     isEditBtnPressed,
     setIsEditConfirmed,
     isEditConfirmed,
+    isArchiveFailed,
+    setIsArchiveFailed,
   } = useEditArticleContext();
 
   const {
@@ -935,6 +960,7 @@ function SubmitEditModalBtn() {
       setIsEditConfirmed(!isEditConfirmed);
     } catch (error) {
       console.log('Error in submitting article: ' + error);
+      setIsArchiveFailed(!isArchiveFailed);
     }
   }
 
@@ -997,6 +1023,8 @@ function SubmitArchiveModalBtn() {
       console.log(currentRole);
     } catch (error) {
       console.log('Error in archiving: ' + error);
+      setIsArchiveConfirmed(!isArchiveConfirmed);
+      setIsArchiveBtnPressed(!isArchiveBtnPressed);
     }
   }
 
@@ -1334,4 +1362,5 @@ export {
   SubmitArticleBtn,
   SuperAdminSettingsBtn,
   ConfirmAssignSuperAdminModalBtn,
+  TryAgainBtn,
 };

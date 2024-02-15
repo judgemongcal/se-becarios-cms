@@ -176,6 +176,7 @@ export async function archiveArticlebyID(id, role) {
     updateDoc(docRef, {
       isArchived: true,
       isApproved: role === 'Super Admin',
+      isArchiveApproved: role === 'Super Admin',
     });
   } catch (error) {
     console.log(error);
