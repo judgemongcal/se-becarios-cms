@@ -249,6 +249,7 @@ function SubmitPostModalBtn() {
         Boolean(isSuperAdmin),
       );
       articleData.append('isArchived', false);
+
       await fetch('http://localhost:5001/add-article', {
         method: 'POST',
         body: articleData,

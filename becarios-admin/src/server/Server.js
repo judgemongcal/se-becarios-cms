@@ -386,9 +386,11 @@ app.post(
         title,
         body,
         dateCreated: dateTime,
+        datePosted: isApproved ? dateTime : null,
         image: downloadURL,
         isApproved: isApproved === 'true',
         isArchived: false,
+
         isEdited: false,
       })
         .then(() => {

@@ -81,6 +81,7 @@ export async function fetchArchivedPost() {
     const q = query(
       colRef,
       where('isArchived', '==', true),
+      where('isArchiveApproved', '==', true),
     );
     const archivedArticlesSnapshot = await getDocs(q);
     // Extract admin data from the snapshot
@@ -145,10 +146,30 @@ export async function getCurrentPendingArticleCount() {
       where('isApproved', '==', false),
       where('isArchived', '==', false),
     );
-    const pendingArticlesSnapshot = await getDocs(q);
+    const pendingArticlesSnapshot1 = await getDocs(q);
+
+    const q2 = query(
+      articleCollection,
+      where('isArchiveApproved', '==', false),
+    );
+
+    const pendingArticlesSnapshot2 = await getDocs(q2);
+
+    const pendingArticlesSnapshot3 = [
+      ...pendingArticlesSnapshot1.docs,
+      ...pendingArticlesSnapshot2.docs,
+    ];
+
+    const uniqueResults = Array.from(
+      new Set(pendingArticlesSnapshot3.map((a) => a.id)),
+    ).map((id) => {
+      return pendingArticlesSnapshot3.find(
+        (a) => a.id === id,
+      );
+    });
 
     // Return the count of pending articles
-    return pendingArticlesSnapshot.size;
+    return uniqueResults.length;
   } catch (error) {
     console.error(
       'Error getting pending articles count:',

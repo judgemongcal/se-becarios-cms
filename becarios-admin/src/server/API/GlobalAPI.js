@@ -95,6 +95,7 @@ export async function fetchAllPostedArticles09(
 
     filteredArticlesSnapshot.forEach((doc) => {
       console.log('Document ID:', doc.id);
+      console.log(doc.data());
       console.log('Document Date:', doc.data().datePosted);
       allPostedArticles.push({
         data: doc.data(),
