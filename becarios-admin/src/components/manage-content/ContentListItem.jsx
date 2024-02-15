@@ -47,27 +47,27 @@ function ContentListItem({ type, id, data }) {
   } ${date.getHours() >= 12 ? 'PM' : 'AM'}`;
 
   return (
-    <div className="bg-brand-light req-container shadow-shadow-db rounded-8 flex flex-col items-center gap-2 p-5 md:gap-5 xl:gap-0 2xl:grid 2xl:grid-cols-2">
-      <div className="req-img mx-auto flex h-[80%] w-full max-w-[400px] items-center md:w-[100%] xl:w-[80%]">
+    <div className="bg-brand-light req-container shadow-shadow-db rounded-8 flex flex-col items-center gap-2 p-3 md:gap-5 xl:gap-0 2xl:grid 2xl:grid-cols-2 2xl:gap-0">
+      <div className="req-img mx-auto flex h-[80%] w-full max-w-[400px] items-center md:w-[100%] xl:row-span-2  xl:w-[80%]">
         <img
           src={image}
           alt=""
-          className="rounded-8 h-full  w-full "
+          className="rounded-8 max-h-full  min-h-[200px] w-full min-w-full "
         />
       </div>
-      <div className="req-info mt-2 flex flex-col py-5 pl-3 pr-2 ">
-        <h1 className="req-title mb-2 self-center text-center text-[1.05rem] font-semibold md:text-[1.25rem] 2xl:text-start ">
+      <div className="req-info mt-2 flex flex-col py-5 pl-3 pr-2 text-center lg:text-start">
+        <h1 className="req-title mb-2 self-center text-center text-[1.05rem] font-semibold md:text-[1.25rem] lg:self-start  xl:text-start ">
           {title}
         </h1>
-        <div className="time-info mx-auto mb-1 flex flex-row justify-center gap-3 text-[0.9rem] md:text-[1rem] xl:flex-col 2xl:mx-0">
+        <div className="time-info mx-auto mb-1 flex flex-row justify-center gap-3 text-[0.9rem] md:text-[1rem]  xl:flex-col 2xl:mx-0">
           <p>{postDate}</p>
           <p>{postTime}</p>
         </div>
-        <p className="author mx-auto text-[0.9rem] md:text-[1rem] 2xl:mx-0">
+        <p className="author mx-auto text-[0.9rem]  2xl:mx-0">
           Written by: {author}
         </p>
       </div>
-      <div className="btn mt-[1rem] flex w-full flex-row justify-end">
+      <div className="btn mt-[1rem] flex w-full flex-row justify-end 2xl:col-start-2">
         {type === 'Posted' ? (
           <PostedSettingsBtn id={id} />
         ) : type === 'Archived' ? (
