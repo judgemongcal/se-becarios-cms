@@ -45,8 +45,12 @@ const MenuBar = () => {
   const handleKeyPress = (event) => {
     if (event.key === 'Enter') {
       event.preventDefault(); // Prevent form submission
-      // Add any other handling you need for the keypress event
     }
+  };
+
+  const handlePageBreakClick = (e) => {
+    e.preventDefault();
+    editor.chain().focus().setHardBreak().run();
   };
 
   return (
@@ -75,6 +79,7 @@ const MenuBar = () => {
             !editor.can().chain().focus().undo().run()
           }
           className="shadow-sm-btn bg-brand-light rounded-8 flex items-center justify-center p-2"
+          title="Undo"
         >
           <FaUndo className="h-auto w-[20px]" />
         </button>
@@ -87,7 +92,9 @@ const MenuBar = () => {
             !editor.can().chain().focus().redo().run()
           }
           className="shadow-sm-btn  rounded-8 bg-brand-light  flex items-center justify-center p-2"
+          title="Redo"
         >
+          
           <FaRedo className="h-auto w-[20px]" />
         </button>
         <button
@@ -101,6 +108,7 @@ const MenuBar = () => {
           className={`${
             editor.isActive('bold') ? 'bg-brand-yellow' : ''
           } shadow-sm-btn rounded-8 bg-brand-light flex items-center justify-center p-3`}
+          title="Bold"
         >
           <FaBold className="h-[20px] w-[20px]" />
         </button>
@@ -122,6 +130,7 @@ const MenuBar = () => {
               ? 'bg-brand-yellow'
               : ''
           } shadow-sm-btn rounded-8 bg-brand-light flex items-center justify-center p-2`}
+          title="Italic"
         >
           <FaItalic className="h-[20px] w-[20px]" />
         </button>
@@ -133,6 +142,7 @@ const MenuBar = () => {
           className={`${
             editor.isActive('underline') ? 'is_active' : ''
           } shadow-sm-btn rounded-8 bg-brand-light flex items-center justify-center p-2`}
+          title="Underline"
         >
           <FaUnderline className="h-[20px] w-[20px]" />
         </button>
@@ -153,6 +163,7 @@ const MenuBar = () => {
               ? 'bg-brand-yellow'
               : ''
           } shadow-sm-btn rounded-8 bg-brand-light flex items-center justify-center p-2`}
+          title="Strikethrough"
         >
           <FaStrikethrough className="h-[20px] w-[20px]" />
         </button>
@@ -163,6 +174,7 @@ const MenuBar = () => {
             editor.chain().focus().unsetAllMarks().run();
           }}
           className="shadow-sm-btn rounded-8 bg-brand-light flex items-center justify-center p-2"
+          title="Clear Formatting"
         >
           <TbClearFormatting className="h-[24px] w-[24px]" />
         </button>
@@ -176,6 +188,7 @@ const MenuBar = () => {
               ? 'bg-brand-yellow'
               : ''
           } shadow-sm-btn rounded-8 bg-brand-light flex items-center justify-center p-2`}
+            title="Paragraph"
         >
           <FaParagraph className="h-[20px] w-[20px]" />
         </button>
@@ -194,6 +207,7 @@ const MenuBar = () => {
               ? 'bg-brand-yellow'
               : ''
           } shadow-sm-btn rounded-8 bg-brand-light flex items-center justify-center p-2`}
+            title="Heading 1"
         >
           <LuHeading1 className="h-auto w-[24px]" />
         </div>
@@ -211,6 +225,7 @@ const MenuBar = () => {
               ? 'bg-brand-yellow'
               : ''
           } shadow-sm-btn rounded-8 bg-brand-light flex items-center justify-center p-2`}
+            title="Heading 2"
         >
           <LuHeading2 className="h-auto w-[24px]" />
         </button>
@@ -228,6 +243,7 @@ const MenuBar = () => {
               ? 'bg-brand-yellow'
               : ''
           } shadow-sm-btn rounded-8 bg-brand-light flex items-center justify-center p-2`}
+            title="Heading 3"
         >
           <LuHeading3 className="h-auto w-[24px]" />
         </button>
@@ -242,6 +258,7 @@ const MenuBar = () => {
               ? 'bg-brand-yellow'
               : ''
           } shadow-sm-btn rounded-8 bg-brand-light flex items-center justify-center p-2`}
+            title="Unordered List"
         >
           <FaListUl className="h-auto w-[24px]" />
         </button>
@@ -259,6 +276,7 @@ const MenuBar = () => {
               ? 'bg-brand-yellow'
               : ''
           } shadow-sm-btn rounded-8 bg-brand-light flex items-center justify-center p-2`}
+            title="Numbered List"
         >
           <FaListOl className="h-auto w-[24px]" />
         </button>
@@ -272,6 +290,7 @@ const MenuBar = () => {
               ? 'bg-brand-yellow'
               : ''
           } shadow-sm-btn rounded-8 bg-brand-light flex items-center justify-center p-2`}
+            title="Code Block"
         >
           <FaCode className="h-auto w-[24px]" />
         </button>
@@ -286,15 +305,17 @@ const MenuBar = () => {
               ? 'bg-brand-yellow'
               : ''
           } shadow-sm-btn rounded-8 bg-brand-light flex items-center justify-center p-2`}
+            title="Quote Block"
         >
           <FaQuoteLeft className="h-auto w-[24px]" />
         </button>
         <button
           onClick={(e) => {
             e.preventDefault();
-            editor.chain().focus().setHardBreak().run();
+            handlePageBreakClick(e);
           }}
           className="shadow-sm-btn rounded-8 bg-brand-light flex items-center justify-center p-2"
+          title="Page Break"
         >
           <CgSpaceBetweenV className="h-[24px] w-[24px]" />
         </button>
