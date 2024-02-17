@@ -942,10 +942,13 @@ function SubmitEditModalBtn() {
       articleData.append('lastEditedBy', authorName);
       articleData.append('title', articleTitle);
       articleData.append('body', articleBody);
-      articleData.append(
-        'article-image',
-        articleImgFile ? articleImgFile : articleImageSrc,
-      );
+      if (articleImgFile) {
+        articleData.append(
+          'article-image',
+          articleImgFile ? articleImgFile : articleImageSrc,
+        );
+      }
+
       articleData.append(
         'isApproved',
         Boolean(isSuperAdmin),

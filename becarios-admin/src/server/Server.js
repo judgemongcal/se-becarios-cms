@@ -460,10 +460,10 @@ app.post(
 
       await updateDoc(docRef, {
         lastEditedBy,
-        title,
-        body,
+        titleEdit: title,
+        bodyEdit: body,
         dateCreated: dateTime,
-        image: downloadURL,
+        imageEdit: downloadURL,
         isApproved: isApproved === 'true',
         isArchived: false,
         isEdited: true,
