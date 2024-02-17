@@ -148,16 +148,8 @@ export async function getCurrentPendingArticleCount() {
     );
     const pendingArticlesSnapshot1 = await getDocs(q);
 
-    // const q2 = query(
-    //   articleCollection,
-    //   where('isArchiveApproved', '==', true),
-    // );
-
-    // const pendingArticlesSnapshot2 = await getDocs(q2);
-
     const pendingArticlesSnapshot3 = [
       ...pendingArticlesSnapshot1.docs,
-      // ...pendingArticlesSnapshot2.docs,
     ];
 
     const uniqueResults = Array.from(

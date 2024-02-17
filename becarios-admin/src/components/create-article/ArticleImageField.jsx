@@ -46,7 +46,7 @@ function ArticleImageField() {
           *
         </span>
       </p>
-      {!hasImage && (
+      {id && !hasImage && (
         <p className="bg-brand-yellow rounded-8 mb-[1.5rem] w-fit px-3 py-2 text-[1rem] font-medium tracking-wide">
           NOTE: This article has an existing image. View
           image by clicking the{' '}
