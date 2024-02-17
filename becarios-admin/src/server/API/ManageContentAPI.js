@@ -7,6 +7,7 @@ import {
   doc,
   deleteDoc,
   updateDoc,
+  serverTimestamp,
 } from 'firebase/firestore';
 import { auth, db } from '../firebase.js';
 import { useState } from 'react';
@@ -198,6 +199,26 @@ export async function archiveArticlebyID(id, role) {
       isApproved: role === 'Super Admin',
       isArchiveApproved: role === 'Super Admin',
     });
+    const dataToUpdate = {
+      dateArchived: serverTimestamp(),
+    };
+    if (role === 'Super Admin') {
+      // Perform the update
+      updateDoc(docRef, dataToUpdate)
+        .then(() => {
+          console.log(
+            'Document successfully archived with current timestamp!',
+          );
+        })
+        .catch((error) => {
+          console.error('Error updating document:', error);
+        });
+    } else {
+      // Handle the case where the role is not 'Super Admin'
+      console.log(
+        'You do not have permission to perform this action.',
+      );
+    }
   } catch (error) {
     console.log(error);
   }

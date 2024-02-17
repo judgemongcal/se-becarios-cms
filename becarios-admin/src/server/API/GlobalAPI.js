@@ -92,39 +92,51 @@ export async function fetchAllPostedArticles09(
     const filteredArticlesSnapshot = await getDocs(q);
 
     const allPostedArticles = [];
+    let dateToUse;
 
     filteredArticlesSnapshot.forEach((doc) => {
       console.log('Document ID:', doc.id);
-      console.log(doc.data());
-      console.log('Document Date:', doc.data().datePosted);
+      dateToUse =
+        type === 'Posted'
+          ? doc.data().datePosted
+          : doc.data().dateArchived;
+      console.log('dateToUse:', dateToUse);
       allPostedArticles.push({
         data: doc.data(),
         id: doc.id,
+        dateToUse,
       });
+      console.log('Doc:', doc.data());
     });
 
+    console.log('test: ', dateToUse);
     // Sort the array based on datePosted
     if (sortOrder === 'asc') {
       allPostedArticles.sort((a, b) => {
-        return (
-          a.data.datePosted.toMillis() -
-          b.data.datePosted.toMillis()
-        );
+        const dateA = a.dateToUse
+          ? a.dateToUse.toMillis()
+          : Number.MAX_SAFE_INTEGER;
+        const dateB = b.dateToUse
+          ? b.dateToUse.toMillis()
+          : Number.MAX_SAFE_INTEGER;
+        return dateA - dateB;
       });
     } else {
       allPostedArticles.sort((a, b) => {
-        return (
-          b.data.datePosted.toMillis() -
-          a.data.datePosted.toMillis()
-        );
+        const dateA = a.dateToUse
+          ? a.dateToUse.toMillis()
+          : 0;
+        const dateB = b.dateToUse
+          ? b.dateToUse.toMillis()
+          : 0;
+        return dateB - dateA;
       });
     }
+
     // For Testing
     console.log(
       'Fetched Sorted Articles By Date:',
-      allPostedArticles.map(
-        (article) => article.data.datePosted,
-      ),
+      allPostedArticles.map((article) => article.dateToUse),
     );
 
     return allPostedArticles;
