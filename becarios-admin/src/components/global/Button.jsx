@@ -17,7 +17,6 @@ import { MdOutlineRemoveRedEye } from 'react-icons/md';
 import { useEffect, useState } from 'react';
 import { FiUpload } from 'react-icons/fi';
 import { useCreateArticleContext } from '../../hooks/useCreateArticleContext';
-import TextEditor from '../create-article/TextEditor';
 import { useSettingsContext } from '../../hooks/useSettingsContext';
 import { useSignOutContext } from '../../hooks/useSignOutContext';
 import { useManageContentContext } from '../../hooks/useManageContentContext';
@@ -31,15 +30,10 @@ import {
 import {
   archiveArticlebyID,
   deleteArticlebyID,
-  fetchArticleById,
   retrieveArticlebyID,
 } from '../../server/API/ManageContentAPI';
 import { useEditArticleContext } from '../../hooks/useEditArticleContext';
 import { useArchiveContext } from '../../hooks/useArchiveContext';
-// import {
-//   createAdminAuth,
-//   createAdminCredentials,
-// } from '../../server/API/SettingsAPI';
 
 function LoginBtn() {
   return (
