@@ -18,12 +18,55 @@ export async function fetchAllPendingArticlesWithDocID() {
   try {
     const articleCollection = collection(db, 'articles');
     // Fetch documents that are pending, not archived
-    const filteredDocuments = await articleCollection
-      .where('isApproved', '==', false)
-      .get();
+    const queryPost = query(
+      colRef,
+      where('isPostApproved', '==', false),
+      where('isEditApproved', '==', false),
+      where('isArchiveApproved', '==', false),
+      where('isEdited', '==', false),
+      where('isArchived', '==', false),
+    );
+    const queryEdit = query(
+      colRef,
+      where('isEditApproved', '==', false),
+      where('isEdited', '==', true),
+      where('isPostApproved', '==', true),
+    );
+    const queryArchive = query(
+      colRef,
+      where('isArchiveApproved', '==', false),
+      where('isArchived', '==', true),
+    );
+    const postArticlesSnapshot = await getDocs(queryPost);
+    const editArticlesSnapshot = await getDocs(queryEdit);
+    const archiveArticlesSnapshot =
+      await getDocs(queryArchive);
+
+    const postArticles = postArticlesSnapshot.docs.map(
+      (doc) => doc.data(),
+    );
+    const editArticles = editArticlesSnapshot.docs.map(
+      (doc) => doc.data(),
+    );
+    const archiveArticles =
+      archiveArticlesSnapshot.docs.map((doc) => doc.data());
+
+    const allArticles = [
+      ...postArticles,
+      ...editArticles,
+      ...archiveArticles,
+    ];
+
+    const uniqueArticlesSet = new Set(
+      allArticles.map((article) => JSON.stringify(article)),
+    );
+    const uniqueArticles = Array.from(
+      uniqueArticlesSet,
+    ).map((article) => JSON.parse(article));
+
     const articlesData = [];
     // Loop through the documents
-    for (const doc of filteredDocuments.docs) {
+    for (const doc of uniqueArticles.docs) {
       const articleDoc = doc.data();
       // Convert Timestamp to Date for readable format
       // Check if datePosted is not null before converting to Date
@@ -78,20 +121,63 @@ export async function fetchPostedArticles() {
 export async function fetchPendingArticles() {
   try {
     const colRef = collection(db, 'articles');
-    const q = query(
+    const queryPost = query(
       colRef,
-      where('isApproved', '==', false),
+      where('isPostApproved', '==', false),
+      where('isEditApproved', '==', false),
+      where('isArchiveApproved', '==', false),
+      where('isEdited', '==', false),
+      where('isArchived', '==', false),
     );
-    const postedArticlesSnapshot = await getDocs(q);
+    const queryEdit = query(
+      colRef,
+      where('isEditApproved', '==', false),
+      where('isEdited', '==', true),
+      where('isPostApproved', '==', true),
+    );
+    const queryArchive = query(
+      colRef,
+      where('isArchiveApproved', '==', false),
+      where('isArchived', '==', true),
+    );
+    const postArticlesSnapshot = await getDocs(queryPost);
+    const editArticlesSnapshot = await getDocs(queryEdit);
+    const archiveArticlesSnapshot =
+      await getDocs(queryArchive);
+
+    const postArticles = postArticlesSnapshot.docs.map(
+      (doc) => doc.data(),
+    );
+    const editArticles = editArticlesSnapshot.docs.map(
+      (doc) => doc.data(),
+    );
+    const archiveArticles =
+      archiveArticlesSnapshot.docs.map((doc) => doc.data());
+
+    const allArticles = [
+      ...postArticles,
+      ...editArticles,
+      ...archiveArticles,
+    ];
+
+    const uniqueArticlesSet = new Set(
+      allArticles.map((article) => JSON.stringify(article)),
+    );
+    const uniqueArticles = Array.from(
+      uniqueArticlesSet,
+    ).map((article) => JSON.parse(article));
     // Extract admin data from the snapshot
     const articlesData = [];
-    postedArticlesSnapshot.forEach((doc) => {
-      articlesData.push({ data: doc.data(), id: doc.id });
+    uniqueArticles.forEach((doc) => {
+      console.log(doc);
+      articlesData.push({ data: doc, id: doc.id });
     });
+
+    console.log(articlesData);
     return articlesData;
   } catch (error) {
     console.error(
-      'Error fetching login credentials',
+      'Error fetching article credentials',
       error,
     );
     throw error;
@@ -163,23 +249,62 @@ export async function searchArticleByTitle(keyword = '') {
 // Count All Articles Pending for Approval
 export async function getCurrentPendingArticleCount() {
   try {
-    const articleCollection = collection(db, 'articles');
-    const q = query(
-      articleCollection,
-      where('isApproved', '==', false),
+    const colRef = collection(db, 'articles');
+    const queryPost = query(
+      colRef,
+      where('isPostApproved', '==', false),
+      where('isEditApproved', '==', false),
+      where('isArchiveApproved', '==', false),
+      where('isEdited', '==', false),
+      where('isArchived', '==', false),
     );
-    const pendingArticlesSnapshot1 = await getDocs(q);
+    const queryEdit = query(
+      colRef,
+      where('isEditApproved', '==', false),
+      where('isEdited', '==', true),
+      where('isPostApproved', '==', true),
+    );
+    const queryArchive = query(
+      colRef,
+      where('isArchiveApproved', '==', false),
+      where('isArchived', '==', true),
+    );
+    const postArticlesSnapshot = await getDocs(queryPost);
+    const editArticlesSnapshot = await getDocs(queryEdit);
+    const archiveArticlesSnapshot =
+      await getDocs(queryArchive);
 
-    const pendingArticlesSnapshot3 = [
-      ...pendingArticlesSnapshot1.docs,
+    const postArticles = postArticlesSnapshot.docs.map(
+      (doc) => doc.data(),
+    );
+    const editArticles = editArticlesSnapshot.docs.map(
+      (doc) => doc.data(),
+    );
+    const archiveArticles =
+      archiveArticlesSnapshot.docs.map((doc) => doc.data());
+
+    const allArticles = [
+      ...postArticles,
+      ...editArticles,
+      ...archiveArticles,
     ];
 
+    const uniqueArticlesSet = new Set(
+      allArticles.map((article) => JSON.stringify(article)),
+    );
+    const uniqueArticles = Array.from(
+      uniqueArticlesSet,
+    ).map((article) => JSON.parse(article));
+    // const pendingArticlesSnapshot1 = await getDocs(q);
+
+    // const pendingArticlesSnapshot3 = [
+    //   ...pendingArticlesSnapshot1.docs,
+    // ];
+
     const uniqueResults = Array.from(
-      new Set(pendingArticlesSnapshot3.map((a) => a.id)),
+      new Set(uniqueArticles.map((a) => a.id)),
     ).map((id) => {
-      return pendingArticlesSnapshot3.find(
-        (a) => a.id === id,
-      );
+      return uniqueArticles.find((a) => a.id === id);
     });
 
     // Return the count of pending articles
