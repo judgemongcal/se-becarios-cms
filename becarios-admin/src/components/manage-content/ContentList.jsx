@@ -82,7 +82,7 @@ function ContentList({ type }) {
         {/* CONVERT INTO ARRAY.MAP */}
         {articles.map((article) => {
           // date displayed would depend on type of article, for archived should be dateArchived
-          let articleDate = type === 'Posted' ? article.data.datePosted : article.data.dateCreated;
+          let articleDate = type === 'Posted' ? article.data.datePosted : article.data.dateArchived;
           return (
           <ContentListItem
             type={type}

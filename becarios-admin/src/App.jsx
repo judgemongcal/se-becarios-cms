@@ -116,11 +116,13 @@ function App() {
                 path="/post-archives"
                 element={
                   <ProtectedRoute>
-                    <ArchiveProvider
-                      value={ArchiveProvider.contextValue}
-                    >
-                      <PostArchives />
-                    </ArchiveProvider>
+                    <ManageContentProvider>
+                      <ArchiveProvider
+                        value={ArchiveProvider.contextValue}
+                      >
+                        <PostArchives />
+                      </ArchiveProvider>
+                    </ManageContentProvider>
                   </ProtectedRoute>
                 }
               />

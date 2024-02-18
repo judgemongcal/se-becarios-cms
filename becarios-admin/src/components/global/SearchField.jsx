@@ -55,6 +55,7 @@ function SearchField({ type }) {
         <button
           className=" bg-brand-input rounded-8 shadow-shadow-db hover:bg-brand-light p-2.5 duration-300 md:p-4 md:px-8"
           onClick={handleSearch}
+          title="Search Now"
         >
           <GoSearch className="fill-brand-gray h-auto w-[30px]" />
         </button>

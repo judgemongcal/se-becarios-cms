@@ -21,12 +21,14 @@ function ContentFilters() {
       <button
         className="alpha-asc bg-brand-input rounded-8 shadow-shadow-db hover:bg-brand-yellow inline-flex w-full flex-row items-center justify-center py-3  duration-300 md:py-4"
         onClick={handleSortAlphaUp}
+        title="Sort Alphabetically (A-Z)"
       >
         <BsSortAlphaDown className="fill-brand-black h-[22px] w-[28px]" />
       </button>
       <button
         className="alpha-asc bg-brand-input rounded-8 shadow-shadow-db hover:bg-brand-yellow inline-flex w-full flex-row items-center justify-center py-3 duration-300   md:py-4"
         onClick={handleSortAlphaDown}
+        title="Sort Alphabetically (Z-A)"
       >
         <BsSortAlphaUp className="fill-brand-black h-[22px] w-[32px]" />
       </button>
@@ -46,10 +48,10 @@ function ContentFilters() {
         <BsCalendarWeek className="fill-brand-black h-auto w-[16px]" /> */}
         <p>Oldest to Newest</p>
       </button>
-      <button className="bg-brand-input rounded-8 shadow-shadow-db hover:bg-brand-light hidden w-full items-center py-3 duration-300 md:flex md:flex-row md:justify-center">
+      <button className="bg-brand-input rounded-8 shadow-shadow-db hover:bg-brand-light hidden w-full items-center py-3 duration-300 md:flex md:flex-row md:justify-center" title="Previous Page">
         <GoArrowLeft className="fill-brand-gray h-auto w-[24px]" />
       </button>
-      <button className="bg-brand-input rounded-8 shadow-shadow-db hover:bg-brand-light hidden w-full items-center py-3 duration-300 md:flex md:flex-row md:justify-center">
+      <button className="bg-brand-input rounded-8 shadow-shadow-db hover:bg-brand-light hidden w-full items-center py-3 duration-300 md:flex md:flex-row md:justify-center" title="Next Page">
         <GoArrowRight className="fill-brand-gray h-auto w-[24px]" />
       </button>
     </div>
