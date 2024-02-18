@@ -11,6 +11,7 @@ function ForApprovalListItem({ data, id }) {
     isEdited,
     isArchived,
     isArchiveApproved,
+    image,
   } = data;
   let type;
   if (
@@ -25,20 +26,28 @@ function ForApprovalListItem({ data, id }) {
     isArchiveApproved == false &&
     isArchived == true
   ) {
-    type = 'Archive Article';
+    type = 'Archive';
   }
 
   return (
-    <div className="bg-brand-light req-container shadow-shadow-db rounded-8 flex flex-col gap-2 p-5 md:flex-row md:gap-5">
-      <div className="req-img mx-auto flex w-full max-w-[400px] items-center md:w-[70%]">
+    <div className="bg-brand-light req-container shadow-shadow-db rounded-8 flex flex-col gap-2 p-5 md:flex-row lg:gap-5">
+      <div className="req-img mx-auto flex w-full items-center md:w-[70%] lg:max-w-fit">
         <img
-          src="./src/assets/sample_2.jpeg"
+          src={image}
           alt=""
           className="rounded-8 h-auto  w-full "
         />
       </div>
-      <div className="req-info mt-2 flex flex-col items-center md:items-start">
-        <p className="activity-label bg-brand-yellow rounded-8 mb-3 min-w-[80%] max-w-fit px-4 py-1 text-center text-[0.9rem] font-medium ">
+      <div className="req-info mt-2 flex w-[50%] flex-col items-center md:items-start">
+        <p
+          className={`activity-label ${
+            type == 'Article Post'
+              ? 'bg-brand-green text-white'
+              : type == 'Edit Article'
+                ? 'bg-brand-blue'
+                : 'bg-brand-yellow'
+          } rounded-8 mb-3 min-w-[80%] max-w-[190px] px-4 py-1 text-center text-[0.9rem] font-medium md:w-[190px] `}
+        >
           {type} Request
         </p>
         <h1 className="req-title mb-2 text-center text-[1.05rem] font-semibold md:text-start md:text-[1.25rem]">
