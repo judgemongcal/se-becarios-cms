@@ -52,7 +52,8 @@ function ContentListItem({ type, id, data }) {
         <img
           src={image}
           alt=""
-          className="rounded-8 max-h-full  min-h-[200px] w-full min-w-full "
+          className="rounded-8 h-[15rem]   max-h-full w-[20rem]"
+          // min-h-[200px] w-full min-w-full
         />
       </div>
       <div className="req-info mt-2 flex flex-col py-5 pl-3 pr-2 text-center lg:text-start">

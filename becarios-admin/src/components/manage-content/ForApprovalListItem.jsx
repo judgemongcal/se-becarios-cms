@@ -31,14 +31,14 @@ function ForApprovalListItem({ data, id }) {
 
   return (
     <div className="bg-brand-light req-container shadow-shadow-db rounded-8 flex flex-col gap-2 p-5 md:flex-row lg:gap-5">
-      <div className="req-img mx-auto flex w-full items-center md:w-[70%] lg:max-w-fit">
+      <div className="req-img mx-auto flex h-auto w-full items-center md:w-[70%] lg:max-w-fit">
         <img
           src={image}
           alt=""
-          className="rounded-8 h-auto  w-full "
+          className="rounded-8 mx-auto h-[15rem] w-[20rem]"
         />
       </div>
-      <div className="req-info mt-2 flex w-[50%] flex-col items-center md:items-start">
+      <div className="req-info mx-auto mt-2 flex w-full flex-col items-center lg:w-[50%] lg:items-start">
         <p
           className={`activity-label ${
             type == 'Article Post'
@@ -46,7 +46,7 @@ function ForApprovalListItem({ data, id }) {
               : type == 'Edit Article'
                 ? 'bg-brand-blue'
                 : 'bg-brand-yellow'
-          } rounded-8 mb-3 min-w-[80%] max-w-[190px] px-4 py-1 text-center text-[0.9rem] font-medium md:w-[190px] `}
+          } rounded-8 mb-3 min-w-full max-w-[190px] px-4 py-1 text-center text-[0.9rem] font-medium md:w-[190px] `}
         >
           {type} Request
         </p>
