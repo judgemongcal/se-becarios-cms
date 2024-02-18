@@ -210,11 +210,11 @@ export async function archiveArticlebyID(id, role) {
     const docRef = doc(db, 'articles', id);
     updateDoc(docRef, {
       isArchived: true,
-      isApproved: role === 'Super Admin',
       isArchiveApproved: role === 'Super Admin',
     });
     const dataToUpdate = {
       dateArchived: serverTimestamp(),
+      isPostApproved: false,
     };
     if (role === 'Super Admin') {
       // Perform the update
@@ -253,7 +253,7 @@ export async function retrieveArticlebyID(id, role) {
     const docRef = doc(db, 'articles', id);
     updateDoc(docRef, {
       isArchived: false,
-      isApproved: role === 'Super Admin',
+      isPostApproved: role === 'Super Admin',
       isArchiveApproved: false,
     });
   } catch (error) {
