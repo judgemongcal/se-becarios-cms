@@ -434,37 +434,42 @@ app.post(
       body,
       isApproved,
       isArchived,
+      role,
     } = req.body;
     let downloadURL;
     const articleImage = req.body['article-image'];
     console.log(req.file);
     console.log('Here: ' + articleImage);
 
-    try {
-      if (articleImage === undefined) {
-        const storageRef = ref(
-          storage,
-          `article_photos/${req.file + dateTime}`,
-        );
-        let metadata = {};
-        if (req.file) {
-          metadata = { contentType: req.file.type };
-        } else {
-          console.log('No File Uploaded');
-        }
-
-        const snapshot = await uploadBytesResumable(
-          storageRef,
-          req.file.buffer,
-          metadata,
-        );
-        downloadURL = await getDownloadURL(snapshot.ref);
+    // try {
+    if (articleImage === undefined) {
+      const storageRef = ref(
+        storage,
+        `article_photos/${req.file + dateTime}`,
+      );
+      let metadata = {};
+      if (req.file) {
+        metadata = { contentType: req.file.type };
       } else {
-        downloadURL = articleImage;
+        console.log('No File Uploaded');
       }
 
-      const docRef = doc(db, 'articles', req.params.id);
-      if (!isApproved) {
+      const snapshot = await uploadBytesResumable(
+        storageRef,
+        req.file.buffer,
+        metadata,
+      );
+      downloadURL = await getDownloadURL(snapshot.ref);
+    } else {
+      downloadURL = articleImage;
+    }
+
+    const docRef = doc(db, 'articles', req.params.id);
+    console.log(role);
+    const isAdmin = role == 'Admin';
+    try {
+      if (isAdmin) {
+        console.log('running as admin');
         await updateDoc(docRef, {
           lastEditedBy,
           titleEdit: title,

@@ -3,7 +3,31 @@ import { MdOutlineRemoveRedEye } from 'react-icons/md';
 import { ForApprovalListItemBtn } from '../global/Button';
 
 function ForApprovalListItem({ data, id }) {
-  console.log(data);
+  const {
+    author,
+    title,
+    isPostApproved,
+    isEditApproved,
+    isEdited,
+    isArchived,
+    isArchiveApproved,
+  } = data;
+  let type;
+  if (
+    isPostApproved == false &&
+    isEditApproved == false &&
+    isArchiveApproved == false
+  ) {
+    type = 'Article Post';
+  } else if (isEditApproved == false && isEdited == true) {
+    type = 'Edit Article';
+  } else if (
+    isArchiveApproved == false &&
+    isArchived == true
+  ) {
+    type = 'Archive Article';
+  }
+
   return (
     <div className="bg-brand-light req-container shadow-shadow-db rounded-8 flex flex-col gap-2 p-5 md:flex-row md:gap-5">
       <div className="req-img mx-auto flex w-full max-w-[400px] items-center md:w-[70%]">
@@ -14,14 +38,13 @@ function ForApprovalListItem({ data, id }) {
         />
       </div>
       <div className="req-info mt-2 flex flex-col items-center md:items-start">
-        <p className="activity-label bg-brand-yellow rounded-8 mb-3 min-w-[80%] max-w-[200px] px-4 py-1 text-center text-[0.9rem] font-medium ">
-          Article Post Request
+        <p className="activity-label bg-brand-yellow rounded-8 mb-3 min-w-[80%] max-w-fit px-4 py-1 text-center text-[0.9rem] font-medium ">
+          {type} Request
         </p>
         <h1 className="req-title mb-2 text-center text-[1.05rem] font-semibold md:text-start md:text-[1.25rem]">
-          Lorem ipsum dolor sit amet consectetur adipisicing
-          elit
+          {title}
         </h1>
-        <div className="time-info mb-1 flex flex-row gap-3 text-[0.9rem] md:text-[1rem]">
+        <div className="time-info mb-1 flex flex-row gap-3 text-[0.9rem] md:flex-col md:gap-1 md:text-[1rem]">
           <p>February 7, 2024</p>
           <p>8:24 AM</p>
         </div>

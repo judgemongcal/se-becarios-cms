@@ -38,10 +38,7 @@ function ForApprovalList() {
   return (
     <div
       className={`bg-brand-input shadow-shadow-db rounded-8 mt-[1rem] flex w-[100%] flex-col gap-2 sm:min-w-[100%] md:max-w-[100%] lg:min-w-[40vh] lg:max-w-[100%] ${
-        pendingArticleCount > 0 &&
-        pendingArticles.length > 0
-          ? ''
-          : 'hidden'
+        pendingArticleCount > 0 ? '' : 'hidden'
       }`}
     >
       <div className="header flex flex-row items-center justify-between p-8 py-4 lg:mt-4 lg:py-3">
@@ -57,6 +54,9 @@ function ForApprovalList() {
       <div className="req-items -mt-5 mb-4 flex flex-col gap-6 p-8 xl:grid xl:grid-cols-2">
         {/* CONVERT INTO ARRAY.MAP */}
         {pendingArticles.map((article) => {
+          console.log(article.data.title);
+          // date displayed would depend on type of article, for archived should be dateArchived
+
           return (
             <ForApprovalListItem
               data={article.data}

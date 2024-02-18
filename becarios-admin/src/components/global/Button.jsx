@@ -954,6 +954,7 @@ function SubmitEditModalBtn() {
       );
       articleData.append('isArchived', false);
       articleData.append('isEdited', true);
+      articleData.append('role', userInfo.role);
       await fetch(
         `http://localhost:5001/edit-article-credentials/${id}`,
         {
