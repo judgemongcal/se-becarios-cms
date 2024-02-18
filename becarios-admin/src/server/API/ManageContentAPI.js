@@ -56,7 +56,7 @@ export async function fetchPostedArticles() {
     const colRef = collection(db, 'articles');
     const q = query(
       colRef,
-      where('isApproved', '==', true),
+      where('isPostApproved', '==', true),
       where('isArchived', '==', false),
     );
     const postedArticlesSnapshot = await getDocs(q);

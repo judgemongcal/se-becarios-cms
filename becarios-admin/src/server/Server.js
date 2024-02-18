@@ -464,22 +464,39 @@ app.post(
       }
 
       const docRef = doc(db, 'articles', req.params.id);
-
-      await updateDoc(docRef, {
-        lastEditedBy,
-        titleEdit: title,
-        bodyEdit: body,
-        dateEdited: dateTime,
-        imageEdit: downloadURL,
-        isEditApproved: isApproved === 'true',
-        isEdited: true,
-      })
-        .then(() => {
-          console.log('Doc updated successfully');
+      if (!isApproved) {
+        await updateDoc(docRef, {
+          lastEditedBy,
+          titleEdit: title,
+          bodyEdit: body,
+          dateEdited: dateTime,
+          imageEdit: downloadURL,
+          isEditApproved: isApproved === 'true',
+          isEdited: true,
         })
-        .catch((error) => {
-          console.log(`Error in updating doc: ${error}`);
-        });
+          .then(() => {
+            console.log('Doc updated successfully');
+          })
+          .catch((error) => {
+            console.log(`Error in updating doc: ${error}`);
+          });
+      } else {
+        await updateDoc(docRef, {
+          lastEditedBy,
+          title: title,
+          body: body,
+          dateEdited: dateTime,
+          image: downloadURL,
+          isEditApproved: isApproved === 'true',
+          isEdited: true,
+        })
+          .then(() => {
+            console.log('Doc updated successfully');
+          })
+          .catch((error) => {
+            console.log(`Error in updating doc: ${error}`);
+          });
+      }
 
       return res.send({
         message:
