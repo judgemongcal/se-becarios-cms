@@ -52,7 +52,7 @@ function ContentListItem({ type, id, data }) {
         <img
           src={image}
           alt=""
-          className="rounded-8 h-[15rem]   max-h-full w-[20rem]"
+          className="rounded-8 mx-auto   h-[15rem] max-h-full w-[20rem]"
           // min-h-[200px] w-full min-w-full
         />
       </div>

@@ -4,6 +4,7 @@ import { ForApprovalListItemBtn } from '../global/Button';
 
 function ForApprovalListItem({ data, id }) {
   const {
+    lastEditedBy,
     author,
     title,
     isPostApproved,
@@ -12,7 +13,45 @@ function ForApprovalListItem({ data, id }) {
     isArchived,
     isArchiveApproved,
     image,
+    datePosted,
   } = data;
+  let date;
+  if (datePosted && datePosted.seconds) {
+    date = new Date(
+      datePosted.seconds * 1000 +
+        (datePosted.nanoseconds || 0) / 1000000,
+    );
+  } else {
+    // Set a default date or handle the case where datePosted is not available
+    date = new Date(); // Set a default date (e.g., current date/time)
+  }
+
+  const months = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
+  const postDate = `${
+    months[date.getMonth()]
+  } ${date.getDate()}, ${date.getFullYear()} `;
+
+  const postTime = `${
+    date.getHours() % 12 ? date.getHours() % 12 : 12
+  }:${
+    date.getMinutes() < 10
+      ? '0' + date.getMinutes()
+      : date.getMinutes()
+  } ${date.getHours() >= 12 ? 'PM' : 'AM'}`;
+
   let type;
   if (
     isPostApproved == false &&
@@ -26,7 +65,7 @@ function ForApprovalListItem({ data, id }) {
     isArchiveApproved == false &&
     isArchived == true
   ) {
-    type = 'Archive';
+    type = 'Archive Article';
   }
 
   return (
@@ -54,11 +93,12 @@ function ForApprovalListItem({ data, id }) {
           {title}
         </h1>
         <div className="time-info mb-1 flex flex-row gap-3 text-[0.9rem] md:flex-col md:gap-1 md:text-[1rem]">
-          <p>February 7, 2024</p>
-          <p>8:24 AM</p>
+          <p>{postDate}</p>
+          <p>{postTime}</p>
         </div>
         <p className="author text-[0.9rem] md:text-[1rem]">
-          Submitted by: Hannah Yu
+          Submitted by:{' '}
+          {lastEditedBy ? lastEditedBy : author}
         </p>
         <ForApprovalListItemBtn />
       </div>
