@@ -160,20 +160,24 @@ export async function fetchPendingArticles() {
       ...archiveArticles,
     ];
 
-    const uniqueArticlesSet = new Set(
-      allArticles.map((article) => JSON.stringify(article)),
-    );
-    const uniqueArticles = Array.from(
-      uniqueArticlesSet,
-    ).map((article) => JSON.parse(article));
+    // const uniqueArticlesSet = new Set(
+    //   allArticles.map((article) => JSON.stringify(article)),
+    // );
+    // const uniqueArticles = Array.from(
+    //   uniqueArticlesSet,
+    // ).map((article) => JSON.parse(article));
     // Extract admin data from the snapshot
     const articlesData = [];
-    uniqueArticles.forEach((doc) => {
-      console.log(doc);
+    allArticles.forEach((doc) => {
+      console.log('Doc: ' + doc);
       articlesData.push({ data: doc, id: doc.id });
+      console.log(doc.data);
     });
 
     console.log(articlesData);
+    console.log(
+      'articles data length: ' + articlesData.length,
+    );
     return articlesData;
   } catch (error) {
     console.error(
@@ -307,6 +311,7 @@ export async function getCurrentPendingArticleCount() {
       return uniqueArticles.find((a) => a.id === id);
     });
 
+    console.log('unique! ' + uniqueResults.length);
     // Return the count of pending articles
     return uniqueResults.length;
   } catch (error) {
