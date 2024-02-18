@@ -387,11 +387,18 @@ app.post(
         body,
         dateCreated: dateTime,
         datePosted: isApproved ? dateTime : null,
+        dateArchived: null,
+        dateEdited: null,
         image: downloadURL,
-        isApproved: isApproved === 'true',
-        isArchived: false,
-
+        isPostApproved: isApproved === 'true',
+        submittedBy: author,
+        titleEdit: '',
+        imageEdit: '',
+        bodyEdit: '',
         isEdited: false,
+        isEditApproved: false,
+        isArchived: false,
+        isArchiveApproved: false,
       })
         .then(() => {
           console.log('Doc written successfully');
@@ -462,10 +469,9 @@ app.post(
         lastEditedBy,
         titleEdit: title,
         bodyEdit: body,
-        dateCreated: dateTime,
+        dateEdited: dateTime,
         imageEdit: downloadURL,
-        isApproved: isApproved === 'true',
-        isArchived: false,
+        isEditApproved: isApproved === 'true',
         isEdited: true,
       })
         .then(() => {

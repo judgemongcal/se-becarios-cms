@@ -2,7 +2,8 @@ import { FaCheck, FaEye, FaXmark } from 'react-icons/fa6';
 import { MdOutlineRemoveRedEye } from 'react-icons/md';
 import { ForApprovalListItemBtn } from '../global/Button';
 
-function ForApprovalListItem() {
+function ForApprovalListItem({ data, id }) {
+  console.log(data);
   return (
     <div className="bg-brand-light req-container shadow-shadow-db rounded-8 flex flex-col gap-2 p-5 md:flex-row md:gap-5">
       <div className="req-img mx-auto flex w-full max-w-[400px] items-center md:w-[70%]">

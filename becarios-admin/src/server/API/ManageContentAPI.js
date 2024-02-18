@@ -20,7 +20,6 @@ export async function fetchAllPendingArticlesWithDocID() {
     // Fetch documents that are pending, not archived
     const filteredDocuments = await articleCollection
       .where('isApproved', '==', false)
-      .where('isArchived', '==', false)
       .get();
     const articlesData = [];
     // Loop through the documents
@@ -59,6 +58,29 @@ export async function fetchPostedArticles() {
       colRef,
       where('isApproved', '==', true),
       where('isArchived', '==', false),
+    );
+    const postedArticlesSnapshot = await getDocs(q);
+    // Extract admin data from the snapshot
+    const articlesData = [];
+    postedArticlesSnapshot.forEach((doc) => {
+      articlesData.push({ data: doc.data(), id: doc.id });
+    });
+    return articlesData;
+  } catch (error) {
+    console.error(
+      'Error fetching login credentials',
+      error,
+    );
+    throw error;
+  }
+}
+
+export async function fetchPendingArticles() {
+  try {
+    const colRef = collection(db, 'articles');
+    const q = query(
+      colRef,
+      where('isApproved', '==', false),
     );
     const postedArticlesSnapshot = await getDocs(q);
     // Extract admin data from the snapshot
