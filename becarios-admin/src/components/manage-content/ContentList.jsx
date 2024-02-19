@@ -11,12 +11,19 @@ import {
 } from '../../server/API/GlobalAPI';
 import { useManageContentContext } from '../../hooks/useManageContentContext';
 
+const ITEMS_PER_PAGE = 9; // Set desired number of articles per page
 
-function ContentList({ type }) {
+function ContentList({ type, currentPage, totalPages }) {
+  console.log('currentPage:', currentPage);
+  console.log('totalPages:', totalPages);
   const context = useManageContentContext();
   console.log('Context:', context);
   const { sortOrder = '', searchQuery, setSortOrder, setSearchQuery } = useManageContentContext() || {};
   const [articles, setArticles] = useState([]);
+
+    // Calculate the start and end indices for pagination
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const endIndex = startIndex + ITEMS_PER_PAGE;
 
   useEffect(() => {
     console.log('Sort Order:', sortOrder);
@@ -67,7 +74,7 @@ function ContentList({ type }) {
 
     // Call the asynchronous function
     fetchArticlesData();
-  }, [sortOrder, searchQuery, type]);
+  }, [sortOrder, searchQuery, type, currentPage, totalPages]);
 
   // Handlers for sorting and searching
   const handleSortAlphaUp = () => setSortOrder('alpha-asc');
@@ -80,7 +87,7 @@ function ContentList({ type }) {
     <div className=" rounded-8 mt-[2rem] flex w-[100%] flex-col gap-2 sm:min-w-[100%] md:max-w-[100%] lg:min-w-[40vh] lg:max-w-[100%]">
       <div className="req-items -mt-5 mb-4 flex flex-col gap-6 md:grid md:grid-cols-3 ">
         {/* CONVERT INTO ARRAY.MAP */}
-        {articles.map((article) => {
+        {articles.slice(startIndex, endIndex).map((article) => {
           // date displayed would depend on type of article, for archived should be dateArchived
           let articleDate = type === 'Posted' ? article.data.datePosted : article.data.dateArchived;
           return (
@@ -97,10 +104,6 @@ function ContentList({ type }) {
           />
           );
         })}
-        {/* <ContentListItem type={type} id={1} />
-        <ContentListItem type={type} id={2} />
-        <ContentListItem type={type} id={3} />
-        <ContentListItem type={type} id={3} /> */}
       </div>
     </div>
   );

@@ -52,25 +52,43 @@ export function ManageContentProvider({ children }) {
     setIsArchiveApproveSuccess,
   ] = useState(false);
 
-  // Event handlers
+  const [currentPage, setCurrentPage] = useState(1);
+
+    // Event handlers
+  const handleNavigateLeft = () => {
+    console.log('Prev. Page Clicked');
+    // Add logic to handle navigating to the previous page
+    setCurrentPage((prevPage) => (prevPage > 1 ? prevPage - 1 : prevPage));
+  };
+
+  const handleNavigateRight = () => {
+    console.log('Next Page Clicked');
+    // Add logic to handle navigating to the next page
+    setCurrentPage((prevPage) => prevPage + 1);
+  };
+
   const handleSortAlphaUp = () => {
     console.log('Sort Alpha Up Clicked');
     setSortOrder('alpha-asc');
+    setSearchQuery('');
   };
 
   const handleSortAlphaDown = () => {
     console.log('Sort Alpha Down Clicked');
     setSortOrder('alpha-desc');
+    setSearchQuery('');
   };
 
   const handleSortDateAsc = () => {
     console.log('Sort Date Asc Clicked');
     setSortOrder('date-asc');
+    setSearchQuery('');
   };
 
   const handleSortDateDesc = () => {
     console.log('Sort Date Desc Clicked');
     setSortOrder('date-desc');
+    setSearchQuery('');
   };
 
   useEffect(() => {
@@ -134,6 +152,10 @@ export function ManageContentProvider({ children }) {
     handleSortAlphaDown,
     handleSortDateAsc,
     handleSortDateDesc,
+    handleNavigateLeft,
+    handleNavigateRight,
+    setCurrentPage,
+    currentPage
   };
 
   return (

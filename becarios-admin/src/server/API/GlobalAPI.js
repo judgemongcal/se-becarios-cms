@@ -34,7 +34,11 @@ export async function fetchAllPostedArticlesAZ(
         where('isArchived', '==', false),
       );
     } else {
-      q = query(colRef, where('isArchived', '==', true));
+      q = query(
+        colRef,
+        where('isArchived', '==', true),
+        where('isArchiveApproved', '==', true),
+      );
     }
 
     const filteredArticlesSnapshot = await getDocs(q);
@@ -86,7 +90,11 @@ export async function fetchAllPostedArticles09(
         where('isArchived', '==', false),
       );
     } else {
-      q = query(colRef, where('isArchived', '==', true));
+      q = query(
+        colRef,
+        where('isArchived', '==', true),
+        where('isArchiveApproved', '==', true),
+      );
     }
 
     const filteredArticlesSnapshot = await getDocs(q);
