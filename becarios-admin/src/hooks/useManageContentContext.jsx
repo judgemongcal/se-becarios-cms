@@ -33,6 +33,11 @@ export function ManageContentProvider({ children }) {
   // Sorting and Searching State
   const [sortOrder, setSortOrder] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
+  const [currentReqType, setCurrentReqType] = useState('');
+  const [isApproveBtnClicked, setIsApproveBtnClicked] =
+    useState(false);
+  const [isRejectBtnClicked, setIsRejectBtnClicked] =
+    useState(false);
 
   // Event handlers
   const handleSortAlphaUp = () => {
@@ -76,10 +81,16 @@ export function ManageContentProvider({ children }) {
     setShowOriginal,
     currentDoc,
     setCurrentDoc,
+    currentReqType,
+    setCurrentReqType,
     isPendingItemClicked,
     setIsPendingItemClicked,
     isPostedSettingsClicked,
     setIsPostedSettingsClicked,
+    isApproveBtnClicked,
+    setIsApproveBtnClicked,
+    isRejectBtnClicked,
+    setIsRejectBtnClicked,
     targetId,
     setTargetId,
     sortOrder,

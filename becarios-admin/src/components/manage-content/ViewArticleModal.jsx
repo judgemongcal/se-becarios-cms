@@ -15,7 +15,6 @@ import { useEffect, useState } from 'react';
 
 function ViewArticleModal() {
   const { userInfo } = useUserInfoContext();
-  const [type, setType] = useState('');
   const [editView, setEditView] = useState(false);
   const {
     currentTitle,
@@ -29,6 +28,8 @@ function ViewArticleModal() {
     showOriginal,
     setShowOriginal,
     currentDoc,
+    currentReqType,
+    setCurrentReqType,
   } = useManageContentContext();
 
   const parser = new DOMParser();
@@ -65,33 +66,33 @@ function ViewArticleModal() {
       currentDoc.isEdited == true &&
       currentDoc.isEditApproved == false
     ) {
-      setType('Edit Article');
+      setCurrentReqType('Edit Article');
     } else if (
       currentDoc.isArchived == true &&
       currentDoc.isArchiveApproved == false
     ) {
-      setType('Archive Article');
+      setCurrentReqType('Archive Article');
     } else {
-      setType('Article Post');
+      setCurrentReqType('Article Post');
     }
-  }, [currentDoc]);
+  }, [currentDoc, setCurrentReqType]);
 
   return (
     <div className="modal-bg bg-brand-light md:bg-modal-bg fixed top-0 z-[1000] flex h-[100%] w-[100%] items-start justify-center overflow-scroll">
-      <div className="modal-container md:bg-brand-light rounded-10 mx-auto flex  w-[100%] flex-col justify-center overflow-scroll  px-[2rem] py-[2.25rem] text-center  md:my-[3rem] md:w-[100%] xl:w-[65%] 2xl:w-[700px] ">
+      <div className="modal-container md:bg-brand-light rounded-10 mx-auto flex  w-[100%] flex-col justify-center overflow-scroll  px-[2rem] py-[2.25rem] text-center  md:my-[3rem] md:w-[80%] xl:w-[75%] 2xl:w-[50%] ">
         <h1 className="mb-[3rem] text-center text-[1.25rem] font-medium md:text-[1.5rem] lg:mb-[2rem]">
           Article Preview
         </h1>
         <p
           className={`activity-label ${
-            type == 'Article Post'
+            currentReqType == 'Article Post'
               ? 'bg-brand-green text-white'
-              : type == 'Edit Article'
+              : currentReqType == 'Edit Article'
                 ? 'bg-brand-blue'
                 : 'bg-brand-yellow'
           } rounded-8 mx-auto mb-3 min-w-[50%] max-w-[190px] px-4 py-2 text-center text-[0.9rem] font-medium md:w-[190px] lg:text-[1.2rem] `}
         >
-          {type} Request
+          {currentReqType} Request
         </p>
         {showOriginal && (
           <div className=" mx-auto my-[2rem] flex flex-row justify-around gap-3 lg:w-[50%]">

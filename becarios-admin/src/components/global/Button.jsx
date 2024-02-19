@@ -104,12 +104,26 @@ function ViewAllBtn() {
 }
 
 function ApproveModalBtn() {
+  const {
+    setIsPendingItemClicked,
+    setIsApproveBtnClicked,
+  } = useManageContentContext();
+
+  function handleBack(e) {
+    e.preventDefault(e);
+    setIsPendingItemClicked(true);
+    setIsApproveBtnClicked(false);
+  }
+
   return (
     <div className="flex flex-row justify-around gap-4 py-2">
       <button className="bg-brand-green shadow-shadow-db rounded-10 hover:bg-brand-green-dark w-[100%] py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-100">
         Approve Post
       </button>
-      <button className="bg-brand-red shadow-shadow-db rounded-10 hover:bg-brand-red-dark w-[100%] py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-100">
+      <button
+        className="bg-brand-red shadow-shadow-db rounded-10 hover:bg-brand-red-dark w-[100%] py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-100"
+        onClick={(e) => handleBack(e)}
+      >
         Go Back
       </button>
     </div>
@@ -1453,7 +1467,8 @@ function ForApprovalListItemBtn({ id }) {
   );
 }
 
-function ViewArticleModalBtn({ id }) {
+function ViewArticleModalBtn({ id, type }) {
+  console.log(type);
   const {
     setTargetId,
     setIsPendingItemClicked,
@@ -1461,6 +1476,7 @@ function ViewArticleModalBtn({ id }) {
     setCurrentBody,
     setCurrentAuthor,
     setCurrentImage,
+    setIsApproveBtnClicked,
   } = useManageContentContext();
 
   function handleBack(e) {
@@ -1468,10 +1484,16 @@ function ViewArticleModalBtn({ id }) {
     setIsPendingItemClicked(false);
   }
 
+  function handleApprove(e) {
+    e.preventDefault();
+    setIsApproveBtnClicked(true);
+    setIsPendingItemClicked(false);
+  }
+
   return (
     <div className="mt-4 flex flex-row justify-start gap-4">
       <button
-        className="bg-brand-yellow hover:bg-brand-green-dark rounded-8 shadow-sm-btn w-full items-center p-3 duration-300"
+        className="bg-brand-yellow hover:bg-brand-yellow-dark rounded-8 shadow-sm-btn w-full items-center p-3 duration-300"
         title="Back"
         onClick={(e) => handleBack(e)}
       >
@@ -1482,9 +1504,10 @@ function ViewArticleModalBtn({ id }) {
       <button
         className="bg-brand-green hover:bg-brand-green-dark rounded-8 shadow-sm-btn w-full items-center p-3 duration-300"
         title="Accept"
+        onClick={(e) => handleApprove(e)}
       >
         <h1 className="lg:text-[1.25rem text-[1rem] font-medium tracking-wide text-white">
-          Accept
+          Approve
         </h1>
       </button>
       <button
