@@ -3,7 +3,7 @@ import NavBar from '../components/global/NavBar';
 import NavBarMobile from '../components/global/NavBarMobile';
 import PageTitle from '../components/global/PageTitle';
 import ArticleImageField from '../components/create-article/ArticleImageField';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import TextEditor from '../components/create-article/TextEditor';
 import { SubmitArticleBtn } from '../components/global/Button';
 import ArticlePreview from '../components/create-article/ArticlePreview';
@@ -22,7 +22,12 @@ function CreateArticle() {
     isPreview,
     isSubmitBtnPressed,
     isSubmitConfirmed,
+    resetAllFields,
   } = useCreateArticleContext();
+
+  useEffect(() => {
+    resetAllFields();
+  }, []);
 
   return (
     <div className="flex flex-col justify-start lg:flex-row ">

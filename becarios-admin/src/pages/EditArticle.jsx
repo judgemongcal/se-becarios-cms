@@ -57,7 +57,7 @@ function EditArticle() {
       const data = await fetchArticleById(id);
       console.log(data);
       setArticleTitle(data.title);
-      setIsArchived(data.isArchived);
+      setIsArchived(data.isArchiveApproved);
       const parser = new DOMParser();
       const parsedContent = parser.parseFromString(
         data.body,
@@ -80,6 +80,7 @@ function EditArticle() {
     setArticleBody,
     setArticleImageFileName,
     setArticleImageSrc,
+    setIsArchived,
   ]);
 
   return (

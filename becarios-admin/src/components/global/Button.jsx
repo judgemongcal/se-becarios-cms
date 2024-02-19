@@ -178,7 +178,7 @@ function EditArticleBtn() {
         className="bg-brand-yellow shadow-shadow-db rounded-10 hover:bg-brand-yellow-dark w-[100%] py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-100"
         onClick={(e) => handleSubmitEidt(e)}
       >
-        Submit Edit
+        {isArchived ? 'Resubmit Article' : 'Submit Edit'}
       </button>
     </div>
   );

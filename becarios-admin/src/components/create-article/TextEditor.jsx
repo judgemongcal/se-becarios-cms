@@ -94,7 +94,6 @@ const MenuBar = () => {
           className="shadow-sm-btn  rounded-8 bg-brand-light  flex items-center justify-center p-2"
           title="Redo"
         >
-          
           <FaRedo className="h-auto w-[20px]" />
         </button>
         <button
@@ -188,7 +187,7 @@ const MenuBar = () => {
               ? 'bg-brand-yellow'
               : ''
           } shadow-sm-btn rounded-8 bg-brand-light flex items-center justify-center p-2`}
-            title="Paragraph"
+          title="Paragraph"
         >
           <FaParagraph className="h-[20px] w-[20px]" />
         </button>
@@ -207,7 +206,7 @@ const MenuBar = () => {
               ? 'bg-brand-yellow'
               : ''
           } shadow-sm-btn rounded-8 bg-brand-light flex items-center justify-center p-2`}
-            title="Heading 1"
+          title="Heading 1"
         >
           <LuHeading1 className="h-auto w-[24px]" />
         </div>
@@ -225,7 +224,7 @@ const MenuBar = () => {
               ? 'bg-brand-yellow'
               : ''
           } shadow-sm-btn rounded-8 bg-brand-light flex items-center justify-center p-2`}
-            title="Heading 2"
+          title="Heading 2"
         >
           <LuHeading2 className="h-auto w-[24px]" />
         </button>
@@ -243,7 +242,7 @@ const MenuBar = () => {
               ? 'bg-brand-yellow'
               : ''
           } shadow-sm-btn rounded-8 bg-brand-light flex items-center justify-center p-2`}
-            title="Heading 3"
+          title="Heading 3"
         >
           <LuHeading3 className="h-auto w-[24px]" />
         </button>
@@ -258,7 +257,7 @@ const MenuBar = () => {
               ? 'bg-brand-yellow'
               : ''
           } shadow-sm-btn rounded-8 bg-brand-light flex items-center justify-center p-2`}
-            title="Unordered List"
+          title="Unordered List"
         >
           <FaListUl className="h-auto w-[24px]" />
         </button>
@@ -276,7 +275,7 @@ const MenuBar = () => {
               ? 'bg-brand-yellow'
               : ''
           } shadow-sm-btn rounded-8 bg-brand-light flex items-center justify-center p-2`}
-            title="Numbered List"
+          title="Numbered List"
         >
           <FaListOl className="h-auto w-[24px]" />
         </button>
@@ -290,7 +289,7 @@ const MenuBar = () => {
               ? 'bg-brand-yellow'
               : ''
           } shadow-sm-btn rounded-8 bg-brand-light flex items-center justify-center p-2`}
-            title="Code Block"
+          title="Code Block"
         >
           <FaCode className="h-auto w-[24px]" />
         </button>
@@ -305,7 +304,7 @@ const MenuBar = () => {
               ? 'bg-brand-yellow'
               : ''
           } shadow-sm-btn rounded-8 bg-brand-light flex items-center justify-center p-2`}
-            title="Quote Block"
+          title="Quote Block"
         >
           <FaQuoteLeft className="h-auto w-[24px]" />
         </button>
@@ -359,6 +358,9 @@ export default function TextEditor() {
     console.log(updatedBody);
   }
 
+  useEffect(() => {
+    setArticleBody('');
+  }, [setArticleBody]);
   // useEffect(() => {
   //   async function updateContent() {
   //     const parser = new DOMParser();

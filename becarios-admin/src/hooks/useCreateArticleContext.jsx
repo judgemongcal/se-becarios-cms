@@ -21,6 +21,17 @@ export function CreateArticleProvider({ children }) {
     useState(false);
   const [articleImgFile, setArticleImgFile] = useState();
 
+  function resetAllFields() {
+    setArticleBody('   ');
+    setArticleImageFileName('');
+    setArticleImageSrc('');
+    setArticleImgFile('');
+    setArticleTitle('');
+    setIsPreview(false);
+    setIsSubmitBtnPressed(false);
+    setIsSubmitConfirmed(false);
+  }
+
   const contextValue = {
     articleTitle,
     setArticleTitle,
@@ -38,6 +49,7 @@ export function CreateArticleProvider({ children }) {
     setIsSubmitConfirmed,
     articleImgFile,
     setArticleImgFile,
+    resetAllFields,
   };
 
   return (
