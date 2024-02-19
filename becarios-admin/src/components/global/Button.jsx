@@ -107,6 +107,8 @@ function ApproveModalBtn() {
   const {
     setIsPendingItemClicked,
     setIsApproveBtnClicked,
+    currentReqType,
+    targetId,
   } = useManageContentContext();
 
   function handleBack(e) {
@@ -115,9 +117,27 @@ function ApproveModalBtn() {
     setIsApproveBtnClicked(false);
   }
 
+  function handleConfirmApprove(e) {
+    e.preventDefault(e);
+    try {
+      if (currentReqType == 'Article Post') {
+        console.log('post');
+      } else if (currentReqType == 'Edit Article') {
+        console.log('edit');
+      } else {
+        console.log('archive');
+      }
+    } catch (error) {
+      console.log('Error with Approving Request: ' + error);
+    }
+  }
+
   return (
     <div className="flex flex-row justify-around gap-4 py-2">
-      <button className="bg-brand-green shadow-shadow-db rounded-10 hover:bg-brand-green-dark w-[100%] py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-100">
+      <button
+        className="bg-brand-green shadow-shadow-db rounded-10 hover:bg-brand-green-dark w-[100%] py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-100"
+        onClick={(e) => handleConfirmApprove(e)}
+      >
         Approve Post
       </button>
       <button

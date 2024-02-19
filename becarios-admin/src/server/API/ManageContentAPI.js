@@ -326,3 +326,48 @@ export async function retrieveArticlebyID(id, role) {
     console.log(error);
   }
 }
+
+export async function approvePostArticlebyID(id) {
+  try {
+    const docRef = doc(db, 'articles', id);
+    updateDoc(docRef, {
+      isPostApproved: true,
+      isArchived: false,
+      isArchiveApproved: false,
+      isEdited: false,
+      isEditedApproved: false,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function approveEditArticlebyID(id) {
+  try {
+    const docRef = doc(db, 'articles', id);
+    updateDoc(docRef, {
+      isPostApproved: true,
+      isArchived: false,
+      isArchiveApproved: false,
+      isEdited: true,
+      isEditedApproved: true,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function approveArchiveArticlebyID(id) {
+  try {
+    const docRef = doc(db, 'articles', id);
+    updateDoc(docRef, {
+      isPostApproved: false,
+      isArchived: true,
+      isArchiveApproved: true,
+      isEdited: false,
+      isEditedApproved: false,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}

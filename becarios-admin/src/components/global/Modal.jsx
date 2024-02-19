@@ -53,6 +53,47 @@ function ExceededLoginAttemptsModal() {
 function ApprovePostModal() {
   const { currentDoc, currentReqType } =
     useManageContentContext();
+
+  let date;
+  if (
+    currentDoc.datePosted &&
+    currentDoc.datePosted.seconds
+  ) {
+    date = new Date(
+      currentDoc.datePosted.seconds * 1000 +
+        (currentDoc.datePosted.nanoseconds || 0) / 1000000,
+    );
+  } else {
+    // Set a default date or handle the case where datePosted is not available
+    date = new Date(); // Set a default date (e.g., current date/time)
+  }
+
+  const months = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
+  const postDate = `${
+    months[date.getMonth()]
+  } ${date.getDate()}, ${date.getFullYear()} `;
+
+  const postTime = `${
+    date.getHours() % 12 ? date.getHours() % 12 : 12
+  }:${
+    date.getMinutes() < 10
+      ? '0' + date.getMinutes()
+      : date.getMinutes()
+  } ${date.getHours() >= 12 ? 'PM' : 'AM'}`;
+
   return (
     <div className="modal-bg bg-brand-input md:bg-modal-bg  fixed top-0 z-[1000] flex h-[100%] w-[100%] items-center justify-center">
       <div className="modal-container bg-brand-input rounded-10 3xl:w-[25%] mx-auto w-[100%] px-[2rem] py-[2.25rem] md:w-[60%] xl:w-[60%] 2xl:w-[700px]">
@@ -64,7 +105,7 @@ function ApprovePostModal() {
             <img
               src={currentDoc.image}
               alt=""
-              className="h-[200px] w-[200px] md:h-[200px] md:w-[300px]"
+              className="rounded-8 shadow-shadow-db h-[200px] w-[200px] md:h-[200px] md:w-[300px]"
             />
           </div>
           <div className="post-info text-center md:ml-[1rem] md:text-left">
@@ -74,7 +115,7 @@ function ApprovePostModal() {
                 : currentDoc.title}
             </h2>
             <p className="text-[0.85rem] lg:text-[1.15rem]">
-              December 12, 2023 9:12PM
+              {postDate} {postTime}
             </p>
             <p className="mb-2 text-[0.85rem] lg:text-[1.15rem]">
               Submitted by:{' '}
