@@ -92,7 +92,7 @@ function ForApprovalListItem({ data, id }) {
         <h1 className="req-title mb-2 text-center text-[1.05rem] font-semibold md:text-start md:text-[1.25rem]">
           {title}
         </h1>
-        <div className="time-info mb-1 flex flex-row gap-3 text-[0.9rem] md:flex-col md:gap-1 md:text-[1rem]">
+        <div className="time-info mb-1 flex flex-row items-center gap-3 text-[0.9rem] md:flex-col md:gap-1 md:text-[1rem]">
           <p>{postDate}</p>
           <p>{postTime}</p>
         </div>
