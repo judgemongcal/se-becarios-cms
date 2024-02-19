@@ -15,6 +15,10 @@ export function ManageContentProvider({ children }) {
   const [targetId, setTargetId] = useState();
   const [isPendingItemClicked, setIsPendingItemClicked] =
     useState(false);
+  const [currentTitle, setCurrentTitle] = useState('');
+  const [currentBody, setCurrentBody] = useState('');
+  const [currentAuthor, setCurrentAuthor] = useState('');
+  const [currentImage, setCurrentImage] = useState('');
 
   // Sorting and Searching State
   const [sortOrder, setSortOrder] = useState('');
@@ -42,6 +46,14 @@ export function ManageContentProvider({ children }) {
   };
 
   const contextValue = {
+    currentTitle,
+    setCurrentTitle,
+    currentBody,
+    setCurrentBody,
+    currentAuthor,
+    setCurrentAuthor,
+    currentImage,
+    setCurrentImage,
     isPendingItemClicked,
     setIsPendingItemClicked,
     isPostedSettingsClicked,

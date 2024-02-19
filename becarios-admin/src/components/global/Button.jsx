@@ -30,6 +30,7 @@ import {
 import {
   archiveArticlebyID,
   deleteArticlebyID,
+  fetchArticleById,
   retrieveArticlebyID,
 } from '../../server/API/ManageContentAPI';
 import { useEditArticleContext } from '../../hooks/useEditArticleContext';
@@ -1392,14 +1393,29 @@ function DashboardViewAllBtn({ path }) {
 }
 
 function ForApprovalListItemBtn({ id }) {
-  const { setTargetId, setIsPendingItemClicked } =
-    useManageContentContext();
+  const {
+    setTargetId,
+    setIsPendingItemClicked,
+    setCurrentTitle,
+    setCurrentBody,
+    setCurrentAuthor,
+    setCurrentImage,
+  } = useManageContentContext();
 
-  function handlePreview(e) {
+  async function handlePreview(e) {
     e.preventDefault();
-    setTargetId(id);
-    setIsPendingItemClicked(true);
-    console.log(id);
+    try {
+      const article = await fetchArticleById(id);
+      setCurrentTitle(article.title);
+      setCurrentImage(article.image);
+      setCurrentBody(article.body);
+      setCurrentAuthor(article.author);
+      setTargetId(id);
+      setIsPendingItemClicked(true);
+      console.log(id);
+    } catch (error) {
+      console.log('Error fetching article: ' + error);
+    }
   }
 
   return (
