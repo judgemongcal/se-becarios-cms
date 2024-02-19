@@ -30,7 +30,7 @@ export async function fetchAllPostedArticlesAZ(
     if (type === 'Posted') {
       q = query(
         colRef,
-        where('isApproved', '==', true),
+        where('isPostApproved', '==', true),
         where('isArchived', '==', false),
       );
     } else {
@@ -82,7 +82,7 @@ export async function fetchAllPostedArticles09(
     if (type === 'Posted') {
       q = query(
         colRef,
-        where('isApproved', '==', true),
+        where('isPostApproved', '==', true),
         where('isArchived', '==', false),
       );
     } else {
@@ -100,6 +100,7 @@ export async function fetchAllPostedArticles09(
         type === 'Posted'
           ? doc.data().datePosted
           : doc.data().dateArchived;
+      console.log('Date Posted :', doc.data().datePosted);
       console.log('dateToUse:', dateToUse);
       allPostedArticles.push({
         data: doc.data(),
@@ -161,7 +162,7 @@ export async function searchArticleByTitle(
     if (type === 'Posted') {
       q = query(
         colRef,
-        where('isApproved', '==', true),
+        where('isPostApproved', '==', true),
         where('isArchived', '==', false),
       );
     } else {
