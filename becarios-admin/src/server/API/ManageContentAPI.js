@@ -192,8 +192,8 @@ export async function searchArticleByTitle(
   type = 'Posted',
 ) {
   try {
-    if (keyword === '' || keyword === null) {
-      if (type === 'Posted') {
+    if (keyword == '' || keyword == null) {
+      if (type == 'Posted') {
         Results = await fetchPostedArticles();
       } else {
         Results = await fetchArchivedPost();
