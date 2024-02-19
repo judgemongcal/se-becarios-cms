@@ -187,8 +187,17 @@ export async function fetchArchivedPost() {
 }
 
 // Fetches articles according to title
-export async function searchArticleByTitle(keyword = '') {
+export async function searchArticleByTitle(
+  keyword = '',
+  type = 'Posted',
+) {
   try {
+    let bool = '';
+    if (type === 'Posted') {
+      bool = 'isPostApproved';
+    } else {
+      bool = 'isArchived';
+    }
     const articleCollection = collection(db, 'articles');
     // Fetch all articles
     const snapshot = await getDocs(articleCollection);
@@ -197,17 +206,12 @@ export async function searchArticleByTitle(keyword = '') {
     snapshot.forEach((doc) => {
       const articleData = doc.data();
       console.log(articleData);
-      // Convert Timestamp to Date for readable format
-      articleData.datePosted =
-        articleData.datePosted.toDate();
-      articleData.dateCreated =
-        articleData.dateCreated.toDate();
       // Check if the lowercase title contains the lowercase keyword
       if (
         articleData.title
           .toLowerCase()
           .includes(keyword.toLowerCase()) &&
-        articleData.isApproved === true
+        articleData[bool] === true
       ) {
         matchingArticles.push({
           data: doc.data(),
@@ -223,7 +227,9 @@ export async function searchArticleByTitle(keyword = '') {
 }
 
 // Count All Articles Pending for Approval
-export async function getCurrentPendingArticleCount() {
+export async function getCurrentPendingArticleCount(
+  searchQuery = '',
+) {
   try {
     // const articleCollection = collection(db, 'articles');
     // const q = query(
@@ -243,13 +249,84 @@ export async function getCurrentPendingArticleCount() {
     //     (a) => a.id === id,
     //   );
     // });
+    let uniqueResults;
 
-    const uniqueResults = await fetchPendingArticles();
-    // Return the count of pending articles
+    if (searchQuery && searchQuery !== '') {
+      // If there's a search query, fetch the articles based on the search query
+      uniqueResults =
+        await searchArticleByTitle(searchQuery);
+    } else {
+      // Otherwise, fetch all posted articles
+      uniqueResults = await fetchPendingArticles();
+    }
+
+    console.log('API Response:', uniqueResults);
+
+    // Return the count of articles
     return uniqueResults.length;
   } catch (error) {
     console.error(
       'Error getting pending articles count:',
+      error,
+    );
+    throw error;
+  }
+}
+
+export async function getCurrentPostedArticleCount(
+  searchQuery = '',
+) {
+  try {
+    let uniqueResults;
+
+    if (searchQuery && searchQuery !== '') {
+      // If there's a search query, fetch the articles based on the search query
+      uniqueResults = await searchArticleByTitle(
+        searchQuery,
+        'Posted',
+      );
+    } else {
+      // Otherwise, fetch all posted articles
+      uniqueResults = await fetchPostedArticles();
+    }
+
+    console.log('API Response:', uniqueResults);
+
+    // Return the count of articles
+    return uniqueResults.length;
+  } catch (error) {
+    console.error(
+      'Error getting posted articles count:',
+      error,
+    );
+    throw error;
+  }
+}
+
+export async function getCurrentArchivedArticleCount(
+  searchQuery = '',
+) {
+  try {
+    let uniqueResults;
+
+    if (searchQuery && searchQuery !== '') {
+      // If there's a search query, fetch the articles based on the search query
+      uniqueResults = await searchArticleByTitle(
+        searchQuery,
+        'Archived',
+      );
+    } else {
+      // Otherwise, fetch all posted articles
+      uniqueResults = await fetchArchivedPost();
+    }
+
+    console.log('API Response:', uniqueResults);
+
+    // Return the count of articles
+    return uniqueResults.length;
+  } catch (error) {
+    console.error(
+      'Error getting posted articles count:',
       error,
     );
     throw error;
