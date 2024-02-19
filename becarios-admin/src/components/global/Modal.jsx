@@ -291,7 +291,7 @@ function DeletePostModal() {
   );
 }
 
-function PostReqSuccessModal() {
+function PostReqSuccessModal({ type }) {
   const { userInfo } = useUserInfoContext();
   return (
     <div className="modal-bg bg-brand-input md:bg-modal-bg  justify-cente fixed top-0 z-[1000] flex h-[100%] w-[100%] items-center">
@@ -320,8 +320,11 @@ function PostReqSuccessModal() {
             </>
           )}
         </p>
-
-        <PostReqSuccessModalBtn />
+        {type ? (
+          <ProceedModalBtn type={type} />
+        ) : (
+          <PostReqSuccessModalBtn />
+        )}
       </div>
     </div>
   );
@@ -375,7 +378,7 @@ function DeleteReqSuccessModal({ type }) {
   );
 }
 
-function ArchiveReqSuccessModal() {
+function ArchiveReqSuccessModal({ type }) {
   const { userInfo } = useUserInfoContext();
   const isSuperAdmin = userInfo.role === 'Super Admin';
 
@@ -394,7 +397,7 @@ function ArchiveReqSuccessModal() {
             administrator. We appreciate your patience!
           </p>
         )}
-        <ProceedModalBtn />
+        <ProceedModalBtn type={type} />
       </div>
     </div>
   );

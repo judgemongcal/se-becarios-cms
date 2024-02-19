@@ -9,6 +9,9 @@ import PaginationLabel from '../components/global/PaginationLabel';
 import { useSignOutContext } from '../hooks/useSignOutContext';
 import {
   ApprovePostModal,
+  ArchiveReqSuccessModal,
+  EditReqSuccessModal,
+  PostReqSuccessModal,
   SignOutModal,
 } from '../components/global/Modal';
 import ViewArticleModal from '../components/manage-content/ViewArticleModal';
@@ -17,8 +20,13 @@ import { useManageContentContext } from '../hooks/useManageContentContext';
 function ManageContent() {
   const { isSignOutClicked } = useSignOutContext();
 
-  const { isPendingItemClicked, isApproveBtnClicked } =
-    useManageContentContext();
+  const {
+    isPendingItemClicked,
+    isApproveBtnClicked,
+    isPostApproveSuccess,
+    isEditApproveSuccess,
+    isArchiveApproveSuccess,
+  } = useManageContentContext();
   return (
     <div className="flex flex-col justify-start lg:flex-row">
       <div className="navs">
@@ -41,6 +49,15 @@ function ManageContent() {
       {isSignOutClicked && <SignOutModal />}
       {isPendingItemClicked && <ViewArticleModal />}
       {isApproveBtnClicked && <ApprovePostModal />}
+      {isPostApproveSuccess && (
+        <PostReqSuccessModal type="manage-content" />
+      )}
+      {isEditApproveSuccess && (
+        <EditReqSuccessModal type="manage-content" />
+      )}
+      {isArchiveApproveSuccess && (
+        <ArchiveReqSuccessModal type="manage-content" />
+      )}
     </div>
   );
 }
