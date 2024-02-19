@@ -1443,6 +1443,52 @@ function ForApprovalListItemBtn({ id }) {
   );
 }
 
+function ViewArticleModalBtn({ id }) {
+  const {
+    setTargetId,
+    setIsPendingItemClicked,
+    setCurrentTitle,
+    setCurrentBody,
+    setCurrentAuthor,
+    setCurrentImage,
+  } = useManageContentContext();
+
+  function handleBack(e) {
+    e.preventDefault();
+    setIsPendingItemClicked(false);
+  }
+
+  return (
+    <div className="mt-4 flex flex-row justify-start gap-4">
+      <button
+        className="bg-brand-yellow hover:bg-brand-green-dark rounded-8 shadow-sm-btn w-full items-center p-3 duration-300"
+        title="Back"
+        onClick={(e) => handleBack(e)}
+      >
+        <h1 className="lg:text-[1.25rem text-[1rem] font-medium tracking-wide">
+          Go Back
+        </h1>
+      </button>
+      <button
+        className="bg-brand-green hover:bg-brand-green-dark rounded-8 shadow-sm-btn w-full items-center p-3 duration-300"
+        title="Accept"
+      >
+        <h1 className="lg:text-[1.25rem text-[1rem] font-medium tracking-wide text-white">
+          Accept
+        </h1>
+      </button>
+      <button
+        className="bg-brand-red hover:bg-brand-red-dark rounded-8 shadow-sm-btn w-full items-center p-3 duration-300"
+        title="Reject"
+      >
+        <h1 className="lg:text-[1.25rem text-[1rem] font-medium tracking-wide text-white">
+          Reject
+        </h1>
+      </button>
+    </div>
+  );
+}
+
 function ArchivedListItemBtn({ id }) {
   const idVal = id;
   const navigate = useNavigate();
@@ -1538,4 +1584,5 @@ export {
   ConfirmAssignSuperAdminModalBtn,
   TryAgainBtn,
   SubmitRetrieveArchiveModalBtn,
+  ViewArticleModalBtn,
 };

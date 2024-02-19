@@ -3,9 +3,11 @@ import {
   AddAdminModalBtn,
   AssignSuperAdminBtn,
   EditAdminModalBtn,
+  ForApprovalListItemBtn,
   LoginBtn,
   RemoveAdminModalBtn,
   SelectAdminRoleBtn,
+  ViewArticleModalBtn,
 } from '../global/Button';
 import { useUserInfoContext } from '../../hooks/useUserInfoContext';
 import { useManageContentContext } from '../../hooks/useManageContentContext';
@@ -17,6 +19,7 @@ function ViewArticleModal() {
     currentImage,
     currentBody,
     currentAuthor,
+    targetId,
   } = useManageContentContext();
 
   const parser = new DOMParser();
@@ -51,6 +54,7 @@ function ViewArticleModal() {
         <h1 className="mb-[3rem] text-center text-[1.25rem] font-semibold md:text-[1.65rem] lg:mb-[4rem]">
           {currentAuthor}
         </h1>
+        <ViewArticleModalBtn id={targetId} />
       </div>
     </div>
   );
