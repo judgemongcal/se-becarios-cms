@@ -28,6 +28,9 @@ import {
   fetchAdminById,
 } from '../../server/API/SettingsAPI';
 import {
+  approveArchiveArticlebyID,
+  approveEditArticlebyID,
+  approvePostArticlebyID,
   archiveArticlebyID,
   deleteArticlebyID,
   fetchArticleById,
@@ -109,6 +112,10 @@ function ApproveModalBtn() {
     setIsApproveBtnClicked,
     currentReqType,
     targetId,
+    currentDoc,
+    setIsPostApproveSuccess,
+    setIsEditApproveSuccess,
+    setIsArchiveApproveSuccess,
   } = useManageContentContext();
 
   function handleBack(e) {
@@ -117,16 +124,20 @@ function ApproveModalBtn() {
     setIsApproveBtnClicked(false);
   }
 
-  function handleConfirmApprove(e) {
+  async function handleConfirmApprove(e) {
     e.preventDefault(e);
     try {
       if (currentReqType == 'Article Post') {
-        console.log('post');
+        await approvePostArticlebyID(targetId);
+        setIsPostApproveSuccess(true);
       } else if (currentReqType == 'Edit Article') {
-        console.log('edit');
+        await approveEditArticlebyID(targetId, currentDoc);
+        setIsEditApproveSuccess(true);
       } else {
-        console.log('archive');
+        await approveArchiveArticlebyID(targetId);
+        setIsArchiveApproveSuccess(true);
       }
+      setIsApproveBtnClicked(false);
     } catch (error) {
       console.log('Error with Approving Request: ' + error);
     }
@@ -360,13 +371,22 @@ function PostReqSuccessModalBtn() {
   );
 }
 
-function ProceedModalBtn({ type }) {
+function ProceedModalBtn({ type = '' }) {
   const navigate = useNavigate();
+  const { setIsPostApproveSuccess } =
+    useManageContentContext();
 
   function handleProceed(e) {
     e.preventDefault(e);
     if (type == 'archive') {
-      window.location.reload();
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
+    } else if (type == 'manage-content') {
+      setIsPostApproveSuccess(false);
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
     } else {
       navigate('/manage-content', { replace: true });
     }

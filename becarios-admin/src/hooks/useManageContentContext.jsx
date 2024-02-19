@@ -1,4 +1,9 @@
-import { createContext, useContext, useState } from 'react';
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 
 export const ManageContentContext = createContext();
 
@@ -38,6 +43,14 @@ export function ManageContentProvider({ children }) {
     useState(false);
   const [isRejectBtnClicked, setIsRejectBtnClicked] =
     useState(false);
+  const [isPostApproveSuccess, setIsPostApproveSuccess] =
+    useState(false);
+  const [isEditApproveSuccess, setIsEditApproveSuccess] =
+    useState(false);
+  const [
+    isArchiveApproveSuccess,
+    setIsArchiveApproveSuccess,
+  ] = useState(false);
 
   // Event handlers
   const handleSortAlphaUp = () => {
@@ -63,6 +76,20 @@ export function ManageContentProvider({ children }) {
     setSortOrder('date-desc');
     setSearchQuery('');
   };
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setIsPostApproveSuccess(false);
+      setIsEditApproveSuccess(false);
+      setIsArchiveApproveSuccess(false);
+    }, 5000);
+
+    return () => clearTimeout(timeout);
+  }, [
+    isPostApproveSuccess,
+    isEditApproveSuccess,
+    isArchiveApproveSuccess,
+  ]);
 
   const contextValue = {
     currentTitle,
@@ -96,6 +123,12 @@ export function ManageContentProvider({ children }) {
     isRejectBtnClicked,
     setIsRejectBtnClicked,
     targetId,
+    isPostApproveSuccess,
+    setIsPostApproveSuccess,
+    isEditApproveSuccess,
+    setIsEditApproveSuccess,
+    isArchiveApproveSuccess,
+    setIsArchiveApproveSuccess,
     setTargetId,
     sortOrder,
     setSortOrder,

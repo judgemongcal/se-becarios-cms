@@ -10,6 +10,9 @@ import PaginationLabel from '../components/global/PaginationLabel';
 import { useSignOutContext } from '../hooks/useSignOutContext';
 import {
   ApprovePostModal,
+  ArchiveReqSuccessModal,
+  EditReqSuccessModal,
+  PostReqSuccessModal,
   SignOutModal,
 } from '../components/global/Modal';
 import ViewArticleModal from '../components/manage-content/ViewArticleModal';
@@ -18,7 +21,7 @@ import {getCurrentPostedArticleCount} from '../server/API/ManageContentAPI.js';
 
 function ManageContent() {
   const { isSignOutClicked } = useSignOutContext();
-  const { isPendingItemClicked, isApproveBtnClicked, searchQuery, sortOrder, setSearchQuery } =
+  const { isPendingItemClicked, isApproveBtnClicked, isPostApproveSuccess, isEditApproveSuccess, isArchiveApproveSuccess, searchQuery, sortOrder, setSearchQuery } =
     useManageContentContext();
 
     // State for pagination
@@ -97,6 +100,15 @@ function ManageContent() {
       {isSignOutClicked && <SignOutModal />}
       {isPendingItemClicked && <ViewArticleModal />}
       {isApproveBtnClicked && <ApprovePostModal />}
+      {isPostApproveSuccess && (
+        <PostReqSuccessModal type="manage-content" />
+      )}
+      {isEditApproveSuccess && (
+        <EditReqSuccessModal type="manage-content" />
+      )}
+      {isArchiveApproveSuccess && (
+        <ArchiveReqSuccessModal type="manage-content" />
+      )}
     </div>
   );
 }

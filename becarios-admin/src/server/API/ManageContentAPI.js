@@ -57,7 +57,7 @@ export async function fetchPostedArticles() {
     const q = query(
       colRef,
       where('isPostApproved', '==', true),
-      where('isArchived', '==', false),
+      // where('isArchived', '==', false),
       // where('isArchivedApproved', '==', false),
     );
     const postedArticlesSnapshot = await getDocs(q);
@@ -427,15 +427,30 @@ export async function approvePostArticlebyID(id) {
   }
 }
 
-export async function approveEditArticlebyID(id) {
+export async function approveEditArticlebyID(id, document) {
   try {
     const docRef = doc(db, 'articles', id);
     updateDoc(docRef, {
       isPostApproved: true,
       isArchived: false,
       isArchiveApproved: false,
-      isEdited: true,
-      isEditedApproved: true,
+      isEdited: false,
+      isEditedApproved: false,
+      title:
+        document.titleEdit != ''
+          ? document.titleEdit
+          : document.title,
+      body:
+        doc.bodyEdit != ''
+          ? document.bodyEdit
+          : document.body,
+      image:
+        doc.imageEdit != ''
+          ? document.imageEdit
+          : document.image,
+      titleEdit: '',
+      bodyEdit: '',
+      imageEdit: '',
     });
   } catch (error) {
     console.log(error);
