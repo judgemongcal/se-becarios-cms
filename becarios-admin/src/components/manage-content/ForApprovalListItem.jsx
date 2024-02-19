@@ -100,7 +100,7 @@ function ForApprovalListItem({ data, id }) {
           Submitted by:{' '}
           {lastEditedBy ? lastEditedBy : author}
         </p>
-        <ForApprovalListItemBtn />
+        <ForApprovalListItemBtn id={id} />
       </div>
     </div>
   );

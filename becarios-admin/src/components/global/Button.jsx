@@ -1391,12 +1391,23 @@ function DashboardViewAllBtn({ path }) {
   );
 }
 
-function ForApprovalListItemBtn() {
+function ForApprovalListItemBtn({ id }) {
+  const { setTargetId, setIsPendingItemClicked } =
+    useManageContentContext();
+
+  function handlePreview(e) {
+    e.preventDefault();
+    setTargetId(id);
+    setIsPendingItemClicked(true);
+    console.log(id);
+  }
+
   return (
     <div className="mt-4 flex flex-row justify-start gap-3">
       <button
         className="bg-brand-blue hover:bg-brand-blue-dark rounded-8 shadow-sm-btn items-center p-2 duration-300"
         title="Preview"
+        onClick={(e) => handlePreview(e)}
       >
         <MdOutlineRemoveRedEye className="fill-brand-input h-auto w-[30px] md:w-[35px]" />
       </button>

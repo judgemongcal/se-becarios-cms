@@ -8,9 +8,14 @@ import ContentList from '../components/manage-content/ContentList';
 import PaginationLabel from '../components/global/PaginationLabel';
 import { useSignOutContext } from '../hooks/useSignOutContext';
 import { SignOutModal } from '../components/global/Modal';
+import ViewArticleModal from '../components/manage-content/ViewArticleModal';
+import { useManageContentContext } from '../hooks/useManageContentContext';
 
 function ManageContent() {
   const { isSignOutClicked } = useSignOutContext();
+
+  const { isPendingItemClicked } =
+    useManageContentContext();
   return (
     <div className="flex flex-col justify-start lg:flex-row">
       <div className="navs">
@@ -31,6 +36,7 @@ function ManageContent() {
         </div>
       </div>
       {isSignOutClicked && <SignOutModal />}
+      {isPendingItemClicked && <ViewArticleModal />}
     </div>
   );
 }

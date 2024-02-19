@@ -13,6 +13,8 @@ export function ManageContentProvider({ children }) {
   ] = useState(false);
 
   const [targetId, setTargetId] = useState();
+  const [isPendingItemClicked, setIsPendingItemClicked] =
+    useState(false);
 
   // Sorting and Searching State
   const [sortOrder, setSortOrder] = useState('');
@@ -40,6 +42,8 @@ export function ManageContentProvider({ children }) {
   };
 
   const contextValue = {
+    isPendingItemClicked,
+    setIsPendingItemClicked,
     isPostedSettingsClicked,
     setIsPostedSettingsClicked,
     targetId,
