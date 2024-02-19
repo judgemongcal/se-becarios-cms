@@ -8,14 +8,17 @@ import ForApprovalList from '../components/manage-content/ForApprovalList';
 import ContentList from '../components/manage-content/ContentList';
 import PaginationLabel from '../components/global/PaginationLabel';
 import { useSignOutContext } from '../hooks/useSignOutContext';
-import { SignOutModal } from '../components/global/Modal';
+import {
+  ApprovePostModal,
+  SignOutModal,
+} from '../components/global/Modal';
 import ViewArticleModal from '../components/manage-content/ViewArticleModal';
 import { useManageContentContext } from '../hooks/useManageContentContext';
 import {getCurrentPostedArticleCount} from '../server/API/ManageContentAPI.js';
 
 function ManageContent() {
   const { isSignOutClicked } = useSignOutContext();
-  const { isPendingItemClicked, searchQuery, sortOrder, setSearchQuery } =
+  const { isPendingItemClicked, isApproveBtnClicked, searchQuery, sortOrder, setSearchQuery } =
     useManageContentContext();
 
     // State for pagination
@@ -93,6 +96,7 @@ function ManageContent() {
       </div>
       {isSignOutClicked && <SignOutModal />}
       {isPendingItemClicked && <ViewArticleModal />}
+      {isApproveBtnClicked && <ApprovePostModal />}
     </div>
   );
 }

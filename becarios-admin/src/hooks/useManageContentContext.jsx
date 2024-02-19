@@ -19,23 +19,25 @@ export function ManageContentProvider({ children }) {
   const [currentBody, setCurrentBody] = useState('');
   const [currentAuthor, setCurrentAuthor] = useState('');
   const [currentImage, setCurrentImage] = useState('');
-  const [currentPage, setCurrentPage] = useState(1);
-
-  const handleNavigateLeft = () => {
-    console.log('Prev. Page Clicked');
-    // Add logic to handle navigating to the previous page
-    setCurrentPage((prevPage) => (prevPage > 1 ? prevPage - 1 : prevPage));
-  };
-
-  const handleNavigateRight = () => {
-    console.log('Next Page Clicked');
-    // Add logic to handle navigating to the next page
-    setCurrentPage((prevPage) => prevPage + 1);
-  };
+  const [currentSubmittedBy, setCurrentSubmittedBy] =
+    useState('');
+  const [currentTitleEdit, setcurrentTitleEdit] =
+    useState('');
+  const [currentBodyEdit, setcurrentBodyEdit] =
+    useState('');
+  const [currentImageEdit, setcurrentImageEdit] =
+    useState('');
+  const [showOriginal, setShowOriginal] = useState(false);
+  const [currentDoc, setCurrentDoc] = useState([]);
 
   // Sorting and Searching State
   const [sortOrder, setSortOrder] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
+  const [currentReqType, setCurrentReqType] = useState('');
+  const [isApproveBtnClicked, setIsApproveBtnClicked] =
+    useState(false);
+  const [isRejectBtnClicked, setIsRejectBtnClicked] =
+    useState(false);
 
   // Event handlers
   const handleSortAlphaUp = () => {
@@ -71,10 +73,28 @@ export function ManageContentProvider({ children }) {
     setCurrentAuthor,
     currentImage,
     setCurrentImage,
+    currentImageEdit,
+    setcurrentImageEdit,
+    currentSubmittedBy,
+    setCurrentSubmittedBy,
+    currentTitleEdit,
+    setcurrentTitleEdit,
+    currentBodyEdit,
+    setcurrentBodyEdit,
+    showOriginal,
+    setShowOriginal,
+    currentDoc,
+    setCurrentDoc,
+    currentReqType,
+    setCurrentReqType,
     isPendingItemClicked,
     setIsPendingItemClicked,
     isPostedSettingsClicked,
     setIsPostedSettingsClicked,
+    isApproveBtnClicked,
+    setIsApproveBtnClicked,
+    isRejectBtnClicked,
+    setIsRejectBtnClicked,
     targetId,
     setTargetId,
     sortOrder,

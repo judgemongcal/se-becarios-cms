@@ -359,6 +359,9 @@ export async function archiveArticlebyID(id, role) {
     updateDoc(docRef, {
       isArchived: true,
       isArchiveApproved: role === 'Super Admin',
+      titleEdit: '',
+      bodyEdit: '',
+      imageEdit: '',
     });
     const dataToUpdate = {
       dateArchived: serverTimestamp(),
@@ -403,6 +406,51 @@ export async function retrieveArticlebyID(id, role) {
       isArchived: false,
       isPostApproved: role === 'Super Admin',
       isArchiveApproved: false,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function approvePostArticlebyID(id) {
+  try {
+    const docRef = doc(db, 'articles', id);
+    updateDoc(docRef, {
+      isPostApproved: true,
+      isArchived: false,
+      isArchiveApproved: false,
+      isEdited: false,
+      isEditedApproved: false,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function approveEditArticlebyID(id) {
+  try {
+    const docRef = doc(db, 'articles', id);
+    updateDoc(docRef, {
+      isPostApproved: true,
+      isArchived: false,
+      isArchiveApproved: false,
+      isEdited: true,
+      isEditedApproved: true,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function approveArchiveArticlebyID(id) {
+  try {
+    const docRef = doc(db, 'articles', id);
+    updateDoc(docRef, {
+      isPostApproved: false,
+      isArchived: true,
+      isArchiveApproved: true,
+      isEdited: false,
+      isEditedApproved: false,
     });
   } catch (error) {
     console.log(error);
