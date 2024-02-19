@@ -138,6 +138,7 @@ function EditArticleBtn() {
     setIsArchiveBtnPressed,
     isArchiveConfirmed,
     setIsArchiveConfirmed,
+    isArchived,
   } = useEditArticleContext();
 
   function handleClickPreview(e) {
@@ -155,10 +156,14 @@ function EditArticleBtn() {
     setIsArchiveBtnPressed(!isArchiveBtnPressed);
   }
 
+  console.log(isArchived);
+
   return (
     <div className="flex flex-row justify-around gap-4 py-2">
       <button
-        className="bg-brand-red shadow-shadow-db rounded-10 hover:bg-brand-red-dark w-[100%] py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-100"
+        className={`bg-brand-red shadow-shadow-db rounded-10 hover:bg-brand-red-dark w-[100%] py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-100 ${
+          isArchived ? 'pointer-events-none opacity-30' : ''
+        }`}
         onClick={(e) => handleArchive(e)}
       >
         Archive Post
@@ -1413,6 +1418,7 @@ function ForApprovalListItemBtn() {
 
 function ArchivedListItemBtn({ id }) {
   const idVal = id;
+  const navigate = useNavigate();
 
   const {
     isDeleteBtnClicked,
@@ -1434,9 +1440,17 @@ function ArchivedListItemBtn({ id }) {
     setIsPutBackBtnClicked(!isPutBackBtnClicked);
   }
 
+  function handleView(e) {
+    e.preventDefault();
+    navigate(`/edit-article/${idVal}`, { replace: true });
+  }
+
   return (
     <div className="mt-4 flex flex-row justify-start gap-3">
-      <button className="bg-brand-blue hover:bg-brand-blue-dark rounded-8 shadow-sm-btn items-center p-2 duration-300">
+      <button
+        className="bg-brand-blue hover:bg-brand-blue-dark rounded-8 shadow-sm-btn items-center p-2 duration-300"
+        onClick={(e) => handleView(e)}
+      >
         <MdOutlineRemoveRedEye
           className="fill-brand-input h-auto w-[25px] md:w-[30px]"
           title="Preview"

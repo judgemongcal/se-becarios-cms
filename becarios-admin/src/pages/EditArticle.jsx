@@ -41,6 +41,7 @@ function EditArticle() {
     isArchiveConfirmed,
     setIsArchiveConfirmed,
     isArchiveFailed,
+    setIsArchived,
   } = useEditArticleContext();
 
   const {
@@ -56,7 +57,7 @@ function EditArticle() {
       const data = await fetchArticleById(id);
       console.log(data);
       setArticleTitle(data.title);
-
+      setIsArchived(data.isArchived);
       const parser = new DOMParser();
       const parsedContent = parser.parseFromString(
         data.body,

@@ -36,6 +36,7 @@ export function EditArticleProvider({ children }) {
     useState(false);
   const [isArchiveFailed, setIsArchiveFailed] =
     useState(false);
+  const [isArchived, setIsArchived] = useState(false);
 
   // useEffect(() => {
   //   let timer;
@@ -70,6 +71,8 @@ export function EditArticleProvider({ children }) {
     setIsArchiveConfirmed,
     isArchiveFailed,
     setIsArchiveFailed,
+    isArchived,
+    setIsArchived,
   };
 
   return (
