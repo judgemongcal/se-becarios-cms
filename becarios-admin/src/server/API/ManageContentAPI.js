@@ -273,6 +273,9 @@ export async function archiveArticlebyID(id, role) {
     updateDoc(docRef, {
       isArchived: true,
       isArchiveApproved: role === 'Super Admin',
+      titleEdit: '',
+      bodyEdit: '',
+      imageEdit: '',
     });
     const dataToUpdate = {
       dateArchived: serverTimestamp(),

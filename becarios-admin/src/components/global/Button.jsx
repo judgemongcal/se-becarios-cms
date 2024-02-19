@@ -1400,6 +1400,11 @@ function ForApprovalListItemBtn({ id }) {
     setCurrentBody,
     setCurrentAuthor,
     setCurrentImage,
+    setCurrentSubmittedBy,
+    setcurrentTitleEdit,
+    setcurrentBodyEdit,
+    setcurrentImageEdit,
+    setCurrentDoc,
   } = useManageContentContext();
 
   async function handlePreview(e) {
@@ -1410,6 +1415,11 @@ function ForApprovalListItemBtn({ id }) {
       setCurrentImage(article.image);
       setCurrentBody(article.body);
       setCurrentAuthor(article.author);
+      setCurrentSubmittedBy(article.submittedBy);
+      setcurrentTitleEdit(article.titleEdit);
+      setcurrentBodyEdit(article.bodyEdit);
+      setcurrentImageEdit(article.imageEdit);
+      setCurrentDoc(article);
       setTargetId(id);
       setIsPendingItemClicked(true);
       console.log(id);

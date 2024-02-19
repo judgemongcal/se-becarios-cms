@@ -19,6 +19,16 @@ export function ManageContentProvider({ children }) {
   const [currentBody, setCurrentBody] = useState('');
   const [currentAuthor, setCurrentAuthor] = useState('');
   const [currentImage, setCurrentImage] = useState('');
+  const [currentSubmittedBy, setCurrentSubmittedBy] =
+    useState('');
+  const [currentTitleEdit, setcurrentTitleEdit] =
+    useState('');
+  const [currentBodyEdit, setcurrentBodyEdit] =
+    useState('');
+  const [currentImageEdit, setcurrentImageEdit] =
+    useState('');
+  const [showOriginal, setShowOriginal] = useState(false);
+  const [currentDoc, setCurrentDoc] = useState([]);
 
   // Sorting and Searching State
   const [sortOrder, setSortOrder] = useState('');
@@ -54,6 +64,18 @@ export function ManageContentProvider({ children }) {
     setCurrentAuthor,
     currentImage,
     setCurrentImage,
+    currentImageEdit,
+    setcurrentImageEdit,
+    currentSubmittedBy,
+    setCurrentSubmittedBy,
+    currentTitleEdit,
+    setcurrentTitleEdit,
+    currentBodyEdit,
+    setcurrentBodyEdit,
+    showOriginal,
+    setShowOriginal,
+    currentDoc,
+    setCurrentDoc,
     isPendingItemClicked,
     setIsPendingItemClicked,
     isPostedSettingsClicked,
