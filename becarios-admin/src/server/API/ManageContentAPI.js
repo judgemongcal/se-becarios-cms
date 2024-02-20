@@ -441,6 +441,7 @@ export async function rejectPostArticlebyID(id) {
       isArchiveApproved: true,
       isEdited: false,
       isEditedApproved: false,
+      dateArchived: serverTimestamp(),
     });
   } catch (error) {
     console.log(error);
