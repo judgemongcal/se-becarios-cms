@@ -429,6 +429,23 @@ export async function approvePostArticlebyID(id) {
   }
 }
 
+export async function rejectPostArticlebyID(id) {
+  const dateTime = new Date();
+  try {
+    const docRef = doc(db, 'articles', id);
+    updateDoc(docRef, {
+      datePosted: '',
+      isPostApproved: false,
+      isArchived: true,
+      isArchiveApproved: true,
+      isEdited: false,
+      isEditedApproved: false,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export async function approveEditArticlebyID(id, document) {
   const dateTime = new Date();
   try {
@@ -468,6 +485,21 @@ export async function approveArchiveArticlebyID(id) {
       isPostApproved: false,
       isArchived: true,
       isArchiveApproved: true,
+      isEdited: false,
+      isEditedApproved: false,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function rejectArchiveArticlebyID(id) {
+  try {
+    const docRef = doc(db, 'articles', id);
+    updateDoc(docRef, {
+      isPostApproved: true,
+      isArchived: false,
+      isArchiveApproved: false,
       isEdited: false,
       isEditedApproved: false,
     });
