@@ -191,8 +191,8 @@ function RejectPostModal() {
     <div className="modal-bg bg-brand-input md:bg-modal-bg  fixed top-0 z-[1000] flex h-[100%] w-[100%] items-center justify-center">
       <div className="modal-container bg-brand-input rounded-10 3xl:w-[25%] mx-auto w-[100%] px-[2rem] py-[2.25rem] md:w-[60%] xl:w-[60%] 2xl:w-[700px]">
         <h1 className="text-brand-red mx-5 mb-[2rem] text-center text-[1.5rem] font-bold xl:text-[1.85rem]">
-          You are about to reject a {currentReqType}{' '}
-          request.
+          You are about to reject an <br /> {currentReqType}{' '}
+          request
         </h1>
         <div className="  mt- mx-[1rem] mb-[2rem] flex flex-col items-center justify-center gap-4 self-center text-center md:flex-row">
           <div className="modal-img flex justify-center">
@@ -393,28 +393,15 @@ function PostReqRejectSuccessModal({ type }) {
     <div className="modal-bg bg-brand-input md:bg-modal-bg  justify-cente fixed top-0 z-[1000] flex h-[100%] w-[100%] items-center">
       <div className="modal-container bg-brand-input rounded-10 3xl:w-[25%] mx-auto flex w-[100%] flex-col justify-center px-[2rem] py-[2.25rem] text-center md:w-[50%] xl:w-[35%] 2xl:w-[500px]">
         <FaRegCircleCheck className="fill-brand-green stroke-brand-green mb-4 h-[100px] w-auto stroke-[0.055px]" />
-        <h1 className="text-brand-green mb-6 text-[1.5rem] font-semibold leading-[1.65rem]">
+        <h1 className="text-brand-blue mb-6 text-[1.5rem] font-semibold leading-[1.65rem]">
           {userInfo.role == 'Super Admin'
             ? `Article post rejected successfully.`
             : `Arcticle Post Request Submitted.`}
         </h1>
         <p className="mx-[3rem] mb-[2rem] text-[1rem] font-medium">
-          {userInfo.role === 'Super Admin' ? (
-            <>
-              It should be visible under Post Archives{' '}
-              <br />
-              tab after a few moments. <br /> We appreciate
-              your patience!
-            </>
-          ) : (
-            <>
-              Your article post request has been submitted.
-              It is now pending for the approval of the
-              super administrator.
-              <br />
-              We appreciate your patience!
-            </>
-          )}
+          It should be visible under Post Archives <br />
+          tab after a few moments. <br /> We appreciate your
+          patience!
         </p>
         {type ? (
           <ProceedModalBtn type={type} />
@@ -460,6 +447,29 @@ function EditReqSuccessModal() {
   );
 }
 
+function EditReqRejectSuccessModal({ type }) {
+  const { userInfo } = useUserInfoContext();
+  return (
+    <div className="modal-bg bg-brand-input md:bg-modal-bg  justify-cente fixed top-0 z-[1000] flex h-[100%] w-[100%] items-center">
+      <div className="modal-container bg-brand-input rounded-10 3xl:w-[25%] mx-auto flex w-[100%] flex-col justify-center px-[2rem] py-[2.25rem] text-center md:w-[50%] xl:w-[35%] 2xl:w-[500px]">
+        <FaRegCircleCheck className="fill-brand-blue stroke-brand-blue mb-4 h-[100px] w-auto stroke-[0.055px]" />
+        <h1 className="text-brand-blue mb-6 text-[1.5rem] font-semibold leading-[1.65rem]">
+          Article Edit request has been <br />
+          rejected successfully.
+        </h1>
+        <p className="mx-[3rem] mb-[2rem] text-[1rem] font-medium">
+          <>Edit request has been rejected successfully.</>
+        </p>
+        {type ? (
+          <ProceedModalBtn type={type} />
+        ) : (
+          <PostReqSuccessModalBtn />
+        )}
+      </div>
+    </div>
+  );
+}
+
 function DeleteReqSuccessModal({ type }) {
   return (
     <div className="modal-bg bg-brand-input md:bg-modal-bg  justify-cente fixed top-0 z-[1000] flex h-[100%] w-[100%] items-center">
@@ -493,6 +503,20 @@ function ArchiveReqSuccessModal({ type }) {
             administrator. We appreciate your patience!
           </p>
         )}
+        <ProceedModalBtn type={type} />
+      </div>
+    </div>
+  );
+}
+
+function ArchiveReqRejectSuccessModal({ type }) {
+  return (
+    <div className="modal-bg bg-brand-input md:bg-modal-bg  justify-cente fixed top-0 z-[1000] flex h-[100%] w-[100%] items-center">
+      <div className="modal-container bg-brand-input rounded-10 3xl:w-[25%] mx-auto flex w-[100%] flex-col justify-center px-[2rem] py-[2.25rem] text-center md:w-[50%] xl:w-[35%] 2xl:w-[500px]">
+        <FaRegCircleCheck className="fill-brand-blue stroke-brand-blue mb-4 h-[100px] w-auto stroke-[0.055px]" />
+        <h1 className="text-brand-blue mb-6 text-[1.5rem] font-semibold leading-[1.65rem]">
+          Archive request has been rejected successfully.
+        </h1>
         <ProceedModalBtn type={type} />
       </div>
     </div>
@@ -659,10 +683,12 @@ export {
   PostReqSuccessModal,
   PostReqRejectSuccessModal,
   EditReqSuccessModal,
+  EditReqRejectSuccessModal,
   DeleteReqSuccessModal,
   RemoveAdminModal,
   AddAdminModal,
   AssignSuperAdminModal,
   SignOutModal,
   RetrieveReqSuccessModal,
+  ArchiveReqRejectSuccessModal,
 };

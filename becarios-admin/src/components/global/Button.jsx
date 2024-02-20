@@ -34,6 +34,9 @@ import {
   archiveArticlebyID,
   deleteArticlebyID,
   fetchArticleById,
+  rejectArchiveArticlebyID,
+  rejectEditArticlebyID,
+  rejectPostArticlebyID,
   retrieveArticlebyID,
 } from '../../server/API/ManageContentAPI';
 import { useEditArticleContext } from '../../hooks/useEditArticleContext';
@@ -185,13 +188,13 @@ function RejectModalBtn() {
     console.log(currentReqType);
     try {
       if (currentReqType == 'Article Post') {
-        // await approvePostArticlebyID(targetId);
+        await rejectPostArticlebyID(targetId);
         setIsPostRejectSuccess(true);
       } else if (currentReqType == 'Edit Article') {
-        // await approveEditArticlebyID(targetId, currentDoc);
+        await rejectEditArticlebyID(targetId, currentDoc);
         setIsEditRejectSuccess(true);
       } else {
-        // await approveArchiveArticlebyID(targetId);
+        await rejectArchiveArticlebyID(targetId);
         setIsArchiveRejectSuccess(true);
       }
       setIsRejectBtnClicked(false);

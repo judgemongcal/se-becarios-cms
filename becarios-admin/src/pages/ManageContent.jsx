@@ -10,7 +10,9 @@ import PaginationLabel from '../components/global/PaginationLabel';
 import { useSignOutContext } from '../hooks/useSignOutContext';
 import {
   ApprovePostModal,
+  ArchiveReqRejectSuccessModal,
   ArchiveReqSuccessModal,
+  EditReqRejectSuccessModal,
   EditReqSuccessModal,
   PostReqRejectSuccessModal,
   PostReqSuccessModal,
@@ -149,6 +151,12 @@ function ManageContent() {
       )}
       {isPostRejectSuccess && (
         <PostReqRejectSuccessModal type="manage-content" />
+      )}
+      {isEditRejectSuccess && (
+        <EditReqRejectSuccessModal type="manage-content" />
+      )}
+      {isArchiveRejectSuccess && (
+        <ArchiveReqRejectSuccessModal type="manage-content" />
       )}
     </div>
   );
