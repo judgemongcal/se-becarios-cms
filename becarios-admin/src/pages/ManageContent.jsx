@@ -22,9 +22,11 @@ import {
 import ViewArticleModal from '../components/manage-content/ViewArticleModal';
 import { useManageContentContext } from '../hooks/useManageContentContext';
 import { getCurrentPostedArticleCount } from '../server/API/ManageContentAPI.js';
+import { useUserInfoContext } from '../hooks/useUserInfoContext.jsx';
 
 function ManageContent() {
   const { isSignOutClicked } = useSignOutContext();
+  const { userInfo } = useUserInfoContext();
   const {
     isPendingItemClicked,
     isApproveBtnClicked,
@@ -107,7 +109,9 @@ function ManageContent() {
       <div className="content mt-[10rem] flex w-[100%] flex-col gap-[5rem] px-9 md:mb-[5rem] md:px-16 lg:ml-[21rem] lg:mt-[8rem] lg:pb-[20%]">
         <PageTitle title="Manage Content" />
         <div className=" flex w-full flex-col justify-evenly gap-3 ">
-          <ForApprovalList />
+          {userInfo.role == 'Super Admin' && (
+            <ForApprovalList />
+          )}
           <SearchField type="Posted" />
           <ContentFilters
             currentPage={currentPage}
