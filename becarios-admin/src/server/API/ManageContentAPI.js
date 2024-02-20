@@ -430,7 +430,6 @@ export async function approvePostArticlebyID(id) {
 }
 
 export async function rejectPostArticlebyID(id) {
-  const dateTime = new Date();
   try {
     const docRef = doc(db, 'articles', id);
     updateDoc(docRef, {

@@ -183,21 +183,21 @@ function RejectModalBtn() {
   async function handleConfirmReject(e) {
     e.preventDefault(e);
     console.log(currentReqType);
-    // try {
-    //   if (currentReqType == 'Article Post') {
-    //     await approvePostArticlebyID(targetId);
-    //     setIsPostApproveSuccess(true);
-    //   } else if (currentReqType == 'Edit Article') {
-    //     await approveEditArticlebyID(targetId, currentDoc);
-    //     setIsEditApproveSuccess(true);
-    //   } else {
-    //     await approveArchiveArticlebyID(targetId);
-    //     setIsArchiveApproveSuccess(true);
-    //   }
-    //   setIsApproveBtnClicked(false);
-    // } catch (error) {
-    //   console.log('Error with Approving Request: ' + error);
-    // }
+    try {
+      if (currentReqType == 'Article Post') {
+        // await approvePostArticlebyID(targetId);
+        setIsPostApproveSuccess(true);
+      } else if (currentReqType == 'Edit Article') {
+        // await approveEditArticlebyID(targetId, currentDoc);
+        setIsEditApproveSuccess(true);
+      } else {
+        // await approveArchiveArticlebyID(targetId);
+        setIsArchiveApproveSuccess(true);
+      }
+      setIsApproveBtnClicked(false);
+    } catch (error) {
+      console.log('Error with Approving Request: ' + error);
+    }
   }
   return (
     <div className="flex flex-row justify-around gap-4 py-2">

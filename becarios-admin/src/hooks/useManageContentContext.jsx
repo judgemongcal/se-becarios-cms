@@ -34,6 +34,14 @@ export function ManageContentProvider({ children }) {
     useState('');
   const [showOriginal, setShowOriginal] = useState(false);
   const [currentDoc, setCurrentDoc] = useState([]);
+  const [isPostRejectSuccess, setIsPostRejectSuccess] =
+    useState(false);
+  const [isEditRejectSuccess, setIsEditRejectSuccess] =
+    useState(false);
+  const [
+    isArchiveRejectSuccess,
+    setIsArchiveRejectSuccess,
+  ] = useState(false);
 
   // Sorting and Searching State
   const [sortOrder, setSortOrder] = useState('');
@@ -145,6 +153,12 @@ export function ManageContentProvider({ children }) {
     setIsEditApproveSuccess,
     isArchiveApproveSuccess,
     setIsArchiveApproveSuccess,
+    isPostRejectSuccess,
+    setIsPostRejectSuccess,
+    isEditRejectSuccess,
+    setIsEditRejectSuccess,
+    isArchiveRejectSuccess,
+    setIsArchiveRejectSuccess,
     setTargetId,
     sortOrder,
     setSortOrder,

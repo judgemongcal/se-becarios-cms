@@ -12,6 +12,7 @@ import {
   ApprovePostModal,
   ArchiveReqSuccessModal,
   EditReqSuccessModal,
+  PostReqRejectSuccessModal,
   PostReqSuccessModal,
   RejectPostModal,
   SignOutModal,
@@ -32,6 +33,9 @@ function ManageContent() {
     sortOrder,
     setSearchQuery,
     isRejectBtnClicked,
+    isPostRejectSuccess,
+    isEditRejectSuccess,
+    isArchiveRejectSuccess,
   } = useManageContentContext();
 
   // State for pagination
@@ -142,6 +146,9 @@ function ManageContent() {
       )}
       {isArchiveApproveSuccess && (
         <ArchiveReqSuccessModal type="manage-content" />
+      )}
+      {isPostRejectSuccess && (
+        <PostReqRejectSuccessModal type="manage-content" />
       )}
     </div>
   );
