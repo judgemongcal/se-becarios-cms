@@ -13,22 +13,33 @@ import {
   ArchiveReqSuccessModal,
   EditReqSuccessModal,
   PostReqSuccessModal,
+  RejectPostModal,
   SignOutModal,
 } from '../components/global/Modal';
 import ViewArticleModal from '../components/manage-content/ViewArticleModal';
 import { useManageContentContext } from '../hooks/useManageContentContext';
-import {getCurrentPostedArticleCount} from '../server/API/ManageContentAPI.js';
+import { getCurrentPostedArticleCount } from '../server/API/ManageContentAPI.js';
 
 function ManageContent() {
   const { isSignOutClicked } = useSignOutContext();
-  const { isPendingItemClicked, isApproveBtnClicked, isPostApproveSuccess, isEditApproveSuccess, isArchiveApproveSuccess, searchQuery, sortOrder, setSearchQuery } =
-    useManageContentContext();
+  const {
+    isPendingItemClicked,
+    isApproveBtnClicked,
+    isPostApproveSuccess,
+    isEditApproveSuccess,
+    isArchiveApproveSuccess,
+    searchQuery,
+    sortOrder,
+    setSearchQuery,
+    isRejectBtnClicked,
+  } = useManageContentContext();
 
-    // State for pagination
+  // State for pagination
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const [noMatchesFound, setNoMatchesFound] = useState(false);
-   
+  const [noMatchesFound, setNoMatchesFound] =
+    useState(false);
+
   useEffect(() => {
     setSearchQuery('');
   }, []); // not working as intended
@@ -39,29 +50,39 @@ function ManageContent() {
       try {
         setNoMatchesFound(false);
         const currentSearchQuery = searchQuery; // Capture the current searchQuery value
-        const articlesCount = await getCurrentPostedArticleCount(currentSearchQuery);
+        const articlesCount =
+          await getCurrentPostedArticleCount(
+            currentSearchQuery,
+          );
         console.log('count: ', articlesCount);
 
-          const articlesPerPage = 9;
-          const calculatedTotalPages = Math.ceil(articlesCount / articlesPerPage);
-          setTotalPages(calculatedTotalPages);
-          if (articlesCount === 0) {
-            setNoMatchesFound(true);
-            setCurrentPage(0);
+        const articlesPerPage = 9;
+        const calculatedTotalPages = Math.ceil(
+          articlesCount / articlesPerPage,
+        );
+        setTotalPages(calculatedTotalPages);
+        if (articlesCount === 0) {
+          setNoMatchesFound(true);
+          setCurrentPage(0);
           // No matches found
-          console.log(`No matches found for "${currentSearchQuery}"`);
-          } else {            // Reset the current page to 1 when the searchQuery changes
-            setCurrentPage(1);
-          }
-          console.log("total articles now: ", articlesCount);
-          console.log("total pages changed: ", totalPages);
+          console.log(
+            `No matches found for "${currentSearchQuery}"`,
+          );
+        } else {
+          // Reset the current page to 1 when the searchQuery changes
+          setCurrentPage(1);
+        }
+        console.log('total articles now: ', articlesCount);
+        console.log('total pages changed: ', totalPages);
       } catch (error) {
-        console.error('Error fetching total articles:', error);
+        console.error(
+          'Error fetching total articles:',
+          error,
+        );
       }
     };
 
     fetchTotalArticles();
-
   }, [searchQuery, sortOrder]);
 
   const handlePageChange = (newPage) => {
@@ -82,17 +103,29 @@ function ManageContent() {
         <div className=" flex w-full flex-col justify-evenly gap-3 ">
           <ForApprovalList />
           <SearchField type="Posted" />
-          <ContentFilters currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange}/>
+          <ContentFilters
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+          />
           {noMatchesFound ? (
-              <div className=" text-center text-2xl text-red-500 mt-32">
-                No matches found for "{searchQuery}"
-              </div>
+            <div className=" mt-32 text-center text-2xl text-red-500">
+              No matches found for "{searchQuery}"
+            </div>
           ) : (
             <>
               <div className="pagination mt-[2rem] flex">
-                <PaginationLabel currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
+                <PaginationLabel
+                  currentPage={currentPage}
+                  totalPages={totalPages}
+                  onPageChange={handlePageChange}
+                />
               </div>
-              <ContentList type="Posted" currentPage={currentPage} totalPages={totalPages} />
+              <ContentList
+                type="Posted"
+                currentPage={currentPage}
+                totalPages={totalPages}
+              />
             </>
           )}
         </div>
@@ -100,6 +133,7 @@ function ManageContent() {
       {isSignOutClicked && <SignOutModal />}
       {isPendingItemClicked && <ViewArticleModal />}
       {isApproveBtnClicked && <ApprovePostModal />}
+      {isRejectBtnClicked && <RejectPostModal />}
       {isPostApproveSuccess && (
         <PostReqSuccessModal type="manage-content" />
       )}

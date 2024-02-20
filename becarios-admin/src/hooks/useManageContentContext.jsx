@@ -54,11 +54,13 @@ export function ManageContentProvider({ children }) {
 
   const [currentPage, setCurrentPage] = useState(1);
 
-    // Event handlers
+  // Event handlers
   const handleNavigateLeft = () => {
     console.log('Prev. Page Clicked');
     // Add logic to handle navigating to the previous page
-    setCurrentPage((prevPage) => (prevPage > 1 ? prevPage - 1 : prevPage));
+    setCurrentPage((prevPage) =>
+      prevPage > 1 ? prevPage - 1 : prevPage,
+    );
   };
 
   const handleNavigateRight = () => {
@@ -155,7 +157,7 @@ export function ManageContentProvider({ children }) {
     handleNavigateLeft,
     handleNavigateRight,
     setCurrentPage,
-    currentPage
+    currentPage,
   };
 
   return (

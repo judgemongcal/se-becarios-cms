@@ -98,7 +98,8 @@ function ApprovePostModal() {
     <div className="modal-bg bg-brand-input md:bg-modal-bg  fixed top-0 z-[1000] flex h-[100%] w-[100%] items-center justify-center">
       <div className="modal-container bg-brand-input rounded-10 3xl:w-[25%] mx-auto w-[100%] px-[2rem] py-[2.25rem] md:w-[60%] xl:w-[60%] 2xl:w-[700px]">
         <h1 className="text-brand-green mx-5 mb-[2rem] text-center text-[1.5rem] font-bold xl:text-[1.85rem]">
-          You are about to approve a post request.
+          You are about to approve a {currentReqType}{' '}
+          request.
         </h1>
         <div className="  mt- mx-[1rem] mb-[2rem] flex flex-col items-center justify-center gap-4 self-center text-center md:flex-row">
           <div className="modal-img flex justify-center">
@@ -143,33 +144,89 @@ function ApprovePostModal() {
 }
 
 function RejectPostModal() {
+  const { currentDoc, currentReqType } =
+    useManageContentContext();
+
+  let date;
+  if (
+    currentDoc.datePosted &&
+    currentDoc.datePosted.seconds
+  ) {
+    date = new Date(
+      currentDoc.datePosted.seconds * 1000 +
+        (currentDoc.datePosted.nanoseconds || 0) / 1000000,
+    );
+  } else {
+    // Set a default date or handle the case where datePosted is not available
+    date = new Date(); // Set a default date (e.g., current date/time)
+  }
+
+  const months = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
+  const postDate = `${
+    months[date.getMonth()]
+  } ${date.getDate()}, ${date.getFullYear()} `;
+
+  const postTime = `${
+    date.getHours() % 12 ? date.getHours() % 12 : 12
+  }:${
+    date.getMinutes() < 10
+      ? '0' + date.getMinutes()
+      : date.getMinutes()
+  } ${date.getHours() >= 12 ? 'PM' : 'AM'}`;
+
   return (
-    <div className="modal-bg bg-brand-input md:bg-modal-bg  justify-cente fixed top-0 z-[1000] flex h-[100%] w-[100%] items-center">
-      <div className="modal-container bg-brand-input rounded-10 3xl:w-[25%] mx-auto w-[100%] px-[2rem] py-[2.25rem] md:w-[50%] xl:w-[35%] 2xl:w-[500px]">
+    <div className="modal-bg bg-brand-input md:bg-modal-bg  fixed top-0 z-[1000] flex h-[100%] w-[100%] items-center justify-center">
+      <div className="modal-container bg-brand-input rounded-10 3xl:w-[25%] mx-auto w-[100%] px-[2rem] py-[2.25rem] md:w-[60%] xl:w-[60%] 2xl:w-[700px]">
         <h1 className="text-brand-red mx-5 mb-[2rem] text-center text-[1.5rem] font-bold xl:text-[1.85rem]">
-          You are about to reject a post request.
+          You are about to reject a {currentReqType}{' '}
+          request.
         </h1>
         <div className="  mt- mx-[1rem] mb-[2rem] flex flex-col items-center justify-center gap-4 self-center text-center md:flex-row">
           <div className="modal-img flex justify-center">
             <img
-              src="./src/assets/sample_2.jpeg"
+              src={currentDoc.image}
               alt=""
-              className="h-auto w-[200px] md:h-auto md:w-[300px]"
+              className="rounded-8 shadow-shadow-db h-[200px] w-[200px] md:h-[200px] md:w-[300px]"
             />
           </div>
           <div className="post-info text-center md:ml-[1rem] md:text-left">
             <h2 className="mb-[1rem] font-bold lg:mt-[-1rem] lg:text-[1.25rem]">
-              Lorem ipsum dolor sit amet consectetur ac id
-              massa
+              {currentDoc.titleEdit
+                ? currentDoc.titleEdit
+                : currentDoc.title}
             </h2>
             <p className="text-[0.85rem] lg:text-[1.15rem]">
-              December 12, 2023 9:12PM
+              {postDate} {postTime}
             </p>
             <p className="mb-2 text-[0.85rem] lg:text-[1.15rem]">
-              Submitted by: Hannah Yu
+              Submitted by:{' '}
+              {currentDoc.submittedBy
+                ? currentDoc.submittedBy
+                : currentDoc.author}
             </p>
-            <p className="bg-brand-yellow rounded-8 mx-auto inline-block px-4 py-1 text-[0.85rem] lg:text-[1rem]">
-              Article Post
+            <p
+              className={`${
+                currentReqType == 'Article Post'
+                  ? 'bg-brand-green text-white'
+                  : currentReqType == 'Edit Article'
+                    ? 'bg-brand-blue'
+                    : 'bg-brand-yellow'
+              } rounded-8 mx-auto inline-block px-4 py-1 text-[0.85rem] lg:text-[1rem]`}
+            >
+              {currentReqType}
             </p>
           </div>
         </div>

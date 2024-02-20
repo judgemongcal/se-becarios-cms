@@ -162,12 +162,55 @@ function ApproveModalBtn() {
 }
 
 function RejectModalBtn() {
+  const {
+    setIsPendingItemClicked,
+    setIsApproveBtnClicked,
+    currentReqType,
+    targetId,
+    currentDoc,
+    setIsPostApproveSuccess,
+    setIsEditApproveSuccess,
+    setIsArchiveApproveSuccess,
+    setIsRejectBtnClicked,
+  } = useManageContentContext();
+
+  function handleBack(e) {
+    e.preventDefault(e);
+    setIsPendingItemClicked(true);
+    setIsRejectBtnClicked(false);
+  }
+
+  async function handleConfirmReject(e) {
+    e.preventDefault(e);
+    console.log(currentReqType);
+    // try {
+    //   if (currentReqType == 'Article Post') {
+    //     await approvePostArticlebyID(targetId);
+    //     setIsPostApproveSuccess(true);
+    //   } else if (currentReqType == 'Edit Article') {
+    //     await approveEditArticlebyID(targetId, currentDoc);
+    //     setIsEditApproveSuccess(true);
+    //   } else {
+    //     await approveArchiveArticlebyID(targetId);
+    //     setIsArchiveApproveSuccess(true);
+    //   }
+    //   setIsApproveBtnClicked(false);
+    // } catch (error) {
+    //   console.log('Error with Approving Request: ' + error);
+    // }
+  }
   return (
     <div className="flex flex-row justify-around gap-4 py-2">
-      <button className="bg-brand-yellow shadow-shadow-db rounded-10 hover:bg-brand-yellow-dark w-[100%] py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-100">
+      <button
+        className="bg-brand-yellow shadow-shadow-db rounded-10 hover:bg-brand-yellow-dark w-[100%] py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-100"
+        onClick={(e) => handleConfirmReject(e)}
+      >
         Reject Post
       </button>
-      <button className="bg-brand-red shadow-shadow-db rounded-10 hover:bg-brand-red-dark w-[100%] py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-100">
+      <button
+        className="bg-brand-red shadow-shadow-db rounded-10 hover:bg-brand-red-dark w-[100%] py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-100"
+        onClick={(e) => handleBack(e)}
+      >
         Go Back
       </button>
     </div>
@@ -372,9 +415,9 @@ function PostReqSuccessModalBtn() {
 }
 
 function ProceedModalBtn({ type = '' }) {
-  const navigate = useNavigate();
   const { setIsPostApproveSuccess } =
     useManageContentContext();
+  const navigate = useNavigate();
 
   function handleProceed(e) {
     e.preventDefault(e);
@@ -1517,6 +1560,7 @@ function ViewArticleModalBtn({ id, type }) {
     setCurrentAuthor,
     setCurrentImage,
     setIsApproveBtnClicked,
+    setIsRejectBtnClicked,
   } = useManageContentContext();
 
   function handleBack(e) {
@@ -1527,6 +1571,13 @@ function ViewArticleModalBtn({ id, type }) {
   function handleApprove(e) {
     e.preventDefault();
     setIsApproveBtnClicked(true);
+    setIsPendingItemClicked(false);
+  }
+
+  function handleReject(e) {
+    e.preventDefault();
+    console.log('here');
+    setIsRejectBtnClicked(true);
     setIsPendingItemClicked(false);
   }
 
@@ -1553,6 +1604,7 @@ function ViewArticleModalBtn({ id, type }) {
       <button
         className="bg-brand-red hover:bg-brand-red-dark rounded-8 shadow-sm-btn w-full items-center p-3 duration-300"
         title="Reject"
+        onClick={(e) => handleReject(e)}
       >
         <h1 className="lg:text-[1.25rem text-[1rem] font-medium tracking-wide text-white">
           Reject
