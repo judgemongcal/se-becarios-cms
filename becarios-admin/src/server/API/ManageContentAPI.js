@@ -478,6 +478,29 @@ export async function approveEditArticlebyID(id, document) {
   }
 }
 
+export async function rejectEditArticlebyID(id, document) {
+  const dateTime = new Date();
+  try {
+    const docRef = doc(db, 'articles', id);
+    updateDoc(docRef, {
+      isPostApproved: true,
+      isArchived: false,
+      isArchiveApproved: false,
+      isEdited: false,
+      isEditedApproved: false,
+      dateEdited: dateTime,
+      title: document.title,
+      body: document.body,
+      image: document.image,
+      titleEdit: '',
+      bodyEdit: '',
+      imageEdit: '',
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export async function approveArchiveArticlebyID(id) {
   try {
     const docRef = doc(db, 'articles', id);
