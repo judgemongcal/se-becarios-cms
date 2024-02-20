@@ -413,9 +413,11 @@ export async function retrieveArticlebyID(id, role) {
 }
 
 export async function approvePostArticlebyID(id) {
+  const dateTime = new Date();
   try {
     const docRef = doc(db, 'articles', id);
     updateDoc(docRef, {
+      datePosted: dateTime,
       isPostApproved: true,
       isArchived: false,
       isArchiveApproved: false,
@@ -428,6 +430,7 @@ export async function approvePostArticlebyID(id) {
 }
 
 export async function approveEditArticlebyID(id, document) {
+  const dateTime = new Date();
   try {
     const docRef = doc(db, 'articles', id);
     updateDoc(docRef, {
@@ -436,6 +439,7 @@ export async function approveEditArticlebyID(id, document) {
       isArchiveApproved: false,
       isEdited: false,
       isEditedApproved: false,
+      dateEdited: dateTime,
       title:
         document.titleEdit != ''
           ? document.titleEdit
