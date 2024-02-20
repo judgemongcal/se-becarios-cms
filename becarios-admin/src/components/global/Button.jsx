@@ -168,9 +168,9 @@ function RejectModalBtn() {
     currentReqType,
     targetId,
     currentDoc,
-    setIsPostApproveSuccess,
-    setIsEditApproveSuccess,
-    setIsArchiveApproveSuccess,
+    setIsPostRejectSuccess,
+    setIsEditRejectSuccess,
+    setIsArchiveRejectSuccess,
     setIsRejectBtnClicked,
   } = useManageContentContext();
 
@@ -186,17 +186,17 @@ function RejectModalBtn() {
     try {
       if (currentReqType == 'Article Post') {
         // await approvePostArticlebyID(targetId);
-        setIsPostApproveSuccess(true);
+        setIsPostRejectSuccess(true);
       } else if (currentReqType == 'Edit Article') {
         // await approveEditArticlebyID(targetId, currentDoc);
-        setIsEditApproveSuccess(true);
+        setIsEditRejectSuccess(true);
       } else {
         // await approveArchiveArticlebyID(targetId);
-        setIsArchiveApproveSuccess(true);
+        setIsArchiveRejectSuccess(true);
       }
-      setIsApproveBtnClicked(false);
+      setIsRejectBtnClicked(false);
     } catch (error) {
-      console.log('Error with Approving Request: ' + error);
+      console.log('Error with Rejecting Request: ' + error);
     }
   }
   return (
