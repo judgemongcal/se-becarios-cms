@@ -25,7 +25,7 @@ function ForApprovalListItem({ data, id }) {
     // Set a default date or handle the case where datePosted is not available
     date = new Date(); // Set a default date (e.g., current date/time)
   }
-  const maxLength = 25;
+  const maxLength = 19;
   const months = [
     'January',
     'February',

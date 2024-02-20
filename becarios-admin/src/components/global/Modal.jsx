@@ -282,8 +282,8 @@ function EditPostModal() {
       <div className="modal-container bg-brand-input rounded-10 3xl:w-[25%] mx-auto flex w-[100%] flex-col justify-center px-[2rem] py-[2.25rem] text-center md:w-[50%] xl:w-[35%] 2xl:w-[500px]">
         <BsExclamationCircle className="fill-brand-blue stroke-brand-blue mb-4 h-[100px] w-auto stroke-[0.055px]" />
         <h1 className="text-brand-blue mb-6 text-[1.5rem] font-semibold leading-[1.65rem]">
-          You are about to send an edit
-          <br /> request for an existing post.
+          You are about to resubmit
+          <br /> an archived post.
         </h1>
         <p className="mb-[2rem]text-[1rem] mx-[3rem] font-medium">
           Do you want to proceed?

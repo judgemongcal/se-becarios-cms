@@ -478,6 +478,9 @@ app.post(
           imageEdit: downloadURL,
           isEditApproved: isApproved === 'true',
           isEdited: true,
+          isArchived: false,
+          isArchiveApproved: false,
+          isPostApproved: false,
         })
           .then(() => {
             console.log('Doc updated successfully');

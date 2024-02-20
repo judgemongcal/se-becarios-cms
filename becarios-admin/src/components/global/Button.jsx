@@ -427,12 +427,12 @@ function ProceedModalBtn({ type = '' }) {
     if (type == 'archive') {
       setTimeout(() => {
         window.location.reload();
-      }, 2000);
+      }, 3000);
     } else if (type == 'manage-content') {
       setIsPostApproveSuccess(false);
       setTimeout(() => {
         window.location.reload();
-      }, 2000);
+      }, 3000);
     } else {
       navigate('/manage-content', { replace: true });
     }
@@ -1068,6 +1068,7 @@ function SubmitEditModalBtn() {
           body: articleData,
         },
       );
+      // await retrieveArticlebyID(id, userInfo.role);
       setIsEditConfirmed(!isEditConfirmed);
     } catch (error) {
       console.log('Error in submitting article: ' + error);

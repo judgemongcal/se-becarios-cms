@@ -406,6 +406,8 @@ export async function retrieveArticlebyID(id, role) {
       isArchived: false,
       isPostApproved: role === 'Super Admin',
       isArchiveApproved: false,
+      isEdited: false,
+      isEditApproved: false,
     });
   } catch (error) {
     console.log(error);
