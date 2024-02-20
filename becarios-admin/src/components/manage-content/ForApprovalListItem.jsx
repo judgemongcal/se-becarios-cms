@@ -25,7 +25,7 @@ function ForApprovalListItem({ data, id }) {
     // Set a default date or handle the case where datePosted is not available
     date = new Date(); // Set a default date (e.g., current date/time)
   }
-
+  const maxLength = 25;
   const months = [
     'January',
     'February',
@@ -69,7 +69,7 @@ function ForApprovalListItem({ data, id }) {
   }
 
   return (
-    <div className="bg-brand-light req-container shadow-shadow-db rounded-8 flex flex-col gap-2 p-5 md:flex-row lg:gap-5">
+    <div className="bg-brand-light req-container shadow-shadow-db rounded-8 flex flex-col gap-2 p-5 md:flex-row md:gap-4 lg:gap-5 2xl:gap-2">
       <div className="req-img mx-auto flex h-auto w-full items-center md:w-[70%] lg:max-w-fit">
         <img
           src={image}
@@ -77,7 +77,7 @@ function ForApprovalListItem({ data, id }) {
           className="rounded-8 mx-auto h-[15rem] w-[20rem]"
         />
       </div>
-      <div className="req-info mx-auto mt-2 flex w-full flex-col items-center lg:w-[50%] lg:items-start">
+      <div className="req-info mx-auto mt-2 flex w-full flex-col items-center md:items-start lg:w-[50%] ">
         <p
           className={`activity-label ${
             type == 'Article Post'
@@ -90,9 +90,11 @@ function ForApprovalListItem({ data, id }) {
           {type} Request
         </p>
         <h1 className="req-title mb-2 text-center text-[1.05rem] font-semibold md:text-start md:text-[1.25rem]">
-          {title}
+          {title.length <= maxLength
+            ? title
+            : title.slice(0, maxLength) + '...'}
         </h1>
-        <div className="time-info mb-1 flex flex-row items-center gap-3 text-[0.9rem] md:flex-col md:gap-1 md:text-[1rem]">
+        <div className="time-info mb-1 flex flex-row gap-3 text-[0.9rem] sm:items-center md:flex-col md:items-start md:gap-1 md:text-[1rem]">
           <p>{postDate}</p>
           <p>{postTime}</p>
         </div>

@@ -1529,15 +1529,15 @@ function ForApprovalListItemBtn({ id }) {
   }
 
   return (
-    <div className="mt-4 flex flex-row justify-start gap-3">
+    <div className="mt-4 flex flex-row justify-end gap-3">
       <button
-        className="bg-brand-blue hover:bg-brand-blue-dark rounded-8 shadow-sm-btn items-center p-2 duration-300"
+        className="bg-brand-blue hover:bg-brand-blue-dark rounded-8 shadow-sm-btn mt-2 items-center p-2 duration-300"
         title="Preview"
         onClick={(e) => handlePreview(e)}
       >
         <MdOutlineRemoveRedEye className="fill-brand-input h-auto w-[30px] md:w-[35px]" />
       </button>
-      <button
+      {/* <button
         className="bg-brand-green hover:bg-brand-green-dark rounded-8 shadow-sm-btn items-center p-2 duration-300"
         title="Accept"
       >
@@ -1548,7 +1548,7 @@ function ForApprovalListItemBtn({ id }) {
         title="Reject"
       >
         <FaXmark className="fill-brand-input h-auto w-[30px] md:w-[35px]" />
-      </button>
+      </button> */}
     </div>
   );
 }

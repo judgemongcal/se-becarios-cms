@@ -11,9 +11,7 @@ function InvalidLoginCredentialsPopup() {
     <div className="bg-brand-red rounded-10 my-4 flex w-full flex-row items-center justify-center gap-6 px-4 py-2 text-center text-white">
       <FaRegCircleXmark className=" h-auto w-8" />
       <p className=" ml-[-0.5rem] text-[14px] md:text-[16px]">
-        Incorrect username or/and password.<br></br> You can
-        try again
-        <strong> {tries} more times</strong>.
+        Incorrect username or/and password. Try again.
       </p>
     </div>
   );

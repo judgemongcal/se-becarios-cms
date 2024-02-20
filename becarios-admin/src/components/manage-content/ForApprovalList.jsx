@@ -37,7 +37,7 @@ function ForApprovalList() {
 
   return (
     <div
-      className={`bg-brand-input shadow-shadow-db rounded-8 mt-[1rem] flex w-[100%] flex-col gap-2 sm:min-w-[100%] md:max-w-[100%] lg:min-w-[40vh] lg:max-w-[100%] ${
+      className={`bg-brand-input shadow-shadow-db rounded-8 mb-4 mt-[1rem] flex w-[100%] flex-col gap-2 sm:min-w-[100%] md:max-w-[100%] lg:min-w-[40vh] lg:max-w-[100%] ${
         pendingArticleCount > 0 ? '' : 'hidden'
       }`}
     >
