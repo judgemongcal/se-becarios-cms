@@ -66,19 +66,25 @@ function App() {
                 path="/edit-article/:id"
                 element={
                   <ProtectedRoute>
-                    <CreateArticleProvider
+                    <ManageContentProvider
                       value={
-                        CreateArticleProvider.contextValue
+                        ManageContentProvider.contextValue
                       }
                     >
-                      <EditArticleProvider
+                      <CreateArticleProvider
                         value={
-                          EditArticleProvider.contextValue
+                          CreateArticleProvider.contextValue
                         }
                       >
-                        <EditArticle />
-                      </EditArticleProvider>
-                    </CreateArticleProvider>
+                        <EditArticleProvider
+                          value={
+                            EditArticleProvider.contextValue
+                          }
+                        >
+                          <EditArticle />
+                        </EditArticleProvider>
+                      </CreateArticleProvider>
+                    </ManageContentProvider>
                   </ProtectedRoute>
                 }
               />
@@ -91,6 +97,7 @@ function App() {
                   </ProtectedRoute>
                 }
               />
+
               <Route
                 path="/manage-content"
                 element={
@@ -100,7 +107,6 @@ function App() {
                         ManageContentProvider.contextValue
                       }
                     >
-                      {' '}
                       <CreateArticleProvider
                         value={
                           CreateArticleProvider.contextValue
@@ -112,6 +118,7 @@ function App() {
                   </ProtectedRoute>
                 }
               />
+
               <Route
                 path="/post-archives"
                 element={
