@@ -43,7 +43,7 @@ export default {
     boxShadow: {
       'shadow-db': '0 2px 5px 0 rgba(206,205,205,0.8)',
       'sm-btn': '0 1px 3px 0 rgba(155, 139, 139, 0.6)',
-      'sm-btn2': '0 2px 5px 0 rgba(155, 139, 139, 0.6)',
+      'sm-btn2': '0 2px 5px 0 rgba(155, 139, 139, 0.2)',
     },
     borderRadius: {
       login: '0px 0px 160px 0px',

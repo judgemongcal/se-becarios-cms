@@ -9,8 +9,8 @@ function Greeting({ type }) {
   return (
     <h1
       className={`${
-        type === 'home' ? '' : 'mt-[10rem]'
-      } text-[1.5rem] font-bold tracking-wide md:text-[2.5rem] lg:mt-[2rem]`}
+        type === 'home' ? 'text-[#121214]' : 'mt-[10rem]'
+      } text-[2rem] font-bold tracking-wide md:text-[2.5rem] lg:mt-[2rem]`}
     >
       {userInfo && userInfo.firstName ? (
         <>
@@ -20,9 +20,7 @@ function Greeting({ type }) {
               ? `Good Afternoon,`
               : `Good Evening,`}{' '}
           {type === 'home' ? (
-            <span className="custom-text-gradient">
-              {userInfo.firstName}
-            </span>
+            <span className="">{userInfo.firstName}</span>
           ) : (
             userInfo.firstName
           )}
