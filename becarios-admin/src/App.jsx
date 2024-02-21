@@ -27,6 +27,7 @@ import { UserInfoProvider } from './hooks/useUserInfoContext';
 import { AdminProvider } from './hooks/useAdminContext';
 import EditArticle from './pages/EditArticle';
 import { ArchiveProvider } from './hooks/useArchiveContext';
+import Home from './pages/Home';
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
           >
             <Routes>
               <Route index element={<Login />} />
+              <Route path="/home" element={<Home />} />
               <Route
                 path="/dashboard"
                 element={
