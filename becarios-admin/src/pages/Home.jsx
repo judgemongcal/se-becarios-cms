@@ -23,41 +23,23 @@ function Home() {
     return location.pathname === path;
   }
   return (
-    <div className=" mt-[10rem] flex h-full w-full flex-col items-center justify-center gap-4">
+    <div className=" mt-[5rem] flex h-full w-full flex-col items-center justify-center gap-4">
       <UserInfo type="home" />
       <Greeting type="home" />
-      <h1>What do you want to do today?</h1>
+      <h1 className="mt-[0.5rem] text-[1rem] font-medium">
+        What do you want to do today?
+      </h1>
       {/* NAV */}
       <nav
-        className="fixed h-[100%]  min-h-[100vh] flex-row items-center justify-center gap-[3.5rem]
-      overflow-auto text-black md:w-[20.5rem] lg:flex"
+        className="  flex-row items-center justify-center gap-[3.5rem]
+      overflow-auto text-black lg:flex"
       >
         <section
-          className={`navigation fixed ${
-            pageHeight < 800 ? 'top-[160px]' : 'top-[220px]'
-          } -ml-5 flex flex-row items-center justify-center ${
-            pageHeight < 800 ? 'gap-[2rem]' : 'gap-[3rem]'
-          } text-[1.15rem]`}
+          className={`mt-[2rem] grid grid-cols-1 items-center justify-center gap-[1rem] p-2 text-[1.15rem]`}
         >
           <NavLink
-            to="/dashboard"
-            className={`dashboard ${
-              !isActiveLink('/dashboard')
-                ? 'hover:fill-brand-blue hover:text-brand-blue'
-                : ''
-            } rounded-10 flex items-center justify-center gap-2 ${
-              isActiveLink('/dashboard')
-                ? 'text-brand-yellow'
-                : ''
-            }`}
-          >
-            <HiOutlineViewBoards className=" h-auto w-[24px]" />
-            <p>Dashboard</p>
-          </NavLink>
-
-          <NavLink
             to="/create-article"
-            className={`create-article ${
+            className={`bg-brand-light rounded-8 shadow-sm-btn2 create-article p-3 duration-300 ease-in hover:scale-105 ${
               !isActiveLink('/create-article')
                 ? 'hover:fill-brand-blue hover:text-brand-blue'
                 : ''
@@ -67,11 +49,11 @@ function Home() {
                 : ''
             }`}
           >
-            <HiOutlinePlusCircle className="-mt-[2px] ml-5 h-auto w-[24px]" />
+            <HiOutlinePlusCircle className="-mt-[2px] h-auto w-[24px]" />
             <p>Create Article</p>
           </NavLink>
 
-          <NavLink
+          {/* <NavLink
             to="/recent-activities"
             className={`recent-activities  ${
               !isActiveLink('/recent-activities')
@@ -82,14 +64,14 @@ function Home() {
                 ? 'text-brand-yellow'
                 : ''
             }`}
-          >
-            <HiOutlineClock className="-mt-[4px] ml-11 h-auto w-[24px] " />
+          > */}
+          {/* <HiOutlineClock className="-mt-[4px] ml-11 h-auto w-[24px] " />
             <p>Recent Activities</p>
-          </NavLink>
+          </NavLink> */}
 
           <NavLink
             to="/manage-content"
-            className={`manage-content${
+            className={`bg-brand-light rounded-8 shadow-sm-btn2 manage-content p-3 duration-300 ease-in hover:scale-105 ${
               !isActiveLink('/manage-content')
                 ? 'hover:fill-brand-blue hover:text-brand-blue'
                 : ''
@@ -99,13 +81,13 @@ function Home() {
                 : ''
             }`}
           >
-            <HiOutlineFolderOpen className="-mt-[4px] ml-10 h-auto w-[24px]" />
+            <HiOutlineFolderOpen className="-mt-[4px] h-auto w-[24px]" />
             <p>Manage Content</p>
           </NavLink>
 
           <NavLink
             to="/post-archives"
-            className={`post-archives ${
+            className={`bg-brand-light rounded-8 shadow-sm-btn2 post-archives p-3 duration-300 ease-in hover:scale-105 ${
               !isActiveLink('/post-archives')
                 ? 'hover:fill-brand-blue hover:text-brand-blue'
                 : ''
@@ -115,34 +97,34 @@ function Home() {
                 : ''
             }`}
           >
-            <HiOutlineArchive className="-mt-[4px] ml-4 h-auto w-[24px]" />
+            <HiOutlineArchive className="-mt-[4px] h-auto w-[24px]" />
             <p>Post Archives</p>
           </NavLink>
 
           <NavLink
             to="/settings"
-            className={`settings  ${
+            className={`bg-brand-light rounded-8 shadow-sm-btn2 settings p-3 duration-200 ease-in hover:scale-105 ${
               !isActiveLink('/settings')
                 ? 'hover:fill-brand-blue hover:text-brand-blue'
                 : ''
-            }  mb-[30px] flex items-center justify-center gap-2 ${
+            }  flex items-center justify-center gap-2 ${
               isActiveLink('/settings')
                 ? 'text-brand-yellow'
                 : ''
             }`}
           >
-            <HiOutlineCog className="-ml-7 h-auto w-[24px]" />
+            <HiOutlineCog className="-mt-[4px] h-auto w-[24px]" />
             <p>Settings</p>
           </NavLink>
 
           <NavLink
             // to="/sign-out"
-            className="sign-out  hover:fill-brand-red hover:text-brand-red flex items-center justify-center gap-2"
+            className="sign-out hover:fill-brand-red-dark hover:text-brand-red-dark text-brand-red my-[3rem]  flex items-center justify-center gap-2 duration-200 ease-in hover:scale-105"
             onClick={() =>
               setIsSignOutClicked(!isSignOutClicked)
             }
           >
-            <HiOutlineLogout className="-ml-3.5 -mr-0.5 -mt-[4px] h-[24px] w-auto" />
+            <HiOutlineLogout className="-mt-[4px] h-[24px] w-auto" />
             <p>Sign Out</p>
           </NavLink>
         </section>

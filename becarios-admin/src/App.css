@@ -23,6 +23,18 @@ dd {
   padding: 0;
   font-family: 'Archivo', sans-serif;
 }
+
+.custom-text-gradient {
+  background-image: linear-gradient(
+    150deg,
+    #f2b23c 35.2%,
+    #1f8ff9 70.08%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
 .Preview {
   line-height: 1.75;
 }
