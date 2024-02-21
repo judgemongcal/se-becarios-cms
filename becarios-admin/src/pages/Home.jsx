@@ -1,5 +1,154 @@
+import { NavLink, useLocation } from 'react-router-dom';
+import Greeting from '../components/dashboard/Greeting';
+import UserInfo from '../components/global/UserInfo';
+import { useSignOutContext } from '../hooks/useSignOutContext';
+import {
+  HiOutlineArchive,
+  HiOutlineClock,
+  HiOutlineCog,
+  HiOutlineFolderOpen,
+  HiOutlineLogout,
+  HiOutlinePlusCircle,
+  HiOutlineViewBoards,
+} from 'react-icons/hi';
+
 function Home() {
-  return <div>home</div>;
+  const { isSignOutClicked, setIsSignOutClicked } =
+    useSignOutContext();
+
+  const location = useLocation();
+
+  const pageHeight = window.innerHeight;
+  function isActiveLink(path) {
+    return location.pathname === path;
+  }
+  return (
+    <div className=" mt-[10rem] flex h-full w-full flex-col items-center justify-center gap-4">
+      <UserInfo type="home" />
+      <Greeting type="home" />
+      <h1>What do you want to do today?</h1>
+      {/* NAV */}
+      <nav
+        className="fixed h-[100%]  min-h-[100vh] flex-row items-center justify-center gap-[3.5rem]
+      overflow-auto text-black md:w-[20.5rem] lg:flex"
+      >
+        <section
+          className={`navigation fixed ${
+            pageHeight < 800 ? 'top-[160px]' : 'top-[220px]'
+          } -ml-5 flex flex-row items-center justify-center ${
+            pageHeight < 800 ? 'gap-[2rem]' : 'gap-[3rem]'
+          } text-[1.15rem]`}
+        >
+          <NavLink
+            to="/dashboard"
+            className={`dashboard ${
+              !isActiveLink('/dashboard')
+                ? 'hover:fill-brand-blue hover:text-brand-blue'
+                : ''
+            } rounded-10 flex items-center justify-center gap-2 ${
+              isActiveLink('/dashboard')
+                ? 'text-brand-yellow'
+                : ''
+            }`}
+          >
+            <HiOutlineViewBoards className=" h-auto w-[24px]" />
+            <p>Dashboard</p>
+          </NavLink>
+
+          <NavLink
+            to="/create-article"
+            className={`create-article ${
+              !isActiveLink('/create-article')
+                ? 'hover:fill-brand-blue hover:text-brand-blue'
+                : ''
+            } flex items-center justify-center gap-2 ${
+              isActiveLink('/create-article')
+                ? 'text-brand-yellow'
+                : ''
+            }`}
+          >
+            <HiOutlinePlusCircle className="-mt-[2px] ml-5 h-auto w-[24px]" />
+            <p>Create Article</p>
+          </NavLink>
+
+          <NavLink
+            to="/recent-activities"
+            className={`recent-activities  ${
+              !isActiveLink('/recent-activities')
+                ? 'hover:fill-brand-blue hover:text-brand-blue'
+                : ''
+            }  flex items-center justify-center gap-2  ${
+              isActiveLink('/recent-activities')
+                ? 'text-brand-yellow'
+                : ''
+            }`}
+          >
+            <HiOutlineClock className="-mt-[4px] ml-11 h-auto w-[24px] " />
+            <p>Recent Activities</p>
+          </NavLink>
+
+          <NavLink
+            to="/manage-content"
+            className={`manage-content${
+              !isActiveLink('/manage-content')
+                ? 'hover:fill-brand-blue hover:text-brand-blue'
+                : ''
+            }  flex items-center justify-center gap-2 ${
+              isActiveLink('/manage-content')
+                ? 'text-brand-yellow'
+                : ''
+            }`}
+          >
+            <HiOutlineFolderOpen className="-mt-[4px] ml-10 h-auto w-[24px]" />
+            <p>Manage Content</p>
+          </NavLink>
+
+          <NavLink
+            to="/post-archives"
+            className={`post-archives ${
+              !isActiveLink('/post-archives')
+                ? 'hover:fill-brand-blue hover:text-brand-blue'
+                : ''
+            }  flex items-center justify-center gap-2 ${
+              isActiveLink('/post-archives')
+                ? 'text-brand-yellow'
+                : ''
+            }`}
+          >
+            <HiOutlineArchive className="-mt-[4px] ml-4 h-auto w-[24px]" />
+            <p>Post Archives</p>
+          </NavLink>
+
+          <NavLink
+            to="/settings"
+            className={`settings  ${
+              !isActiveLink('/settings')
+                ? 'hover:fill-brand-blue hover:text-brand-blue'
+                : ''
+            }  mb-[30px] flex items-center justify-center gap-2 ${
+              isActiveLink('/settings')
+                ? 'text-brand-yellow'
+                : ''
+            }`}
+          >
+            <HiOutlineCog className="-ml-7 h-auto w-[24px]" />
+            <p>Settings</p>
+          </NavLink>
+
+          <NavLink
+            // to="/sign-out"
+            className="sign-out  hover:fill-brand-red hover:text-brand-red flex items-center justify-center gap-2"
+            onClick={() =>
+              setIsSignOutClicked(!isSignOutClicked)
+            }
+          >
+            <HiOutlineLogout className="-ml-3.5 -mr-0.5 -mt-[4px] h-[24px] w-auto" />
+            <p>Sign Out</p>
+          </NavLink>
+        </section>
+      </nav>
+    </div>
+  );
 }
 
 export default Home;

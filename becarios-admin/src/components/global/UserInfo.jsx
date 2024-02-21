@@ -1,6 +1,6 @@
 import { useUserInfoContext } from '../../hooks/useUserInfoContext';
 
-function UserInfo() {
+function UserInfo({ type }) {
   const { userInfo } = useUserInfoContext();
 
   return (
@@ -12,13 +12,17 @@ function UserInfo() {
             : '../../src/assets/sample_admin.png'
         }`}
         alt=""
-        className="border-brand-blue h-[100px] w-[100px] rounded-[100%] border-[5px]"
+        className={`${
+          type == 'home' ? 'shadow-shadow-db' : ''
+        } border-brand-blue h-[100px] w-[100px] rounded-[100%] border-[5px] `}
       />
-      <h1>
-        {userInfo && userInfo.firstName
-          ? `${userInfo.firstName} ${userInfo.lastName}`
-          : 'Loading...'}
-      </h1>
+      {type != 'home' && (
+        <h1>
+          {userInfo && userInfo.firstName
+            ? `${userInfo.firstName} ${userInfo.lastName}`
+            : 'Loading...'}
+        </h1>
+      )}
     </div>
   );
 }
