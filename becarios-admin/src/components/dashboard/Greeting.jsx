@@ -9,8 +9,8 @@ function Greeting({ type }) {
   return (
     <h1
       className={`${
-        type === 'home' ? 'text-[#121214]' : 'mt-[10rem]'
-      } text-[2rem] font-bold tracking-wide md:text-[2.5rem] lg:mt-[2rem]`}
+        type === 'home' ? 'text-[#F6F6F6]' : 'mt-[10rem]'
+      } text-[2rem] font-semibold tracking-wider md:text-[2.5rem] lg:mt-[2rem]`}
     >
       {userInfo && userInfo.firstName ? (
         <>

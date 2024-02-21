@@ -65,10 +65,7 @@ function NavBarMobile() {
           className="shadow-4xl bg-brand-black rounded-10 border-brand-black fixed left-0 right-0 top-[6.15rem] flex flex-col items-center gap-5 border-4 py-10 pt-10 text-[1rem] text-[#c9c9c9] md:text-[1.25rem]"
         >
           {/* DASHBOARD */}
-          <NavLink
-            to="/dashboard"
-            onClick={closeMenuOnClick}
-          >
+          <NavLink to="/home" onClick={closeMenuOnClick}>
             <motion.button
               initial={{ scale: 0, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
@@ -78,14 +75,14 @@ function NavBarMobile() {
                 damping: 20,
                 delay: 0.1 + 1 / 10,
               }}
-              className={`dashboard  ${
-                isActiveLink('/dashboard')
+              className={`home  ${
+                isActiveLink('/home')
                   ? 'border-brand-yellow text-brand-yellow'
                   : 'border-brand-gray hover:fill-brand-blue hover:text-brand-blue hover:border-brand-blue'
               } rounded-10 grid grid-cols-2 items-center gap-5 border-4 px-[5.5rem] py-4`}
             >
               <HiOutlineViewBoards className=" -ml-2 h-auto w-[36px]" />
-              <p className="-ml-2 ">Dashboard</p>
+              <p className="-ml-2 ">Home</p>
             </motion.button>
           </NavLink>
 

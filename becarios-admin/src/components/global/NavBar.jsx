@@ -43,9 +43,9 @@ function NavBar() {
         <UserInfo />
 
         <NavLink
-          to="/dashboard"
-          className={`dashboard ${
-            !isActiveLink('/dashboard')
+          to="/home"
+          className={`home ${
+            !isActiveLink('/home')
               ? 'hover:fill-brand-blue hover:text-brand-blue'
               : ''
           } rounded-10 flex items-center justify-center gap-2 ${
@@ -54,8 +54,8 @@ function NavBar() {
               : ''
           }`}
         >
-          <HiOutlineViewBoards className=" h-auto w-[24px]" />
-          <p>Dashboard</p>
+          <HiOutlineViewBoards className=" -ml-[2.5rem] h-auto w-[24px]" />
+          <p>Home</p>
         </NavLink>
 
         <NavLink

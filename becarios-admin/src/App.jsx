@@ -41,12 +41,13 @@ function App() {
           >
             <Routes>
               <Route index element={<Login />} />
-              <Route path="/home" element={<Home />} />
+              {/* <Route path="/home" element={<Home />} /> */}
               <Route
-                path="/dashboard"
+                path="/home"
                 element={
                   <ProtectedRoute>
-                    <Dashboard />
+                    {/* <Dashboard /> */}
+                    <Home />
                   </ProtectedRoute>
                 }
               />

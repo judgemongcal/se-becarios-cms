@@ -11,11 +11,14 @@ import {
   HiOutlinePlusCircle,
   HiOutlineViewBoards,
 } from 'react-icons/hi';
+import { useUserInfoContext } from '../hooks/useUserInfoContext';
+import { SignOutModal } from '../components/global/Modal';
 
 function Home() {
   const { isSignOutClicked, setIsSignOutClicked } =
     useSignOutContext();
 
+  const { userInfo } = useUserInfoContext();
   const location = useLocation();
 
   const pageHeight = window.innerHeight;
@@ -27,7 +30,7 @@ function Home() {
       <div className=" z-50 mt-[5rem] flex h-full w-full flex-col items-center justify-center gap-4">
         <UserInfo type="home" />
         <Greeting type="home" />
-        <h1 className=" text-[1.25rem] font-medium text-[#121214] md:text-[1.5rem] lg:mt-[2rem]">
+        <h1 className=" text-[1.25rem] font-normal tracking-wide text-[#F6F6F6] md:text-[1.5rem] lg:mt-[2rem]">
           What do you want to do today?
         </h1>
         {/* NAV */}
@@ -135,6 +138,7 @@ function Home() {
       <div className="brand-img bg-login absolute left-0 top-0 -z-10  h-[100vh] w-[100%] bg-cover "></div>
       <div className="overlay-black bg-gradient-overlay  absolute left-0 top-0 -z-10 h-[100%] w-[100%] "></div>
       <div className="overlay-gradient absolute left-0 top-0 -z-10 h-[100%] w-[100%] bg-[rgba(24,23,23,0.5)] px-[7rem]  text-center leading-[60px]"></div>
+      {isSignOutClicked && <SignOutModal />}
     </>
   );
 }
