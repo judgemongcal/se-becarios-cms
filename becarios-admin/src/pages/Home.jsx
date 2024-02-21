@@ -26,16 +26,16 @@ function Home() {
     <div className=" mt-[5rem] flex h-full w-full flex-col items-center justify-center gap-4">
       <UserInfo type="home" />
       <Greeting type="home" />
-      <h1 className="mt-[0.5rem] text-[1rem] font-medium">
+      <h1 className="mt-[0.5rem] text-[1rem] font-medium md:text-[1.5rem]">
         What do you want to do today?
       </h1>
       {/* NAV */}
       <nav
-        className="  flex-row items-center justify-center gap-[3.5rem]
+        className="  flex-col items-center justify-center gap-[3.5rem]
       overflow-auto text-black lg:flex"
       >
         <section
-          className={`mt-[2rem] grid grid-cols-1 items-center justify-center gap-[1rem] p-2 text-[1.15rem]`}
+          className={`mt-[2rem] grid grid-cols-1 items-center justify-center gap-[1rem] p-2 text-[1.15rem] md:grid-cols-2 md:gap-[1.5rem] lg:mt-[5rem] lg:grid-cols-4 lg:gap-[2rem]`}
         >
           <NavLink
             to="/create-article"
@@ -116,7 +116,8 @@ function Home() {
             <HiOutlineCog className="-mt-[4px] h-auto w-[24px]" />
             <p>Settings</p>
           </NavLink>
-
+        </section>
+        <div className="flex justify-center">
           <NavLink
             // to="/sign-out"
             className="sign-out hover:fill-brand-red-dark hover:text-brand-red-dark text-brand-red my-[3rem]  flex items-center justify-center gap-2 duration-200 ease-in hover:scale-105"
@@ -127,7 +128,7 @@ function Home() {
             <HiOutlineLogout className="-mt-[4px] h-[24px] w-auto" />
             <p>Sign Out</p>
           </NavLink>
-        </section>
+        </div>
       </nav>
     </div>
   );
