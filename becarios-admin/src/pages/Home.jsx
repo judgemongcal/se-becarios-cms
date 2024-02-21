@@ -39,7 +39,7 @@ function Home() {
         >
           <NavLink
             to="/create-article"
-            className={`bg-brand-light rounded-8 shadow-sm-btn2 create-article p-3 duration-300 ease-in hover:scale-105 ${
+            className={`bg-brand-light rounded-8 shadow-sm-btn2 create-article hover:bg-brand-black p-3 duration-300 ease-in hover:scale-105 ${
               !isActiveLink('/create-article')
                 ? 'hover:fill-brand-blue hover:text-brand-blue'
                 : ''
@@ -71,7 +71,7 @@ function Home() {
 
           <NavLink
             to="/manage-content"
-            className={`bg-brand-light rounded-8 shadow-sm-btn2 manage-content p-3 duration-300 ease-in hover:scale-105 ${
+            className={`bg-brand-light rounded-8 shadow-sm-btn2 manage-content  hover:bg-brand-black p-3 duration-300 ease-in hover:scale-105 ${
               !isActiveLink('/manage-content')
                 ? 'hover:fill-brand-blue hover:text-brand-blue'
                 : ''
@@ -87,7 +87,7 @@ function Home() {
 
           <NavLink
             to="/post-archives"
-            className={`bg-brand-light rounded-8 shadow-sm-btn2 post-archives p-3 duration-300 ease-in hover:scale-105 ${
+            className={`bg-brand-light rounded-8 shadow-sm-btn2 post-archives hover:bg-brand-black  p-3  duration-300 ease-in hover:scale-105 ${
               !isActiveLink('/post-archives')
                 ? 'hover:fill-brand-blue hover:text-brand-blue'
                 : ''
@@ -103,7 +103,7 @@ function Home() {
 
           <NavLink
             to="/settings"
-            className={`bg-brand-light rounded-8 shadow-sm-btn2 settings p-3 duration-200 ease-in hover:scale-105 ${
+            className={`bg-brand-light rounded-8 shadow-sm-btn2 settings hover:bg-brand-black p-3 duration-200 ease-in hover:scale-105 ${
               !isActiveLink('/settings')
                 ? 'hover:fill-brand-blue hover:text-brand-blue'
                 : ''
