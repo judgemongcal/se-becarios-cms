@@ -397,7 +397,7 @@ function PostReqSuccessModalBtn() {
   }
 
   function handleBackHome() {
-    navigate('/dashboard', { replace: true });
+    navigate('/home', { replace: true });
   }
   return (
     <div className="flex flex-row justify-around gap-4 py-2">

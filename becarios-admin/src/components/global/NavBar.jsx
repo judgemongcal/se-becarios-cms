@@ -49,9 +49,7 @@ function NavBar() {
               ? 'hover:fill-brand-blue hover:text-brand-blue'
               : ''
           } rounded-10 flex items-center justify-center gap-2 ${
-            isActiveLink('/dashboard')
-              ? 'text-brand-yellow'
-              : ''
+            isActiveLink('/home') ? 'text-brand-yellow' : ''
           }`}
         >
           <HiOutlineViewBoards className=" -ml-[2.5rem] h-auto w-[24px]" />
@@ -74,7 +72,7 @@ function NavBar() {
           <p>Create Article</p>
         </NavLink>
 
-        <NavLink
+        {/* <NavLink
           to="/recent-activities"
           className={`recent-activities  ${
             !isActiveLink('/recent-activities')
@@ -88,7 +86,7 @@ function NavBar() {
         >
           <HiOutlineClock className="-mt-[4px] ml-11 h-auto w-[24px] " />
           <p>Recent Activities</p>
-        </NavLink>
+        </NavLink> */}
 
         <NavLink
           to="/manage-content"
