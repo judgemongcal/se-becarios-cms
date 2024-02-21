@@ -20,7 +20,9 @@ function Greeting({ type }) {
               ? `Good Afternoon,`
               : `Good Evening,`}{' '}
           {type === 'home' ? (
-            <span className="">{userInfo.firstName}</span>
+            <span className="custom-text-gradient">
+              {userInfo.firstName}
+            </span>
           ) : (
             userInfo.firstName
           )}

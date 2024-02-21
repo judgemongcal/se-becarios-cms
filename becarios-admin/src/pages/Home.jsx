@@ -43,10 +43,8 @@ function Home() {
           >
             <NavLink
               to="/create-article"
-              className={`bg-brand-light rounded-8 shadow-sm-btn2 create-article hover:bg-brand-black p-3 duration-300 ease-in hover:scale-105 ${
-                !isActiveLink('/create-article')
-                  ? 'hover:fill-brand-blue hover:text-brand-blue'
-                  : ''
+              className={`bg-brand-light rounded-8 shadow-sm-btn2 create-article hover:bg-brand-yellow-dark p-3 duration-300 ease-in hover:scale-105 ${
+                !isActiveLink('/create-article') ? '' : ''
               } flex items-center justify-center gap-2 ${
                 isActiveLink('/create-article')
                   ? 'text-brand-yellow'
@@ -75,10 +73,8 @@ function Home() {
 
             <NavLink
               to="/manage-content"
-              className={`bg-brand-light rounded-8 shadow-sm-btn2 manage-content  hover:bg-brand-black p-3 duration-300 ease-in hover:scale-105 ${
-                !isActiveLink('/manage-content')
-                  ? 'hover:fill-brand-blue hover:text-brand-blue'
-                  : ''
+              className={`bg-brand-light rounded-8 shadow-sm-btn2 manage-content  hover:bg-brand-yellow-dark p-3 duration-300 ease-in hover:scale-105 ${
+                !isActiveLink('/manage-content') ? '' : ''
               }  flex items-center justify-center gap-2 ${
                 isActiveLink('/manage-content')
                   ? 'text-brand-yellow'
@@ -91,10 +87,8 @@ function Home() {
 
             <NavLink
               to="/post-archives"
-              className={`bg-brand-light rounded-8 shadow-sm-btn2 post-archives hover:bg-brand-black  p-3  duration-300 ease-in hover:scale-105 ${
-                !isActiveLink('/post-archives')
-                  ? 'hover:fill-brand-blue hover:text-brand-blue'
-                  : ''
+              className={`bg-brand-light rounded-8 shadow-sm-btn2 post-archives hover:bg-brand-yellow-dark  p-3  duration-300 ease-in hover:scale-105 ${
+                !isActiveLink('/post-archives') ? '' : ''
               }  flex items-center justify-center gap-2 ${
                 isActiveLink('/post-archives')
                   ? 'text-brand-yellow'
@@ -107,10 +101,8 @@ function Home() {
 
             <NavLink
               to="/settings"
-              className={`bg-brand-light rounded-8 shadow-sm-btn2 settings hover:bg-brand-black p-3 duration-200 ease-in hover:scale-105 ${
-                !isActiveLink('/settings')
-                  ? 'hover:fill-brand-blue hover:text-brand-blue'
-                  : ''
+              className={`bg-brand-light rounded-8 shadow-sm-btn2 settings hover:bg-brand-yellow-dark p-3 duration-200 ease-in hover:scale-105 ${
+                !isActiveLink('/settings') ? '' : ''
               }  flex items-center justify-center gap-2 ${
                 isActiveLink('/settings')
                   ? 'text-brand-yellow'
@@ -136,8 +128,8 @@ function Home() {
         </nav>
       </div>
       <div className="brand-img bg-login absolute left-0 top-0 -z-10  h-[100vh] w-[100%] bg-cover "></div>
-      <div className="overlay-black bg-gradient-overlay  absolute left-0 top-0 -z-10 h-[100%] w-[100%] "></div>
-      <div className="overlay-gradient absolute left-0 top-0 -z-10 h-[100%] w-[100%] bg-[rgba(24,23,23,0.5)] px-[7rem]  text-center leading-[60px]"></div>
+      {/* <div className="overlay-black bg-gradient-overlay  absolute left-0 top-0 -z-10 h-[100%] w-[100%] "></div> */}
+      <div className="overlay-gradient absolute left-0 top-0 -z-10 h-[100%] w-[100%] bg-[rgba(24,23,23,0.9)] px-[7rem]  text-center leading-[60px]"></div>
       {isSignOutClicked && <SignOutModal />}
     </>
   );
