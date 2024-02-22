@@ -384,6 +384,7 @@ export async function archiveArticlebyID(id, role) {
         'You do not have permission to perform this action.',
       );
     }
+    return { success: true };
   } catch (error) {
     console.log(error);
   }

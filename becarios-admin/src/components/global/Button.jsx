@@ -368,7 +368,7 @@ function SubmitPostModalBtn() {
         await logActivity(data);
       } else {
         throw new Error(
-          'Failed to remove admin: ' + response.statusText,
+          'Failed to add article: ' + response.statusText,
         );
       }
       setIsSubmitConfirmed(!isSubmitConfirmed);
@@ -1124,13 +1124,33 @@ function SubmitEditModalBtn() {
       articleData.append('isArchived', false);
       articleData.append('isEdited', true);
       articleData.append('role', userInfo.role);
-      await fetch(
+      const response = await fetch(
         `http://localhost:5001/edit-article-credentials/${id}`,
         {
           method: 'POST',
           body: articleData,
         },
       );
+
+      if (response.ok) {
+        const data = {
+          user: `${userInfo.firstName} ${userInfo.lastName}`,
+          actionType: 'ARTICLE_ACTION',
+          actionSubtype:
+            userInfo.role == 'Super Admin'
+              ? 'EDIT_ARTICLE'
+              : 'REQ_EDIT_ARTICLE',
+          description:
+            userInfo.role == 'Super Admin'
+              ? `${userInfo.firstName} ${userInfo.lastName} edited an article with the title of ${articleTitle}`
+              : `${userInfo.firstName} ${userInfo.lastName} sent a edit article request for an article with the title ${articleTitle}`,
+        };
+        await logActivity(data);
+      } else {
+        throw new Error(
+          'Failed to edit article: ' + response.statusText,
+        );
+      }
       // await retrieveArticlebyID(id, userInfo.role);
       setIsEditConfirmed(!isEditConfirmed);
     } catch (error) {
@@ -1226,7 +1246,32 @@ function SubmitArchiveModalBtn() {
   async function handleArchive(e) {
     try {
       e.preventDefault();
-      await archiveArticlebyID(id, currentRole);
+      const response = await archiveArticlebyID(
+        id,
+        currentRole,
+      );
+
+      if (response.success) {
+        const doc = await fetchArticleById(id);
+        const data = {
+          user: `${userInfo.firstName} ${userInfo.lastName}`,
+          actionType: 'ARTICLE_ACTION',
+          actionSubtype:
+            userInfo.role == 'Super Admin'
+              ? 'ARCHIVE_ARTICLE'
+              : 'REQ_ARCHIVE_ARTICLE',
+          description:
+            userInfo.role == 'Super Admin'
+              ? `${userInfo.firstName} ${userInfo.lastName} archived an article with the title of ${doc.title}`
+              : `${userInfo.firstName} ${userInfo.lastName} sent a archive article request for an article with the title ${doc.title}`,
+        };
+        await logActivity(data);
+      } else {
+        throw new Error(
+          'Failed to archive article: ' +
+            response.statusText,
+        );
+      }
       setIsArchiveConfirmed(!isArchiveConfirmed);
       setIsArchiveBtnPressed(!isArchiveBtnPressed);
       console.log(currentRole);
