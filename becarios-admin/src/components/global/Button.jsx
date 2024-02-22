@@ -741,6 +741,8 @@ function ConfirmEditAdminModalBtn() {
     setIsAddAdminSuccessful,
   } = useSettingsContext();
 
+  const { userInfo } = useUserInfoContext();
+
   const {
     adminFirstName,
     adminLastName,
@@ -806,6 +808,17 @@ function ConfirmEditAdminModalBtn() {
           );
         }
       }
+      const data = {
+        user: `${userInfo.firstName} ${userInfo.lastName}`,
+        actionType: 'ADMIN_ACTION',
+        actionSubtype: 'EDIT_ADMIN',
+        description:
+          userInfo.email == adminEmail
+            ? `${userInfo.firstName} ${userInfo.lastName} edited their own admin credentials`
+            : `${userInfo.firstName} ${userInfo.lastName} added ${adminFirstName} ${adminLastName} as an administrator`,
+      };
+
+      await logActivity(data);
       setIsAddAdminBtnClicked(false);
       setIsAddAdminClicked(false);
       setIsAddAdminSuccessful(!isAddAdminSuccessful);

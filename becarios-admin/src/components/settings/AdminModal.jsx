@@ -238,11 +238,14 @@ function AdminModal() {
                     ? adminImgFile
                     : '../src/assets/sample_admin.webp'
               }` */}
-            <img
-              src={adminImageSrc}
-              alt="admin image"
-              className="shadow-shadow-db  border-brand-blue  h-[120px] w-[120px] rounded-[80%] border-8 md:h-[150px] md:w-[150px]"
-            />
+            {adminImageSrc ||
+              (adminImgFile && (
+                <img
+                  src={adminImageSrc || adminImgFile}
+                  alt="admin image"
+                  className="shadow-shadow-db  border-brand-blue  h-[120px] w-[120px] rounded-[80%] border-8 md:h-[150px] md:w-[150px]"
+                />
+              ))}
           </div>
 
           {/* ROLE */}
