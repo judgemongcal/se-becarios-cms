@@ -482,6 +482,8 @@ export async function approveEditArticlebyID(id, document) {
       bodyEdit: '',
       imageEdit: '',
     });
+
+    return { success: true };
   } catch (error) {
     console.log(error);
   }
@@ -505,6 +507,8 @@ export async function rejectEditArticlebyID(id, document) {
       bodyEdit: '',
       imageEdit: '',
     });
+
+    return { success: true };
   } catch (error) {
     console.log(error);
   }
@@ -520,6 +524,8 @@ export async function approveArchiveArticlebyID(id) {
       isEdited: false,
       isEditedApproved: false,
     });
+
+    return { success: true };
   } catch (error) {
     console.log(error);
   }
@@ -535,6 +541,8 @@ export async function rejectArchiveArticlebyID(id) {
       isEdited: false,
       isEditedApproved: false,
     });
+
+    return { success: true };
   } catch (error) {
     console.log(error);
   }

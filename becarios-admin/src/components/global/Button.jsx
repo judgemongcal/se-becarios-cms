@@ -142,7 +142,7 @@ function ApproveModalBtn() {
             user: `${userInfo.firstName} ${userInfo.lastName}`,
             actionType: 'ARTICLE_ACTION',
             actionSubtype: 'APPROVE_POST_ARTICLE',
-            description: `${userInfo.firstName} ${userInfo.lastName} approved an article post request with the title of ${currentDoc.title}, which was submitted by ${currentAuthor}`,
+            description: `${userInfo.firstName} ${userInfo.lastName} approved a request to post an article with the title of ${currentDoc.title}, which was submitted by ${currentAuthor}`,
           };
           await logActivity(data);
         } else {
@@ -153,10 +153,42 @@ function ApproveModalBtn() {
         }
         setIsPostApproveSuccess(true);
       } else if (currentReqType == 'Edit Article') {
-        await approveEditArticlebyID(targetId, currentDoc);
+        const response = await approveEditArticlebyID(
+          targetId,
+          currentDoc,
+        );
+        if (response.success) {
+          const data = {
+            user: `${userInfo.firstName} ${userInfo.lastName}`,
+            actionType: 'ARTICLE_ACTION',
+            actionSubtype: 'APPROVE_EDIT_ARTICLE',
+            description: `${userInfo.firstName} ${userInfo.lastName} approved a request to edit an article with the title of ${currentDoc.title}, which was submitted by ${currentAuthor}`,
+          };
+          await logActivity(data);
+        } else {
+          throw new Error(
+            'Failed to approve article post: ' +
+              response.statusText,
+          );
+        }
         setIsEditApproveSuccess(true);
       } else {
-        await approveArchiveArticlebyID(targetId);
+        const response =
+          await approveArchiveArticlebyID(targetId);
+        if (response.success) {
+          const data = {
+            user: `${userInfo.firstName} ${userInfo.lastName}`,
+            actionType: 'ARTICLE_ACTION',
+            actionSubtype: 'APPROVE_ARCHIVE_ARTICLE',
+            description: `${userInfo.firstName} ${userInfo.lastName} approved a request to archive an article with the title of ${currentDoc.title}, which was submitted by ${currentAuthor}`,
+          };
+          await logActivity(data);
+        } else {
+          throw new Error(
+            'Failed to approve article post: ' +
+              response.statusText,
+          );
+        }
         setIsArchiveApproveSuccess(true);
       }
       setIsApproveBtnClicked(false);
@@ -217,7 +249,7 @@ function RejectModalBtn() {
             user: `${userInfo.firstName} ${userInfo.lastName}`,
             actionType: 'ARTICLE_ACTION',
             actionSubtype: 'REJECT_POST_ARTICLE',
-            description: `${userInfo.firstName} ${userInfo.lastName} rejected an article post request with the title of ${currentDoc.title}, which was submitted by ${currentAuthor}`,
+            description: `${userInfo.firstName} ${userInfo.lastName} rejected a request to post an article with the title of ${currentDoc.title}, which was submitted by ${currentAuthor}`,
           };
           await logActivity(data);
         } else {
@@ -228,10 +260,42 @@ function RejectModalBtn() {
         }
         setIsPostRejectSuccess(true);
       } else if (currentReqType == 'Edit Article') {
-        await rejectEditArticlebyID(targetId, currentDoc);
+        const response = await rejectEditArticlebyID(
+          targetId,
+          currentDoc,
+        );
+        if (response.success) {
+          const data = {
+            user: `${userInfo.firstName} ${userInfo.lastName}`,
+            actionType: 'ARTICLE_ACTION',
+            actionSubtype: 'REJECT_EDIT_ARTICLE',
+            description: `${userInfo.firstName} ${userInfo.lastName} rejected a request to edit an article with the title of ${currentDoc.title}, which was submitted by ${currentAuthor}`,
+          };
+          await logActivity(data);
+        } else {
+          throw new Error(
+            'Failed to reject edit article: ' +
+              response.statusText,
+          );
+        }
         setIsEditRejectSuccess(true);
       } else {
-        await rejectArchiveArticlebyID(targetId);
+        const response =
+          await rejectArchiveArticlebyID(targetId);
+        if (response.success) {
+          const data = {
+            user: `${userInfo.firstName} ${userInfo.lastName}`,
+            actionType: 'ARTICLE_ACTION',
+            actionSubtype: 'REJECT_ARCHIVE_ARTICLE',
+            description: `${userInfo.firstName} ${userInfo.lastName} rejected a request to archive an article with the title of ${currentDoc.title}, which was submitted by ${currentAuthor}`,
+          };
+          await logActivity(data);
+        } else {
+          throw new Error(
+            'Failed to reject archivw article: ' +
+              response.statusText,
+          );
+        }
         setIsArchiveRejectSuccess(true);
       }
       setIsRejectBtnClicked(false);

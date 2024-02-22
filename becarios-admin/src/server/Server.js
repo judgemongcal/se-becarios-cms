@@ -480,7 +480,7 @@ app.post(
           isEdited: true,
           isArchived: false,
           isArchiveApproved: false,
-          isPostApproved: false,
+          isPostApproved: true,
         })
           .then(() => {
             console.log('Doc updated successfully');
