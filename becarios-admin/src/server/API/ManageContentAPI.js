@@ -394,6 +394,8 @@ export async function deleteArticlebyID(id) {
   try {
     const docRef = doc(db, 'articles', id);
     await deleteDoc(docRef);
+
+    return { success: true };
   } catch (error) {
     console.log(error);
   }

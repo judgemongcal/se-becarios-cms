@@ -1190,6 +1190,8 @@ function SubmitDeleteModalBtn() {
     setIsDeleteFailed,
   } = useArchiveContext();
 
+  const { userInfo } = useUserInfoContext();
+
   function handleBack(e) {
     e.preventDefault();
     setIsDeleteBtnClicked(!isDeleteBtnClicked);
@@ -1197,10 +1199,27 @@ function SubmitDeleteModalBtn() {
 
   async function handleDelete(e) {
     e.preventDefault();
+
+    const doc = await fetchArticleById(currentDocId);
     try {
-      await deleteArticlebyID(currentDocId);
+      const response =
+        await deleteArticlebyID(currentDocId);
+      console.log(response);
+      if (response.success) {
+        const data = {
+          user: `${userInfo.firstName} ${userInfo.lastName}`,
+          actionType: 'ARTICLE_ACTION',
+          actionSubtype: 'DELETE_ARTICLE',
+          description: `${userInfo.firstName} ${userInfo.lastName} deleted an article with the title of ${doc.title}`,
+        };
+        await logActivity(data);
+      } else {
+        throw new Error(
+          'Failed to delete article: ' + response,
+        );
+      }
       setIsDeleteBtnClicked(!isDeleteBtnClicked);
-      setIsDeleteSuccessful(!isDeleteSuccessful);
+      setIsDeleteSuccessful(true);
     } catch (error) {
       setIsDeleteFailed(!isDeleteFailed);
     }
