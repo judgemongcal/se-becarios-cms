@@ -814,8 +814,8 @@ function ConfirmEditAdminModalBtn() {
         actionSubtype: 'EDIT_ADMIN',
         description:
           userInfo.email == adminEmail
-            ? `${userInfo.firstName} ${userInfo.lastName} edited their own admin credentials`
-            : `${userInfo.firstName} ${userInfo.lastName} added ${adminFirstName} ${adminLastName} as an administrator`,
+            ? `${userInfo.firstName} ${userInfo.lastName} edited their own administrator credentials`
+            : `${userInfo.firstName} ${userInfo.lastName} edited ${adminFirstName} ${adminLastName}'s administrator credentials'`,
       };
 
       await logActivity(data);
@@ -986,7 +986,10 @@ function RemoveAdminModalBtn() {
     setIsRemoveSuccessful,
   } = useSettingsContext();
 
-  const { adminEmail } = useAdminContext();
+  const { userInfo } = useUserInfoContext();
+
+  const { adminEmail, adminFirstName, adminLastName } =
+    useAdminContext();
 
   function handleBack(e) {
     e.preventDefault();
@@ -1007,6 +1010,14 @@ function RemoveAdminModalBtn() {
           body: JSON.stringify({ email: adminEmail }),
         },
       );
+      const data = {
+        user: `${userInfo.firstName} ${userInfo.lastName}`,
+        actionType: 'ADMIN_ACTION',
+        actionSubtype: 'REMOVE_ADMIN',
+        description: `${userInfo.firstName} ${userInfo.lastName} remove ${adminFirstName} ${adminLastName} as an administrator`,
+      };
+      console.log(adminEmail);
+      await logActivity(data);
       console.log('success! ' + response);
       setIsRemoveAdminBtnClicked(!isRemoveAdminBtnClicked);
       setIsRemoveSuccessful(!isRemoveSuccessful);
