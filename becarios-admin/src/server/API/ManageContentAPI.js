@@ -448,6 +448,8 @@ export async function rejectPostArticlebyID(id) {
       isEditedApproved: false,
       dateArchived: serverTimestamp(),
     });
+
+    return { success: true };
   } catch (error) {
     console.log(error);
   }

@@ -147,7 +147,8 @@ function ApproveModalBtn() {
           await logActivity(data);
         } else {
           throw new Error(
-            'Failed to add article: ' + response.statusText,
+            'Failed to approve article post: ' +
+              response.statusText,
           );
         }
         setIsPostApproveSuccess(true);
@@ -189,11 +190,14 @@ function RejectModalBtn() {
     currentReqType,
     targetId,
     currentDoc,
+    currentAuthor,
     setIsPostRejectSuccess,
     setIsEditRejectSuccess,
     setIsArchiveRejectSuccess,
     setIsRejectBtnClicked,
   } = useManageContentContext();
+
+  const { userInfo } = useUserInfoContext();
 
   function handleBack(e) {
     e.preventDefault(e);
@@ -206,7 +210,22 @@ function RejectModalBtn() {
     console.log(currentReqType);
     try {
       if (currentReqType == 'Article Post') {
-        await rejectPostArticlebyID(targetId);
+        const response =
+          await rejectPostArticlebyID(targetId);
+        if (response.success) {
+          const data = {
+            user: `${userInfo.firstName} ${userInfo.lastName}`,
+            actionType: 'ARTICLE_ACTION',
+            actionSubtype: 'REJECT_POST_ARTICLE',
+            description: `${userInfo.firstName} ${userInfo.lastName} rejected an article post request with the title of ${currentDoc.title}, which was submitted by ${currentAuthor}`,
+          };
+          await logActivity(data);
+        } else {
+          throw new Error(
+            'Failed to reject article post: ' +
+              response.statusText,
+          );
+        }
         setIsPostRejectSuccess(true);
       } else if (currentReqType == 'Edit Article') {
         await rejectEditArticlebyID(targetId, currentDoc);
