@@ -117,10 +117,13 @@ function ApproveModalBtn() {
     currentReqType,
     targetId,
     currentDoc,
+    currentAuthor,
     setIsPostApproveSuccess,
     setIsEditApproveSuccess,
     setIsArchiveApproveSuccess,
   } = useManageContentContext();
+
+  const { userInfo } = useUserInfoContext();
 
   function handleBack(e) {
     e.preventDefault(e);
@@ -132,7 +135,21 @@ function ApproveModalBtn() {
     e.preventDefault(e);
     try {
       if (currentReqType == 'Article Post') {
-        await approvePostArticlebyID(targetId);
+        const response =
+          await approvePostArticlebyID(targetId);
+        if (response.success) {
+          const data = {
+            user: `${userInfo.firstName} ${userInfo.lastName}`,
+            actionType: 'ARTICLE_ACTION',
+            actionSubtype: 'APPROVE_POST_ARTICLE',
+            description: `${userInfo.firstName} ${userInfo.lastName} approved an article post request with the title of ${currentDoc.title}, which was submitted by ${currentAuthor}`,
+          };
+          await logActivity(data);
+        } else {
+          throw new Error(
+            'Failed to add article: ' + response.statusText,
+          );
+        }
         setIsPostApproveSuccess(true);
       } else if (currentReqType == 'Edit Article') {
         await approveEditArticlebyID(targetId, currentDoc);

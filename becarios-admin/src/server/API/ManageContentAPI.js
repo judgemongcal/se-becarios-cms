@@ -429,6 +429,8 @@ export async function approvePostArticlebyID(id) {
       isEdited: false,
       isEditedApproved: false,
     });
+
+    return { success: true };
   } catch (error) {
     console.log(error);
   }
