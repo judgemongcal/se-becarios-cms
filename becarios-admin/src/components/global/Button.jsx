@@ -345,10 +345,32 @@ function SubmitPostModalBtn() {
       );
       articleData.append('isArchived', false);
 
-      await fetch('http://localhost:5001/add-article', {
-        method: 'POST',
-        body: articleData,
-      });
+      const response = await fetch(
+        'http://localhost:5001/add-article',
+        {
+          method: 'POST',
+          body: articleData,
+        },
+      );
+      if (response.ok) {
+        const data = {
+          user: `${userInfo.firstName} ${userInfo.lastName}`,
+          actionType: 'ARTICLE_ACTION',
+          actionSubtype:
+            userInfo.role == 'Super Admin'
+              ? 'ADD_ARTICLE'
+              : 'REQ_ADD_ARTICLE',
+          description:
+            userInfo.role == 'Super Admin'
+              ? `${userInfo.firstName} ${userInfo.lastName} added an article with the title of ${articleTitle}`
+              : `${userInfo.firstName} ${userInfo.lastName} sent a article post request for an article with the title ${articleTitle}`,
+        };
+        await logActivity(data);
+      } else {
+        throw new Error(
+          'Failed to remove admin: ' + response.statusText,
+        );
+      }
       setIsSubmitConfirmed(!isSubmitConfirmed);
     } catch (error) {
       console.log('Error in submitting article: ' + error);
@@ -1010,21 +1032,26 @@ function RemoveAdminModalBtn() {
           body: JSON.stringify({ email: adminEmail }),
         },
       );
-      const data = {
-        user: `${userInfo.firstName} ${userInfo.lastName}`,
-        actionType: 'ADMIN_ACTION',
-        actionSubtype: 'REMOVE_ADMIN',
-        description: `${userInfo.firstName} ${userInfo.lastName} remove ${adminFirstName} ${adminLastName} as an administrator`,
-      };
-      console.log(adminEmail);
-      await logActivity(data);
+      if (response.ok) {
+        const data = {
+          user: `${userInfo.firstName} ${userInfo.lastName}`,
+          actionType: 'ADMIN_ACTION',
+          actionSubtype: 'REMOVE_ADMIN',
+          description: `${userInfo.firstName} ${userInfo.lastName} remove ${adminFirstName} ${adminLastName} as an administrator`,
+        };
+        await logActivity(data);
+      } else {
+        throw new Error(
+          'Failed to remove admin: ' + response.statusText,
+        );
+      }
       console.log('success! ' + response);
       setIsRemoveAdminBtnClicked(!isRemoveAdminBtnClicked);
       setIsRemoveSuccessful(!isRemoveSuccessful);
 
-      setTimeout(function () {
-        window.location.reload();
-      }, 2000);
+      // setTimeout(function () {
+      //   window.location.reload();
+      // }, 2000);
     } catch (error) {
       console.log('Error Deleting Admin: ' + error);
     }
