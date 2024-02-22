@@ -713,7 +713,8 @@ function ConfirmAssignSuperAdminModalBtn() {
     setIsAssignSuccessful,
   } = useSettingsContext();
 
-  const { currentDocId } = useAdminContext();
+  const { currentDocId, adminFirstName, adminLastName } =
+    useAdminContext();
   const { userInfo } = useUserInfoContext();
 
   function handleBack(e) {
@@ -727,7 +728,24 @@ function ConfirmAssignSuperAdminModalBtn() {
   async function handleAssign(e) {
     e.preventDefault();
     try {
-      await assignAsSuperAdmin(currentDocId, userInfo.id);
+      const response = await assignAsSuperAdmin(
+        currentDocId,
+        userInfo.id,
+      );
+      if (response.success) {
+        const data = {
+          user: `${userInfo.firstName} ${userInfo.lastName}`,
+          actionType: 'ADMIN_ACTION',
+          actionSubtype: 'ASSIGN_SUPER_ADMIN',
+          description: `${userInfo.firstName} ${userInfo.lastName} assigned ${adminFirstName} ${adminLastName} as the Super Administrator. `,
+        };
+        await logActivity(data);
+      } else {
+        throw new Error(
+          'Failed to assign as Super Administrator: ' +
+            response.statusText,
+        );
+      }
       setIsAssignBtnClicked(false);
       setIsAssignSuccessful(true);
     } catch (error) {

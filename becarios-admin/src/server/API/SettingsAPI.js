@@ -117,6 +117,7 @@ export async function assignAsSuperAdmin(
       window.location.reload();
     }, 2000);
     console.log('Success!');
+    return { success: true };
   } catch (error) {
     console.log(error);
   }
