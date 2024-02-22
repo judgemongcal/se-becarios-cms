@@ -14,9 +14,11 @@ import { useEffect, useState } from 'react';
 import { useSettingsContext } from '../../hooks/useSettingsContext';
 import { useUserInfoContext } from '../../hooks/useUserInfoContext';
 
+
 function AdminModal() {
   const [showPassword, setShowPassword] = useState(false);
   const { currentDocId } = useAdminContext();
+  const [isDragging, setIsDragging] = useState(false);
 
   const {
     adminFirstName,
@@ -44,6 +46,25 @@ function AdminModal() {
   const [imgSrc, setImgSrc] = useState(
     '../src/assets/sample_admin.webp',
   );
+  
+  const handleDragOver = (e) => {
+    e.preventDefault();
+    setIsDragging(true);
+  };
+
+  const handleDragLeave = () => {
+    setIsDragging(false);
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    setIsDragging(false);
+
+    const files = e.dataTransfer.files;
+    if (files.length > 0) {
+      handleAdminImageSrcChange(files[0]);
+    }
+  };
 
   useEffect(() => {
     if (adminImgFile && adminImgFile != '') {
@@ -93,19 +114,27 @@ function AdminModal() {
   }, [adminPassword, setIsPasswordInvalid]);
 
   function handleAdminImageSrcChange(e) {
+    let file;
+  if (e.target) {
+    // File selected through file input
     console.log(e.target.value);
-    const file = e.target.files[0];
-    console.log(file);
-    setAdminImgFile(file);
-    if (file) {
-      setAdminImageSrc(file.name);
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setAdminImageSrc(reader.result);
-      };
-      reader.readAsDataURL(file);
-    }
+    file = e.target.files[0];
+  } else {
+    // File dropped
+    file = e;
   }
+  console.log(file);
+  setAdminImgFile(file);
+
+  if (file) {
+    setAdminImageSrc(file.name);
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setAdminImageSrc(reader.result);
+    };
+    reader.readAsDataURL(file);
+  }
+}
 
   return (
     <div className="modal-bg bg-brand-light md:bg-modal-bg fixed top-0 z-[1000] flex h-[100%] w-[100%] items-start justify-center overflow-scroll">
@@ -201,7 +230,14 @@ function AdminModal() {
             <span className="text-brand-red">*</span>
           </label>
           <div className="image-upload flex items-center justify-between gap-4">
-            <div className="flex w-full items-center">
+            <div
+              className={`flex w-full items-center ${
+                isDragging ? 'border-dashed border-2 border-blue-500' : ''
+              }`}
+              onDragOver={handleDragOver}
+              onDragLeave={handleDragLeave}
+              onDrop={handleDrop}
+            >
               <label
                 htmlFor="dropzone-file"
                 className="hover:bg-brand-input rounded-8 shadow-shadow-db flex h-fit w-full cursor-pointer flex-col items-center justify-center bg-white p-2 text-center"

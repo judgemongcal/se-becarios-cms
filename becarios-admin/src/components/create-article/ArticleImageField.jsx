@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 
 function ArticleImageField() {
   const [hasImage, setHasImage] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
   const {
     articleImageFileName,
     setArticleImageFileName,
@@ -17,21 +18,45 @@ function ArticleImageField() {
 
   const { id } = useParams();
 
-  function handleArticleImageSrcChange(e) {
-    console.log(e.target.value);
-    const file = e.target.files[0];
-    if (file) {
-      setArticleImageFileName(file.name);
-      setArticleImgFile(file);
-      console.log(file);
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setArticleImageSrc(reader.result);
-      };
-      reader.readAsDataURL(file);
-      setHasImage(true);
+  const handleDragOver = (e) => {
+    e.preventDefault();
+    setIsDragging(true);
+  };
+
+  const handleDragLeave = () => {
+    setIsDragging(false);
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    setIsDragging(false);
+
+    const files = e.dataTransfer.files;
+    if (files.length > 0) {
+      handleArticleImageSrcChange(files[0]);
     }
+  };
+
+  function handleArticleImageSrcChange(e) {
+    let file;
+  if (e.target) {
+    console.log(e.target.value);
+    file = e.target.files[0];
+  } else {
+    file = e;
   }
+  console.log(file);
+  if (file) {
+    setArticleImageFileName(file.name);
+    setArticleImgFile(file);
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setArticleImageSrc(reader.result);
+    };
+    reader.readAsDataURL(file);
+    setHasImage(true);
+  }
+}
 
   useEffect(() => {
     setArticleImageSrc(articleImageSrc);
@@ -61,7 +86,9 @@ function ArticleImageField() {
         />
       )}
       <div
-        className="rounded-8 flex w-full items-center justify-center bg-opacity-50"
+        className={`rounded-8 flex w-full items-center justify-center bg-opacity-50 ${
+          isDragging ? 'border-dashed border-2 border-blue-500' : ''
+        }`}
         style={{
           backgroundImage: articleImageSrc
             ? `url(${articleImageSrc})`
@@ -70,15 +97,16 @@ function ArticleImageField() {
           backgroundPosition: 'center',
           opacity: 0.8, // Adjust the opacity here // Ensure the background stays behind the content
         }}
+        onDragOver={handleDragOver}
+        onDragLeave={handleDragLeave}
+        onDrop={handleDrop}
       >
-        <label
-          htmlFor="dropzone-file"
-          className={`hover:bg-brand-input rounded-8  shadow-shadow-db flex h-64 w-full cursor-pointer flex-col items-center justify-center ${
-            articleImageSrc
-              ? articleImageSrc
-              : 'bg-brand-light'
-          }`}
-        >
+      <label
+        htmlFor="dropzone-file"
+        className={`hover:bg-brand-input rounded-8  shadow-shadow-db flex h-64 w-full cursor-pointer flex-col items-center justify-center ${
+          articleImageSrc ? articleImageSrc : 'bg-brand-light'
+        }`}
+      >
           <div className=" z-50 flex flex-col items-center justify-center pb-6 pt-5 opacity-100">
             <FiUploadCloud className="mb-[1rem] h-auto w-[50px]" />
             <p className="mb-2 text-sm">

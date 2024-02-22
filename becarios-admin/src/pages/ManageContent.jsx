@@ -57,10 +57,10 @@ function ManageContent() {
     const fetchTotalArticles = async () => {
       try {
         setNoMatchesFound(false);
-        const currentSearchQuery = searchQuery; // Capture the current searchQuery value
+        //const currentSearchQuery = searchQuery; // Capture the current searchQuery value
         const articlesCount =
           await getCurrentPostedArticleCount(
-            currentSearchQuery,
+            searchQuery,
           );
         console.log('count: ', articlesCount);
 
@@ -69,7 +69,7 @@ function ManageContent() {
           articlesCount / articlesPerPage,
         );
         setTotalPages(calculatedTotalPages);
-        if (articlesCount === 0) {
+        if (articlesCount === 0 && searchQuery !== '') {
           setNoMatchesFound(true);
           setCurrentPage(0);
           // No matches found
@@ -91,6 +91,7 @@ function ManageContent() {
     };
 
     fetchTotalArticles();
+    
   }, [searchQuery, sortOrder]);
 
   const handlePageChange = (newPage) => {
@@ -106,7 +107,7 @@ function ManageContent() {
         <NavBarMobile />
       </div>
 
-      <div className="content mt-[10rem] flex w-[100%] flex-col gap-[5rem] px-9 md:mb-[5rem] md:px-16 lg:ml-[21rem] lg:mt-[8rem] lg:px-12 lg:pb-[20%] ">
+      <div className="content mt-[10rem] flex w-[100%] flex-col gap-[5rem] px-9 md:mb-[5rem] md:px-16 lg:ml-[21rem] lg:mt-[8rem] lg:px-12">
         <PageTitle title="Manage Content" />
         <div className=" flex w-full flex-col justify-evenly gap-3 ">
           {userInfo.role == 'Super Admin' && (
@@ -118,7 +119,7 @@ function ManageContent() {
             totalPages={totalPages}
             onPageChange={handlePageChange}
           />
-          {noMatchesFound ? (
+          {searchQuery !== '' && noMatchesFound ? (
             <div className=" mt-32 text-center text-2xl text-red-500">
               No matches found for "{searchQuery}"
             </div>

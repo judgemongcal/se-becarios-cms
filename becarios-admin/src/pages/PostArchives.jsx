@@ -46,14 +46,14 @@ function PostArchives() {
     const fetchTotalArticles = async () => {
       try {
         setNoMatchesFound(false);
-        const currentSearchQuery = searchQuery; // Capture the current searchQuery value
-        const articlesCount = await getCurrentArchivedArticleCount(currentSearchQuery);
+        //const currentSearchQuery = searchQuery; // Capture the current searchQuery value
+        const articlesCount = await getCurrentArchivedArticleCount(searchQuery);
         console.log('count: ', articlesCount);
 
           const articlesPerPage = 9;
           const calculatedTotalPages = Math.ceil(articlesCount / articlesPerPage);
           setTotalPages(calculatedTotalPages);
-          if (articlesCount === 0) {
+          if (articlesCount === 0 && searchQuery !== '') {
             setNoMatchesFound(true);
             setCurrentPage(0);
           // No matches found
@@ -84,7 +84,7 @@ function PostArchives() {
         <NavBarMobile />
       </div>
 
-      <div className="content mt-[10rem] flex w-[100%] flex-col gap-[5rem] px-9 md:mb-[5rem] md:px-16 lg:ml-[21rem] lg:mt-[8rem] lg:pb-[20%]">
+      <div className="content mt-[10rem] flex w-[100%] flex-col gap-[5rem] px-9 md:mb-[5rem] md:px-16 lg:ml-[21rem] lg:mt-[8rem]">
         <PageTitle title="Post Archives" />
         <h2 className="mx-auto -mt-[4rem] w-[90%] max-w-[400px] text-center text-[1.15rem] md:text-[1.25rem]">
           <span className="font-bold">Reminder:</span>{' '}
@@ -95,7 +95,7 @@ function PostArchives() {
         <div className=" flex w-full flex-col justify-evenly gap-3 ">
           <SearchField type="Archived" />
           <ContentFilters currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
-          {noMatchesFound ? (
+          {searchQuery !== '' && noMatchesFound ? (
             <div className=" text-center text-2xl text-red-500 mt-32">
                 No matches found for "{searchQuery}"
            </div>
