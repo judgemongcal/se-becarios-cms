@@ -41,6 +41,7 @@ import {
 } from '../../server/API/ManageContentAPI';
 import { useEditArticleContext } from '../../hooks/useEditArticleContext';
 import { useArchiveContext } from '../../hooks/useArchiveContext';
+import { logActivity } from '../../server/API/GlobalAPI';
 
 function LoginBtn() {
   return (
@@ -565,6 +566,8 @@ function ConfirmAddAdminModalBtn() {
     setIsAddAdminSuccessful,
   } = useSettingsContext();
 
+  const { userInfo } = useUserInfoContext();
+
   const {
     adminFirstName,
     adminLastName,
@@ -620,13 +623,22 @@ function ConfirmAddAdminModalBtn() {
           body: formData,
         },
       );
+
+      const data = {
+        user: `${userInfo.firstName} ${userInfo.lastName}`,
+        actionType: 'ADMIN_ACTION',
+        actionSubtype: 'ADD_ADMIN',
+        description: `${userInfo.firstName} ${userInfo.lastName} added ${adminFirstName} ${adminLastName} as an administrator`,
+      };
+
+      await logActivity(data);
       setIsAddAdminBtnClicked(false);
       setIsAddAdminClicked(false);
       setIsAddAdminSuccessful(!isAddAdminSuccessful);
       resetAdminFields();
-      setTimeout(function () {
-        window.location.reload();
-      }, 2000);
+      // setTimeout(function () {
+      //   window.location.reload();
+      // }, 2000);
     } catch (error) {
       console.log(error);
     }

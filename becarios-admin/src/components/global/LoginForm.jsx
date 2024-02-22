@@ -55,7 +55,7 @@ function LoginForm() {
 
     try {
       await signIn(username, password);
-      navigate('/dashboard', { replace: false });
+      navigate('/home', { replace: false });
     } catch (error) {
       setError(error.message);
       setIsInvalid(true);

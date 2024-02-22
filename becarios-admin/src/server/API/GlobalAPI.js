@@ -22,10 +22,11 @@ export async function fetchArticles() {
 // Log to Audit Trail
 
 export async function logActivity(data) {
+  const date = new Date();
   const colRef = collection(db, 'audit-trail');
   try {
     await addDoc(colRef, {
-      date: data.date,
+      date: date,
       user: data.user,
       actionType: data.actionType,
       actionSubtype: data.actionSubtype,
