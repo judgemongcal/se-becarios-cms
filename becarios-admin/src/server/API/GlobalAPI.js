@@ -4,6 +4,7 @@ import {
   query,
   where,
   getDocs,
+  addDoc,
 } from 'firebase/firestore';
 
 export async function fetchArticles() {
@@ -15,6 +16,23 @@ export async function fetchArticles() {
     return articleSnapshot;
   } catch (error) {
     console.log(error);
+  }
+}
+
+// Log to Audit Trail
+
+export async function logActivity(data) {
+  const colRef = collection(db, 'audit-trail');
+  try {
+    await addDoc(colRef, {
+      date: data.date,
+      user: data.user,
+      actionType: data.actionType,
+      actionSubtype: data.actionSubtype,
+      description: data.description,
+    });
+  } catch (error) {
+    console.log('Error logging activity: ' + error);
   }
 }
 
