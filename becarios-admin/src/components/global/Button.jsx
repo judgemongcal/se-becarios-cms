@@ -887,6 +887,7 @@ function ConfirmEditAdminModalBtn() {
     setIsAddAdminClicked,
     isAddAdminSuccessful,
     setIsAddAdminSuccessful,
+    setIsLoading,
   } = useSettingsContext();
 
   const { userInfo } = useUserInfoContext();
@@ -913,6 +914,9 @@ function ConfirmEditAdminModalBtn() {
 
   async function handleAdd(e) {
     e.preventDefault();
+    setIsLoading(true);
+    setIsAddAdminBtnClicked(false);
+    setIsAddAdminClicked(false);
 
     try {
       const formData = new FormData();
@@ -923,7 +927,7 @@ function ConfirmEditAdminModalBtn() {
       formData.append('lastName', adminLastName);
       formData.append('role', adminRole);
 
-      await fetch(
+      const response = await fetch(
         `http://localhost:5001/edit-admin-credentials/${currentDocId}`,
         {
           method: 'POST',
@@ -966,11 +970,13 @@ function ConfirmEditAdminModalBtn() {
             : `${userInfo.firstName} ${userInfo.lastName} edited ${adminFirstName} ${adminLastName}'s administrator credentials'`,
       };
 
-      await logActivity(data);
-      setIsAddAdminBtnClicked(false);
-      setIsAddAdminClicked(false);
-      setIsAddAdminSuccessful(!isAddAdminSuccessful);
-      resetAdminFields();
+      if (response.ok) {
+        await logActivity(data);
+        setIsAddAdminSuccessful(!isAddAdminSuccessful);
+        setIsLoading(false);
+        resetAdminFields();
+      }
+
       setTimeout(function () {
         window.location.reload();
       }, 2000);
