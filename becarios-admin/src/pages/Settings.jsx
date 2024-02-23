@@ -18,6 +18,8 @@ import {
 } from '../components/global/Popup';
 import { useSignOutContext } from '../hooks/useSignOutContext';
 import { useEffect } from 'react';
+import Spinner from '../components/global/Spinner';
+import Sample from './Sample';
 
 function Settings() {
   const {
@@ -31,6 +33,7 @@ function Settings() {
     isAssignBtnClicked,
     isAssignSuccessful,
     setIsAssignSuccessful,
+    isLoading,
   } = useSettingsContext();
 
   const { isSignOutClicked } = useSignOutContext();
@@ -103,6 +106,7 @@ function Settings() {
       {isAddAdminClicked && <AddAdminModal />}
       {isRemoveAdminBtnClicked && <RemoveAdminModal />}
       {isAssignBtnClicked && <AssignSuperAdminModal />}
+      {isLoading ? <Sample /> : ''}
       {isSignOutClicked && <SignOutModal />}
     </div>
   );

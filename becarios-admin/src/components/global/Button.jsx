@@ -686,6 +686,8 @@ function ConfirmAddAdminModalBtn() {
     setIsAddAdminClicked,
     isAddAdminSuccessful,
     setIsAddAdminSuccessful,
+    isLoading,
+    setIsLoading,
   } = useSettingsContext();
 
   const { userInfo } = useUserInfoContext();
@@ -711,7 +713,9 @@ function ConfirmAddAdminModalBtn() {
 
   async function handleAdd(e) {
     e.preventDefault();
-
+    setIsLoading(!isLoading);
+    setIsAddAdminBtnClicked(false);
+    setIsAddAdminClicked(false);
     try {
       const response = await fetch(
         'http://localhost:5001/add-admin-auth',
@@ -737,7 +741,7 @@ function ConfirmAddAdminModalBtn() {
       formData.append('lastName', adminLastName);
       formData.append('role', adminRole);
 
-      await fetch(
+      const response2 = await fetch(
         'http://localhost:5001/add-admin-credentials',
         {
           method: 'POST',
@@ -746,18 +750,22 @@ function ConfirmAddAdminModalBtn() {
         },
       );
 
-      const data = {
-        user: `${userInfo.firstName} ${userInfo.lastName}`,
-        actionType: 'ADMIN_ACTION',
-        actionSubtype: 'ADD_ADMIN',
-        description: `${userInfo.firstName} ${userInfo.lastName} added ${adminFirstName} ${adminLastName} as an administrator`,
-      };
+      console.log(response, response2);
+      if (response.ok && response2.ok) {
+        const data = {
+          user: `${userInfo.firstName} ${userInfo.lastName}`,
+          actionType: 'ADMIN_ACTION',
+          actionSubtype: 'ADD_ADMIN',
+          description: `${userInfo.firstName} ${userInfo.lastName} added ${adminFirstName} ${adminLastName} as an administrator`,
+        };
 
-      await logActivity(data);
-      setIsAddAdminBtnClicked(false);
-      setIsAddAdminClicked(false);
-      setIsAddAdminSuccessful(!isAddAdminSuccessful);
-      resetAdminFields();
+        await logActivity(data);
+
+        setIsLoading(false);
+        setIsAddAdminSuccessful(true);
+        resetAdminFields();
+      }
+
       // setTimeout(function () {
       //   window.location.reload();
       // }, 2000);

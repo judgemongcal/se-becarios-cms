@@ -29,6 +29,8 @@ export function SettingsProvider({ children }) {
     useState(false);
   const [isAssignSuccessful, setIsAssignSuccessful] =
     useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isFailed, setIsFailed] = useState(false);
   const contextValue = {
     isSAGearClicked,
     setIsSAGearClicked,
@@ -50,6 +52,10 @@ export function SettingsProvider({ children }) {
     setIsAssignBtnClicked,
     isAssignSuccessful,
     setIsAssignSuccessful,
+    isLoading,
+    setIsLoading,
+    isFailed,
+    setIsFailed,
   };
 
   return (

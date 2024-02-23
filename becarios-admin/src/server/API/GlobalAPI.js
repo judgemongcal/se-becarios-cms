@@ -32,6 +32,8 @@ export async function logActivity(data) {
       actionSubtype: data.actionSubtype,
       description: data.description,
     });
+
+    return { success: true };
   } catch (error) {
     console.log('Error logging activity: ' + error);
   }

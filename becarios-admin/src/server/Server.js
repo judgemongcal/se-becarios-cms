@@ -88,23 +88,33 @@ app.post('/add-admin-auth', async (req, res) => {
     role,
   } = req.body;
   try {
-    auth
-      .createUser({
-        contactNumber,
-        email,
-        firstName,
-        lastName,
-        role,
-      })
-      .then((UserRecord) => {
-        console.log(
-          'Successfully created new user: ',
-          UserRecord.id,
-        );
-      });
-    res.status(200).json('Successfully added');
+    const UserRecord = await auth.createUser({
+      contactNumber,
+      email,
+      firstName,
+      lastName,
+      role,
+    });
+
+    console.log(
+      'Successfully created new user: ',
+      UserRecord.id,
+    );
+
+    // res
+    //   .status(200)
+    //   .json({
+    //     success: true,
+    //     message: 'Successfully added',
+    //   });
+
+    return { success: true };
   } catch (error) {
     console.log(error);
+    res.status(500).json({
+      success: false,
+      error: 'Failed to add admin',
+    });
   }
 });
 
@@ -159,12 +169,7 @@ app.post(
           console.log(`Error in writing doc: ${error}`);
         });
 
-      return res.send({
-        message: 'file uploaded to firebase storage',
-        name: req.image,
-        type: req.image,
-        downloadURL: downloadURL,
-      });
+      return { success: true };
     } catch (error) {
       console.log(error);
       return res.status(400).send(error.message);
