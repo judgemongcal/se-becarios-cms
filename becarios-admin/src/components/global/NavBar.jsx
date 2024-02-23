@@ -30,7 +30,7 @@ function NavBar() {
       <img
         src="../src/assets/org_logo.png"
         alt=""
-        className="fixed top-[20px]  mt-[60px] w-[180px]"
+        className="fixed top-[20px]  mt-[30px] w-[180px]"
       />
 
       <section
