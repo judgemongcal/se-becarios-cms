@@ -421,6 +421,7 @@ function SubmitPostModalBtn() {
     articleBody,
     articleImageSrc,
     articleImgFile,
+    setIsCreateArticleLoading,
   } = useCreateArticleContext();
 
   function handleGoBackClicked(e) {
@@ -430,7 +431,9 @@ function SubmitPostModalBtn() {
 
   async function handleSubmitClicked(e) {
     e.preventDefault();
-
+    setIsCreateArticleLoading(true);
+    setIsSubmitBtnPressed(false);
+    setIsSubmitConfirmed(false);
     try {
       const authorName = `${userInfo.firstName} ${userInfo.lastName}`;
       const isSuperAdmin = userInfo.role == 'Super Admin';
@@ -466,12 +469,13 @@ function SubmitPostModalBtn() {
               : `${userInfo.firstName} ${userInfo.lastName} sent a article post request for an article with the title ${articleTitle}`,
         };
         await logActivity(data);
+        setIsCreateArticleLoading(false);
+        setIsSubmitConfirmed(!isSubmitConfirmed);
       } else {
         throw new Error(
           'Failed to add article: ' + response.statusText,
         );
       }
-      setIsSubmitConfirmed(!isSubmitConfirmed);
     } catch (error) {
       console.log('Error in submitting article: ' + error);
     }

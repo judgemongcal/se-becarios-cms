@@ -14,6 +14,7 @@ import {
 } from '../components/global/Modal';
 import { useCreateArticleContext } from '../hooks/useCreateArticleContext';
 import { useSignOutContext } from '../hooks/useSignOutContext';
+import Sample from './Sample';
 
 function CreateArticle() {
   const { isSignOutClicked } = useSignOutContext();
@@ -23,6 +24,7 @@ function CreateArticle() {
     isSubmitBtnPressed,
     isSubmitConfirmed,
     resetAllFields,
+    isCreateArticleLoading,
   } = useCreateArticleContext();
 
   useEffect(() => {
@@ -61,6 +63,7 @@ function CreateArticle() {
 
       {isSubmitConfirmed && <PostReqSuccessModal />}
       {isSignOutClicked && <SignOutModal />}
+      {isCreateArticleLoading && <Sample />}
     </div>
   );
 }

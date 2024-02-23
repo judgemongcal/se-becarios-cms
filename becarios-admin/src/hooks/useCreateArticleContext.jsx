@@ -20,6 +20,10 @@ export function CreateArticleProvider({ children }) {
   const [isSubmitConfirmed, setIsSubmitConfirmed] =
     useState(false);
   const [articleImgFile, setArticleImgFile] = useState();
+  const [
+    isCreateArticleLoading,
+    setIsCreateArticleLoading,
+  ] = useState(false);
 
   function resetAllFields() {
     setArticleBody('   ');
@@ -50,6 +54,8 @@ export function CreateArticleProvider({ children }) {
     articleImgFile,
     setArticleImgFile,
     resetAllFields,
+    isCreateArticleLoading,
+    setIsCreateArticleLoading,
   };
 
   return (
