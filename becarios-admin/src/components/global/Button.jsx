@@ -1138,6 +1138,7 @@ function RemoveAdminModalBtn() {
     setIsRemoveAdminBtnClicked,
     isRemoveSuccessful,
     setIsRemoveSuccessful,
+    setIsLoading,
   } = useSettingsContext();
 
   const { userInfo } = useUserInfoContext();
@@ -1152,7 +1153,8 @@ function RemoveAdminModalBtn() {
 
   async function handleDelete(e) {
     e.preventDefault();
-
+    setIsRemoveAdminBtnClicked(!isRemoveAdminBtnClicked);
+    setIsLoading(true);
     try {
       const response = await fetch(
         'http://localhost:5001/removeAdminCredAndAuth',
@@ -1178,7 +1180,7 @@ function RemoveAdminModalBtn() {
         );
       }
       console.log('success! ' + response);
-      setIsRemoveAdminBtnClicked(!isRemoveAdminBtnClicked);
+      setIsLoading(false);
       setIsRemoveSuccessful(!isRemoveSuccessful);
 
       // setTimeout(function () {
