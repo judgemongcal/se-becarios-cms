@@ -28,6 +28,7 @@ import { AdminProvider } from './hooks/useAdminContext';
 import EditArticle from './pages/EditArticle';
 import { ArchiveProvider } from './hooks/useArchiveContext';
 import Home from './pages/Home';
+import Sample from './pages/Sample';
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
             value={UserInfoProvider.contextValue}
           >
             <Routes>
+              <Route path="/sample" element={<Sample />} />
               <Route index element={<Login />} />
               {/* <Route path="/home" element={<Home />} /> */}
               <Route
