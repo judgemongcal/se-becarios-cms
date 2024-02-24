@@ -4,8 +4,6 @@ import {
 } from 'react-icons/fa6';
 import { useAdminContext } from '../../hooks/useAdminContext';
 
-const tries = 5;
-
 function InvalidLoginCredentialsPopup() {
   return (
     <div className="bg-brand-red rounded-10 my-4 flex w-full flex-row items-center justify-center gap-6 px-4 py-2 text-center text-white">
@@ -86,13 +84,13 @@ function AddAdminSuccessPopup() {
   );
 }
 
-function AdminErrorPopup() {
+function RequestErrorPopup() {
   return (
     <div className="bg-brand-red rounded-10 my-4 flex flex-row items-center justify-center gap-2 px-4 py-2 text-center text-white">
       <FaRegCircleXmark className="h-auto w-8 md:ml-[1rem] lg:ml-0" />
       <p className="ml-0 text-[10px] md:text-[12px] lg:ml-0">
-        Error! There has been an issue with processing the
-        changes. <br />
+        Error! There has been an issue with processing your
+        request. <br />
         Please try again.
       </p>
     </div>
@@ -160,10 +158,10 @@ export {
   ApprovePostReqSuccessPopup,
   PostReqFailedPopup,
   RejectPostReqSuccessPopup,
-  AddAdminSuccessPopup,
-  AdminErrorPopup,
-  EditAdminInfoSuccessPopup,
-  RemoveAdminSuccessPopup,
+  AddAdminSuccessPopup, //ADD ADMIN
+  RequestErrorPopup, // ADMIN ERROR
+  EditAdminInfoSuccessPopup, // EDIT ADMIN
+  RemoveAdminSuccessPopup, // DELETE ADMIN
   GenReportSuccessPopup,
-  AssignSuperAdminSuccessPopup,
+  AssignSuperAdminSuccessPopup, // ASSIGN SUPER ADMIN
 };
