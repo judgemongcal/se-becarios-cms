@@ -140,11 +140,11 @@ function ViewArticleModal() {
               ? parsedContentEdit
               : parsedContent,
           }}
-          className=""
+          className="mb-[2rem] text-[1rem] md:text-[1.15rem]"
         />
-        <h1 className="mb-[3rem] text-center text-[1.25rem] font-semibold md:text-[1.65rem] lg:mb-[4rem]">
-          {currentAuthor}
-        </h1>
+        <p className="bg-brand-input rounded-8 shadow-shadow-db mx-auto mb-[3rem] w-fit px-4 py-3 text-center text-[1rem] md:text-[1.25rem] lg:mb-[4rem]">
+          Submitted by {currentAuthor}
+        </p>
         <ViewArticleModalBtn id={targetId} />
       </div>
     </div>
