@@ -655,7 +655,6 @@ function AddAdminModalBtn() {
 
   function handleAddAdmin(e) {
     e.preventDefault();
-    console.log(isComplete);
     setIsAddAdminBtnClicked(!isAddAdminBtnClicked);
     setIsAddAdminClicked(!isAddAdminClicked);
   }
@@ -736,7 +735,6 @@ function ConfirmAddAdminModalBtn() {
         },
       );
 
-      console.log(adminRole);
       const formData = new FormData();
       formData.append('admin-image', adminImgFile);
       formData.append('contactNumber', adminContactNum);
@@ -755,7 +753,10 @@ function ConfirmAddAdminModalBtn() {
       );
 
       console.log(response, response2);
-      if (response.ok && response2.ok) {
+      if (
+        response.status == 200 &&
+        response2.status == 200
+      ) {
         const data = {
           user: `${userInfo.firstName} ${userInfo.lastName}`,
           actionType: 'ADMIN_ACTION',
@@ -770,9 +771,9 @@ function ConfirmAddAdminModalBtn() {
         resetAdminFields();
       }
 
-      // setTimeout(function () {
-      //   window.location.reload();
-      // }, 2000);
+      setTimeout(function () {
+        window.location.reload();
+      }, 2000);
     } catch (error) {
       console.log(error);
     }

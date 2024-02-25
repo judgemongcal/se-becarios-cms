@@ -101,14 +101,12 @@ app.post('/add-admin-auth', async (req, res) => {
       UserRecord.id,
     );
 
-    // res
-    //   .status(200)
-    //   .json({
-    //     success: true,
-    //     message: 'Successfully added',
-    //   });
+    res.status(200).json({
+      success: true,
+      message: 'Successfully added',
+    });
 
-    return { success: true };
+    // return { success: true };
   } catch (error) {
     console.log(error);
     res.status(500).json({
@@ -123,6 +121,7 @@ app.post(
   '/add-admin-credentials',
   upload.single('admin-image'),
   async (req, res) => {
+    console.log('hello');
     console.log(req.body);
     const dateTime = new Date();
     const {
@@ -169,7 +168,11 @@ app.post(
           console.log(`Error in writing doc: ${error}`);
         });
 
-      return { success: true };
+      // return { success: true };
+      res.status(200).json({
+        success: true,
+        message: 'Successfully added',
+      });
     } catch (error) {
       console.log(error);
       return res.status(400).send(error.message);
