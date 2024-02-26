@@ -1518,14 +1518,15 @@ function GenerateReportBtn() {
 
 function BackBtn() {
   const navigate = useNavigate();
-  const { currentDocId } = useArchiveContext();
+  const { isArchiveEdit } = useArchiveContext();
 
   function handleBack(e) {
     e.preventDefault();
-    if (currentDocId) {
+    console.log(isArchiveEdit);
+    if (isArchiveEdit) {
       navigate('/post-archives', { replace: true });
     } else {
-      navigate(-1);
+      navigate('/manage-content', { replace: true });
     }
   }
   return (
@@ -1909,6 +1910,7 @@ function ArchivedListItemBtn({ id }) {
     setCurrentDocId,
     isPutBackBtnClicked,
     setIsPutBackBtnClicked,
+    setIsArchiveEdit,
   } = useArchiveContext();
 
   function handleDelete(e) {
@@ -1925,6 +1927,7 @@ function ArchivedListItemBtn({ id }) {
 
   function handleView(e) {
     e.preventDefault();
+    setIsArchiveEdit(true);
     navigate(`/edit-article/${idVal}`, { replace: true });
   }
 

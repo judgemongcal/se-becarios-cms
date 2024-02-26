@@ -22,6 +22,7 @@ export function ArchiveProvider({ children }) {
     useState(false);
   const [isPutBackFailed, setIsPutBackFailed] =
     useState(false);
+  const [isArchiveEdit, setIsArchiveEdit] = useState(false);
 
   const contextValue = {
     isDeleteBtnClicked,
@@ -40,6 +41,8 @@ export function ArchiveProvider({ children }) {
     setIsPutBackSuccessful,
     isPutBackFailed,
     setIsPutBackFailed,
+    isArchiveEdit,
+    setIsArchiveEdit,
   };
 
   return (

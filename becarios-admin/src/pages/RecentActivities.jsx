@@ -6,7 +6,7 @@ import SearchField from '../components/global/SearchField';
 import ActivityFilters from '../components/recent-activities/ActivityFilters';
 import ContentList from '../components/manage-content/ContentList';
 import {
-  BacktoDashboardBtn,
+  BackBtn,
   GenerateReportBtn,
 } from '../components/global/Button';
 import ActivityList from '../components/recent-activities/ActivityList';
@@ -25,7 +25,7 @@ function RecentActivities() {
       </div>
 
       <div className="content mt-[10rem] flex w-[100%] flex-col gap-[5rem] px-9 md:mb-[5rem] md:px-16 lg:ml-[21rem] lg:mt-[8rem] lg:pb-[20%]">
-        <BacktoDashboardBtn />
+        <BackBtn />
         <PageTitle title="Recent Activities" />
 
         <div className=" flex w-full flex-col justify-evenly gap-3 ">

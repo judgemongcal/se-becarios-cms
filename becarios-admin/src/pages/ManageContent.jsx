@@ -23,6 +23,7 @@ import ViewArticleModal from '../components/manage-content/ViewArticleModal';
 import { useManageContentContext } from '../hooks/useManageContentContext';
 import { getCurrentPostedArticleCount } from '../server/API/ManageContentAPI.js';
 import { useUserInfoContext } from '../hooks/useUserInfoContext.jsx';
+import { useArchiveContext } from '../hooks/useArchiveContext.jsx';
 
 function ManageContent() {
   const { isSignOutClicked } = useSignOutContext();
@@ -42,6 +43,8 @@ function ManageContent() {
     isArchiveRejectSuccess,
   } = useManageContentContext();
 
+  const { setIsArchiveEdit } = useArchiveContext();
+
   // State for pagination
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -50,6 +53,7 @@ function ManageContent() {
 
   useEffect(() => {
     setSearchQuery('');
+    setIsArchiveEdit(false);
   }, []); // not working as intended
 
   useEffect(() => {
@@ -59,9 +63,7 @@ function ManageContent() {
         setNoMatchesFound(false);
         //const currentSearchQuery = searchQuery; // Capture the current searchQuery value
         const articlesCount =
-          await getCurrentPostedArticleCount(
-            searchQuery,
-          );
+          await getCurrentPostedArticleCount(searchQuery);
         console.log('count: ', articlesCount);
 
         const articlesPerPage = 9;
@@ -91,7 +93,6 @@ function ManageContent() {
     };
 
     fetchTotalArticles();
-    
   }, [searchQuery, sortOrder]);
 
   const handlePageChange = (newPage) => {

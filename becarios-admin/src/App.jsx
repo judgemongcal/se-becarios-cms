@@ -76,19 +76,23 @@ function App() {
                         ManageContentProvider.contextValue
                       }
                     >
-                      <CreateArticleProvider
-                        value={
-                          CreateArticleProvider.contextValue
-                        }
+                      <ArchiveProvider
+                        value={ArchiveProvider.contextValue}
                       >
-                        <EditArticleProvider
+                        <CreateArticleProvider
                           value={
-                            EditArticleProvider.contextValue
+                            CreateArticleProvider.contextValue
                           }
                         >
-                          <EditArticle />
-                        </EditArticleProvider>
-                      </CreateArticleProvider>
+                          <EditArticleProvider
+                            value={
+                              EditArticleProvider.contextValue
+                            }
+                          >
+                            <EditArticle />
+                          </EditArticleProvider>
+                        </CreateArticleProvider>
+                      </ArchiveProvider>
                     </ManageContentProvider>
                   </ProtectedRoute>
                 }
@@ -107,19 +111,23 @@ function App() {
                 path="/manage-content"
                 element={
                   <ProtectedRoute>
-                    <ManageContentProvider
-                      value={
-                        ManageContentProvider.contextValue
-                      }
+                    <ArchiveProvider
+                      value={ArchiveProvider.contextValue}
                     >
-                      <CreateArticleProvider
+                      <ManageContentProvider
                         value={
-                          CreateArticleProvider.contextValue
+                          ManageContentProvider.contextValue
                         }
                       >
-                        <ManageContent />
-                      </CreateArticleProvider>
-                    </ManageContentProvider>
+                        <CreateArticleProvider
+                          value={
+                            CreateArticleProvider.contextValue
+                          }
+                        >
+                          <ManageContent />
+                        </CreateArticleProvider>
+                      </ManageContentProvider>
+                    </ArchiveProvider>
                   </ProtectedRoute>
                 }
               />
