@@ -9,6 +9,7 @@ import { FaXmark } from 'react-icons/fa6';
 import { LuPencil } from 'react-icons/lu';
 import {
   NavLink,
+  useLocation,
   useNavigate,
   useParams,
 } from 'react-router-dom';
@@ -1515,10 +1516,24 @@ function GenerateReportBtn() {
   );
 }
 
-function BacktoDashboardBtn() {
+function BackBtn() {
+  const navigate = useNavigate();
+  const { currentDocId } = useArchiveContext();
+
+  function handleBack(e) {
+    e.preventDefault();
+    if (currentDocId) {
+      navigate('/post-archives', { replace: true });
+    } else {
+      navigate(-1);
+    }
+  }
   return (
-    <button className="bg-brand-black shadow-shadow-db rounded-10 hover:bg-brand-light min-w-[200px] max-w-[10%] p-3 text-[1.15rem] font-semibold text-white duration-300 hover:text-black lg:-mb-[2rem]">
-      Back to Dashboard
+    <button
+      className="bg-brand-black shadow-shadow-db rounded-10 hover:bg-brand-light min-w-[200px] max-w-[10%] p-3 text-[1.15rem] font-semibold text-white duration-300 hover:text-black lg:-mb-[2rem]"
+      onClick={(e) => handleBack(e)}
+    >
+      Back
     </button>
   );
 }
@@ -1963,7 +1978,7 @@ export {
   SubmitDeleteModalBtn,
   SubmitArchiveModalBtn,
   GenerateReportBtn,
-  BacktoDashboardBtn,
+  BackBtn,
   PostedSettingsBtn,
   EditItemBtn,
   AdminSettingsBtn,

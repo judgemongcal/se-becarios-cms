@@ -14,7 +14,6 @@ import { useEffect, useState } from 'react';
 import { useSettingsContext } from '../../hooks/useSettingsContext';
 import { useUserInfoContext } from '../../hooks/useUserInfoContext';
 
-
 function AdminModal() {
   const [showPassword, setShowPassword] = useState(false);
   const { currentDocId } = useAdminContext();
@@ -46,7 +45,7 @@ function AdminModal() {
   const [imgSrc, setImgSrc] = useState(
     '../src/assets/sample_admin.webp',
   );
-  
+
   const handleDragOver = (e) => {
     e.preventDefault();
     setIsDragging(true);
@@ -115,26 +114,41 @@ function AdminModal() {
 
   function handleAdminImageSrcChange(e) {
     let file;
-  if (e.target) {
-    // File selected through file input
-    console.log(e.target.value);
-    file = e.target.files[0];
-  } else {
-    // File dropped
-    file = e;
-  }
-  console.log(file);
-  setAdminImgFile(file);
+    if (e.target) {
+      // File selected through file input
+      console.log(e.target.value);
+      file = e.target.files[0];
+    } else {
+      // File dropped
+      file = e;
+    }
+    console.log(file);
+    setAdminImgFile(file);
 
-  if (file) {
-    setAdminImageSrc(file.name);
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setAdminImageSrc(reader.result);
+    if (file) {
+      setAdminImageSrc(file.name);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setAdminImageSrc(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+
+    // Validate the phone number format
+    const validatePhoneNumber = (phoneNumber) => {
+      // Regular expression to match the Philippine phone number format (11 digits starting with 09)
+      const phoneNumberPattern = /^(09|\+639)\d{9}$/;
+      return phoneNumberPattern.test(phoneNumber);
     };
-    reader.readAsDataURL(file);
+
+    const handleContactNumChange = (e) => {
+      const inputPhoneNumber = e.target.value;
+      setAdminContactNum(inputPhoneNumber);
+      setIsValidPhoneNumber(
+        validatePhoneNumber(inputPhoneNumber),
+      );
+    };
   }
-}
 
   return (
     <div className="modal-bg bg-brand-light md:bg-modal-bg fixed top-0 z-[1000] flex h-[100%] w-[100%] items-start justify-center overflow-scroll">
@@ -232,7 +246,9 @@ function AdminModal() {
           <div className="image-upload flex items-center justify-between gap-4">
             <div
               className={`flex w-full items-center ${
-                isDragging ? 'border-dashed border-2 border-blue-500' : ''
+                isDragging
+                  ? 'border-2 border-dashed border-blue-500'
+                  : ''
               }`}
               onDragOver={handleDragOver}
               onDragLeave={handleDragLeave}
