@@ -40,6 +40,16 @@ export function ArchiveProvider({ children }) {
     return () => clearTimeout(timer);
   }, [isDeleteFailed, setIsDeleteFailed]);
 
+  useEffect(() => {
+    let timer;
+    if (isPutBackFailed) {
+      timer = setTimeout(() => {
+        setIsPutBackFailed(false);
+      }, 3000);
+    }
+    return () => clearTimeout(timer);
+  }, [isPutBackFailed, setIsPutBackFailed]);
+
   const contextValue = {
     isDeleteBtnClicked,
     setIsDeleteBtnClicked,

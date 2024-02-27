@@ -3,6 +3,7 @@ import {
   DeletePostModal,
   DeleteReqSuccessModal,
   RetrieveArchivedPostModal,
+  RetrieveReqFailedModal,
   RetrieveReqSuccessModal,
   SignOutModal,
 } from '../components/global/Modal';
@@ -29,7 +30,7 @@ function PostArchives() {
     isDeleteFailed,
     isPutBackBtnClicked,
     isPutBackSuccessful,
-    isPutBackBtnFailed,
+    isPutBackFailed,
     isLoading,
   } = useArchiveContext();
   const { searchQuery, sortOrder, setSearchQuery } =
@@ -134,6 +135,7 @@ function PostArchives() {
           )}
         </div>
       </div>
+      {isPutBackFailed && <RetrieveReqFailedModal />}
       {isDeleteFailed && <DeleteFailedModal />}
       {isLoading && <Sample />}
       {isDeleteBtnClicked && <DeletePostModal />}

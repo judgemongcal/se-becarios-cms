@@ -1420,7 +1420,7 @@ function SubmitDeleteModalBtn() {
         className="bg-brand-yellow shadow-shadow-db rounded-10 hover:bg-brand-yellow-dark w-[100%] py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-100"
         onClick={(e) => handleDelete(e)}
       >
-        Submit Request
+        Delete Article
       </button>
     </div>
   );
@@ -1520,6 +1520,7 @@ function SubmitRetrieveArchiveModalBtn() {
     isPutBackFailed,
     setIsPutBackFailed,
     currentDocId,
+    setIsLoading,
   } = useArchiveContext();
 
   const currentRole = userInfo.role;
@@ -1531,13 +1532,24 @@ function SubmitRetrieveArchiveModalBtn() {
 
   async function handleRetrieve(e) {
     e.preventDefault();
+    setIsLoading(true);
     try {
-      await retrieveArticlebyID(currentDocId, currentRole);
-      setIsPutBackBtnClicked(!isPutBackBtnClicked);
-      setIsPutBackSuccessful(!isPutBackSuccessful);
+      const res = await retrieveArticlebyID(
+        currentDocId,
+        currentRole,
+      );
+      if (res.success) {
+        console.log(res);
+        setIsLoading(false);
+        setIsPutBackBtnClicked(false);
+        setIsPutBackSuccessful(true);
+      } else {
+        throw new Error('Error retrieving');
+      }
     } catch (error) {
-      setIsPutBackBtnClicked(!isPutBackBtnClicked);
-      setIsPutBackFailed(!isPutBackFailed);
+      setIsLoading(false);
+      setIsPutBackBtnClicked(false);
+      setIsPutBackFailed(true);
     }
   }
 

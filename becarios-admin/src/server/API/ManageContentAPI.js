@@ -399,6 +399,7 @@ export async function deleteArticlebyID(id) {
     return { success: true };
   } catch (error) {
     console.log(error);
+    return { success: false };
   }
 }
 
@@ -413,8 +414,10 @@ export async function retrieveArticlebyID(id, role) {
       isEdited: false,
       isEditApproved: false,
     });
+    return { success: true };
   } catch (error) {
     console.log(error);
+    return { success: false };
   }
 }
 
