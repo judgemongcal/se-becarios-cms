@@ -8,6 +8,7 @@ import TextEditor from '../components/create-article/TextEditor';
 import { SubmitArticleBtn } from '../components/global/Button';
 import ArticlePreview from '../components/create-article/ArticlePreview';
 import {
+  PostReqFailedModal,
   PostReqSuccessModal,
   SignOutModal,
   SubmitPostModal,
@@ -25,6 +26,7 @@ function CreateArticle() {
     isSubmitConfirmed,
     resetAllFields,
     isCreateArticleLoading,
+    isCreateFailed,
   } = useCreateArticleContext();
 
   useEffect(() => {
@@ -64,6 +66,7 @@ function CreateArticle() {
       {isSubmitConfirmed && <PostReqSuccessModal />}
       {isSignOutClicked && <SignOutModal />}
       {isCreateArticleLoading && <Sample />}
+      {isCreateFailed && <PostReqFailedModal />}
     </div>
   );
 }

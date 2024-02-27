@@ -1,4 +1,9 @@
-import { createContext, useContext, useState } from 'react';
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 
 export const CreateArticleContext = createContext();
 
@@ -24,6 +29,8 @@ export function CreateArticleProvider({ children }) {
     isCreateArticleLoading,
     setIsCreateArticleLoading,
   ] = useState(false);
+  const [isCreateFailed, setIsCreateFailed] =
+    useState(false);
 
   function resetAllFields() {
     setArticleBody('   ');
@@ -56,6 +63,8 @@ export function CreateArticleProvider({ children }) {
     resetAllFields,
     isCreateArticleLoading,
     setIsCreateArticleLoading,
+    isCreateFailed,
+    setIsCreateFailed,
   };
 
   return (

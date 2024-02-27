@@ -421,15 +421,16 @@ app.post(
           console.log(`Error in writing doc: ${error}`);
         });
 
-      return res.send({
-        message: 'file uploaded to firebase storage',
-        name: req.image,
-        type: req.image,
-        downloadURL: downloadURL,
+      res.status(200).json({
+        success: true,
+        message: 'Article Post processed successfully',
       });
     } catch (error) {
       console.log(error);
-      return res.status(400).send(error.message);
+      res.status(500).json({
+        success: false,
+        message: 'Failed to process Article Post',
+      });
     }
   },
 );

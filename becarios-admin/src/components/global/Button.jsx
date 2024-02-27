@@ -423,6 +423,7 @@ function SubmitPostModalBtn() {
     articleImageSrc,
     articleImgFile,
     setIsCreateArticleLoading,
+    setIsCreateFailed,
   } = useCreateArticleContext();
 
   function handleGoBackClicked(e) {
@@ -456,7 +457,7 @@ function SubmitPostModalBtn() {
           body: articleData,
         },
       );
-      if (response.ok) {
+      if (response.status == 200) {
         const data = {
           user: `${userInfo.firstName} ${userInfo.lastName}`,
           actionType: 'ARTICLE_ACTION',
@@ -478,6 +479,8 @@ function SubmitPostModalBtn() {
         );
       }
     } catch (error) {
+      setIsCreateArticleLoading(false);
+      setIsCreateFailed(true);
       console.log('Error in submitting article: ' + error);
     }
   }
@@ -987,7 +990,6 @@ function ConfirmEditAdminModalBtn() {
         console.log(res);
 
         if (res.status != 200) {
-          console.log('I am an error');
           throw new Error('Error updating password');
         }
       }
