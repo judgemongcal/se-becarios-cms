@@ -27,6 +27,7 @@ import { useParams } from 'react-router-dom';
 import { fetchArticleById } from '../server/API/ManageContentAPI';
 import { useEditArticleContext } from '../hooks/useEditArticleContext';
 import { useCreateArticleContext } from '../hooks/useCreateArticleContext';
+import Sample from './Sample';
 
 function EditArticle() {
   const { isSignOutClicked } = useSignOutContext();
@@ -43,6 +44,7 @@ function EditArticle() {
     setIsArchiveConfirmed,
     isArchiveFailed,
     setIsArchived,
+    isLoading,
   } = useEditArticleContext();
 
   const {
@@ -112,6 +114,7 @@ function EditArticle() {
         )}
         <EditArticleBtn />
       </div>
+
       {isEditBtnPressed && !isEditConfirmed && (
         <EditPostModal />
       )}
@@ -119,6 +122,7 @@ function EditArticle() {
       {isArchiveConfirmed && <ArchiveReqSuccessModal />}
       {isArchiveFailed && <ArchiveReqFailedModal />}
       {isEditConfirmed && <EditReqSuccessModal />}
+      {isLoading && <Sample />}
       {isSignOutClicked && <SignOutModal />}
     </div>
   );

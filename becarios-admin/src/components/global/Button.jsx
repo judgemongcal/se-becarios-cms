@@ -916,7 +916,6 @@ function ConfirmEditAdminModalBtn() {
     setIsAddAdminClicked,
     isAddAdminSuccessful,
     setIsAddAdminSuccessful,
-    setIsLoading,
   } = useSettingsContext();
 
   const { userInfo } = useUserInfoContext();
@@ -1256,6 +1255,8 @@ function SubmitEditModalBtn() {
     isEditConfirmed,
     isArchiveFailed,
     setIsArchiveFailed,
+    isLoading,
+    setIsLoading,
   } = useEditArticleContext();
 
   const {
@@ -1275,7 +1276,9 @@ function SubmitEditModalBtn() {
 
   async function handleConfirmEdit(e) {
     e.preventDefault(e);
-    setIsEditConfirmed(!isEditConfirmed);
+
+    setIsEditBtnPressed(false);
+    setIsLoading(true);
 
     try {
       const authorName = `${userInfo.firstName} ${userInfo.lastName}`;
@@ -1324,10 +1327,12 @@ function SubmitEditModalBtn() {
           'Failed to edit article: ' + response.statusText,
         );
       }
+      setIsLoading(false);
       // await retrieveArticlebyID(id, userInfo.role);
-      setIsEditConfirmed(!isEditConfirmed);
+      setIsEditConfirmed(true);
     } catch (error) {
       console.log('Error in submitting article: ' + error);
+      setIsLoading(false);
       setIsArchiveFailed(!isArchiveFailed);
     }
   }

@@ -521,16 +521,16 @@ app.post(
           });
       }
 
-      return res.send({
-        message:
-          'file uploaded to firebase storage and doc updated',
-        name: req.image,
-        type: req.image,
-        downloadURL: downloadURL,
+      res.status(200).json({
+        success: true,
+        message: 'Edit Article processed successfully',
       });
     } catch (error) {
       console.log(error);
-      return res.status(400).send(error.message);
+      res.status(500).json({
+        success: true,
+        message: 'Failed to process Edit Article',
+      });
     }
   },
 );
