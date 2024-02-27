@@ -140,7 +140,7 @@ function ViewArticleModal() {
               ? parsedContentEdit
               : parsedContent,
           }}
-          className="mb-[2rem] text-[1rem] md:text-[1.15rem]"
+          className="Preview mx-[1rem] mb-[2rem] text-justify text-[1rem] md:text-[1.15rem] lg:mx-[2rem]"
         />
         <p className="bg-brand-input rounded-8 shadow-shadow-db mx-auto mb-[3rem] w-fit px-4 py-3 text-center text-[1rem] md:text-[1.25rem] lg:mb-[4rem]">
           Submitted by {currentAuthor}
