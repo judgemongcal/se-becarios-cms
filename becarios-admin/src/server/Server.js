@@ -318,6 +318,7 @@ async function getUserIdByEmail(email) {
 // // Remove a user account on Firebase Authentication
 
 app.post('/removeAdminCredAndAuth', async (req, res) => {
+  // throw new Error();
   const { email } = req.body;
   console.log(email);
   try {
@@ -345,15 +346,19 @@ app.post('/removeAdminCredAndAuth', async (req, res) => {
       });
 
       console.log('Admin removed successfully');
-      res
-        .status(200)
-        .send({ message: 'Admin removed successfully' });
+      res.status(200).json({
+        success: true,
+        message: 'Admin removed successfully',
+      });
     } else {
       throw new Error('Admin not found');
     }
   } catch (error) {
     console.error(error);
-    res.status(500).send({ error: error.toString() });
+    res.status(500).json({
+      success: false,
+      error: 'Error removing admin credentials',
+    });
   }
 });
 

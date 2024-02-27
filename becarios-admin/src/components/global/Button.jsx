@@ -997,11 +997,12 @@ function ConfirmEditAdminModalBtn() {
         await logActivity(data);
         setIsEditSuccessful(true);
         setIsLoading(false);
-        resetAdminFields();
 
         setTimeout(function () {
+          resetAdminFields();
           window.location.reload();
         }, 2000);
+        console.log(adminFirstName, adminLastName);
       }
     } catch (error) {
       console.log('1008: ' + error);
@@ -1164,6 +1165,7 @@ function RemoveAdminModalBtn() {
     isRemoveSuccessful,
     setIsRemoveSuccessful,
     setIsLoading,
+    setIsFailed,
   } = useSettingsContext();
 
   const { userInfo } = useUserInfoContext();
@@ -1208,11 +1210,13 @@ function RemoveAdminModalBtn() {
       setIsLoading(false);
       setIsRemoveSuccessful(!isRemoveSuccessful);
 
-      // setTimeout(function () {
-      //   window.location.reload();
-      // }, 2000);
+      setTimeout(function () {
+        window.location.reload();
+      }, 2000);
     } catch (error) {
       console.log('Error Deleting Admin: ' + error);
+      setIsLoading(false);
+      setIsFailed(true);
     }
   }
 

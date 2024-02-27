@@ -100,6 +100,8 @@ function RequestErrorPopup() {
 function EditAdminInfoSuccessPopup() {
   const { adminFirstName, adminLastName } =
     useAdminContext();
+
+  console.log(adminFirstName, adminLastName);
   return (
     <div className="bg-brand-green rounded-10 my-4 flex flex-row items-center justify-center gap-2 px-4 py-2 text-center text-white">
       <FaRegCircleCheck className="h-auto w-8 md:ml-[1rem] lg:ml-0" />
