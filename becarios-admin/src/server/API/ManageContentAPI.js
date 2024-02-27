@@ -387,6 +387,7 @@ export async function archiveArticlebyID(id, role) {
     return { success: true };
   } catch (error) {
     console.log(error);
+    return { success: false };
   }
 }
 
