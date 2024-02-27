@@ -30,6 +30,7 @@ import { useSettingsContext } from '../../hooks/useSettingsContext';
 import { useAdminContext } from '../../hooks/useAdminContext';
 import { useUserInfoContext } from '../../hooks/useUserInfoContext';
 import { useManageContentContext } from '../../hooks/useManageContentContext';
+import { useEffect } from 'react';
 
 function ExceededLoginAttemptsModal() {
   return (
@@ -815,8 +816,18 @@ function RetrieveReqSuccessModal() {
 // }
 
 function RemoveAdminModal() {
-  const { adminFirstName, adminLastName, adminRole } =
-    useAdminContext();
+  const {
+    adminFirstName,
+    adminLastName,
+    adminRole,
+    removeReason,
+    setRemoveReason,
+  } = useAdminContext();
+
+  function handleChange(e) {
+    e.preventDefault();
+    setRemoveReason(e.target.value);
+  }
   return (
     <div className="modal-bg bg-brand-input md:bg-modal-bg  justify-cente fixed top-0 z-[1000] flex h-[100%] w-[100%] items-center">
       <div className="modal-container bg-brand-input rounded-10 3xl:w-[25%] mx-auto flex w-[100%] flex-col justify-center px-[2rem] py-[2.25rem] text-center md:w-[50%] xl:w-[35%] 2xl:w-[500px]">
@@ -831,7 +842,20 @@ function RemoveAdminModal() {
           </strong>{' '}
           from being an <strong>Administrator</strong>?
         </p>
-        <RemoveAdminModalBtn />
+        <p className="text-[1rem] font-semibold md:text-[1.15rem]">
+          Please indicate reason{' '}
+          <span className="text-brand-red">*</span>
+        </p>
+        <input
+          className="rounded-8 mb-[2rem] mt-[0.5rem] px-3 py-4"
+          type="text"
+          placeholder="Type reason for removing admin here"
+          onChange={(e) => {
+            handleChange(e);
+            console.log(removeReason);
+          }}
+        />
+        {removeReason && <RemoveAdminModalBtn />}
       </div>
     </div>
   );

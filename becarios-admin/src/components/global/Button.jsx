@@ -1196,8 +1196,12 @@ function RemoveAdminModalBtn() {
 
   const { userInfo } = useUserInfoContext();
 
-  const { adminEmail, adminFirstName, adminLastName } =
-    useAdminContext();
+  const {
+    adminEmail,
+    adminFirstName,
+    adminLastName,
+    removeReason,
+  } = useAdminContext();
 
   function handleBack(e) {
     e.preventDefault();
@@ -1224,7 +1228,7 @@ function RemoveAdminModalBtn() {
           user: `${userInfo.firstName} ${userInfo.lastName}`,
           actionType: 'ADMIN_ACTION',
           actionSubtype: 'REMOVE_ADMIN',
-          description: `${userInfo.firstName} ${userInfo.lastName} remove ${adminFirstName} ${adminLastName} as an administrator`,
+          description: `${userInfo.firstName} ${userInfo.lastName} remove ${adminFirstName} ${adminLastName} as an administrator. REASON: ${removeReason} `,
         };
         await logActivity(data);
       } else {

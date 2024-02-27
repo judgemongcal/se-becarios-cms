@@ -22,6 +22,8 @@ export function AdminProvider({ children }) {
     useState(null);
   const [currentDocId, setCurrentDocId] = useState();
 
+  const [removeReason, setRemoveReason] = useState('');
+
   function resetAdminFields() {
     setAdminFirstName('');
     setAdminLastName('');
@@ -65,6 +67,8 @@ export function AdminProvider({ children }) {
     resetValidation,
     currentDocId,
     setCurrentDocId,
+    removeReason,
+    setRemoveReason,
   };
 
   return (
