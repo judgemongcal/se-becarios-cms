@@ -122,6 +122,7 @@ function ApproveModalBtn() {
     setIsPostApproveSuccess,
     setIsEditApproveSuccess,
     setIsArchiveApproveSuccess,
+    setIsLoading,
   } = useManageContentContext();
 
   const { userInfo } = useUserInfoContext();
@@ -134,6 +135,8 @@ function ApproveModalBtn() {
 
   async function handleConfirmApprove(e) {
     e.preventDefault(e);
+    setIsLoading(true);
+    setIsApproveBtnClicked(false);
     try {
       if (currentReqType == 'Article Post') {
         const response =
@@ -193,7 +196,9 @@ function ApproveModalBtn() {
         setIsArchiveApproveSuccess(true);
       }
       setIsApproveBtnClicked(false);
+      setIsLoading(false);
     } catch (error) {
+      setIsLoading(false);
       console.log('Error with Approving Request: ' + error);
     }
   }
@@ -228,6 +233,7 @@ function RejectModalBtn() {
     setIsEditRejectSuccess,
     setIsArchiveRejectSuccess,
     setIsRejectBtnClicked,
+    setIsLoading,
   } = useManageContentContext();
 
   const { userInfo } = useUserInfoContext();
@@ -239,6 +245,8 @@ function RejectModalBtn() {
   }
 
   async function handleConfirmReject(e) {
+    setIsLoading(true);
+    setIsRejectBtnClicked(false);
     e.preventDefault(e);
     console.log(currentReqType);
     try {
@@ -299,8 +307,11 @@ function RejectModalBtn() {
         }
         setIsArchiveRejectSuccess(true);
       }
-      setIsRejectBtnClicked(false);
+
+      setIsLoading(false);
     } catch (error) {
+      setIsLoading(false);
+      setIsRejectBtnClicked(true);
       console.log('Error with Rejecting Request: ' + error);
     }
   }
