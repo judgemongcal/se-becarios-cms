@@ -708,6 +708,8 @@ function ConfirmAddAdminModalBtn() {
     resetAdminFields,
   } = useAdminContext();
 
+  const { setIsFailed } = useSettingsContext();
+
   function handleBack(e) {
     e.preventDefault();
     // resetAdminFields();
@@ -736,6 +738,10 @@ function ConfirmAddAdminModalBtn() {
         },
       );
 
+      if (response.status != 200) {
+        throw new Error('Error with adding auth');
+      }
+
       const formData = new FormData();
       formData.append('admin-image', adminImgFile);
       formData.append('contactNumber', adminContactNum);
@@ -752,6 +758,10 @@ function ConfirmAddAdminModalBtn() {
           body: formData,
         },
       );
+
+      if (response2.status != 200) {
+        throw new Error('Error with adding auth');
+      }
 
       console.log(response, response2);
       if (
@@ -776,7 +786,9 @@ function ConfirmAddAdminModalBtn() {
         window.location.reload();
       }, 2000);
     } catch (error) {
-      console.log(error);
+      console.log('Line 780: ' + error);
+      setIsLoading(false);
+      setIsFailed(true);
     }
   }
 

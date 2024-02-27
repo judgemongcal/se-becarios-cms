@@ -121,7 +121,6 @@ app.post(
   '/add-admin-credentials',
   upload.single('admin-image'),
   async (req, res) => {
-    console.log('hello');
     console.log(req.body);
     const dateTime = new Date();
     const {

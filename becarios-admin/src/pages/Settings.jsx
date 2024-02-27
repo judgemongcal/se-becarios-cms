@@ -15,6 +15,7 @@ import {
   AddAdminSuccessPopup,
   AssignSuperAdminSuccessPopup,
   RemoveAdminSuccessPopup,
+  RequestErrorPopup,
 } from '../components/global/Popup';
 import { useSignOutContext } from '../hooks/useSignOutContext';
 import { useEffect } from 'react';
@@ -34,6 +35,8 @@ function Settings() {
     isAssignSuccessful,
     setIsAssignSuccessful,
     isLoading,
+    isFailed,
+    setIsFailed,
   } = useSettingsContext();
 
   const { isSignOutClicked } = useSignOutContext();
@@ -72,6 +75,17 @@ function Settings() {
     }
   }, [isAssignSuccessful, setIsAssignSuccessful]);
 
+  useEffect(() => {
+    if (isFailed) {
+      const timer = setTimeout(
+        () => setIsFailed(!isFailed),
+        3000,
+      );
+
+      return () => clearTimeout(timer);
+    }
+  }, [isFailed, setIsFailed]);
+
   return (
     <div className="flex flex-col justify-start lg:flex-row">
       <div className="navs">
@@ -90,6 +104,7 @@ function Settings() {
           {isAssignSuccessful && (
             <AssignSuperAdminSuccessPopup />
           )}
+          {isFailed && <RequestErrorPopup />}
 
           <h2 className="pb-2 text-left text-[1.25rem] font-medium md:text-[1.5rem]">
             Manage Accounts
