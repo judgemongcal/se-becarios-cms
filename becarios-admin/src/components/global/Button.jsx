@@ -923,6 +923,9 @@ function ConfirmEditAdminModalBtn() {
     currentDocId,
   } = useAdminContext();
 
+  const { setIsFailed, setIsEditSuccessful } =
+    useSettingsContext();
+
   function handleBack(e) {
     e.preventDefault();
     // resetAdminFields();
@@ -954,28 +957,30 @@ function ConfirmEditAdminModalBtn() {
         },
       );
 
+      if (response.status != 200) {
+        throw new Error('Error editing admin credentials');
+      }
+
       if (adminPassword != '' && adminPassword != null) {
-        try {
-          console.log(adminEmail);
-          const res = await fetch(
-            `http://localhost:5001/updatePasswordByEmail`,
-            {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({
-                email: adminEmail,
-                newPassword: adminPassword,
-              }),
+        console.log(adminEmail);
+        const res = await fetch(
+          `http://localhost:5001/updatePasswordByEmail`,
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
             },
-          );
-          console.log(res);
-        } catch (error) {
-          console.log(
-            `Error with updating password: `,
-            error,
-          );
+            body: JSON.stringify({
+              email: adminEmail,
+              newPassword: adminPassword,
+            }),
+          },
+        );
+        console.log(res);
+
+        if (res.status != 200) {
+          console.log('I am an error');
+          throw new Error('Error updating password');
         }
       }
       const data = {
@@ -988,18 +993,20 @@ function ConfirmEditAdminModalBtn() {
             : `${userInfo.firstName} ${userInfo.lastName} edited ${adminFirstName} ${adminLastName}'s administrator credentials'`,
       };
 
-      if (response.ok) {
+      if (response.status == 200) {
         await logActivity(data);
-        setIsAddAdminSuccessful(!isAddAdminSuccessful);
+        setIsEditSuccessful(true);
         setIsLoading(false);
         resetAdminFields();
-      }
 
-      setTimeout(function () {
-        window.location.reload();
-      }, 2000);
+        setTimeout(function () {
+          window.location.reload();
+        }, 2000);
+      }
     } catch (error) {
-      console.log(error);
+      console.log('1008: ' + error);
+      setIsLoading(false);
+      setIsFailed(true);
     }
   }
 

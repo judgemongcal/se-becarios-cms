@@ -36,6 +36,8 @@ export function SettingsProvider({ children }) {
     useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isFailed, setIsFailed] = useState(false);
+  const [isEditSuccessful, setIsEditSuccessful] =
+    useState(false);
   const contextValue = {
     isSAGearClicked,
     setIsSAGearClicked,
@@ -61,6 +63,8 @@ export function SettingsProvider({ children }) {
     setIsLoading,
     isFailed,
     setIsFailed,
+    isEditSuccessful,
+    setIsEditSuccessful,
   };
 
   useEffect(() => {
@@ -107,6 +111,17 @@ export function SettingsProvider({ children }) {
       return () => clearTimeout(timer);
     }
   }, [isFailed, setIsFailed]);
+
+  useEffect(() => {
+    if (isEditSuccessful) {
+      const timer = setTimeout(
+        () => setIsEditSuccessful(!isEditSuccessful),
+        3000,
+      );
+
+      return () => clearTimeout(timer);
+    }
+  }, [isEditSuccessful, setIsEditSuccessful]);
 
   return (
     <SettingsContext.Provider value={contextValue}>

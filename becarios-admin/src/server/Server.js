@@ -243,16 +243,16 @@ app.post(
           console.log(`Error in updating doc: ${error}`);
         });
 
-      return res.send({
-        message:
-          'file uploaded to firebase storage and doc updated',
-        name: req.image,
-        type: req.image,
-        downloadURL: downloadURL,
+      res.status(200).json({
+        success: true,
+        message: 'Successfully edited',
       });
     } catch (error) {
       console.log(error);
-      return res.status(400).send(error.message);
+      res.status(500).json({
+        success: false,
+        error: 'Failed to edit admin',
+      });
     }
   },
 );
@@ -276,7 +276,8 @@ app.post('/updatePasswordByEmail', async (req, res) => {
     });
 
     res.status(200).json({
-      message: `Password updated successfully for user with email: ${email}`,
+      success: true,
+      message: 'Successfully updated password',
     });
   } catch (error) {
     console.error(
@@ -284,7 +285,8 @@ app.post('/updatePasswordByEmail', async (req, res) => {
       error.message,
     );
     res.status(500).json({
-      error: 'An error occurred while updating password',
+      success: false,
+      error: 'Error updating password',
     });
   }
 });

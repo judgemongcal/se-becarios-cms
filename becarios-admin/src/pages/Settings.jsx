@@ -14,6 +14,7 @@ import {
 import {
   AddAdminSuccessPopup,
   AssignSuperAdminSuccessPopup,
+  EditAdminInfoSuccessPopup,
   RemoveAdminSuccessPopup,
   RequestErrorPopup,
 } from '../components/global/Popup';
@@ -37,6 +38,7 @@ function Settings() {
     isLoading,
     isFailed,
     setIsFailed,
+    isEditSuccessful,
   } = useSettingsContext();
 
   const { isSignOutClicked } = useSignOutContext();
@@ -58,6 +60,9 @@ function Settings() {
           )}
           {isAssignSuccessful && (
             <AssignSuperAdminSuccessPopup />
+          )}
+          {isEditSuccessful && (
+            <EditAdminInfoSuccessPopup />
           )}
           {isFailed && <RequestErrorPopup />}
 
