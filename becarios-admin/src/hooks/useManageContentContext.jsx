@@ -61,6 +61,7 @@ export function ManageContentProvider({ children }) {
   ] = useState(false);
 
   const [currentPage, setCurrentPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
 
   // Event handlers
   const handleNavigateLeft = () => {
@@ -172,6 +173,8 @@ export function ManageContentProvider({ children }) {
     handleNavigateRight,
     setCurrentPage,
     currentPage,
+    isLoading,
+    setIsLoading,
   };
 
   return (

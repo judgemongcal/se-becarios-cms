@@ -24,6 +24,7 @@ import { useManageContentContext } from '../hooks/useManageContentContext';
 import { getCurrentPostedArticleCount } from '../server/API/ManageContentAPI.js';
 import { useUserInfoContext } from '../hooks/useUserInfoContext.jsx';
 import { useArchiveContext } from '../hooks/useArchiveContext.jsx';
+import Sample from './Sample';
 
 function ManageContent() {
   const { isSignOutClicked } = useSignOutContext();
@@ -41,6 +42,7 @@ function ManageContent() {
     isPostRejectSuccess,
     isEditRejectSuccess,
     isArchiveRejectSuccess,
+    isLoading,
   } = useManageContentContext();
 
   const { setIsArchiveEdit } = useArchiveContext();
@@ -143,6 +145,7 @@ function ManageContent() {
         </div>
       </div>
       {isSignOutClicked && <SignOutModal />}
+      {isLoading && <Sample />}
       {isPendingItemClicked && <ViewArticleModal />}
       {isApproveBtnClicked && <ApprovePostModal />}
       {isRejectBtnClicked && <RejectPostModal />}
