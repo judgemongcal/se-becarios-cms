@@ -1,4 +1,5 @@
 import {
+  DeleteFailedModal,
   DeletePostModal,
   DeleteReqSuccessModal,
   RetrieveArchivedPostModal,
@@ -16,7 +17,8 @@ import { useSignOutContext } from '../hooks/useSignOutContext';
 import { useManageContentContext } from '../hooks/useManageContentContext';
 import { useArchiveContext } from '../hooks/useArchiveContext';
 import React, { useState, useEffect } from 'react';
-import {getCurrentArchivedArticleCount} from '../server/API/ManageContentAPI.js';
+import { getCurrentArchivedArticleCount } from '../server/API/ManageContentAPI.js';
+import Sample from './Sample.jsx';
 
 function PostArchives() {
   const { isSignOutClicked } = useSignOutContext();
@@ -28,15 +30,17 @@ function PostArchives() {
     isPutBackBtnClicked,
     isPutBackSuccessful,
     isPutBackBtnFailed,
+    isLoading,
   } = useArchiveContext();
-  const {searchQuery, sortOrder, setSearchQuery } =
+  const { searchQuery, sortOrder, setSearchQuery } =
     useManageContentContext();
 
-    // State for pagination
+  // State for pagination
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const [noMatchesFound, setNoMatchesFound] = useState(false);
-  
+  const [noMatchesFound, setNoMatchesFound] =
+    useState(false);
+
   useEffect(() => {
     setSearchQuery('');
   }, []); // not working as intended
@@ -47,24 +51,33 @@ function PostArchives() {
       try {
         setNoMatchesFound(false);
         //const currentSearchQuery = searchQuery; // Capture the current searchQuery value
-        const articlesCount = await getCurrentArchivedArticleCount(searchQuery);
+        const articlesCount =
+          await getCurrentArchivedArticleCount(searchQuery);
         console.log('count: ', articlesCount);
 
-          const articlesPerPage = 9;
-          const calculatedTotalPages = Math.ceil(articlesCount / articlesPerPage);
-          setTotalPages(calculatedTotalPages);
-          if (articlesCount === 0 && searchQuery !== '') {
-            setNoMatchesFound(true);
-            setCurrentPage(0);
+        const articlesPerPage = 9;
+        const calculatedTotalPages = Math.ceil(
+          articlesCount / articlesPerPage,
+        );
+        setTotalPages(calculatedTotalPages);
+        if (articlesCount === 0 && searchQuery !== '') {
+          setNoMatchesFound(true);
+          setCurrentPage(0);
           // No matches found
-          console.log(`No matches found for "${currentSearchQuery}"`);
-          } else { // Reset the current page to 1 when the searchQuery changes
-            setCurrentPage(1);
-          }
-          console.log("total articles now: ", articlesCount);
-          console.log("total pages changed: ", totalPages);
+          console.log(
+            `No matches found for "${currentSearchQuery}"`,
+          );
+        } else {
+          // Reset the current page to 1 when the searchQuery changes
+          setCurrentPage(1);
+        }
+        console.log('total articles now: ', articlesCount);
+        console.log('total pages changed: ', totalPages);
       } catch (error) {
-        console.error('Error fetching total articles:', error);
+        console.error(
+          'Error fetching total articles:',
+          error,
+        );
       }
     };
 
@@ -94,21 +107,35 @@ function PostArchives() {
         </h2>
         <div className=" flex w-full flex-col justify-evenly gap-3 ">
           <SearchField type="Archived" />
-          <ContentFilters currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
+          <ContentFilters
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+          />
           {searchQuery !== '' && noMatchesFound ? (
-            <div className=" text-center text-2xl text-red-500 mt-32">
-                No matches found for "{searchQuery}"
-           </div>
-          ):( 
-          <>  
-            <div className="pagination mt-[2rem]">
-              <PaginationLabel currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
+            <div className=" mt-32 text-center text-2xl text-red-500">
+              No matches found for "{searchQuery}"
             </div>
-            <ContentList type="Archived" currentPage={currentPage} totalPages={totalPages} />
-          </>
+          ) : (
+            <>
+              <div className="pagination mt-[2rem]">
+                <PaginationLabel
+                  currentPage={currentPage}
+                  totalPages={totalPages}
+                  onPageChange={handlePageChange}
+                />
+              </div>
+              <ContentList
+                type="Archived"
+                currentPage={currentPage}
+                totalPages={totalPages}
+              />
+            </>
           )}
         </div>
       </div>
+      {isDeleteFailed && <DeleteFailedModal />}
+      {isLoading && <Sample />}
       {isDeleteBtnClicked && <DeletePostModal />}
       {isPutBackBtnClicked && <RetrieveArchivedPostModal />}
       {isPutBackSuccessful && <RetrieveReqSuccessModal />}

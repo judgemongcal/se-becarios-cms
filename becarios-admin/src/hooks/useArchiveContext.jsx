@@ -1,4 +1,9 @@
-import { createContext, useContext, useState } from 'react';
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 
 export const ArchiveContext = createContext();
 
@@ -23,6 +28,17 @@ export function ArchiveProvider({ children }) {
   const [isPutBackFailed, setIsPutBackFailed] =
     useState(false);
   const [isArchiveEdit, setIsArchiveEdit] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    let timer;
+    if (isDeleteFailed) {
+      timer = setTimeout(() => {
+        setIsDeleteFailed(false);
+      }, 3000);
+    }
+    return () => clearTimeout(timer);
+  }, [isDeleteFailed, setIsDeleteFailed]);
 
   const contextValue = {
     isDeleteBtnClicked,
@@ -43,6 +59,8 @@ export function ArchiveProvider({ children }) {
     setIsPutBackFailed,
     isArchiveEdit,
     setIsArchiveEdit,
+    isLoading,
+    setIsLoading,
   };
 
   return (

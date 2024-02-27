@@ -1367,6 +1367,7 @@ function SubmitDeleteModalBtn() {
     setIsDeleteSuccessful,
     isDeleteFailed,
     setIsDeleteFailed,
+    setIsLoading,
   } = useArchiveContext();
 
   const { userInfo } = useUserInfoContext();
@@ -1378,7 +1379,8 @@ function SubmitDeleteModalBtn() {
 
   async function handleDelete(e) {
     e.preventDefault();
-
+    setIsLoading(true);
+    setIsDeleteBtnClicked(false);
     const doc = await fetchArticleById(currentDocId);
     try {
       const response =
@@ -1397,10 +1399,12 @@ function SubmitDeleteModalBtn() {
           'Failed to delete article: ' + response,
         );
       }
+      setIsLoading(false);
       setIsDeleteBtnClicked(!isDeleteBtnClicked);
       setIsDeleteSuccessful(true);
     } catch (error) {
-      setIsDeleteFailed(!isDeleteFailed);
+      setIsLoading(false);
+      setIsDeleteFailed(true);
     }
   }
 
@@ -1484,7 +1488,7 @@ function SubmitArchiveModalBtn() {
       setIsLoading(false);
       setIsArchiveFailed(true);
       console.log('Error in archiving: ' + error);
-      // setIsArchiveBtnPressed(!isArchiveBtnPressed);
+      setIsArchiveBtnPressed(!isArchiveBtnPressed);
     }
   }
 
