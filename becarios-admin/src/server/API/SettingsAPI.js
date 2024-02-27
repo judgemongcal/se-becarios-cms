@@ -120,5 +120,6 @@ export async function assignAsSuperAdmin(
     return { success: true };
   } catch (error) {
     console.log(error);
+    return { success: false };
   }
 }

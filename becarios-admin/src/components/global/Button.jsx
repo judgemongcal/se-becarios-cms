@@ -837,6 +837,8 @@ function ConfirmAssignSuperAdminModalBtn() {
     setIsAddAdminClicked,
     setIsAssignBtnClicked,
     setIsAssignSuccessful,
+    setIsLoading,
+    setIsFailed,
   } = useSettingsContext();
 
   const { currentDocId, adminFirstName, adminLastName } =
@@ -853,6 +855,7 @@ function ConfirmAssignSuperAdminModalBtn() {
 
   async function handleAssign(e) {
     e.preventDefault();
+    setIsLoading(true);
     try {
       const response = await assignAsSuperAdmin(
         currentDocId,
@@ -867,6 +870,7 @@ function ConfirmAssignSuperAdminModalBtn() {
         };
         await logActivity(data);
       } else {
+        setIsLoading(false);
         throw new Error(
           'Failed to assign as Super Administrator: ' +
             response.statusText,
@@ -874,8 +878,12 @@ function ConfirmAssignSuperAdminModalBtn() {
       }
       setIsAssignBtnClicked(false);
       setIsAssignSuccessful(true);
+      setIsLoading(false);
     } catch (error) {
+      setIsAssignBtnClicked(false);
+      setIsLoading(false);
       console.log(error);
+      setIsFailed(true);
     }
   }
 
