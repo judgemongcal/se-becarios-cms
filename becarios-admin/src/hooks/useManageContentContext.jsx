@@ -62,6 +62,8 @@ export function ManageContentProvider({ children }) {
 
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
+  const [isRequestFailed, setIsRequestFailed] =
+    useState(false);
 
   // Event handlers
   const handleNavigateLeft = () => {
@@ -115,6 +117,16 @@ export function ManageContentProvider({ children }) {
     isEditApproveSuccess,
     isArchiveApproveSuccess,
   ]);
+
+  useEffect(() => {
+    let timer;
+    if (isRequestFailed) {
+      timer = setTimeout(() => {
+        setIsRequestFailed(false);
+      }, 3000);
+    }
+    return () => clearTimeout(timer);
+  }, [isRequestFailed, setIsRequestFailed]);
 
   const contextValue = {
     currentTitle,
@@ -175,6 +187,8 @@ export function ManageContentProvider({ children }) {
     currentPage,
     isLoading,
     setIsLoading,
+    isRequestFailed,
+    setIsRequestFailed,
   };
 
   return (

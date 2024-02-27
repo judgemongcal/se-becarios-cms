@@ -123,6 +123,7 @@ function ApproveModalBtn() {
     setIsEditApproveSuccess,
     setIsArchiveApproveSuccess,
     setIsLoading,
+    setIsRequestFailed,
   } = useManageContentContext();
 
   const { userInfo } = useUserInfoContext();
@@ -199,6 +200,8 @@ function ApproveModalBtn() {
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
+      setIsRequestFailed(true);
+      setIsApproveBtnClicked(false);
       console.log('Error with Approving Request: ' + error);
     }
   }
@@ -234,6 +237,7 @@ function RejectModalBtn() {
     setIsArchiveRejectSuccess,
     setIsRejectBtnClicked,
     setIsLoading,
+    setIsRequestFailed,
   } = useManageContentContext();
 
   const { userInfo } = useUserInfoContext();
@@ -311,7 +315,9 @@ function RejectModalBtn() {
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
-      setIsRejectBtnClicked(true);
+      setIsRejectBtnClicked(false);
+      setIsRequestFailed(true);
+
       console.log('Error with Rejecting Request: ' + error);
     }
   }

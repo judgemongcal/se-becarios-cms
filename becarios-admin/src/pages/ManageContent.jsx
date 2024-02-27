@@ -17,6 +17,7 @@ import {
   PostReqRejectSuccessModal,
   PostReqSuccessModal,
   RejectPostModal,
+  RequestFailedModal,
   SignOutModal,
 } from '../components/global/Modal';
 import ViewArticleModal from '../components/manage-content/ViewArticleModal';
@@ -43,6 +44,7 @@ function ManageContent() {
     isEditRejectSuccess,
     isArchiveRejectSuccess,
     isLoading,
+    isRequestFailed,
   } = useManageContentContext();
 
   const { setIsArchiveEdit } = useArchiveContext();
@@ -146,6 +148,7 @@ function ManageContent() {
       </div>
       {isSignOutClicked && <SignOutModal />}
       {isLoading && <Sample />}
+      {isRequestFailed && <RequestFailedModal />}
       {isPendingItemClicked && <ViewArticleModal />}
       {isApproveBtnClicked && <ApprovePostModal />}
       {isRejectBtnClicked && <RejectPostModal />}
