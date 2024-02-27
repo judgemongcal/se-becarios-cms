@@ -16,6 +16,7 @@ import {
   ArchiveReqFailedModal,
   ArchiveReqSuccessModal,
   EditPostModal,
+  EditReqFailedModal,
   EditReqSuccessModal,
   PostReqSuccessModal,
   SignOutModal,
@@ -45,6 +46,7 @@ function EditArticle() {
     isArchiveFailed,
     setIsArchived,
     isLoading,
+    isEditFailed,
   } = useEditArticleContext();
 
   const {
@@ -123,6 +125,7 @@ function EditArticle() {
       {isArchiveFailed && <ArchiveReqFailedModal />}
       {isEditConfirmed && <EditReqSuccessModal />}
       {isLoading && <Sample />}
+      {isEditFailed && <EditReqFailedModal />}
       {isSignOutClicked && <SignOutModal />}
     </div>
   );

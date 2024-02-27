@@ -36,18 +36,19 @@ export function EditArticleProvider({ children }) {
     useState(false);
   const [isArchiveFailed, setIsArchiveFailed] =
     useState(false);
+  const [isEditFailed, setIsEditFailed] = useState(false);
   const [isArchived, setIsArchived] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  // useEffect(() => {
-  //   let timer;
-  //   if (isArchiveFailed) {
-  //     timer = setTimeout(() => {
-  //       setIsArchiveFailed(false);
-  //     }, 3000);
-  //   }
-  //   return () => clearTimeout(timer);
-  // }, [isArchiveFailed, setIsArchiveFailed]);
+  useEffect(() => {
+    let timer;
+    if (isEditFailed) {
+      timer = setTimeout(() => {
+        setIsEditFailed(false);
+      }, 3000);
+    }
+    return () => clearTimeout(timer);
+  }, [isEditFailed, setIsEditFailed]);
 
   const contextValue = {
     EditArticleTitle,
@@ -76,6 +77,8 @@ export function EditArticleProvider({ children }) {
     setIsArchived,
     isLoading,
     setIsLoading,
+    isEditFailed,
+    setIsEditFailed,
   };
 
   return (

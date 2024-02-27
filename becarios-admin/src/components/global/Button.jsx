@@ -1257,6 +1257,7 @@ function SubmitEditModalBtn() {
     setIsArchiveFailed,
     isLoading,
     setIsLoading,
+    setIsEditFailed,
   } = useEditArticleContext();
 
   const {
@@ -1333,7 +1334,7 @@ function SubmitEditModalBtn() {
     } catch (error) {
       console.log('Error in submitting article: ' + error);
       setIsLoading(false);
-      setIsArchiveFailed(!isArchiveFailed);
+      setIsEditFailed(true);
     }
   }
 
