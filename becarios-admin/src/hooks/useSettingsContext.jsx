@@ -1,4 +1,9 @@
-import { createContext, useContext, useState } from 'react';
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 
 export const SettingsContext = createContext();
 
@@ -57,6 +62,51 @@ export function SettingsProvider({ children }) {
     isFailed,
     setIsFailed,
   };
+
+  useEffect(() => {
+    if (isAddAdminSuccessful) {
+      const timer = setTimeout(
+        () =>
+          setIsAddAdminSuccessful(!isAddAdminSuccessful),
+        3000,
+      );
+
+      return () => clearTimeout(timer);
+    }
+  }, [isAddAdminSuccessful, setIsAddAdminSuccessful]);
+
+  useEffect(() => {
+    if (isRemoveSuccessful) {
+      const timer = setTimeout(
+        () => setIsRemoveSuccessful(!isRemoveSuccessful),
+        3000,
+      );
+
+      return () => clearTimeout(timer);
+    }
+  }, [isRemoveSuccessful, setIsRemoveSuccessful]);
+
+  useEffect(() => {
+    if (isAssignSuccessful) {
+      const timer = setTimeout(
+        () => setIsAssignSuccessful(!isAssignSuccessful),
+        3000,
+      );
+
+      return () => clearTimeout(timer);
+    }
+  }, [isAssignSuccessful, setIsAssignSuccessful]);
+
+  useEffect(() => {
+    if (isFailed) {
+      const timer = setTimeout(
+        () => setIsFailed(!isFailed),
+        3000,
+      );
+
+      return () => clearTimeout(timer);
+    }
+  }, [isFailed, setIsFailed]);
 
   return (
     <SettingsContext.Provider value={contextValue}>
