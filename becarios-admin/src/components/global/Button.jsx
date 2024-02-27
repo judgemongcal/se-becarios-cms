@@ -1429,6 +1429,7 @@ function SubmitArchiveModalBtn() {
     isArchiveConfirmed,
     setIsArchiveConfirmed,
     setIsLoading,
+    setIsArchiveFailed,
   } = useEditArticleContext();
 
   const { id } = useParams();
@@ -1444,6 +1445,8 @@ function SubmitArchiveModalBtn() {
 
   async function handleArchive(e) {
     setIsLoading(true);
+    setIsArchiveBtnPressed(false);
+
     try {
       e.preventDefault();
       const response = await archiveArticlebyID(
@@ -1479,9 +1482,9 @@ function SubmitArchiveModalBtn() {
       setIsArchiveConfirmed(true);
     } catch (error) {
       setIsLoading(false);
+      setIsArchiveFailed(true);
       console.log('Error in archiving: ' + error);
-      setIsArchiveConfirmed(!isArchiveConfirmed);
-      setIsArchiveBtnPressed(!isArchiveBtnPressed);
+      // setIsArchiveBtnPressed(!isArchiveBtnPressed);
     }
   }
 

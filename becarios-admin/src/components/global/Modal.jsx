@@ -491,6 +491,27 @@ function EditReqFailedModal({ type }) {
   );
 }
 
+function ArchiveReqFailedModal() {
+  const { userInfo } = useUserInfoContext();
+  return (
+    <div className="modal-bg bg-brand-input md:bg-modal-bg  justify-cente fixed top-0 z-[1000] flex h-[100%] w-[100%] items-center">
+      <div className="modal-container bg-brand-input rounded-10 3xl:w-[25%] mx-auto flex w-[100%] flex-col justify-center px-[2rem] py-[2.25rem] text-center md:w-[50%] xl:w-[35%] 2xl:w-[500px]">
+        <FaRegCircleXmark className="fill-brand-red stroke-brand-red mb-4 h-[100px] w-auto stroke-[0.055px]" />
+        <h1 className="text-brand-red mb-6 text-[1.5rem] font-semibold leading-[1.65rem]">
+          An error has occured while
+          <br />
+          processing your archive article request.
+        </h1>
+        <p className="mx-[3rem] mb-[2rem] text-[1rem] font-medium">
+          Please try again later.
+          <br />
+          We appreciate your patience!
+        </p>
+      </div>
+    </div>
+  );
+}
+
 function EditReqRejectSuccessModal({ type }) {
   const { userInfo } = useUserInfoContext();
   return (
@@ -592,28 +613,28 @@ function RetrieveReqSuccessModal() {
   );
 }
 
-function ArchiveReqFailedModal() {
-  const { userInfo } = useUserInfoContext();
-  const isSuperAdmin = userInfo.role === 'Super Admin';
+// function ArchiveReqFailedModal() {
+//   const { userInfo } = useUserInfoContext();
+//   const isSuperAdmin = userInfo.role === 'Super Admin';
 
-  return (
-    <div className="modal-bg bg-brand-input md:bg-modal-bg  justify-cente fixed top-0 z-[1000] flex h-[100%] w-[100%] items-center">
-      <div className="modal-container bg-brand-input rounded-10 3xl:w-[25%] mx-auto flex w-[100%] flex-col justify-center px-[2rem] py-[2.25rem] text-center md:w-[50%] xl:w-[35%] 2xl:w-[500px]">
-        <FaRegCircleXmark className="fill-brand-red stroke-brand-red mb-4 h-[100px] w-auto stroke-[0.055px]" />
-        <h1 className="text-brand-blue mb-6 text-[1.5rem] font-semibold leading-[1.65rem]">
-          An error has occured when processing your request.
-        </h1>
+//   return (
+//     <div className="modal-bg bg-brand-input md:bg-modal-bg  justify-cente fixed top-0 z-[1000] flex h-[100%] w-[100%] items-center">
+//       <div className="modal-container bg-brand-input rounded-10 3xl:w-[25%] mx-auto flex w-[100%] flex-col justify-center px-[2rem] py-[2.25rem] text-center md:w-[50%] xl:w-[35%] 2xl:w-[500px]">
+//         <FaRegCircleXmark className="fill-brand-red stroke-brand-red mb-4 h-[100px] w-auto stroke-[0.055px]" />
+//         <h1 className="text-brand-blue mb-6 text-[1.5rem] font-semibold leading-[1.65rem]">
+//           An error has occured when processing your request.
+//         </h1>
 
-        <p className="mx-[3rem] mb-[2rem] text-[1rem] font-medium">
-          We apologize for the inconvenience. Please try
-          again.
-        </p>
+//         <p className="mx-[3rem] mb-[2rem] text-[1rem] font-medium">
+//           We apologize for the inconvenience. Please try
+//           again.
+//         </p>
 
-        <TryAgainBtn />
-      </div>
-    </div>
-  );
-}
+//         <TryAgainBtn />
+//       </div>
+//     </div>
+//   );
+// }
 
 function RemoveAdminModal() {
   const { adminFirstName, adminLastName, adminRole } =
@@ -722,7 +743,7 @@ export {
   EditPostModal,
   ArchivePostModal,
   ArchiveReqSuccessModal,
-  ArchiveReqFailedModal,
+  // ArchiveReqFailedModal,
   RetrieveArchivedPostModal,
   PostReqSuccessModal,
   PostReqRejectSuccessModal,
@@ -737,4 +758,5 @@ export {
   ArchiveReqRejectSuccessModal,
   PostReqFailedModal,
   EditReqFailedModal,
+  ArchiveReqFailedModal,
 };

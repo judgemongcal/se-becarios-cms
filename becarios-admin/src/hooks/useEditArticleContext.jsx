@@ -50,6 +50,16 @@ export function EditArticleProvider({ children }) {
     return () => clearTimeout(timer);
   }, [isEditFailed, setIsEditFailed]);
 
+  useEffect(() => {
+    let timer;
+    if (isArchiveFailed) {
+      timer = setTimeout(() => {
+        setIsArchiveFailed(false);
+      }, 3000);
+    }
+    return () => clearTimeout(timer);
+  }, [isArchiveFailed, setIsArchiveFailed]);
+
   const contextValue = {
     EditArticleTitle,
     setEditArticleTitle,
