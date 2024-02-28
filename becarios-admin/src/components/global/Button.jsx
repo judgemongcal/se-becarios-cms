@@ -352,12 +352,36 @@ function EditArticleBtn() {
     isArchived,
   } = useEditArticleContext();
 
+  const { articleTitle, articleBody, articleImageSrc } =
+    useCreateArticleContext();
+
+  const [isInputComplete, setIsInputComplete] =
+    useState(false);
+
+  useEffect(() => {
+    if (
+      articleTitle.length < 1 ||
+      (articleBody.length < 1 &&
+        articleImageSrc == undefined)
+    ) {
+      setIsInputComplete(false);
+    } else if (!articleImageSrc) {
+      setIsInputComplete(false);
+    } else {
+      setIsInputComplete(true);
+    }
+  }, [
+    articleBody.length,
+    articleTitle.length,
+    articleImageSrc,
+  ]);
+
   function handleClickPreview(e) {
     e.preventDefault();
     setIsPreview(!isPreview);
   }
 
-  function handleSubmitEidt(e) {
+  function handleSubmitEdit(e) {
     e.preventDefault();
     setIsEditBtnPressed(!isEditBtnPressed);
   }
@@ -386,8 +410,13 @@ function EditArticleBtn() {
         {isPreview ? 'Edit Article' : 'Preview Article'}
       </button>
       <button
-        className="bg-brand-yellow shadow-shadow-db rounded-10 hover:bg-brand-yellow-dark w-[100%] py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-100"
-        onClick={(e) => handleSubmitEidt(e)}
+        className={`bg-brand-yellow shadow-shadow-db rounded-10 hover:bg-brand-yellow-dark w-[100%] py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-100
+                    ${
+                      isInputComplete
+                        ? ''
+                        : 'disable pointer-events-none opacity-60'
+                    }`}
+        onClick={(e) => handleSubmitEdit(e)}
       >
         {isArchived ? 'Resubmit Article' : 'Submit Edit'}
       </button>
