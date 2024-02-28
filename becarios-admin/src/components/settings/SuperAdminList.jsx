@@ -5,6 +5,7 @@ import {
 } from '../global/Button';
 import { SuperAdminListItem } from './SuperAdminListItem';
 import { fetchSuperAdmin } from '../../server/API/SettingsAPI';
+import ListSpinner from '../global/ListSpinner';
 function SuperAdminList() {
   const [superAdmin, setSuperAdmin] = useState([]);
 
@@ -25,6 +26,7 @@ function SuperAdminList() {
         <SuperAdminSettingsBtn />
       </div>
       <div className="items flex flex-col gap-4">
+        {superAdmin.length < 1 && <ListSpinner />}
         {superAdmin.map((admin) => (
           <SuperAdminListItem
             key={admin.id}
