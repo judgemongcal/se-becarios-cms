@@ -1,10 +1,12 @@
 import { useUserInfoContext } from '../../hooks/useUserInfoContext';
+import ListSpinner from './ListSpinner';
 
 function UserInfo({ type }) {
   const { userInfo } = useUserInfoContext();
 
   return (
     <div className="user-info ml-5 flex flex-col items-center justify-center gap-4">
+      {!userInfo.firstName && <ListSpinner />}
       {userInfo.image && (
         <img
           src={`${
@@ -22,11 +24,9 @@ function UserInfo({ type }) {
           }`}
         />
       )}
-      {type != 'home' && (
+      {type != 'home' && userInfo && userInfo.firstName && (
         <h1>
-          {userInfo && userInfo.firstName
-            ? `${userInfo.firstName} ${userInfo.lastName}`
-            : 'Loading...'}
+          {userInfo.firstName} {userInfo.lastName}
         </h1>
       )}
     </div>
