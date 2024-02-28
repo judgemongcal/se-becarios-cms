@@ -396,8 +396,33 @@ function EditArticleBtn() {
 }
 
 function SubmitArticleBtn() {
-  const { isPreview, setIsPreview, setIsSubmitBtnPressed } =
-    useCreateArticleContext();
+  const {
+    isPreview,
+    setIsPreview,
+    setIsSubmitBtnPressed,
+    articleTitle,
+    articleBody,
+    articleImgFile,
+  } = useCreateArticleContext();
+
+  const [isInputComplete, setIsInputComplete] =
+    useState(false);
+
+  useEffect(() => {
+    if (
+      articleTitle.length < 1 ||
+      articleBody.length < 1 ||
+      !articleImgFile
+    ) {
+      setIsInputComplete(false);
+    } else {
+      setIsInputComplete(true);
+    }
+  }, [
+    articleBody.length,
+    articleTitle.length,
+    articleImgFile,
+  ]);
 
   function handleClickPreview(e) {
     e.preventDefault();
@@ -418,7 +443,12 @@ function SubmitArticleBtn() {
         {isPreview ? 'Back to Editing' : 'Preview Post'}
       </button>
       <button
-        className="bg-brand-yellow shadow-shadow-db rounded-10 hover:bg-brand-yellow-dark w-[100%] py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-100"
+        className={`bg-brand-yellow shadow-shadow-db rounded-10 hover:bg-brand-yellow-dark w-[100%] py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-100
+                    ${
+                      isInputComplete
+                        ? ''
+                        : 'disable pointer-events-none opacity-60'
+                    }`}
         onClick={(e) => handleClickSubmit(e)}
       >
         Submit Post
