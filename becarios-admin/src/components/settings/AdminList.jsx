@@ -3,6 +3,8 @@ import { useSettingsContext } from '../../hooks/useSettingsContext';
 import { AdminSettingsBtn } from '../global/Button';
 import AdminListItem from './AdminListItem';
 import { fetchAllAdmins } from '../../server/API/SettingsAPI';
+import Spinner from '../global/Spinner';
+import ListSpinner from '../global/ListSpinner';
 
 function AdminList() {
   const [adminList, setAdminList] = useState([]);
@@ -26,6 +28,7 @@ function AdminList() {
         {/* <AdminListItem />
         <AdminListItem />
         <AdminListItem /> */}
+        {adminList.length < 1 && <ListSpinner />}
         {adminList.map((admin) => (
           <AdminListItem key={admin.id} admin={admin} />
         ))}
