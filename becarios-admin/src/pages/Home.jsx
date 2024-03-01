@@ -4,12 +4,10 @@ import UserInfo from '../components/global/UserInfo';
 import { useSignOutContext } from '../hooks/useSignOutContext';
 import {
   HiOutlineArchive,
-  HiOutlineClock,
   HiOutlineCog,
   HiOutlineFolderOpen,
   HiOutlineLogout,
   HiOutlinePlusCircle,
-  HiOutlineViewBoards,
 } from 'react-icons/hi';
 import { useUserInfoContext } from '../hooks/useUserInfoContext';
 import { SignOutModal } from '../components/global/Modal';
