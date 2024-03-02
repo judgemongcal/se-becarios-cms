@@ -32,6 +32,18 @@ export function CreateArticleProvider({ children }) {
   const [isCreateFailed, setIsCreateFailed] =
     useState(false);
   const [numOfChars, setNumOfChars] = useState(0);
+  const [isImageSizeExceeded, setIsImageSizeExceeded] =
+    useState(false);
+
+  useEffect(() => {
+    if (isImageSizeExceeded) {
+      const timeout = setTimeout(() => {
+        setIsImageSizeExceeded(false);
+      }, 3000);
+
+      return () => clearTimeout(timeout);
+    }
+  }, [isImageSizeExceeded, setIsImageSizeExceeded]);
 
   function resetAllFields() {
     setArticleBody('   ');

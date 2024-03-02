@@ -14,6 +14,7 @@ function ArticleImageField() {
     setArticleImageSrc,
     setArticleImgFile,
     articleImageSrc,
+    setIsImageSizeExceeded,
   } = useCreateArticleContext();
 
   const { id } = useParams();
@@ -39,24 +40,28 @@ function ArticleImageField() {
 
   function handleArticleImageSrcChange(e) {
     let file;
-  if (e.target) {
-    console.log(e.target.value);
-    file = e.target.files[0];
-  } else {
-    file = e;
+    if (e.target) {
+      console.log(e.target.value);
+      file = e.target.files[0];
+    } else {
+      file = e;
+    }
+    console.log(file);
+    if (file) {
+      if (file.size >= 25009669) {
+        setIsImageSizeExceeded(true);
+        return;
+      }
+      setArticleImageFileName(file.name);
+      setArticleImgFile(file);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setArticleImageSrc(reader.result);
+      };
+      reader.readAsDataURL(file);
+      setHasImage(true);
+    }
   }
-  console.log(file);
-  if (file) {
-    setArticleImageFileName(file.name);
-    setArticleImgFile(file);
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setArticleImageSrc(reader.result);
-    };
-    reader.readAsDataURL(file);
-    setHasImage(true);
-  }
-}
 
   useEffect(() => {
     setArticleImageSrc(articleImageSrc);
@@ -87,7 +92,9 @@ function ArticleImageField() {
       )}
       <div
         className={`rounded-8 flex w-full items-center justify-center bg-opacity-50 ${
-          isDragging ? 'border-dashed border-2 border-blue-500' : ''
+          isDragging
+            ? 'border-2 border-dashed border-blue-500'
+            : ''
         }`}
         style={{
           backgroundImage: articleImageSrc
@@ -101,12 +108,14 @@ function ArticleImageField() {
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
       >
-      <label
-        htmlFor="dropzone-file"
-        className={`hover:bg-brand-input rounded-8  shadow-shadow-db flex h-64 w-full cursor-pointer flex-col items-center justify-center ${
-          articleImageSrc ? articleImageSrc : 'bg-brand-light'
-        }`}
-      >
+        <label
+          htmlFor="dropzone-file"
+          className={`hover:bg-brand-input rounded-8  shadow-shadow-db flex h-64 w-full cursor-pointer flex-col items-center justify-center ${
+            articleImageSrc
+              ? articleImageSrc
+              : 'bg-brand-light'
+          }`}
+        >
           <div className=" z-50 flex flex-col items-center justify-center pb-6 pt-5 opacity-100">
             <FiUploadCloud className="mb-[1rem] h-auto w-[50px]" />
             <p className="mb-2 text-sm">
