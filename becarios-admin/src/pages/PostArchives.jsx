@@ -20,6 +20,7 @@ import { useArchiveContext } from '../hooks/useArchiveContext';
 import React, { useState, useEffect } from 'react';
 import { getCurrentArchivedArticleCount } from '../server/API/ManageContentAPI.js';
 import Sample from './Sample.jsx';
+import { ExportRecordsBtn } from '../components/global/Button.jsx';
 
 function PostArchives() {
   const { isSignOutClicked } = useSignOutContext();
@@ -133,6 +134,9 @@ function PostArchives() {
               />
             </>
           )}
+          <div className="flex justify-end">
+            <ExportRecordsBtn />
+          </div>
         </div>
       </div>
       {isPutBackFailed && <RetrieveReqFailedModal />}
