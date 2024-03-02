@@ -102,8 +102,8 @@ function ImageSizeExceededPopup() {
     <div className="bg-brand-red rounded-10 my-4 flex flex-row items-center justify-center gap-2 px-4 py-2 text-center text-white">
       <FaRegCircleXmark className="h-auto w-8 md:ml-[1rem] lg:ml-0" />
       <p className="ml-0 text-[10px] md:text-[12px] lg:ml-0">
-        Error! The image you uploaded exceeded 25MB. Choose
-        an image with a smaller file size.
+        Error! The image you uploaded exceeded 25MB. <br />
+        Choose an image with a smaller file size.
       </p>
     </div>
   );

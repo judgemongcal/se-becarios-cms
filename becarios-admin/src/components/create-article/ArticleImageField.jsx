@@ -48,18 +48,20 @@ function ArticleImageField() {
     }
     console.log(file);
     if (file) {
-      if (file.size >= 25009669) {
+      if (file.size >= 10000000) {
         setIsImageSizeExceeded(true);
-        return;
+        console.log('over');
+      } else {
+        console.log('under');
+        setArticleImageFileName(file.name);
+        setArticleImgFile(file);
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          setArticleImageSrc(reader.result);
+        };
+        reader.readAsDataURL(file);
+        setHasImage(true);
       }
-      setArticleImageFileName(file.name);
-      setArticleImgFile(file);
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setArticleImageSrc(reader.result);
-      };
-      reader.readAsDataURL(file);
-      setHasImage(true);
     }
   }
 

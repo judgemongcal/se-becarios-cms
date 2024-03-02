@@ -16,6 +16,7 @@ import {
 import { useCreateArticleContext } from '../hooks/useCreateArticleContext';
 import { useSignOutContext } from '../hooks/useSignOutContext';
 import Sample from './Sample';
+import { ImageSizeExceededPopup } from '../components/global/Popup';
 
 function CreateArticle() {
   const { isSignOutClicked } = useSignOutContext();
@@ -27,6 +28,7 @@ function CreateArticle() {
     resetAllFields,
     isCreateArticleLoading,
     isCreateFailed,
+    isImageSizeExceeded,
   } = useCreateArticleContext();
 
   useEffect(() => {
@@ -44,6 +46,9 @@ function CreateArticle() {
         {!isPreview ? (
           <>
             <PageTitle title="Create Post" />
+            {isImageSizeExceeded && (
+              <ImageSizeExceededPopup />
+            )}
             <form
               method="POST"
               encType="multipart/form-data"

@@ -80,6 +80,8 @@ export function CreateArticleProvider({ children }) {
     setIsCreateFailed,
     numOfChars,
     setNumOfChars,
+    isImageSizeExceeded,
+    setIsImageSizeExceeded,
   };
 
   return (
