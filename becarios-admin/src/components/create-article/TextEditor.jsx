@@ -34,10 +34,10 @@ import {
 
 import { useCreateArticleContext } from '../../hooks/useCreateArticleContext';
 import { useEffect } from 'react';
+import CharacterLimitIndicator from '../global/CharacterLimitIndicator';
 
 const MenuBar = () => {
   const { editor } = useCurrentEditor();
-  const { numOfChars } = useCreateArticleContext();
 
   if (!editor) {
     return null;
@@ -66,11 +66,7 @@ const MenuBar = () => {
           *
         </span>
       </p>
-      <p
-        className={`rounded-8 bg-brand-light mb-5 self-end p-3`}
-      >
-        {numOfChars} / 2500 characters
-      </p>
+      <CharacterLimitIndicator />
 
       <div
         className="bg-brand-black rounded-t-8 -mb-0.5 grid grid-cols-4 grid-rows-2 justify-evenly gap-4 p-4 md:grid-cols-7"
