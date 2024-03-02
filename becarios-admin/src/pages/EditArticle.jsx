@@ -54,6 +54,7 @@ function EditArticle() {
     setArticleImageFileName,
     setArticleImageSrc,
     setArticleBody,
+    setNumOfChars,
   } = useCreateArticleContext();
 
   useEffect(() => {
@@ -68,11 +69,12 @@ function EditArticle() {
         data.body,
         'text/html',
       );
-
+      setNumOfChars(
+        parsedContent.documentElement.innerText.length,
+      );
       // Check if the parsed content is different from the current articleBody state
       const newContent =
         parsedContent.documentElement.innerHTML;
-      console.log(newContent);
       setArticleBody(newContent);
       // setArticleImageFileName(data.image);
       setArticleImageSrc(data.image);
