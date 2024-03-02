@@ -432,6 +432,7 @@ function SubmitArticleBtn() {
     articleTitle,
     articleBody,
     articleImgFile,
+    numOfChars,
   } = useCreateArticleContext();
 
   const [isInputComplete, setIsInputComplete] =
@@ -474,7 +475,7 @@ function SubmitArticleBtn() {
       <button
         className={`bg-brand-yellow shadow-shadow-db rounded-10 hover:bg-brand-yellow-dark w-[100%] py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-100
                     ${
-                      isInputComplete
+                      isInputComplete && numOfChars < 2500
                         ? ''
                         : 'disable pointer-events-none opacity-60'
                     }`}
