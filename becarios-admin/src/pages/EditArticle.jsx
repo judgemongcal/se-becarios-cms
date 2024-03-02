@@ -29,6 +29,7 @@ import { fetchArticleById } from '../server/API/ManageContentAPI';
 import { useEditArticleContext } from '../hooks/useEditArticleContext';
 import { useCreateArticleContext } from '../hooks/useCreateArticleContext';
 import Sample from './Sample';
+import { ImageSizeExceededPopup } from '../components/global/Popup';
 
 function EditArticle() {
   const { isSignOutClicked } = useSignOutContext();
@@ -55,6 +56,7 @@ function EditArticle() {
     setArticleImageSrc,
     setArticleBody,
     setNumOfChars,
+    isImageSizeExceeded,
   } = useCreateArticleContext();
 
   useEffect(() => {
@@ -88,6 +90,7 @@ function EditArticle() {
     setArticleImageFileName,
     setArticleImageSrc,
     setIsArchived,
+    setNumOfChars,
   ]);
 
   return (
@@ -103,6 +106,9 @@ function EditArticle() {
         {!isPreview ? (
           <>
             <PageTitle title="Edit Article" />
+            {isImageSizeExceeded && (
+              <ImageSizeExceededPopup />
+            )}
             <form
               method="POST"
               encType="multipart/form-data"
