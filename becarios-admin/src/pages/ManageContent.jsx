@@ -26,6 +26,7 @@ import { getCurrentPostedArticleCount } from '../server/API/ManageContentAPI.js'
 import { useUserInfoContext } from '../hooks/useUserInfoContext.jsx';
 import { useArchiveContext } from '../hooks/useArchiveContext.jsx';
 import Sample from './Sample';
+import { ExportRecordsBtn } from '../components/global/Button.jsx';
 
 function ManageContent() {
   const { isSignOutClicked } = useSignOutContext();
@@ -144,6 +145,9 @@ function ManageContent() {
               />
             </>
           )}
+          <div className="flex justify-end">
+            <ExportRecordsBtn />
+          </div>
         </div>
       </div>
       {isSignOutClicked && <SignOutModal />}

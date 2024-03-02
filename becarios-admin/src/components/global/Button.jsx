@@ -1662,7 +1662,7 @@ function GenerateReportBtn() {
 
 function ExportRecordsBtn() {
   return (
-    <button className="bg-brand-green shadow-shadow-db rounded-10 hover:bg-brand-green-dark px-4 py-2 text-[1rem] font-semibold text-[#FFFFFF] duration-300 md:px-5 md:text-[1.25rem]">
+    <button className="bg-brand-black shadow-shadow-db rounded-10 hover:bg-brand-green-dark mb-[1rem] p-4 text-[1rem] font-semibold text-[#FFFFFF] duration-300 md:px-5 md:text-[1.25rem]">
       Export Records
     </button>
   );
