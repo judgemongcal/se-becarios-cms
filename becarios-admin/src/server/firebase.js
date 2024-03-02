@@ -32,9 +32,6 @@ export const storage = getStorage(app);
 export async function getUserInfo(email, user) {
   const colRef = collection(db, 'admin_credentials'); // Collection Ref
   let admins;
-  // if (!user || user === '') {
-  //   throw new Error('User not authenticated');
-  // }
 
   // Get Collection Data
 

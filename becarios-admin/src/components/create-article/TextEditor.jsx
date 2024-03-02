@@ -37,6 +37,7 @@ import { useEffect } from 'react';
 
 const MenuBar = () => {
   const { editor } = useCurrentEditor();
+  const { numOfChars } = useCreateArticleContext();
 
   if (!editor) {
     return null;
@@ -64,6 +65,11 @@ const MenuBar = () => {
         <span className="text-brand-red align-middle text-[1.5rem]">
           *
         </span>
+      </p>
+      <p
+        className={`rounded-8 bg-brand-light mb-5 self-end p-3`}
+      >
+        {numOfChars} / 2500 characters
       </p>
 
       <div
@@ -349,10 +355,11 @@ const extensions = [
 ];
 
 export default function TextEditor() {
-  const { articleBody, setArticleBody } =
+  const { articleBody, setArticleBody, setNumOfChars } =
     useCreateArticleContext();
 
   function handleArticleBodyChange({ editor }) {
+    setNumOfChars(editor.getText().length);
     const updatedBody = editor.getHTML();
     setArticleBody(updatedBody);
     console.log(updatedBody);

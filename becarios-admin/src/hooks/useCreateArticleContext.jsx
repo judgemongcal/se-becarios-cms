@@ -31,6 +31,7 @@ export function CreateArticleProvider({ children }) {
   ] = useState(false);
   const [isCreateFailed, setIsCreateFailed] =
     useState(false);
+  const [numOfChars, setNumOfChars] = useState(0);
 
   function resetAllFields() {
     setArticleBody('   ');
@@ -65,6 +66,8 @@ export function CreateArticleProvider({ children }) {
     setIsCreateArticleLoading,
     isCreateFailed,
     setIsCreateFailed,
+    numOfChars,
+    setNumOfChars,
   };
 
   return (

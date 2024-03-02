@@ -239,24 +239,6 @@ export async function getCurrentPendingArticleCount(
   searchQuery = '',
 ) {
   try {
-    // const articleCollection = collection(db, 'articles');
-    // const q = query(
-    //   articleCollection,
-    //   where('isApproved', '==', false),
-    // );
-    // const pendingArticlesSnapshot1 = await getDocs(q);
-
-    // const pendingArticlesSnapshot3 = [
-    //   ...pendingArticlesSnapshot1.docs,
-    // ];
-
-    // const uniqueResults = Array.from(
-    //   new Set(pendingArticlesSnapshot3.map((a) => a.id)),
-    // ).map((id) => {
-    //   return pendingArticlesSnapshot3.find(
-    //     (a) => a.id === id,
-    //   );
-    // });
     let uniqueResults;
 
     if (searchQuery && searchQuery !== '') {
