@@ -31,6 +31,7 @@ import {
 import os from 'os';
 import path from 'path';
 import fetch from 'cross-fetch';
+import archiver from 'archiver';
 
 const serviceAccount = JSON.parse(
   fs.readFileSync('./serviceAccountKeys.json', 'utf8'),
@@ -542,6 +543,7 @@ app.post(
 
 app.get('/download-all-records', async (req, res) => {
   let articleDirectory;
+  let downloadsDirectory;
   const articleCollection = collection(db, 'articles');
   const postedArticlesQuery = query(
     articleCollection,
@@ -563,7 +565,7 @@ app.get('/download-all-records', async (req, res) => {
     const dateString = `-${year}-${month}-${day}`;
     const snapshot = await getDocs(postedArticlesQuery);
     const homeDirectory = os.homedir();
-    const downloadsDirectory = path.join(
+    downloadsDirectory = path.join(
       homeDirectory,
       `downloads/Becarios-Records${dateString}`,
     );
@@ -639,7 +641,7 @@ app.get('/download-all-records', async (req, res) => {
   } catch (error) {
     console.error('Error fetching posted articles:', error);
   }
-  res.download(articleDirectory);
+  res.download(downloadsDirectory);
 });
 
 export async function fetchPostedArticlesAndCreateFiles() {
