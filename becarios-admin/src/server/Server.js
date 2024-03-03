@@ -644,7 +644,7 @@ app.get('/download-all-records', async (req, res) => {
   res.download(downloadsDirectory);
 });
 
-export async function fetchPostedArticlesAndCreateFiles() {
+export async function fetchPostedArticlesAndCreateFiles2() {
   const articleCollection = collection(db, 'articles');
   const postedArticlesQuery = query(
     articleCollection,
@@ -743,3 +743,433 @@ export async function fetchPostedArticlesAndCreateFiles() {
     console.error('Error fetching posted articles:', error);
   }
 }
+
+app.get('/download-all-records2', async (req, res) => {
+  let downloadsDirectory;
+  const articleCollection = collection(db, 'articles');
+  const postedArticlesQuery = query(
+    articleCollection,
+    where('isPostApproved', '==', true),
+  );
+  try {
+    const dateDownload = new Date();
+    const day = String(dateDownload.getDate()).padStart(
+      2,
+      '0',
+    );
+    const month = String(
+      dateDownload.getMonth() + 1,
+    ).padStart(2, '0'); // Month is zero-based
+    const year = String(dateDownload.getFullYear());
+
+    // Create the string in the desired format
+    const dateString = `-${year}-${month}-${day}`;
+    const snapshot = await getDocs(postedArticlesQuery);
+    const homeDirectory = os.homedir();
+    downloadsDirectory = path.join(
+      homeDirectory,
+      `downloads/Becarios-Records${dateString}`,
+    );
+
+    if (!fs.existsSync(downloadsDirectory)) {
+      fs.mkdirSync(downloadsDirectory);
+    }
+
+    const outputZip = fs.createWriteStream(
+      `${downloadsDirectory}.zip`,
+    );
+    const archive = archiver('zip', {
+      zlib: { level: 9 }, // Sets the compression level
+    });
+
+    outputZip.on('close', () => {
+      console.log(
+        'Archive has been finalized and the output file descriptor has closed.',
+      );
+      res.download(`${downloadsDirectory}.zip`);
+    });
+
+    archive.on('error', (err) => {
+      throw err;
+    });
+
+    archive.pipe(outputZip);
+
+    for (const doc of snapshot.docs) {
+      const article = doc.data();
+      const { title, author, body, image } = article;
+
+      const cleanedTitle = title.replace(/[^\w\s]/gi, '');
+      const cleanedBody = body.replace(/<[^>]*>/g, '');
+      const folderName = `${cleanedTitle}`; // Folder name includes cleaned title and date
+      const articleDirectory = path.join(
+        downloadsDirectory,
+        folderName,
+      );
+
+      if (!fs.existsSync(articleDirectory)) {
+        fs.mkdirSync(articleDirectory);
+      }
+      const { seconds, nanoseconds } = article.datePosted;
+      const milliseconds =
+        seconds * 1000 + nanoseconds / 1000000;
+      const datePosted = new Date(milliseconds);
+      // Write text content to a txt file
+      const txtFilePath = path.join(
+        articleDirectory,
+        `${cleanedTitle}.txt`,
+      );
+      const fileContent = `Title: ${title}\nAuthor: ${author}\n\nBody: ${cleanedBody}\n\nDate Posted: ${datePosted}\nDate Downloaded: ${dateDownload}`;
+      await fs.promises.writeFile(txtFilePath, fileContent);
+
+      console.log(
+        `File ${cleanedTitle}.txt created successfully in the ${folderName} directory.`,
+      );
+
+      // Download image file
+      if (image) {
+        const imageFileName = `${cleanedTitle}_image.jpg`;
+        const imageFilePath = path.join(
+          articleDirectory,
+          imageFileName,
+        );
+
+        try {
+          const imageDownloadURL = await getDownloadURL(
+            ref(storage, image),
+          );
+          const imageResponse = await fetch(
+            imageDownloadURL,
+          );
+          const imageBuffer = await imageResponse.buffer();
+
+          await fs.promises.writeFile(
+            imageFilePath,
+            imageBuffer,
+          );
+
+          console.log(
+            `Image ${imageFileName} downloaded successfully.`,
+          );
+
+          // Append image to the archive
+          archive.file(imageFilePath, {
+            name: `${folderName}/${imageFileName}`,
+          });
+        } catch (error) {
+          console.error(
+            `Error downloading image ${imageFileName}:`,
+            error,
+          );
+        }
+      }
+
+      // Append text file to the archive
+      archive.file(txtFilePath, {
+        name: `${folderName}/${cleanedTitle}.txt`,
+      });
+    }
+
+    // Finalize the archive
+    archive.finalize();
+  } catch (error) {
+    console.error('Error fetching posted articles:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+app.get('/download-all-records3', async (req, res) => {
+  let downloadsDirectory;
+  const articleCollection = collection(db, 'articles');
+  const postedArticlesQuery = query(
+    articleCollection,
+    where('isPostApproved', '==', true),
+  );
+  try {
+    const dateDownload = new Date();
+    const day = String(dateDownload.getDate()).padStart(
+      2,
+      '0',
+    );
+    const month = String(
+      dateDownload.getMonth() + 1,
+    ).padStart(2, '0'); // Month is zero-based
+    const year = String(dateDownload.getFullYear());
+
+    // Create the string in the desired format
+    const dateString = `-${year}-${month}-${day}`;
+    const snapshot = await getDocs(postedArticlesQuery);
+    const homeDirectory = os.homedir();
+    downloadsDirectory = path.join(
+      homeDirectory,
+      `downloads/Becarios-Records${dateString}`,
+    );
+
+    if (!fs.existsSync(downloadsDirectory)) {
+      fs.mkdirSync(downloadsDirectory);
+    }
+
+    const outputZip = fs.createWriteStream(
+      `${downloadsDirectory}.zip`,
+    );
+    const archive = archiver('zip', {
+      zlib: { level: 9 }, // Sets the compression level
+    });
+
+    outputZip.on('close', () => {
+      console.log(
+        'Archive has been finalized and the output file descriptor has closed.',
+      );
+      res.setHeader(
+        'Content-Disposition',
+        `attachment; filename="Becarios-Records${dateString}.zip"`,
+      );
+      res.setHeader('Content-Type', 'application/zip');
+      res.download(`${downloadsDirectory}.zip`, () => {
+        // Cleanup: Remove the generated files after download
+        fs.rmSync(`${downloadsDirectory}.zip`, {
+          force: true,
+          recursive: true,
+        });
+      });
+    });
+
+    archive.on('error', (err) => {
+      throw err;
+    });
+
+    archive.pipe(outputZip);
+
+    for (const doc of snapshot.docs) {
+      const article = doc.data();
+      const { title, author, body, image } = article;
+
+      const cleanedTitle = title.replace(/[^\w\s]/gi, '');
+      const cleanedBody = body.replace(/<[^>]*>/g, '');
+      const folderName = `${cleanedTitle}`; // Folder name includes cleaned title and date
+      const articleDirectory = path.join(
+        downloadsDirectory,
+        folderName,
+      );
+
+      if (!fs.existsSync(articleDirectory)) {
+        fs.mkdirSync(articleDirectory);
+      }
+      const { seconds, nanoseconds } = article.datePosted;
+      const milliseconds =
+        seconds * 1000 + nanoseconds / 1000000;
+      const datePosted = new Date(milliseconds);
+      // Write text content to a txt file
+      const txtFilePath = path.join(
+        articleDirectory,
+        `${cleanedTitle}.txt`,
+      );
+      const fileContent = `Title: ${title}\nAuthor: ${author}\n\nBody: ${cleanedBody}\n\nDate Posted: ${datePosted}\nDate Downloaded: ${dateDownload}`;
+      await fs.promises.writeFile(txtFilePath, fileContent);
+
+      console.log(
+        `File ${cleanedTitle}.txt created successfully in the ${folderName} directory.`,
+      );
+
+      // Download image file
+      if (image) {
+        const imageFileName = `${cleanedTitle}_image.jpg`;
+        const imageFilePath = path.join(
+          articleDirectory,
+          imageFileName,
+        );
+
+        try {
+          const imageDownloadURL = await getDownloadURL(
+            ref(storage, image),
+          );
+          const imageResponse = await fetch(
+            imageDownloadURL,
+          );
+          const imageBuffer = await imageResponse.buffer();
+
+          await fs.promises.writeFile(
+            imageFilePath,
+            imageBuffer,
+          );
+
+          console.log(
+            `Image ${imageFileName} downloaded successfully.`,
+          );
+
+          // Append image to the archive
+          archive.file(imageFilePath, {
+            name: `${folderName}/${imageFileName}`,
+          });
+        } catch (error) {
+          console.error(
+            `Error downloading image ${imageFileName}:`,
+            error,
+          );
+        }
+      }
+
+      // Append text file to the archive
+      archive.file(txtFilePath, {
+        name: `${folderName}/${cleanedTitle}.txt`,
+      });
+    }
+
+    // Finalize the archive
+    archive.finalize();
+  } catch (error) {
+    console.error('Error fetching posted articles:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+app.get('/download-all-records4', async (req, res) => {
+  let downloadsDirectory;
+  const articleCollection = collection(db, 'articles');
+  const postedArticlesQuery = query(
+    articleCollection,
+    where('isPostApproved', '==', true),
+  );
+  try {
+    const dateDownload = new Date();
+    const day = String(dateDownload.getDate()).padStart(
+      2,
+      '0',
+    );
+    const month = String(
+      dateDownload.getMonth() + 1,
+    ).padStart(2, '0'); // Month is zero-based
+    const year = String(dateDownload.getFullYear());
+
+    // Create the string in the desired format
+    const dateString = `-${year}-${month}-${day}`;
+    const snapshot = await getDocs(postedArticlesQuery);
+    const homeDirectory = os.homedir();
+    downloadsDirectory = path.join(
+      homeDirectory,
+      `downloads/Becarios-Records${dateString}`,
+    );
+
+    if (!fs.existsSync(downloadsDirectory)) {
+      fs.mkdirSync(downloadsDirectory);
+    }
+
+    const outputZip = fs.createWriteStream(
+      `${downloadsDirectory}.zip`,
+    );
+    const archive = archiver('zip', {
+      zlib: { level: 9 }, // Sets the compression level
+    });
+
+    archive.on('error', (err) => {
+      throw err;
+    });
+
+    archive.pipe(outputZip);
+
+    for (const doc of snapshot.docs) {
+      const article = doc.data();
+      const { title, author, body, image } = article;
+
+      const cleanedTitle = title.replace(/[^\w\s]/gi, '');
+      const cleanedBody = body.replace(/<[^>]*>/g, '');
+      const folderName = `${cleanedTitle}`; // Folder name includes cleaned title and date
+      const articleDirectory = path.join(
+        downloadsDirectory,
+        folderName,
+      );
+
+      if (!fs.existsSync(articleDirectory)) {
+        fs.mkdirSync(articleDirectory);
+      }
+      const { seconds, nanoseconds } = article.datePosted;
+      const milliseconds =
+        seconds * 1000 + nanoseconds / 1000000;
+      const datePosted = new Date(milliseconds);
+      // Write text content to a txt file
+      const txtFilePath = path.join(
+        articleDirectory,
+        `${cleanedTitle}.txt`,
+      );
+      const fileContent = `Title: ${title}\nAuthor: ${author}\n\nBody: ${cleanedBody}\n\nDate Posted: ${datePosted}\nDate Downloaded: ${dateDownload}`;
+      await fs.promises.writeFile(txtFilePath, fileContent);
+
+      console.log(
+        `File ${cleanedTitle}.txt created successfully in the ${folderName} directory.`,
+      );
+
+      // Download image file
+      if (image) {
+        const imageFileName = `${cleanedTitle}_image.jpg`;
+        const imageFilePath = path.join(
+          articleDirectory,
+          imageFileName,
+        );
+
+        try {
+          const imageDownloadURL = await getDownloadURL(
+            ref(storage, image),
+          );
+          const imageResponse = await fetch(
+            imageDownloadURL,
+          );
+          const imageBuffer = await imageResponse.buffer();
+
+          await fs.promises.writeFile(
+            imageFilePath,
+            imageBuffer,
+          );
+
+          console.log(
+            `Image ${imageFileName} downloaded successfully.`,
+          );
+
+          // Append image to the archive
+          archive.file(imageFilePath, {
+            name: `${folderName}/${imageFileName}`,
+          });
+        } catch (error) {
+          console.error(
+            `Error downloading image ${imageFileName}:`,
+            error,
+          );
+        }
+      }
+
+      // Append text file to the archive
+      archive.file(txtFilePath, {
+        name: `${folderName}/${cleanedTitle}.txt`,
+      });
+    }
+
+    // Finalize the archive
+    archive.finalize();
+
+    // Once the archive is finalized, send the download response
+    outputZip.on('close', () => {
+      console.log(
+        'Archive has been finalized and the output file descriptor has closed.',
+      );
+      res.setHeader(
+        'Content-Disposition',
+        `attachment; filename="Becarios-Records${dateString}.zip"`,
+      );
+      res.setHeader('Content-Type', 'application/zip');
+      res.download(`${downloadsDirectory}.zip`, () => {
+        // Cleanup: Remove the generated files after download
+        fs.rmSync(`${downloadsDirectory}.zip`, {
+          force: true,
+          recursive: true,
+        });
+
+        // Remove the directories
+        fs.rmdirSync(downloadsDirectory, {
+          recursive: true,
+        });
+      });
+    });
+  } catch (error) {
+    console.error('Error fetching posted articles:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});

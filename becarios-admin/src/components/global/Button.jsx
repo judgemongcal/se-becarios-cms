@@ -1663,13 +1663,64 @@ function GenerateReportBtn() {
 
 function ExportRecordsBtn() {
   async function handleExport() {
-    const response = await fetch(
-      'http://localhost:5001/download-all-records',
-      {
-        method: 'GET',
-      },
-    );
+    try {
+      const response = await fetch(
+        'http://localhost:5001/download-all-records4',
+        {
+          method: 'GET',
+          headers: {
+            Accept: 'application/zip', // Set the Accept header to indicate you expect a ZIP file
+          },
+        },
+      );
+
+      if (response.ok) {
+        let filename = 'export.zip'; // Fallback filename
+
+        // Check if Content-Disposition header exists
+        const contentDisposition = response.headers.get(
+          'Content-Disposition',
+        );
+        if (contentDisposition) {
+          // Extract filename from Content-Disposition header using regex
+          const filenameRegex =
+            /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+          const [, matchedFilename] =
+            filenameRegex.exec(contentDisposition) || [];
+          if (matchedFilename) {
+            filename = matchedFilename.replace(/['"]/g, ''); // Remove quotes from filename
+          }
+        }
+
+        // Convert response to blob
+        const blob = await response.blob();
+
+        // Create a temporary URL for the blob
+        const url = window.URL.createObjectURL(blob);
+
+        // Create a link element and trigger the download
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+
+        // Clean up
+        window.URL.revokeObjectURL(url);
+        a.remove();
+      } else {
+        // Handle error response
+        console.error(
+          'Failed to export records:',
+          response.statusText,
+        );
+      }
+    } catch (error) {
+      console.error('Error exporting records:', error);
+      // Handle error
+    }
   }
+
   return (
     <button
       className="bg-brand-black shadow-shadow-db rounded-10 hover:bg-brand-green-dark mb-[1rem] p-4 text-[1rem] font-semibold text-[#FFFFFF] duration-300 md:px-5 md:text-[1.25rem]"
