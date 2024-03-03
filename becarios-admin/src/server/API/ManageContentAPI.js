@@ -9,8 +9,13 @@ import {
   updateDoc,
   serverTimestamp,
 } from 'firebase/firestore';
-import { auth, db } from '../firebase.js';
+import { auth, db, storage } from '../firebase.js';
 import { useState } from 'react';
+import { getDownloadURL, ref } from 'firebase/storage';
+import fs from 'fs';
+import os from 'os';
+import path from 'path';
+import fetch from 'cross-fetch';
 
 // Count All Articles Pending for Approval
 // Fetches All Pending Articles Document ID with Details
@@ -531,5 +536,106 @@ export async function rejectArchiveArticlebyID(id) {
     return { success: true };
   } catch (error) {
     console.log(error);
+  }
+}
+
+// // EXPORT RESOURCES
+export async function fetchPostedArticlesAndCreateFiles() {
+  const articleCollection = collection(db, 'articles');
+  const postedArticlesQuery = query(
+    articleCollection,
+    where('isPostApproved', '==', true),
+  );
+
+  try {
+    const dateDownload = new Date();
+    const day = String(dateDownload.getDate()).padStart(
+      2,
+      '0',
+    );
+    const month = String(
+      dateDownload.getMonth() + 1,
+    ).padStart(2, '0'); // Month is zero-based
+    const year = String(dateDownload.getFullYear());
+
+    // Create the string in the desired format
+    const dateString = `-${year}-${month}-${day}`;
+    const snapshot = await getDocs(postedArticlesQuery);
+    const homeDirectory = os.homedir();
+    const downloadsDirectory = path.join(
+      homeDirectory,
+      `downloads/Becarios-Records${dateString}`,
+    );
+
+    if (!fs.existsSync(downloadsDirectory)) {
+      fs.mkdirSync(downloadsDirectory);
+    }
+
+    for (const doc of snapshot.docs) {
+      const article = doc.data();
+      const { title, author, body, image } = article;
+
+      const cleanedTitle = title.replace(/[^\w\s]/gi, '');
+      const cleanedBody = body.replace(/<[^>]*>/g, '');
+      const folderName = `${cleanedTitle}`; // Folder name includes cleaned title and date
+      const articleDirectory = path.join(
+        downloadsDirectory,
+        folderName,
+      );
+
+      if (!fs.existsSync(articleDirectory)) {
+        fs.mkdirSync(articleDirectory);
+      }
+      const { seconds, nanoseconds } = article.datePosted;
+      const milliseconds =
+        seconds * 1000 + nanoseconds / 1000000;
+      const datePosted = new Date(milliseconds);
+      // Write text content to a txt file
+      const txtFilePath = path.join(
+        articleDirectory,
+        `${cleanedTitle}.txt`,
+      );
+      const fileContent = `Title: ${title}\nAuthor: ${author}\n\nBody: ${cleanedBody}\n\nDate Posted: ${datePosted}\nDate Downloaded: ${dateDownload}`;
+      await fs.promises.writeFile(txtFilePath, fileContent);
+
+      console.log(
+        `File ${cleanedTitle}.txt created successfully in the ${folderName} directory.`,
+      );
+
+      // Download image file
+      if (image) {
+        const imageFileName = `${cleanedTitle}_image.jpg`;
+        const imageFilePath = path.join(
+          articleDirectory,
+          imageFileName,
+        );
+
+        try {
+          const imageDownloadURL = await getDownloadURL(
+            ref(storage, image),
+          );
+          const imageResponse = await fetch(
+            imageDownloadURL,
+          );
+          const imageBuffer = await imageResponse.buffer();
+
+          await fs.promises.writeFile(
+            imageFilePath,
+            imageBuffer,
+          );
+
+          console.log(
+            `Image ${imageFileName} downloaded successfully.`,
+          );
+        } catch (error) {
+          console.error(
+            `Error downloading image ${imageFileName}:`,
+            error,
+          );
+        }
+      }
+    }
+  } catch (error) {
+    console.error('Error fetching posted articles:', error);
   }
 }

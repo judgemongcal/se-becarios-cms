@@ -35,6 +35,7 @@ import {
   archiveArticlebyID,
   deleteArticlebyID,
   fetchArticleById,
+  fetchPostedArticlesAndCreateFiles,
   rejectArchiveArticlebyID,
   rejectEditArticlebyID,
   rejectPostArticlebyID,
@@ -1661,8 +1662,19 @@ function GenerateReportBtn() {
 }
 
 function ExportRecordsBtn() {
+  async function handleExport() {
+    const response = await fetch(
+      'http://localhost:5001/download-all-records',
+      {
+        method: 'GET',
+      },
+    );
+  }
   return (
-    <button className="bg-brand-black shadow-shadow-db rounded-10 hover:bg-brand-green-dark mb-[1rem] p-4 text-[1rem] font-semibold text-[#FFFFFF] duration-300 md:px-5 md:text-[1.25rem]">
+    <button
+      className="bg-brand-black shadow-shadow-db rounded-10 hover:bg-brand-green-dark mb-[1rem] p-4 text-[1rem] font-semibold text-[#FFFFFF] duration-300 md:px-5 md:text-[1.25rem]"
+      onClick={() => handleExport()}
+    >
       Export Records
     </button>
   );
