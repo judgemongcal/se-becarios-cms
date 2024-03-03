@@ -1675,20 +1675,19 @@ function ExportRecordsBtn() {
       );
 
       if (response.ok) {
-        let filename = 'export.zip'; // Fallback filename
-
-        // Check if Content-Disposition header exists
+        // Extract filename from Content-Disposition header
         const contentDisposition = response.headers.get(
-          'Content-Disposition',
+          'content-disposition',
         );
+        let filename = 'export.zip'; // Default filename
         if (contentDisposition) {
-          // Extract filename from Content-Disposition header using regex
           const filenameRegex =
             /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
-          const [, matchedFilename] =
-            filenameRegex.exec(contentDisposition) || [];
-          if (matchedFilename) {
-            filename = matchedFilename.replace(/['"]/g, ''); // Remove quotes from filename
+          const matches = filenameRegex.exec(
+            contentDisposition,
+          );
+          if (matches !== null && matches[1]) {
+            filename = matches[1].replace(/['"]/g, '');
           }
         }
 
