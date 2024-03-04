@@ -8,8 +8,10 @@ import {
   deleteDoc,
   updateDoc,
 } from 'firebase/firestore';
-import { auth, db } from '../firebase.js';
+import { auth, db, storage } from '../firebase.js';
 import { useState } from 'react';
+// import { storage } from 'firebase-admin';
+import { deleteObject, ref } from 'firebase/storage';
 
 export async function fetchAllAdmins() {
   try {
@@ -76,12 +78,22 @@ export async function removeAdmin(adminID) {
       .get();
 
     if (adminDoc.exists) {
+      const adminData = adminDoc.data();
+      if (adminData && adminData.image) {
+        // Specify a child reference to the image using .child()
+        const imageRef = ref(storage, adminData.image);
+        // Delete the image
+        await deleteObject(imageRef);
+      } else {
+        throw new Error('No image');
+      }
       // Document exists, proceed with deletion
       await adminCollection.doc(adminID).delete();
       console.log('Admin removed successfully');
     } else {
       // Document doesn't exist
       console.log('Admin not found');
+      throw new Error('Admin not found');
     }
   } catch (error) {
     console.error('Error removing admin', error);

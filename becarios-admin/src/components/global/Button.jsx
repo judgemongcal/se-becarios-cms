@@ -440,20 +440,23 @@ function SubmitArticleBtn() {
     useState(false);
 
   useEffect(() => {
+    const parser = new DOMParser();
+    const parsedContent = parser.parseFromString(
+      articleBody,
+      'text/html',
+    );
+
     if (
       articleTitle.length < 1 ||
-      articleBody.length < 1 ||
+      parsedContent.documentElement.innerText.length < 1 ||
       !articleImgFile
     ) {
       setIsInputComplete(false);
+      console.log(articleBody.length);
     } else {
       setIsInputComplete(true);
     }
-  }, [
-    articleBody.length,
-    articleTitle.length,
-    articleImgFile,
-  ]);
+  }, [articleBody, articleTitle.length, articleImgFile]);
 
   function handleClickPreview(e) {
     e.preventDefault();
@@ -476,7 +479,7 @@ function SubmitArticleBtn() {
       <button
         className={`bg-brand-yellow shadow-shadow-db rounded-10 hover:bg-brand-yellow-dark w-[100%] py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-100
                     ${
-                      isInputComplete && numOfChars < 2500
+                      isInputComplete && numOfChars <= 2500
                         ? ''
                         : 'disable pointer-events-none opacity-60'
                     }`}
@@ -1542,6 +1545,7 @@ function SubmitArchiveModalBtn() {
 
       if (response.success) {
         const doc = await fetchArticleById(id);
+        console.log(doc);
         const data = {
           user: `${userInfo.firstName} ${userInfo.lastName}`,
           actionType: 'ARTICLE_ACTION',

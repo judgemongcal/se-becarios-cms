@@ -11,7 +11,11 @@ import {
 } from 'firebase/firestore';
 import { auth, db, storage } from '../firebase.js';
 import { useState } from 'react';
-import { getDownloadURL, ref } from 'firebase/storage';
+import {
+  deleteObject,
+  getDownloadURL,
+  ref,
+} from 'firebase/storage';
 import fs from 'fs';
 import os from 'os';
 import path from 'path';
@@ -379,13 +383,40 @@ export async function archiveArticlebyID(id, role) {
 }
 
 export async function deleteArticlebyID(id) {
-  try {
-    const docRef = doc(db, 'articles', id);
-    await deleteDoc(docRef);
+  // try {
+  //   const docRef = doc(db, 'articles', id);
+  //   const desertRef = ref(storage, docRef.image);
+  //   deleteObject(desertRef);
+  //   await deleteDoc(docRef);
 
-    return { success: true };
+  //   return { success: true };
+  // } catch (error) {
+  //   console.log(error);
+  //   return { success: false };
+  // }
+
+  try {
+    const articleRef = doc(db, 'articles', id);
+    const docSnapshot = await getDoc(articleRef);
+
+    if (docSnapshot.exists()) {
+      const articleData = docSnapshot.data();
+      if (articleData && articleData.image) {
+        // Specify a child reference to the image using .child()
+        const imageRef = ref(storage, articleData.image);
+        // Delete the image
+        await deleteObject(imageRef);
+      }
+
+      // Delete the article document
+      await deleteDoc(articleRef);
+
+      return { success: true };
+    } else {
+      throw new Error('Article document does not exist');
+    }
   } catch (error) {
-    console.log(error);
+    console.error('Error deleting article: ', error);
     return { success: false };
   }
 }
