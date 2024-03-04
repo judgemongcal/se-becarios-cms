@@ -8,7 +8,9 @@ import { useSettingsContext } from '../hooks/useSettingsContext';
 import {
   AddAdminModal,
   AssignSuperAdminModal,
+  DownloadSuccessModal,
   RemoveAdminModal,
+  RequestFailedModal,
   SignOutModal,
 } from '../components/global/Modal';
 import {
@@ -22,6 +24,7 @@ import { useSignOutContext } from '../hooks/useSignOutContext';
 import { useEffect } from 'react';
 import Spinner from '../components/global/Spinner';
 import Sample from './Sample';
+import { ExportRecordsBtn } from '../components/global/Button';
 
 function Settings() {
   const {
@@ -39,6 +42,8 @@ function Settings() {
     isFailed,
     setIsFailed,
     isEditSuccessful,
+    isSettingsDownloadSuccess,
+    isSettingsRequestFailed,
   } = useSettingsContext();
 
   const { isSignOutClicked } = useSignOutContext();
@@ -76,12 +81,19 @@ function Settings() {
           <SuperAdminList />
           <AdminList />
         </div>
+        <div className="flex justify-end">
+          <ExportRecordsBtn type="audit" />
+        </div>
       </div>
       {isAddAdminBtnClicked && <AdminModal />}
       {isAddAdminClicked && <AddAdminModal />}
       {isRemoveAdminBtnClicked && <RemoveAdminModal />}
       {isAssignBtnClicked && <AssignSuperAdminModal />}
       {isSettingsLoading ? <Sample /> : ''}
+      {isSettingsDownloadSuccess && (
+        <DownloadSuccessModal />
+      )}
+      {isSettingsRequestFailed && <RequestFailedModal />}
       {isSignOutClicked && <SignOutModal />}
     </div>
   );

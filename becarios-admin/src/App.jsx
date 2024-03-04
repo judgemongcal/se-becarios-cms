@@ -114,19 +114,25 @@ function App() {
                     <ArchiveProvider
                       value={ArchiveProvider.contextValue}
                     >
-                      <ManageContentProvider
+                      <SettingsProvider
                         value={
-                          ManageContentProvider.contextValue
+                          SettingsProvider.contextValue
                         }
                       >
-                        <CreateArticleProvider
+                        <ManageContentProvider
                           value={
-                            CreateArticleProvider.contextValue
+                            ManageContentProvider.contextValue
                           }
                         >
-                          <ManageContent />
-                        </CreateArticleProvider>
-                      </ManageContentProvider>
+                          <CreateArticleProvider
+                            value={
+                              CreateArticleProvider.contextValue
+                            }
+                          >
+                            <ManageContent />
+                          </CreateArticleProvider>
+                        </ManageContentProvider>
+                      </SettingsProvider>
                     </ArchiveProvider>
                   </ProtectedRoute>
                 }
@@ -136,12 +142,24 @@ function App() {
                 path="/post-archives"
                 element={
                   <ProtectedRoute>
-                    <ManageContentProvider>
-                      <ArchiveProvider
-                        value={ArchiveProvider.contextValue}
+                    <ManageContentProvider
+                      value={
+                        ManageContentProvider.contextValue
+                      }
+                    >
+                      <SettingsProvider
+                        value={
+                          SettingsProvider.contextValue
+                        }
                       >
-                        <PostArchives />
-                      </ArchiveProvider>
+                        <ArchiveProvider
+                          value={
+                            ArchiveProvider.contextValue
+                          }
+                        >
+                          <PostArchives />
+                        </ArchiveProvider>
+                      </SettingsProvider>
                     </ManageContentProvider>
                   </ProtectedRoute>
                 }
@@ -150,15 +168,29 @@ function App() {
                 path="/settings"
                 element={
                   <ProtectedRoute>
-                    <SettingsProvider
-                      value={SettingsProvider.contextValue}
+                    <ArchiveProvider
+                      value={ArchiveProvider.contextValue}
                     >
-                      <AdminProvider
-                        value={AdminProvider.contextValue}
+                      <ManageContentProvider
+                        value={
+                          ManageContentProvider.contextValue
+                        }
                       >
-                        <Settings />
-                      </AdminProvider>
-                    </SettingsProvider>
+                        <SettingsProvider
+                          value={
+                            SettingsProvider.contextValue
+                          }
+                        >
+                          <AdminProvider
+                            value={
+                              AdminProvider.contextValue
+                            }
+                          >
+                            <Settings />
+                          </AdminProvider>
+                        </SettingsProvider>
+                      </ManageContentProvider>
+                    </ArchiveProvider>
                   </ProtectedRoute>
                 }
               />

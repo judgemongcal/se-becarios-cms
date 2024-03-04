@@ -98,6 +98,10 @@ export function SettingsProvider({ children }) {
     setIsFailed,
     isEditSuccessful,
     setIsEditSuccessful,
+    isSettingsRequestFailed,
+    setIsSettingsRequestFailed,
+    isSettingsDownloadSuccess,
+    setIsSettingsDownloadSuccess,
   };
 
   useEffect(() => {
