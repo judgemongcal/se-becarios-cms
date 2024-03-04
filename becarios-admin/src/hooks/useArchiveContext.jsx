@@ -28,7 +28,8 @@ export function ArchiveProvider({ children }) {
   const [isPutBackFailed, setIsPutBackFailed] =
     useState(false);
   const [isArchiveEdit, setIsArchiveEdit] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isArchiveLoading, setIsArchiveLoading] =
+    useState(false);
 
   useEffect(() => {
     let timer;
@@ -69,8 +70,8 @@ export function ArchiveProvider({ children }) {
     setIsPutBackFailed,
     isArchiveEdit,
     setIsArchiveEdit,
-    isLoading,
-    setIsLoading,
+    isArchiveLoading,
+    setIsArchiveLoading,
   };
 
   return (

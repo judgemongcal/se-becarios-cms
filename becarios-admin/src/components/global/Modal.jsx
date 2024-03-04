@@ -698,9 +698,8 @@ function DownloadSuccessModal() {
       <div className="modal-container bg-brand-input rounded-10 3xl:w-[25%] mx-auto flex w-[100%] flex-col justify-center px-[2rem] py-[2.25rem] text-center md:w-[50%] xl:w-[35%] 2xl:w-[500px]">
         <FaRegCircleCheck className="fill-brand-green stroke-brand-green mb-4 h-[100px] w-auto stroke-[0.055px]" />
         <h1 className="text-brand-green mb-6 text-[1.5rem] font-semibold leading-[1.65rem]">
-          Success processing your request!
-          <br />
-          Your download should start in a few moments.
+          Success! Your download should <br />
+          start in a few moments.
         </h1>
         <p className="mx-[3rem] mb-[2rem] text-[1rem] font-medium">
           If the download did not occur, please the

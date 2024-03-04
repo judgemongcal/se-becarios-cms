@@ -1449,7 +1449,7 @@ function SubmitDeleteModalBtn() {
     setIsDeleteSuccessful,
     isDeleteFailed,
     setIsDeleteFailed,
-    setIsLoading,
+    setIsArchiveLoading,
   } = useArchiveContext();
 
   const { userInfo } = useUserInfoContext();
@@ -1461,7 +1461,7 @@ function SubmitDeleteModalBtn() {
 
   async function handleDelete(e) {
     e.preventDefault();
-    setIsLoading(true);
+    setIsArchiveLoading(true);
     setIsDeleteBtnClicked(false);
     const doc = await fetchArticleById(currentDocId);
     try {
@@ -1481,11 +1481,11 @@ function SubmitDeleteModalBtn() {
           'Failed to delete article: ' + response,
         );
       }
-      setIsLoading(false);
+      setIsArchiveLoading(false);
       setIsDeleteBtnClicked(!isDeleteBtnClicked);
       setIsDeleteSuccessful(true);
     } catch (error) {
-      setIsLoading(false);
+      setIsArchiveLoading(false);
       setIsDeleteFailed(true);
     }
   }
@@ -1602,7 +1602,7 @@ function SubmitRetrieveArchiveModalBtn() {
     isPutBackFailed,
     setIsPutBackFailed,
     currentDocId,
-    setIsLoading,
+    setIsArchiveLoading,
   } = useArchiveContext();
 
   const currentRole = userInfo.role;
@@ -1614,7 +1614,7 @@ function SubmitRetrieveArchiveModalBtn() {
 
   async function handleRetrieve(e) {
     e.preventDefault();
-    setIsLoading(true);
+    setIsArchiveLoading(true);
     try {
       const res = await retrieveArticlebyID(
         currentDocId,
@@ -1622,14 +1622,14 @@ function SubmitRetrieveArchiveModalBtn() {
       );
       if (res.success) {
         console.log(res);
-        setIsLoading(false);
+        setIsArchiveLoading(false);
         setIsPutBackBtnClicked(false);
         setIsPutBackSuccessful(true);
       } else {
         throw new Error('Error retrieving');
       }
     } catch (error) {
-      setIsLoading(false);
+      setIsArchiveLoading(false);
       setIsPutBackBtnClicked(false);
       setIsPutBackFailed(true);
     }
@@ -1667,6 +1667,8 @@ function ExportRecordsBtn({ type }) {
     setIsRequestFailed,
     setIsDownloadSuccess,
   } = useManageContentContext();
+
+  const { setIsArchiveLoading } = useArchiveContext();
 
   function typeRoute() {
     if (type == 'archive') {
@@ -1740,7 +1742,7 @@ function ExportRecordsBtn({ type }) {
 
   async function handleExportArchived() {
     try {
-      setIsLoading(true);
+      setIsArchiveLoading(true);
       const response = await fetch(
         'http://localhost:5001/download-all-archived-records',
         {
@@ -1792,9 +1794,9 @@ function ExportRecordsBtn({ type }) {
           response.statusText,
         );
       }
-      setIsLoading(false);
+      setIsArchiveLoading(false);
     } catch (error) {
-      setIsLoading(false);
+      setIsArchiveLoading(false);
       setIsRequestFailed(true);
       console.error('Error exporting records:', error);
       // Handle error

@@ -2,6 +2,8 @@ import {
   DeleteFailedModal,
   DeletePostModal,
   DeleteReqSuccessModal,
+  DownloadSuccessModal,
+  RequestFailedModal,
   RetrieveArchivedPostModal,
   RetrieveReqFailedModal,
   RetrieveReqSuccessModal,
@@ -32,10 +34,15 @@ function PostArchives() {
     isPutBackBtnClicked,
     isPutBackSuccessful,
     isPutBackFailed,
-    isLoading,
+    isArchiveLoading,
   } = useArchiveContext();
-  const { searchQuery, sortOrder, setSearchQuery } =
-    useManageContentContext();
+  const {
+    searchQuery,
+    sortOrder,
+    setSearchQuery,
+    isRequestFailed,
+    isDownloadSuccess,
+  } = useManageContentContext();
 
   // State for pagination
   const [currentPage, setCurrentPage] = useState(1);
@@ -141,7 +148,9 @@ function PostArchives() {
       </div>
       {isPutBackFailed && <RetrieveReqFailedModal />}
       {isDeleteFailed && <DeleteFailedModal />}
-      {isLoading && <Sample />}
+      {isArchiveLoading && <Sample />}
+      {isDownloadSuccess && <DownloadSuccessModal />}
+      {isRequestFailed && <RequestFailedModal />}
       {isDeleteBtnClicked && <DeletePostModal />}
       {isPutBackBtnClicked && <RetrieveArchivedPostModal />}
       {isPutBackSuccessful && <RetrieveReqSuccessModal />}
