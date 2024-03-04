@@ -34,10 +34,43 @@ export function SettingsProvider({ children }) {
     useState(false);
   const [isAssignSuccessful, setIsAssignSuccessful] =
     useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isSettingsLoading, setIsSettingsLoading] =
+    useState(false);
   const [isFailed, setIsFailed] = useState(false);
   const [isEditSuccessful, setIsEditSuccessful] =
     useState(false);
+  const [
+    isSettingsRequestFailed,
+    setIsSettingsRequestFailed,
+  ] = useState(false);
+  const [
+    isSettingsDownloadSuccess,
+    setIsSettingsDownloadSuccess,
+  ] = useState(false);
+
+  useEffect(() => {
+    let timer;
+    if (isSettingsRequestFailed) {
+      timer = setTimeout(() => {
+        setIsSettingsRequestFailed(false);
+      }, 3000);
+    }
+    return () => clearTimeout(timer);
+  }, [isSettingsRequestFailed, setIsSettingsRequestFailed]);
+
+  useEffect(() => {
+    let timer;
+    if (isSettingsDownloadSuccess) {
+      timer = setTimeout(() => {
+        setIsSettingsDownloadSuccess(false);
+      }, 3000);
+    }
+    return () => clearTimeout(timer);
+  }, [
+    isSettingsDownloadSuccess,
+    setIsSettingsDownloadSuccess,
+  ]);
+
   const contextValue = {
     isSAGearClicked,
     setIsSAGearClicked,
@@ -59,8 +92,8 @@ export function SettingsProvider({ children }) {
     setIsAssignBtnClicked,
     isAssignSuccessful,
     setIsAssignSuccessful,
-    isLoading,
-    setIsLoading,
+    isSettingsLoading,
+    setIsSettingsLoading,
     isFailed,
     setIsFailed,
     isEditSuccessful,

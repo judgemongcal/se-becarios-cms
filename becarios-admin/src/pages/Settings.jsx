@@ -35,7 +35,7 @@ function Settings() {
     isAssignBtnClicked,
     isAssignSuccessful,
     setIsAssignSuccessful,
-    isLoading,
+    isSettingsLoading,
     isFailed,
     setIsFailed,
     isEditSuccessful,
@@ -81,7 +81,7 @@ function Settings() {
       {isAddAdminClicked && <AddAdminModal />}
       {isRemoveAdminBtnClicked && <RemoveAdminModal />}
       {isAssignBtnClicked && <AssignSuperAdminModal />}
-      {isLoading ? <Sample /> : ''}
+      {isSettingsLoading ? <Sample /> : ''}
       {isSignOutClicked && <SignOutModal />}
     </div>
   );

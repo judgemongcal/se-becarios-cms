@@ -771,8 +771,8 @@ function ConfirmAddAdminModalBtn() {
     setIsAddAdminClicked,
     isAddAdminSuccessful,
     setIsAddAdminSuccessful,
-    isLoading,
-    setIsLoading,
+    isSettingsLoading,
+    setIsSettingsLoading,
   } = useSettingsContext();
 
   const { userInfo } = useUserInfoContext();
@@ -800,7 +800,7 @@ function ConfirmAddAdminModalBtn() {
 
   async function handleAdd(e) {
     e.preventDefault();
-    setIsLoading(!isLoading);
+    setIsSettingsLoading(!isSettingsLoading);
     setIsAddAdminBtnClicked(false);
     setIsAddAdminClicked(false);
     try {
@@ -858,7 +858,7 @@ function ConfirmAddAdminModalBtn() {
 
         await logActivity(data);
 
-        setIsLoading(false);
+        setIsSettingsLoading(false);
         setIsAddAdminSuccessful(true);
         resetAdminFields();
       }
@@ -868,7 +868,7 @@ function ConfirmAddAdminModalBtn() {
       }, 2000);
     } catch (error) {
       console.log('Line 780: ' + error);
-      setIsLoading(false);
+      setIsSettingsLoading(false);
       setIsFailed(true);
     }
   }
@@ -918,7 +918,7 @@ function ConfirmAssignSuperAdminModalBtn() {
     setIsAddAdminClicked,
     setIsAssignBtnClicked,
     setIsAssignSuccessful,
-    setIsLoading,
+    setIsSettingsLoading,
     setIsFailed,
   } = useSettingsContext();
 
@@ -936,7 +936,7 @@ function ConfirmAssignSuperAdminModalBtn() {
 
   async function handleAssign(e) {
     e.preventDefault();
-    setIsLoading(true);
+    setIsSettingsLoading(true);
     try {
       const response = await assignAsSuperAdmin(
         currentDocId,
@@ -951,7 +951,7 @@ function ConfirmAssignSuperAdminModalBtn() {
         };
         await logActivity(data);
       } else {
-        setIsLoading(false);
+        setIsSettingsLoading(false);
         throw new Error(
           'Failed to assign as Super Administrator: ' +
             response.statusText,
@@ -959,10 +959,10 @@ function ConfirmAssignSuperAdminModalBtn() {
       }
       setIsAssignBtnClicked(false);
       setIsAssignSuccessful(true);
-      setIsLoading(false);
+      setIsSettingsLoading(false);
     } catch (error) {
       setIsAssignBtnClicked(false);
-      setIsLoading(false);
+      setIsSettingsLoading(false);
       console.log(error);
       setIsFailed(true);
     }
@@ -1251,7 +1251,7 @@ function RemoveAdminModalBtn() {
     setIsRemoveAdminBtnClicked,
     isRemoveSuccessful,
     setIsRemoveSuccessful,
-    setIsLoading,
+    setIsSettingsLoading,
     setIsFailed,
   } = useSettingsContext();
 
@@ -1272,7 +1272,7 @@ function RemoveAdminModalBtn() {
   async function handleDelete(e) {
     e.preventDefault();
     setIsRemoveAdminBtnClicked(!isRemoveAdminBtnClicked);
-    setIsLoading(true);
+    setIsSettingsLoading(true);
     try {
       const response = await fetch(
         'http://localhost:5001/removeAdminCredAndAuth',
@@ -1298,7 +1298,7 @@ function RemoveAdminModalBtn() {
         );
       }
       console.log('success! ' + response);
-      setIsLoading(false);
+      setIsSettingsLoading(false);
       setIsRemoveSuccessful(!isRemoveSuccessful);
 
       setTimeout(function () {
@@ -1306,7 +1306,7 @@ function RemoveAdminModalBtn() {
       }, 2000);
     } catch (error) {
       console.log('Error Deleting Admin: ' + error);
-      setIsLoading(false);
+      setIsSettingsLoading(false);
       setIsFailed(true);
     }
   }
@@ -1669,6 +1669,12 @@ function ExportRecordsBtn({ type }) {
   } = useManageContentContext();
 
   const { setIsArchiveLoading } = useArchiveContext();
+
+  const {
+    setIsSettingsLoading,
+    setIsSettingsDownloadSuccess,
+    setIsSettingsRequestFailed,
+  } = useSettingsContext();
 
   function typeRoute() {
     if (type == 'archive') {
