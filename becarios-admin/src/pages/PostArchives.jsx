@@ -135,7 +135,7 @@ function PostArchives() {
             </>
           )}
           <div className="flex justify-end">
-            <ExportRecordsBtn />
+            <ExportRecordsBtn type="archive" />
           </div>
         </div>
       </div>

@@ -1661,13 +1661,21 @@ function GenerateReportBtn() {
   );
 }
 
-function ExportRecordsBtn() {
+function ExportRecordsBtn({ type }) {
   const {
     setIsLoading,
     setIsRequestFailed,
     setIsDownloadSuccess,
   } = useManageContentContext();
-  async function handleExport() {
+
+  function typeRoute() {
+    if (type == 'archive') {
+      handleExportArchived();
+    } else {
+      handleExportPosted();
+    }
+  }
+  async function handleExportPosted() {
     try {
       setIsLoading(true);
       const response = await fetch(
@@ -1730,10 +1738,73 @@ function ExportRecordsBtn() {
     }
   }
 
+  async function handleExportArchived() {
+    try {
+      setIsLoading(true);
+      const response = await fetch(
+        'http://localhost:5001/download-all-archived-records',
+        {
+          method: 'GET',
+          headers: {
+            Accept: 'application/zip', // Set the Accept header to indicate you expect a ZIP file
+          },
+        },
+      );
+
+      if (response.ok) {
+        // Extract filename from Content-Disposition header
+        const contentDisposition = response.headers.get(
+          'content-disposition',
+        );
+        let filename = 'export.zip'; // Default filename
+        if (contentDisposition) {
+          const filenameRegex =
+            /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+          const matches = filenameRegex.exec(
+            contentDisposition,
+          );
+          if (matches !== null && matches[1]) {
+            filename = matches[1].replace(/['"]/g, '');
+          }
+        }
+
+        // Convert response to blob
+        const blob = await response.blob();
+
+        // Create a temporary URL for the blob
+        const url = window.URL.createObjectURL(blob);
+
+        // Create a link element and trigger the download
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+
+        // Clean up
+        window.URL.revokeObjectURL(url);
+        a.remove();
+        setIsDownloadSuccess(true);
+      } else {
+        // Handle error response
+        console.error(
+          'Failed to export records:',
+          response.statusText,
+        );
+      }
+      setIsLoading(false);
+    } catch (error) {
+      setIsLoading(false);
+      setIsRequestFailed(true);
+      console.error('Error exporting records:', error);
+      // Handle error
+    }
+  }
+
   return (
     <button
       className="bg-brand-black shadow-shadow-db rounded-10 hover:bg-brand-green-dark mb-[1rem] p-4 text-[1rem] font-semibold text-[#FFFFFF] duration-300 md:px-5 md:text-[1.25rem]"
-      onClick={() => handleExport()}
+      onClick={() => typeRoute()}
     >
       Export Records
     </button>
