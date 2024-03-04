@@ -1662,10 +1662,14 @@ function GenerateReportBtn() {
 }
 
 function ExportRecordsBtn() {
+  const { setIsLoading, setIsRequestFailed } =
+    useManageContentContext();
   async function handleExport() {
     try {
+      setIsLoading(true);
+      throw new Error();
       const response = await fetch(
-        'http://localhost:5001/download-all-records4',
+        'http://localhost:5001/download-all-records',
         {
           method: 'GET',
           headers: {
@@ -1714,7 +1718,10 @@ function ExportRecordsBtn() {
           response.statusText,
         );
       }
+      setIsLoading(false);
     } catch (error) {
+      setIsLoading(false);
+      setIsRequestFailed(true);
       console.error('Error exporting records:', error);
       // Handle error
     }

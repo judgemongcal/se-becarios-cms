@@ -540,7 +540,7 @@ app.post(
 );
 
 // WORKING VERSION
-app.get('/download-all-records4', async (req, res) => {
+app.get('/download-all-records', async (req, res) => {
   let downloadsDirectory;
   const articleCollection = collection(db, 'articles');
   const postedArticlesQuery = query(
