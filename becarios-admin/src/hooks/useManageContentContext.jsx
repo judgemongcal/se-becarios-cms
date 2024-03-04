@@ -64,6 +64,8 @@ export function ManageContentProvider({ children }) {
   const [isLoading, setIsLoading] = useState(false);
   const [isRequestFailed, setIsRequestFailed] =
     useState(false);
+  const [isDownloadSuccess, setIsDownloadSuccess] =
+    useState(false);
 
   // Event handlers
   const handleNavigateLeft = () => {
@@ -128,6 +130,16 @@ export function ManageContentProvider({ children }) {
     return () => clearTimeout(timer);
   }, [isRequestFailed, setIsRequestFailed]);
 
+  useEffect(() => {
+    let timer;
+    if (isDownloadSuccess) {
+      timer = setTimeout(() => {
+        setIsDownloadSuccess(false);
+      }, 3000);
+    }
+    return () => clearTimeout(timer);
+  }, [isDownloadSuccess, setIsDownloadSuccess]);
+
   const contextValue = {
     currentTitle,
     setCurrentTitle,
@@ -189,6 +201,8 @@ export function ManageContentProvider({ children }) {
     setIsLoading,
     isRequestFailed,
     setIsRequestFailed,
+    isDownloadSuccess,
+    setIsDownloadSuccess,
   };
 
   return (

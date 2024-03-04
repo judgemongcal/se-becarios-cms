@@ -12,6 +12,7 @@ import {
   ApprovePostModal,
   ArchiveReqRejectSuccessModal,
   ArchiveReqSuccessModal,
+  DownloadSuccessModal,
   EditReqRejectSuccessModal,
   EditReqSuccessModal,
   PostReqRejectSuccessModal,
@@ -46,6 +47,7 @@ function ManageContent() {
     isArchiveRejectSuccess,
     isLoading,
     isRequestFailed,
+    isDownloadSuccess,
   } = useManageContentContext();
 
   const { setIsArchiveEdit } = useArchiveContext();
@@ -156,6 +158,7 @@ function ManageContent() {
       {isPendingItemClicked && <ViewArticleModal />}
       {isApproveBtnClicked && <ApprovePostModal />}
       {isRejectBtnClicked && <RejectPostModal />}
+      {isDownloadSuccess && <DownloadSuccessModal />}
       {isPostApproveSuccess && (
         <PostReqSuccessModal type="manage-content" />
       )}
