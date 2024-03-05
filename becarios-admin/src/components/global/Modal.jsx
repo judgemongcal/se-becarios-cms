@@ -702,7 +702,7 @@ function DownloadSuccessModal() {
           start in a few moments.
         </h1>
         <p className="mx-[3rem] mb-[2rem] text-[1rem] font-medium">
-          If the download did not occur, please the
+          If the download did not occur, please click the
           <br />
           Generate Records button again.
         </p>
