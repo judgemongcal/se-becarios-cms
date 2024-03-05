@@ -13,6 +13,7 @@ import { UserRecord, getAuth } from 'firebase-admin/auth';
 import { getDatabase } from 'firebase-admin/database';
 import bodyParser from 'body-parser';
 import {
+  deleteObject,
   getDownloadURL,
   ref,
   uploadBytesResumable,
@@ -27,6 +28,7 @@ import {
   updateDoc,
   where,
   query,
+  getDoc,
 } from 'firebase/firestore';
 import os from 'os';
 import path from 'path';
@@ -341,11 +343,13 @@ app.post('/removeAdminCredAndAuth', async (req, res) => {
       where('email', '==', email),
     );
 
-    console.log(adminQuery);
-
     const querySnapshot = await getDocs(adminQuery);
+
     if (!querySnapshot.empty) {
       querySnapshot.forEach(async (doc) => {
+        const data = doc.data();
+        const imageRef = ref(storage, data.image);
+        await deleteObject(imageRef);
         await deleteDoc(doc.ref);
       });
 
@@ -440,7 +444,6 @@ app.post(
 );
 
 // EDIT ARTICLE
-
 app.post(
   '/edit-article-credentials/:id',
   upload.single('article-image'),
@@ -539,7 +542,7 @@ app.post(
   },
 );
 
-// WORKING VERSION (DOWNLOAD ALL POSTED RECORDS)
+// DOWNLOAD ALL POSTED RECORDS
 app.get('/download-all-records', async (req, res) => {
   let downloadsDirectory;
   const articleCollection = collection(db, 'articles');
@@ -691,7 +694,7 @@ app.get('/download-all-records', async (req, res) => {
   }
 });
 
-// WORKING VERSION (DOWNLOAD ALL POSTED RECORDS)
+// DOWNLOAD ALL ARCHIVED RECORDS
 app.get(
   '/download-all-archived-records',
   async (req, res) => {
@@ -853,3 +856,5 @@ app.get(
     }
   },
 );
+
+// DOWNLOAD AUDIT TRAIL

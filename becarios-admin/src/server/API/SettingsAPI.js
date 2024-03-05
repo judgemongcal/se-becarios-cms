@@ -77,14 +77,23 @@ export async function removeAdmin(adminID) {
       .doc(adminID)
       .get();
 
-    if (adminDoc.exists) {
+    const articleRef = doc(
+      db,
+      'admin_credentials',
+      adminID,
+    );
+    const docSnapshot = await getDoc(articleRef);
+
+    if (docSnapshot.exists()) {
       const adminData = adminDoc.data();
       if (adminData && adminData.image) {
         // Specify a child reference to the image using .child()
+        console.log(adminData);
         const imageRef = ref(storage, adminData.image);
         // Delete the image
         await deleteObject(imageRef);
       } else {
+        console.log('not found');
         throw new Error('No image');
       }
       // Document exists, proceed with deletion
