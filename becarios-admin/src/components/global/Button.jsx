@@ -1838,11 +1838,11 @@ function ExportRecordsBtn({ type }) {
     try {
       setIsSettingsLoading(true);
       const response = await fetch(
-        'http://localhost:5001/download-all-archived-records',
+        'http://localhost:5001/download-settings-audit-trail-record',
         {
           method: 'GET',
           headers: {
-            Accept: 'application/zip', // Set the Accept header to indicate you expect a ZIP file
+            Accept: 'text/csv',
           },
         },
       );
@@ -1852,7 +1852,7 @@ function ExportRecordsBtn({ type }) {
         const contentDisposition = response.headers.get(
           'content-disposition',
         );
-        let filename = 'export.zip'; // Default filename
+        let filename = 'audit-trail.csv'; // Default filename
         if (contentDisposition) {
           const filenameRegex =
             /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
@@ -1884,7 +1884,7 @@ function ExportRecordsBtn({ type }) {
       } else {
         // Handle error response
         console.error(
-          'Failed to export records:',
+          'Failed to export audit trail records:',
           response.statusText,
         );
       }
@@ -1892,7 +1892,10 @@ function ExportRecordsBtn({ type }) {
     } catch (error) {
       setIsSettingsLoading(false);
       setIsSettingsRequestFailed(true);
-      console.error('Error exporting records:', error);
+      console.error(
+        'Error exporting audit trail records:',
+        error,
+      );
       // Handle error
     }
   }

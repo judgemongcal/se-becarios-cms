@@ -79,9 +79,9 @@ function NavBarMobile() {
                 isActiveLink('/home')
                   ? 'border-brand-yellow text-brand-yellow'
                   : 'border-brand-gray hover:fill-brand-blue hover:text-brand-blue hover:border-brand-blue'
-              } rounded-10 grid grid-cols-2 items-center gap-5 border-4 px-[7.5rem] py-4`}
+              } rounded-10 grid grid-cols-2 items-center gap-5 border-4 px-[5.5rem] py-4`}
             >
-              <HiOutlineViewBoards className=" -ml-11 h-auto w-[36px]" />
+              <HiOutlineViewBoards className=" -ml-2 h-auto w-[36px]" />
               <p className="-ml-2 ">Home</p>
             </motion.button>
           </NavLink>

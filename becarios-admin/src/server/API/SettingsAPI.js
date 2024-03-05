@@ -11,6 +11,7 @@ import {
 import { auth, db, storage } from '../firebase.js';
 import { useState } from 'react';
 // import { storage } from 'firebase-admin';
+import { createObjectCsvStringifier } from 'csv-writer';
 import { deleteObject, ref } from 'firebase/storage';
 
 export async function fetchAllAdmins() {
@@ -143,4 +144,57 @@ export async function assignAsSuperAdmin(
     console.log(error);
     return { success: false };
   }
+}
+
+export async function downloadAuditTrailRecord(res) {
+  try {
+    // Ensure that db.collection is correctly accessed
+    const auditTrailSnapshot = await getDocs(collection(db, 'audit-trail')); // Use getDocs to fetch the documents
+
+    const auditTrailData = [];
+
+    // Add data rows
+    auditTrailSnapshot.forEach((doc) => { // Loop through snapshot
+      const auditTrailEntry = doc.data();
+
+      // Convert timestamp to Date format
+      const date = auditTrailEntry.date ? formatDate(new Date(auditTrailEntry.date.seconds * 1000)) : '';
+
+      const rowData = {
+        'Action Subtype': auditTrailEntry.actionSubtype || '', // Handle potential missing values
+        'Action Type': auditTrailEntry.actionType || '',
+        'Date': date || '',
+        'Description': auditTrailEntry.description || '',
+        'User': auditTrailEntry.user || ''
+      };
+      auditTrailData.push(rowData);
+    });
+
+    // Create CSV string
+    const csvStringifier = createObjectCsvStringifier({
+      header: [
+        { id: 'Action Subtype', title: 'Action Subtype' },
+        { id: 'Action Type', title: 'Action Type' },
+        { id: 'Date', title: 'Date' },
+        { id: 'Description', title: 'Description' },
+        { id: 'User', title: 'User' }
+      ]
+    });
+    const csvContent = csvStringifier.getHeaderString() + csvStringifier.stringifyRecords(auditTrailData);
+
+    // Set response headers
+    res.setHeader('Content-Type', 'text/csv');
+    res.setHeader('Content-Disposition', 'attachment; filename=audit-trail.csv');
+
+    // Send CSV content in the response
+    res.status(200).send(csvContent);
+  } catch (error) {
+    console.error('Error downloading audit trail records:', error);
+    throw error;
+  }
+}
+
+function formatDate(date) {
+  const options = { month: '2-digit', day: '2-digit', year: 'numeric' };
+  return date.toLocaleDateString('en-US', options);
 }

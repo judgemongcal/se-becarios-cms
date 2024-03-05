@@ -4,6 +4,7 @@ import * as fs from 'fs';
 import cors from 'cors';
 import { db, storage } from './firebase.js';
 import { fetchArticles } from './API/GlobalAPI.js';
+import { downloadAuditTrailRecord } from './API/SettingsAPI.js';
 import {
   initializeApp,
   applicationDefault,
@@ -857,4 +858,11 @@ app.get(
   },
 );
 
-// DOWNLOAD AUDIT TRAIL
+app.get('/download-settings-audit-trail-record', async (req, res) => {
+  try {
+      await downloadAuditTrailRecord(res); // Pass the response object to the function
+  } catch (error) {
+      console.error('Error handling download request:', error);
+      res.status(500).send('Internal Server Error');
+  }
+});
