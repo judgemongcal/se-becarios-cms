@@ -1542,6 +1542,7 @@ function SubmitArchiveModalBtn() {
         id,
         currentRole,
       );
+      console.log(id);
 
       if (response.success) {
         const doc = await fetchArticleById(id);
@@ -1590,7 +1591,9 @@ function SubmitArchiveModalBtn() {
         className="bg-brand-yellow shadow-shadow-db rounded-10 hover:bg-brand-yellow-dark w-[100%] py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-100"
         onClick={(e) => handleArchive(e)}
       >
-        Submit Request
+        {userInfo.role == 'Super Admin'
+          ? 'Archive Article'
+          : 'Submit Request'}
       </button>
     </div>
   );
@@ -1629,6 +1632,20 @@ function SubmitRetrieveArchiveModalBtn() {
         setIsArchiveLoading(false);
         setIsPutBackBtnClicked(false);
         setIsPutBackSuccessful(true);
+        const doc = await fetchArticleById(currentDocId);
+        const data = {
+          user: `${userInfo.firstName} ${userInfo.lastName}`,
+          actionType: 'ARTICLE_ACTION',
+          actionSubtype:
+            userInfo.role == 'Super Admin'
+              ? 'ARCHIVE_ARTICLE'
+              : 'REQ_ARCHIVE_ARTICLE',
+          description:
+            userInfo.role == 'Super Admin'
+              ? `${userInfo.firstName} ${userInfo.lastName} retrieved an archived article with the title of ${doc.title}`
+              : `${userInfo.firstName} ${userInfo.lastName} sent a retrieve archive article request for an article with the title ${doc.title}`,
+        };
+        await logActivity(data);
       } else {
         throw new Error('Error retrieving');
       }
@@ -1651,7 +1668,9 @@ function SubmitRetrieveArchiveModalBtn() {
         className="bg-brand-yellow shadow-shadow-db rounded-10 hover:bg-brand-yellow-dark w-[100%] py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-100"
         onClick={(e) => handleRetrieve(e)}
       >
-        Submit Request
+        {userInfo.role == 'Super Admin'
+          ? 'Retrieve Article'
+          : 'Submit Request'}
       </button>
     </div>
   );
@@ -1819,11 +1838,11 @@ function ExportRecordsBtn({ type }) {
     try {
       setIsSettingsLoading(true);
       const response = await fetch(
-        'http://localhost:5001/download-all-archived-records',
+        'http://localhost:5001/download-settings-audit-trail-record',
         {
           method: 'GET',
           headers: {
-            Accept: 'application/zip', // Set the Accept header to indicate you expect a ZIP file
+            Accept: 'text/csv',
           },
         },
       );
@@ -1833,7 +1852,7 @@ function ExportRecordsBtn({ type }) {
         const contentDisposition = response.headers.get(
           'content-disposition',
         );
-        let filename = 'export.zip'; // Default filename
+        let filename = 'audit-trail.csv'; // Default filename
         if (contentDisposition) {
           const filenameRegex =
             /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
@@ -1865,7 +1884,7 @@ function ExportRecordsBtn({ type }) {
       } else {
         // Handle error response
         console.error(
-          'Failed to export records:',
+          'Failed to export audit trail records:',
           response.statusText,
         );
       }
@@ -1873,7 +1892,10 @@ function ExportRecordsBtn({ type }) {
     } catch (error) {
       setIsSettingsLoading(false);
       setIsSettingsRequestFailed(true);
-      console.error('Error exporting records:', error);
+      console.error(
+        'Error exporting audit trail records:',
+        error,
+      );
       // Handle error
     }
   }
