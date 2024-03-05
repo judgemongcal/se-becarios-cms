@@ -1542,6 +1542,7 @@ function SubmitArchiveModalBtn() {
         id,
         currentRole,
       );
+      console.log(id);
 
       if (response.success) {
         const doc = await fetchArticleById(id);
@@ -1590,7 +1591,9 @@ function SubmitArchiveModalBtn() {
         className="bg-brand-yellow shadow-shadow-db rounded-10 hover:bg-brand-yellow-dark w-[100%] py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-100"
         onClick={(e) => handleArchive(e)}
       >
-        Submit Request
+        {userInfo.role == 'Super Admin'
+          ? 'Archive Article'
+          : 'Submit Request'}
       </button>
     </div>
   );
@@ -1629,6 +1632,20 @@ function SubmitRetrieveArchiveModalBtn() {
         setIsArchiveLoading(false);
         setIsPutBackBtnClicked(false);
         setIsPutBackSuccessful(true);
+        const doc = await fetchArticleById(currentDocId);
+        const data = {
+          user: `${userInfo.firstName} ${userInfo.lastName}`,
+          actionType: 'ARTICLE_ACTION',
+          actionSubtype:
+            userInfo.role == 'Super Admin'
+              ? 'ARCHIVE_ARTICLE'
+              : 'REQ_ARCHIVE_ARTICLE',
+          description:
+            userInfo.role == 'Super Admin'
+              ? `${userInfo.firstName} ${userInfo.lastName} retrieved an archived article with the title of ${doc.title}`
+              : `${userInfo.firstName} ${userInfo.lastName} sent a retrieve archive article request for an article with the title ${doc.title}`,
+        };
+        await logActivity(data);
       } else {
         throw new Error('Error retrieving');
       }
@@ -1651,7 +1668,9 @@ function SubmitRetrieveArchiveModalBtn() {
         className="bg-brand-yellow shadow-shadow-db rounded-10 hover:bg-brand-yellow-dark w-[100%] py-3 text-[1.15rem] font-semibold text-[#FFFFFF] duration-100"
         onClick={(e) => handleRetrieve(e)}
       >
-        Submit Request
+        {userInfo.role == 'Super Admin'
+          ? 'Retrieve Article'
+          : 'Submit Request'}
       </button>
     </div>
   );
