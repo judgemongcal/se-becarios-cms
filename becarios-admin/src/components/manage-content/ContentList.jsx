@@ -139,7 +139,7 @@ function ContentList({ type, currentPage, totalPages }) {
                 type={type}
                 data={{
                   author: article.data.author,
-                  datePosted: articleDate,
+                  datePosted: article.data.dateCreated,
                   image: article.data.image,
                   title: article.data.title,
                 }}
