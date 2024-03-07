@@ -997,6 +997,7 @@ function ConfirmEditAdminModalBtn() {
     setIsAddAdminClicked,
     isAddAdminSuccessful,
     setIsAddAdminSuccessful,
+    setIsSettingsLoading,
   } = useSettingsContext();
 
   const { userInfo } = useUserInfoContext();
@@ -1026,7 +1027,7 @@ function ConfirmEditAdminModalBtn() {
 
   async function handleAdd(e) {
     e.preventDefault();
-    setIsLoading(true);
+    setIsSettingsLoading(true);
     setIsAddAdminBtnClicked(false);
     setIsAddAdminClicked(false);
 
@@ -1086,7 +1087,7 @@ function ConfirmEditAdminModalBtn() {
       if (response.status == 200) {
         await logActivity(data);
         setIsEditSuccessful(true);
-        setIsLoading(false);
+        setIsSettingsLoading(false);
 
         setTimeout(function () {
           resetAdminFields();
@@ -1096,7 +1097,7 @@ function ConfirmEditAdminModalBtn() {
       }
     } catch (error) {
       console.log('1008: ' + error);
-      setIsLoading(false);
+      setIsSettingsLoading(false);
       setIsFailed(true);
     }
   }
