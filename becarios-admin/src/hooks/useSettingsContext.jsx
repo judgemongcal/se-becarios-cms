@@ -50,6 +50,16 @@ export function SettingsProvider({ children }) {
 
   useEffect(() => {
     let timer;
+    if (isEditSuccessful) {
+      timer = setTimeout(() => {
+        setIsEditSuccessful(false);
+      }, 2900);
+    }
+    return () => clearTimeout(timer);
+  }, [isEditSuccessful, setIsEditSuccessful]);
+
+  useEffect(() => {
+    let timer;
     if (isSettingsRequestFailed) {
       timer = setTimeout(() => {
         setIsSettingsRequestFailed(false);

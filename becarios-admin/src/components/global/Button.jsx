@@ -1090,9 +1090,9 @@ function ConfirmEditAdminModalBtn() {
         setIsSettingsLoading(false);
 
         setTimeout(function () {
-          resetAdminFields();
           window.location.reload();
-        }, 2000);
+          resetAdminFields();
+        }, 3000);
         console.log(adminFirstName, adminLastName);
       }
     } catch (error) {
