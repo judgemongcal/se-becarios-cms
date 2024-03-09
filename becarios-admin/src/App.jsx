@@ -41,7 +41,7 @@ function App() {
             value={UserInfoProvider.contextValue}
           >
             <Routes>
-              <Route path="/sample" element={<Sample />} />
+              {/* <Route path="/sample" element={<Sample />} /> */}
               <Route index element={<Login />} />
               {/* <Route path="/home" element={<Home />} /> */}
               <Route
