@@ -34,6 +34,7 @@ export function CreateArticleProvider({ children }) {
   const [numOfChars, setNumOfChars] = useState(0);
   const [isImageSizeExceeded, setIsImageSizeExceeded] =
     useState(false);
+  const [mode, setMode] = useState('edit');
 
   useEffect(() => {
     if (isImageSizeExceeded) {
@@ -46,7 +47,7 @@ export function CreateArticleProvider({ children }) {
   }, [isImageSizeExceeded, setIsImageSizeExceeded]);
 
   function resetAllFields() {
-    setArticleBody('   ');
+    setArticleBody('');
     setArticleImageFileName('');
     setArticleImageSrc('');
     setArticleImgFile('');
@@ -82,6 +83,8 @@ export function CreateArticleProvider({ children }) {
     setNumOfChars,
     isImageSizeExceeded,
     setIsImageSizeExceeded,
+    mode,
+    setMode,
   };
 
   return (

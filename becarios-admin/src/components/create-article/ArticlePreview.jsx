@@ -1,14 +1,23 @@
+import { useEffect } from 'react';
 import { useCreateArticleContext } from '../../hooks/useCreateArticleContext';
 
 function ArticlePreview() {
-  const { articleTitle, articleBody, articleImageSrc } =
-    useCreateArticleContext();
+  const {
+    articleTitle,
+    articleBody,
+    articleImageSrc,
+    setArticleBody,
+  } = useCreateArticleContext();
   const parser = new DOMParser();
   const content = parser.parseFromString(
     articleBody,
     'text/html',
   );
   const parsedContent = content.body.innerHTML;
+
+  useEffect(() => {
+    setArticleBody(articleBody);
+  }, []);
 
   return (
     <div className="Preview mx-auto flex  w-[80%] flex-col gap-4 ">

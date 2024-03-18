@@ -29,11 +29,14 @@ function CreateArticle() {
     isCreateArticleLoading,
     isCreateFailed,
     isImageSizeExceeded,
+    mode,
   } = useCreateArticleContext();
 
-  useEffect(() => {
-    resetAllFields();
-  }, []);
+  // useEffect(() => {
+  //   if (mode != 'edit') {
+  //     resetAllFields();
+  //   }
+  // }, [resetAllFields, mode]);
 
   return (
     <div className="flex flex-col justify-start lg:flex-row ">

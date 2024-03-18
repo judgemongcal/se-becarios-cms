@@ -361,9 +361,10 @@ export default function TextEditor() {
     console.log(updatedBody);
   }
 
-  useEffect(() => {
-    setArticleBody('');
-  }, [setArticleBody]);
+  // useEffect(() => {
+  //   setArticleBody('');
+  // }, [setArticleBody]);
+
   // useEffect(() => {
   //   async function updateContent() {
   //     const parser = new DOMParser();

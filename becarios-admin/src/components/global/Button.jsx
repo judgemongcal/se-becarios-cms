@@ -449,6 +449,7 @@ function SubmitArticleBtn() {
     if (
       articleTitle.length < 1 ||
       parsedContent.documentElement.innerText.length < 1 ||
+      // numOfChars < 1 ||
       !articleImgFile
     ) {
       setIsInputComplete(false);
@@ -456,7 +457,12 @@ function SubmitArticleBtn() {
     } else {
       setIsInputComplete(true);
     }
-  }, [articleBody, articleTitle.length, articleImgFile]);
+  }, [
+    articleBody,
+    articleTitle.length,
+    articleImgFile,
+    numOfChars,
+  ]);
 
   function handleClickPreview(e) {
     e.preventDefault();
