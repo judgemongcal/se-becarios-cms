@@ -90,6 +90,7 @@ function ArticleImageField() {
           articleImageFileName={articleImageFileName}
           setArticleImageFileName={setArticleImageFileName}
           setArticleImageSrc={setArticleImageSrc}
+          setArticleImgFile={setArticleImgFile}
         />
       )}
       <div
@@ -137,6 +138,7 @@ function ArticleImageField() {
             className="hidden"
             accept="image/*"
             onChange={(e) => handleArticleImageSrcChange(e)}
+            onClick={(e) => setArticleImgFile('')}
           />
         </label>
       </div>

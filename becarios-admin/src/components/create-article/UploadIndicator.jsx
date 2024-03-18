@@ -5,10 +5,12 @@ function UploadIndicator({
   setArticleImageFileName,
   setArticleImageSrc,
   articleImageSrc,
+  setArticleImgFile,
 }) {
   function handleRemoveImage() {
     setArticleImageFileName('');
     setArticleImageSrc('');
+    setArticleImgFile('');
   }
 
   return (
