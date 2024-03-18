@@ -78,6 +78,7 @@ function EditArticle() {
       const newContent =
         parsedContent.documentElement.innerHTML;
       setArticleBody(newContent);
+      console.log(newContent);
       // setArticleImageFileName(data.image);
       setArticleImageSrc(data.image);
     }

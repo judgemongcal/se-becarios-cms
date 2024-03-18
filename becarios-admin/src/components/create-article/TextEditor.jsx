@@ -362,8 +362,8 @@ export default function TextEditor() {
   }
 
   // useEffect(() => {
-  //   setArticleBody('');
-  // }, [setArticleBody]);
+  //   setArticleBody(articleBody);
+  // }, [setArticleBody, articleBody]);
 
   // useEffect(() => {
   //   async function updateContent() {
