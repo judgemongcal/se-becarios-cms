@@ -1026,7 +1026,6 @@ function ConfirmEditAdminModalBtn() {
 
   async function handleAdd(e) {
     e.preventDefault();
-    setIsLoading(true);
     setIsAddAdminBtnClicked(false);
     setIsAddAdminClicked(false);
 
