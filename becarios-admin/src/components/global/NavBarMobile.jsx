@@ -111,31 +111,6 @@ function NavBarMobile() {
             </motion.button>
           </NavLink>
 
-          {/* RECENT ACTIVITIES */}
-          <NavLink
-            to="/recent-activities"
-            onClick={closeMenuOnClick}
-          >
-            <motion.button
-              initial={{ scale: 0, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{
-                type: 'spring',
-                stiffness: 260,
-                damping: 20,
-                delay: 0.2 + 1 / 10,
-              }}
-              className={`create-post   ${
-                isActiveLink('/recent-activities')
-                  ? 'border-brand-yellow text-brand-yellow'
-                  : 'border-brand-gray hover:fill-brand-blue hover:text-brand-blue hover:border-brand-blue'
-              } rounded-10 grid grid-cols-2 items-center gap-2 border-4 px-[2.75rem] py-4 md:px-[2.25rem]`}
-            >
-              <HiOutlineClock className=" ml-9 h-auto w-[36px] md:ml-10" />
-              <p className=" ">Recent Activities</p>
-            </motion.button>
-          </NavLink>
-
           {/* MANAGE CONTENT */}
           <NavLink
             to="/manage-content"

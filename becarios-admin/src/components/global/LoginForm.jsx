@@ -93,7 +93,7 @@ function LoginForm() {
           ESCOLARIO
         </h1>
         <h2 className="text-[28px] leading-[36px] text-white xl:text-[36px] xl:leading-[44px]">
-          The Premier University
+          The Scholars' Official
         </h2>
         <h2 className="  text-[28px] leading-[36px] text-white xl:text-[36px] xl:leading-[44px] ">
           News Article Platform
