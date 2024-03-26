@@ -10,7 +10,7 @@ function Greeting({ type }) {
     <h1
       className={`${
         type === 'home' ? 'text-[#F6F6F6]' : 'mt-[10rem]'
-      } text-[2rem] font-semibold tracking-wider md:text-[2.5rem] lg:mt-[2rem]`}
+      } text-[1.6rem]  font-semibold tracking-wider md:text-[2.5rem] lg:mt-[2rem]`}
     >
       {userInfo && userInfo.firstName ? (
         <>

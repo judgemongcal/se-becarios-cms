@@ -25,16 +25,17 @@ function Home() {
   }
   return (
     <>
-      <div className=" z-50 mt-[5rem] flex h-full w-full flex-col items-center justify-center gap-4">
+      <div className=" z-50 flex h-full w-full flex-col items-center justify-center gap-4 text-center lg:mt-[0.9rem]">
         <UserInfo type="home" />
         <Greeting type="home" />
+
         <h1 className=" text-[1.25rem] font-normal tracking-wide text-[#F6F6F6] md:text-[1.5rem] lg:mt-[2rem]">
           What do you want to do today?
         </h1>
         {/* NAV */}
         <nav
-          className="  flex-col items-center justify-center gap-[3.5rem]
-      overflow-auto text-black lg:flex"
+          className="  mt-[-2.5rem] flex-col items-center justify-center
+      gap-[3.5rem] overflow-auto text-black lg:flex"
         >
           <section
             className={`mt-[2rem] grid grid-cols-1 items-center justify-center gap-[1rem] p-2 text-[1.15rem] md:grid-cols-2 md:gap-[1.5rem] lg:mt-[2rem] lg:grid-cols-4 lg:gap-[2rem]`}
