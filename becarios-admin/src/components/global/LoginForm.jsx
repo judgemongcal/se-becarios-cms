@@ -1,6 +1,7 @@
 import { LoginBtn, ResetPasswordBtn } from './Button';
 import { FiKey, FiMail } from 'react-icons/fi';
 import { IoEyeOff, IoEyeSharp } from 'react-icons/io5';
+import OrgLogo from '../../assets/org_logo.png'
 
 import { useEffect, useState } from 'react';
 import { UserAuth } from '../../hooks/useAuthContext';
@@ -115,7 +116,7 @@ function LoginForm() {
         className="mx-auto  mt-[25%] flex flex-col items-center self-center xl:mt-[-2%]"
       >
         <img
-          src="./src/assets/org_logo.png"
+          src={OrgLogo}
           alt=""
           className="mb-10 w-[25%]"
         />

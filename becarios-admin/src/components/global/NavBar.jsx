@@ -7,6 +7,7 @@ import {
   HiOutlineClock,
   HiOutlineLogout,
 } from 'react-icons/hi';
+import OrgLogo from '../../assets/org_logo.png'
 
 import { NavLink, useLocation } from 'react-router-dom';
 import { useSignOutContext } from '../../hooks/useSignOutContext';
@@ -28,7 +29,7 @@ function NavBar() {
       overflow-auto text-white md:w-[20.5rem] lg:flex"
     >
       <img
-        src="../src/assets/org_logo.png"
+        src={OrgLogo}
         alt=""
         className="fixed top-[20px]  mt-[30px] w-[180px]"
       />

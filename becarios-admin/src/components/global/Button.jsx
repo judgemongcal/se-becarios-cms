@@ -45,6 +45,8 @@ import { useEditArticleContext } from '../../hooks/useEditArticleContext';
 import { useArchiveContext } from '../../hooks/useArchiveContext';
 import { logActivity } from '../../server/API/GlobalAPI';
 
+const API_URL = 'https://escolario-admin-server.onrender.com';
+
 function LoginBtn() {
   return (
     <button className=" bg-gradient shadow-shadow-db transition-scale rounded-8 w-[100%] py-4 text-[1.15rem] font-bold text-[#FFFFFF] duration-100 ease-in hover:scale-105">
@@ -532,7 +534,7 @@ function SubmitPostModalBtn() {
       articleData.append('isArchived', false);
 
       const response = await fetch(
-        'http://localhost:5001/add-article',
+        `${API_URL}/add-article`,
         {
           method: 'POST',
           body: articleData,
@@ -808,7 +810,7 @@ function ConfirmAddAdminModalBtn() {
     setIsAddAdminClicked(false);
     try {
       const response = await fetch(
-        'http://localhost:5001/add-admin-auth',
+        `${API_URL}/add-admin-auth`,
         {
           method: 'POST',
           headers: { 'content-type': 'application/json' },
@@ -835,7 +837,7 @@ function ConfirmAddAdminModalBtn() {
       formData.append('role', adminRole);
 
       const response2 = await fetch(
-        'http://localhost:5001/add-admin-credentials',
+        `${API_URL}/add-admin-credentials`,
         {
           method: 'POST',
 
@@ -1039,7 +1041,7 @@ function ConfirmEditAdminModalBtn() {
       formData.append('role', adminRole);
 
       const response = await fetch(
-        `http://localhost:5001/edit-admin-credentials/${currentDocId}`,
+        `${API_URL}/edit-admin-credentials/${currentDocId}`,
         {
           method: 'POST',
 
@@ -1054,7 +1056,7 @@ function ConfirmEditAdminModalBtn() {
       if (adminPassword != '' && adminPassword != null) {
         console.log(adminEmail);
         const res = await fetch(
-          `http://localhost:5001/updatePasswordByEmail`,
+          `${API_URL}/updatePasswordByEmail`,
           {
             method: 'POST',
             headers: {
@@ -1277,7 +1279,7 @@ function RemoveAdminModalBtn() {
     setIsSettingsLoading(true);
     try {
       const response = await fetch(
-        'http://localhost:5001/removeAdminCredAndAuth',
+        `${API_URL}/removeAdminCredAndAuth`,
         {
           method: 'POST',
           headers: {
@@ -1386,7 +1388,7 @@ function SubmitEditModalBtn() {
       articleData.append('isEdited', true);
       articleData.append('role', userInfo.role);
       const response = await fetch(
-        `http://localhost:5001/edit-article-credentials/${id}`,
+        `${API_URL}/edit-article-credentials/${id}`,
         {
           method: 'POST',
           body: articleData,
@@ -1711,7 +1713,7 @@ function ExportRecordsBtn({ type }) {
     try {
       setIsLoading(true);
       const response = await fetch(
-        'http://localhost:5001/download-all-records',
+        `${API_URL}/download-all-records`,
         {
           method: 'GET',
           headers: {
@@ -1773,8 +1775,9 @@ function ExportRecordsBtn({ type }) {
   async function handleExportArchived() {
     try {
       setIsArchiveLoading(true);
+      console.log(API_URL);
       const response = await fetch(
-        'http://localhost:5001/download-all-archived-records',
+        `${API_URL}/download-all-archived-records`,
         {
           method: 'GET',
           headers: {
@@ -1837,7 +1840,7 @@ function ExportRecordsBtn({ type }) {
     try {
       setIsSettingsLoading(true);
       const response = await fetch(
-        'http://localhost:5001/download-settings-audit-trail-record',
+        `${API_URL}/download-settings-audit-trail-record`,
         {
           method: 'GET',
           headers: {

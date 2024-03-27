@@ -13,6 +13,7 @@ import {
   HiOutlineLogout,
 } from 'react-icons/hi';
 import { useSignOutContext } from '../../hooks/useSignOutContext';
+import OrgLogo from '../../assets/org_logo.png'
 
 function NavBarMobile() {
   const { isSignOutClicked, setIsSignOutClicked } =
@@ -42,7 +43,7 @@ function NavBarMobile() {
     <div className="fixed z-50 w-[100%] lg:hidden">
       <div className="bg-brand-black rounded-b-8 flex flex-row items-center justify-between p-8">
         <img
-          src="../src/assets/org_logo.png"
+          src={OrgLogo}
           alt=""
           className="w-[150px] "
         />
