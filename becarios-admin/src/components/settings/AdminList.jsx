@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import { useSettingsContext } from '../../hooks/useSettingsContext';
+
 import { AdminSettingsBtn } from '../global/Button';
 import AdminListItem from './AdminListItem';
 import { fetchAllAdmins } from '../../server/API/SettingsAPI';
-import Spinner from '../global/Spinner';
+
 import ListSpinner from '../global/ListSpinner';
 
 function AdminList() {
