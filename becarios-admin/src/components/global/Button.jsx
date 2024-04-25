@@ -1,5 +1,4 @@
 import {
-  FaCheck,
   FaEllipsis,
   FaPlus,
   FaShareFromSquare,
@@ -9,7 +8,6 @@ import { FaXmark } from 'react-icons/fa6';
 import { LuPencil } from 'react-icons/lu';
 import {
   NavLink,
-  useLocation,
   useNavigate,
   useParams,
 } from 'react-router-dom';
@@ -35,7 +33,6 @@ import {
   archiveArticlebyID,
   deleteArticlebyID,
   fetchArticleById,
-  fetchPostedArticlesAndCreateFiles,
   rejectArchiveArticlebyID,
   rejectEditArticlebyID,
   rejectPostArticlebyID,

@@ -33,7 +33,6 @@ import {
 } from 'react-icons/lu';
 
 import { useCreateArticleContext } from '../../hooks/useCreateArticleContext';
-import { useEffect } from 'react';
 import CharacterLimitIndicator from '../global/CharacterLimitIndicator';
 
 const MenuBar = () => {
@@ -360,43 +359,6 @@ export default function TextEditor() {
     setArticleBody(updatedBody);
     console.log(updatedBody);
   }
-
-  // useEffect(() => {
-  //   setArticleBody(articleBody);
-  // }, [setArticleBody, articleBody]);
-
-  // useEffect(() => {
-  //   async function updateContent() {
-  //     const parser = new DOMParser();
-  //     const content = parser.parseFromString(
-  //       articleBody,
-  //       'text/html',
-  //     );
-
-  //     setArticleBody(content);
-  //   }
-
-  //   updateContent();
-  // }, [articleBody, setArticleBody]);
-
-  // useEffect(() => {
-  //   async function updateContent() {
-  //     const parser = new DOMParser();
-  //     const parsedContent = parser.parseFromString(
-  //       articleBody,
-  //       'text/html',
-  //     );
-
-  //     // Check if the parsed content is different from the current articleBody state
-  //     const newContent =
-  //       parsedContent.documentElement.innerHTML;
-  //     // if (newContent !== articleBody) {
-  //     setArticleBody(newContent);
-  //     // }
-  //   }
-
-  //   updateContent();
-  // }, [articleBody, setArticleBody]);
 
   return (
     <EditorProvider
