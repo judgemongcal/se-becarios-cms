@@ -25,11 +25,9 @@ function CreateArticle() {
     isPreview,
     isSubmitBtnPressed,
     isSubmitConfirmed,
-    resetAllFields,
     isCreateArticleLoading,
     isCreateFailed,
     isImageSizeExceeded,
-    mode,
   } = useCreateArticleContext();
 
   return (

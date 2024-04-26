@@ -25,9 +25,6 @@ function AdminList() {
         <AdminSettingsBtn />
       </div>
       <div className="items flex flex-col gap-4">
-        {/* <AdminListItem />
-        <AdminListItem />
-        <AdminListItem /> */}
         {adminList.length < 1 && <ListSpinner />}
         {adminList.map((admin) => (
           <AdminListItem key={admin.id} admin={admin} />
