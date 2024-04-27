@@ -41,9 +41,7 @@ function EditArticle() {
     isEditBtnPressed,
     isEditConfirmed,
     isArchiveBtnPressed,
-    setIsArchiveBtnPressed,
     isArchiveConfirmed,
-    setIsArchiveConfirmed,
     isArchiveFailed,
     setIsArchived,
     isLoading,
@@ -74,12 +72,12 @@ function EditArticle() {
       setNumOfChars(
         parsedContent.documentElement.innerText.length,
       );
-      // Check if the parsed content is different from the current articleBody state
+
       const newContent =
         parsedContent.documentElement.innerHTML;
       setArticleBody(newContent);
       console.log(newContent);
-      // setArticleImageFileName(data.image);
+
       setArticleImageSrc(data.image);
     }
     fetchData();
