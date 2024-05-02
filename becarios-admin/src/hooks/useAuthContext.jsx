@@ -9,12 +9,8 @@ import {
   sendPasswordResetEmail,
   signOut,
   onAuthStateChanged,
-  setPersistence,
-  browserSessionPersistence,
-  fetchSignInMethodsForEmail,
 } from 'firebase/auth';
 import { auth } from '../server/firebase';
-import { useSignOutContext } from './useSignOutContext';
 
 const AuthContext = createContext();
 
